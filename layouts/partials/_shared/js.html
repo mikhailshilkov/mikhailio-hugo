@@ -5,6 +5,7 @@
 {{ $jquery := resources.Get "js/vendor/jquery.min.js" }}
 {{ $popperjs := resources.Get "js/vendor/popper.min.js" }}
 {{ $bootstrap := resources.Get "js/vendor/bootstrap.min.js" }}
-{{ $js := slice $jquery $popperjs $bootstrap | resources.Concat "js/bundle.js" | resources.Minify }}
+{{ $comments := resources.Get "js/comments.js" }}
+{{ $js := slice $jquery $popperjs $bootstrap $comments | resources.Concat "js/bundle.js" | resources.Minify }}
 
 <script src="{{$js.RelPermalink}}"></script>
