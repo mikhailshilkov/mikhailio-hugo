@@ -1,0 +1,34 @@
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container pr-0">
+        <a class="navbar-brand" href="/">
+            <span class="text-primary">Mikhail Shilkov</span>
+        </a>
+
+        {{ $baseurl := .Site.BaseURL }}
+        {{ $fullurl := print ( .RelPermalink | replaceRE "[^/]+/$" "") }}       
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Begin Menu -->
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            {{ $currentPage := . }}
+            <ul class="navbar-nav ml-auto">
+                {{ range .Site.Menus.main }} 
+                <li class="nav-item {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                    <a class="nav-link" href="{{ .URL }}">{{ .Name | title }}</a>
+                </li>
+                {{ end }}
+                {{- partial "_shared/social.html" . -}}
+            </ul>
+        </div>
+        <!-- End Menu -->
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->

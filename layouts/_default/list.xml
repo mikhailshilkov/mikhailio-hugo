@@ -1,0 +1,57 @@
+{{ partial "feed/declaration" . | htmlUnescape | safeHTML }}
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <generator>Hugo -- gohugo.io</generator>
+    <title>{{ site.Title -}}</title>
+    {{- with .OutputFormats.Get "atom" -}} <!-- Here, the Get is case-insensitive. -->
+        <link href="{{ .Permalink }}" rel="self" type="{{ .MediaType.Type }}" />
+    {{- end -}}
+    <link href="{{ .Permalink }}feed" rel="self" />
+    <link href="{{ .Permalink }}"/>
+    <updated>{{ now.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
+    {{ with site.Params.author.name -}}
+        <author>
+            <name>{{ . }}</name>
+            {{ with site.Params.author.email }}
+                <email>{{ . }}</email>
+            {{ end -}}
+        </author>
+    {{- end }}
+    <id>{{ .Permalink }}</id>
+    {{ $feed_sections := $.Site.Params.feedSections | default site.Params.mainSections }}
+    {{- range .Pages }}
+        {{ $page := . }}
+        {{- with .Params.nofeed }}
+        {{ else }}
+        <entry>
+            {{ printf `<title type="html"><![CDATA[%s]]></title>` .Title | safeHTML }}
+            <link href="{{ .Permalink }}"/>
+            <id>{{ .Permalink }}</id>
+            {{ with .Params.author -}}
+                {{- range . -}} <!-- Assuming the author front-matter to be a list -->
+                    <author>
+                        <name>{{ . }}</name>
+                    </author>
+                {{- end -}}
+            {{- end }}
+            <published>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</published>
+            <updated>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
+            {{ $description1 := .Description | default "" }}
+            {{ $description := (cond (eq "" $description1) "" (printf "<blockquote>%s</blockquote>" ($description1 | markdownify))) }}
+            {{ printf `<content type="html"><![CDATA[%s%s]]></content>` $description .Content | safeHTML }}
+            {{ with site.Taxonomies }}
+                {{ range $taxo,$_ := . }} <!-- Defaults taxos: "tags", "categories" -->
+                    {{ with $page.Param $taxo }}
+                        {{ $taxo_list := . }} <!-- $taxo_list will be the tags/categories list -->
+                        {{ with site.GetPage (printf "/%s" $taxo) }}
+                            {{ $taxonomy_page := . }}
+                            {{ range $taxo_list }} <!-- Below, assuming pretty URLs -->
+                                <category scheme="{{ printf "%s%s" $taxonomy_page.Permalink (. | urlize) }}" term="{{ (. | urlize) }}" label="{{ . }}" />
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </entry>
+    {{ end }}
+    {{ end }}
+</feed>

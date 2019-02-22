@@ -1,0 +1,67 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+    <div class="main-content">
+
+        <div class="mainheading">
+            <!-- Post Title -->
+            <h1 class="posttitle">{{ .Title }}</h1> 
+        </div>
+
+        <section class="recent-posts">            
+            <div class="section-title">                
+                <h2><span>Overview</span></h2>
+            </div>            
+            <div class="row listrecent">
+                <div class="col-lg-8 col-sm-12 mb-30px card-group">
+                    {{ $page := $.GetPage "/serverless/coldstarts/big3" }}
+                    {{- partial "list-partials/featured.html" $page -}}
+                </div>
+                <div class="col-lg-3 offset-lg-1 card-group float-right">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6">
+                            {{ $define := $.GetPage "/serverless/coldstarts/define" }}
+                            {{- partial "list-partials/summary.html" $define -}}
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            {{ $methodology := $.GetPage "/serverless/coldstarts/methodology" }}
+                            {{- partial "list-partials/summary.html" $methodology -}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="recent-posts">            
+            <div class="section-title">                
+                <h2><span>Per Cloud Provider</span></h2>
+            </div>            
+            <div class="row listrecent">
+                {{ $post_paginator := slice "/serverless/coldstarts/aws" "/serverless/coldstarts/azure" "/serverless/coldstarts/gcp" }}
+                {{ range $post_paginator }}
+                    {{ $page := $.GetPage . }}
+                    {{- partial "list-partials/postbox.html" $page -}}
+                {{end}}
+
+            </div>
+        </section>
+        <section class="recent-posts">            
+            <div class="section-title">                
+                <h2><span>Meta</span></h2>
+            </div>            
+            <div class="row listrecent">
+                {{ $post_paginator := slice "/serverless/open" "/2019/02/evergreen-serverless-performance-reviews" }}
+                {{ range $post_paginator }}
+                    {{ $page := $.GetPage . }}
+                    {{- partial "list-partials/postbox.html" $page -}}
+                {{end}}
+
+            </div>
+        </section>
+    </div>
+{{ end }}
+
+{{ define "footer" }}
+    {{- partial "_shared/footer.html" . -}}
+{{end}}

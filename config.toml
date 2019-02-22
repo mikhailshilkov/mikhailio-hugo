@@ -1,0 +1,60 @@
+baseURL = "https://mikhail.io/"
+languageCode = "en-us"
+title = "Mikhail Shilkov"
+copyright = "Mikhail Shilkov - All rights reserved"
+
+assetDir = "assets"
+summaryLength = 25
+enableEmoji = true
+
+googleAnalytics = "UA-59218480-1"
+
+[outputs]
+  home     = ["HTML", "XML"]
+  section  = ["HTML"]
+
+[mediaTypes."application/xml"]
+  suffixes = [""]
+  delimiter = ""
+
+[outputFormats.XML]
+  mediatype = "application/xml"
+  baseName = "feed"  
+
+[params]
+  favicon = "/favicon.ico"
+  description ="Serverless, Cloud, Azure, AWS, F#, Functional Programming, and more"
+
+[params.author]
+  name = "Mikhail Shilkov"
+  
+[params.index]
+  title = "Mikhail Shilkov"
+
+[params.social]
+  linkedin = "MikhailShilkov"
+  github = "MikhailShilkov"
+  twitter = "MikhailShilkov"
+  medium = "MikhailShilkov"
+
+## Main Menu
+[[menu.main]]
+    name = "TOPICS"
+    weight = 100
+    identifier = "topics"
+    url = "/tags/"
+[[menu.main]]
+    name = "ARCHIVES"
+    weight = 200
+    identifier = "archives"
+    url = "/archives/"
+[[menu.main]]
+    name = "TALKS"
+    weight = 300
+    identifier = "talks"
+    url = "/talks/"
+[[menu.main]]
+    name = "ABOUT"
+    weight = 400
+    identifier = "about"
+    url = "/about/"

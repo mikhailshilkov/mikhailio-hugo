@@ -1,0 +1,36 @@
+{{ define "header"}}
+    {{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+    <div class="main-content">
+        <section class="recent-posts">            
+            <div class="row listrecent">
+                <div class="col-lg-8 col-sm-12 mb-30px card-group">
+                    {{ $page := $.GetPage "/serverless/coldstarts" }}
+                    {{- partial "list-partials/featured.html" $page -}}
+                </div>
+                {{ $page := $.GetPage "/2019/02/evergreen-serverless-performance-reviews" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2019/02/from-yaml-to-typescript-developers-view-on-cloud-automation" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2019/serverless-at-scale-serving-stackoverflow-like-traffic" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/12/fairy-tale-of-fsharp-and-durable-functions" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/12/making-sense-of-azure-durable-functions" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/11/from-0-to-1000-instances-how-serverless-providers-scale-queue-processing" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/10/azure-functions-v2-released-how-performant-is-it" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/08/aws-lambda-warmer-as-pulumi-component" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+        </div>
+    </section>
+    </div>
+{{ end }}
+
+{{ define "footer" }}
+    {{- partial "_shared/footer.html" . -}}
+{{end}}
