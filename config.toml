@@ -27,6 +27,7 @@ googleAnalytics = "UA-59218480-1"
 
 [params.author]
   name = "Mikhail Shilkov"
+  thumbnail = "/images/author.jpg"
   
 [params.index]
   title = "Mikhail Shilkov"

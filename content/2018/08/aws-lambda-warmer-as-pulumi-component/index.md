@@ -3,8 +3,7 @@ title: AWS Lambda Warmer as Pulumi Component
 date: 2018-08-02
 tags: ["AWS", "AWS Lambda", "Pulumi", "Serverless", "Cold Starts"]
 thumbnail: teaser.jpg
-images: [teaser.jpg]
-description: Provisioning AWS Lambda and API Gateway with Pulumi, examples in 5 programming languages
+description: Preventing cold stats of AWS Lambda during longer periods of inactivity, implemented as a reusable Pulumo component
 ---
 
 Out of curiosity, I'm currently investigating cold starts of Function-as-a-Service platforms of major cloud providers. Basically,

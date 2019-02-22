@@ -3,7 +3,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container pr-0">
         <a class="navbar-brand" href="/">
-            <span class="text-primary">Mikhail Shilkov</span>
+            <img class="author-thumb" src="{{ .Site.Params.author.thumbnail | urlize | relURL  }}" alt="{{ .Site.Params.author.name }}">
+            <span class="text-primary">{{.Site.Title}}</span>
         </a>
 
         {{ $baseurl := .Site.BaseURL }}
