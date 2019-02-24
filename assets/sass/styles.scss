@@ -221,6 +221,7 @@ blockquote {
     .share {
         position:fixed;
         display:block;
+        z-index: 10;
    }
     .share ul li {
         display:block;

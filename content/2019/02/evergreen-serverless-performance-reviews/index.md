@@ -62,6 +62,6 @@ The corresponding section of the website consists of 16 pages with different foc
 
 All the code and data are [open](/serverless/open/).
 
-I invite you to give it a try, [follow me on Twitter](https://www.twitter.com/MikhailShilkov) and [leave the feedback on GitHub](https://github.com/serverlessland/serverlessland/issues/5).
+I invite you to give it a try, [follow me on Twitter](https://www.twitter.com/MikhailShilkov) and [leave the feedback on GitHub](https://github.com/mikhailshilkov/mikhailio-hugo/issues/5).
 
 [Cold Starts in Serverless Functions](/serverless/coldstarts/).

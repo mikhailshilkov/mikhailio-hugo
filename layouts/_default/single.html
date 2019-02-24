@@ -23,20 +23,12 @@
                         <!-- Author Box -->	
                         <div class="post-top-meta">
                             <div>
-                            {{if isset .Params "blog"}}
-                                <span class="meta-footer-thumb">
-                                    <img class="author-thumb" src="{{ .Site.Params.author.thumbnail | urlize | relURL  }}" alt="{{ .Site.Params.author.name }}">
-                                </span>
-                                <span class="author-meta">
-                                    <span class="post-name">{{ .Site.Params.author.name }}
-                                </span><br/>
-                                <span class="post-date">{{ dateFormat "Jan 2, 2006" .PublishDate }} &nbsp;&middot;&nbsp; {{ .ReadingTime }} min read </span>
-                                </span>
-                                <div class="clearfix"></div>
+                            {{if ne .Lastmod .PublishDate}}
+                            <span class="post-date">Last updated on {{ dateFormat "Jan 2, 2006" .Lastmod }}
                             {{else}}
-                                <span class="post-date">Last updated on {{ dateFormat "Jan 2, 2006" .PublishDate }} &nbsp;&middot;&nbsp; {{ .ReadingTime }} min read </span>
-                                </span>
-                            {{end}}                        
+                            <span class="post-date">Published on {{ dateFormat "Jan 2, 2006" .PublishDate }}
+                            {{end}}
+                            &nbsp;&middot;&nbsp; {{ .ReadingTime }} min read</span></span>
                             </div>
                         </div>			
                     </div>

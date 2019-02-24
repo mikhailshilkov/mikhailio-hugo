@@ -26,6 +26,6 @@ Here is what the setup looks like:
 3. The caller *measures* the time it takes to get the HTTP response back. That's the key metric for the cold start estimation.
 4. The caller *logs* the response and the timings to blob storage.
 
-Given enough number and variety of requests, statistical estimates can be derived from the measurements. The charts and conclusions on Serverless Land are based on these estimates.
+Given enough number and variety of requests, statistical estimates can be derived from the measurements. The charts and conclusions are based on these estimates.
 
 Learn the results: [Comparison of Cold Starts across AWS, Azure, and GCP](/serverless/coldstarts/big3/).
