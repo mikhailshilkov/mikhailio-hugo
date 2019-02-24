@@ -1,6 +1,6 @@
 ---
 title: Open Code, Open Data
-date: 2019-02-14
+date: 2019-02-24
 thumbnail: github.jpg
 description: The code of the cloud functions and the collected data can be found on GitHub.
 nofeed: true

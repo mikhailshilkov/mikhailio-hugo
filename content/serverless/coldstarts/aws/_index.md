@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in AWS Lambda"
-lastmod: 2019-02-14
+lastmod: 2019-02-24
 layout: single
 description: Selection of languages, instance sizes, dependencies, VPC, and more
 tags: ["Cold Starts", "AWS", "AWS Lambda"]

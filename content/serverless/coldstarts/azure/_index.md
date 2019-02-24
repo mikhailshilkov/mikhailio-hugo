@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Azure Functions"
-lastmod: 2019-02-14
+lastmod: 2019-02-24
 layout: single
 thumbnail: coldazure_thumb.jpg
 images: [coldazure.jpg]

@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on Google Cloud Functions?"
-lastmod: 2019-02-14
+lastmod: 2019-02-24
 tags: ["Cold Starts", "GCP", "Google Cloud Functions"]
 nofeed: true
 ---

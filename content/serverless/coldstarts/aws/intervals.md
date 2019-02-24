@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on AWS Lambda?"
-lastmod: 2019-02-14
+lastmod: 2019-02-24
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
 nofeed: true
 ---

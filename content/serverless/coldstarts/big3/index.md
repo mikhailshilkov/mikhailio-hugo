@@ -1,6 +1,6 @@
 ---
 title: "Comparison of Cold Starts in Serverless Functions across AWS, Azure, and GCP"
-lastmod: 2019-02-14
+lastmod: 2019-02-24
 thumbnail: big3_thumb.jpg
 images: [big3.jpg]
 description: "AWS Lambda, Azure Functions, and Google Cloud Functions compared in terms of cold starts across all supported languages"
