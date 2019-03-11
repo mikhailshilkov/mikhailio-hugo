@@ -3,6 +3,7 @@ title: "When Does Cold Start Happen on AWS Lambda?"
 lastmod: 2019-02-24
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
 nofeed: true
+thumbnail: intervals_chart_thumb.png
 ---
 
 The first cold start happens when the very first request comes in. 

@@ -3,6 +3,7 @@ title: "When Does Cold Start Happen on Azure Functions?"
 lastmod: 2019-02-24
 tags: ["Cold Starts", "Azure", "Azure Functions"]
 nofeed: true
+thumbnail: interval_chart_thumb.png
 ---
 
 The first cold start happens when the very first request comes in after deployment. 

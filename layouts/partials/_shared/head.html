@@ -15,7 +15,45 @@
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
 	{{ $style := resources.Get "sass/main.scss" | toCSS }}
 	<link rel="stylesheet" href="{{ $style.RelPermalink }}">
-	{{ template "_internal/opengraph.html" . }}
-	{{ template "_internal/twitter_cards.html" . }}
+	
+	<meta property="og:title" content="{{ .Title }}" />
+	<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
+	<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+	<meta property="og:url" content="{{ .Permalink }}" />
+
+	{{ $pageurl := .Permalink }}
+	{{ with .Params.images }}{{ range first 6 . }}
+	{{ $imageurl := printf "%s%s" $pageurl . }}
+	<meta property="og:image" content="{{ $imageurl | absURL }}" />
+	{{ end }}
+	{{ else }}
+	{{ with .Params.thumbnail }}
+	{{ $imageurl := printf "%s%s" $pageurl . }}
+	<meta property="og:image" content="{{ $imageurl | absURL }}" />
+	{{ end }}
+	{{ end }}
+
+
+	{{ if .IsPage }}
+	{{ with .Params.tags }}{{ range first 6 . }}
+	<meta property="article:tag" content="{{ . }}" />
+	{{ end }}{{ end }}{{ end }}
+
+	{{ with $.Params.images }}
+	<meta name="twitter:card" content="summary_large_image"/>
+	{{ $imageurl := printf "%s%s" $pageurl (index . 0) }}
+	<meta name="twitter:image" content="{{ $imageurl | absURL }}"/>
+	{{ else }}
+	{{ with .Params.thumbnail }}
+	<meta name="twitter:card" content="summary_large_image"/>
+	{{ $imageurl := printf "%s%s" $pageurl . }}
+	<meta name="twitter:image" content="{{ $imageurl | absURL }}" />
+	{{ else }}
+	<meta name="twitter:card" content="summary"/>
+	{{ end }}
+	{{ end }}
+
+	<meta name="twitter:title" content="{{ .Title }}"/>
+	<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end -}}"/>
 	<meta name="twitter:creator" content="@MikhailShilkov"></meta>
 </head>
