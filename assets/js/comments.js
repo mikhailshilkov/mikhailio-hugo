@@ -3,26 +3,25 @@ jQuery(document).ready(function($){
 
     const issueID = jQuery("#gh-comments-list").text();
     if (issueID) {
-      const url = `https://github.com/mikhailshilkov/mikhailio-hugo/issues/${issueID}`;
       const api_url = `https://api.github.com/repos/mikhailshilkov/mikhailio-hugo/issues/${issueID}/comments`;
       jQuery.ajax(api_url, {
         headers: {Accept: "application/vnd.github.v3.html+json"},
         dataType: "json",
         success: function(comments) {
-            jQuery("#gh-comments-list").html("Visit the <b><a href='" + url + "'>Github Issue</a></b> to comment on this page");
+            jQuery("#gh-comments-list").html("");
             jQuery("#gh-comments-list").show();
             jQuery.each(comments, function(i, comment) {
 
                 var date = new Date(comment.created_at);
+                
+                var t = "<div class='speech-bubble p-4 shadow-sm " + (comment.user.login === "mikhailshilkov" ? "" : "mt-4") + "'>";
+                t += "<div class='post-top-meta'><div>";
+                t += "<img class='author-thumb' src='" + comment.user.avatar_url + "' alt='" + comment.user.login + "'>";
+                t += "</div><div>";
+                t += "<a href='" + comment.user.html_url + "' target='_blank'>" + comment.user.login + "</a>";
+                t += "<div class='author-description'>" + formatDate(date) + "</div></div></div>";
+                t += "<div>" + comment.body_html + "</div></div>";
 
-                var t = "<div id='gh-comment'>";
-                t += "<img src='" + comment.user.avatar_url + "' width='24px'>";
-                t += "<b><a href='" + comment.user.html_url + "'>" + comment.user.login + "</a></b>";
-                t += " posted at ";
-                t += "<em>" + date.toUTCString() + "</em>";
-                t += "<div id='gh-comment-hr'></div>";
-                t += comment.body_html;
-                t += "</div>";
                 jQuery("#gh-comments-list").append(t);
             });
         },
@@ -33,3 +32,8 @@ jQuery(document).ready(function($){
     }
 
 });
+
+function formatDate(date) {
+  const parts = date.toDateString().split(' ').slice(1);
+  return `${parts[0]} ${parts[1]}, ${parts[2]}`;
+}

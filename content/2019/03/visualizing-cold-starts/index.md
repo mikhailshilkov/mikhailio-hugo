@@ -5,7 +5,7 @@ thumbnail: thumb.jpg
 images: [teaser.jpg]
 tags: ["Cold Starts", "AWS Lambda", "Azure Functions", "Google Cloud Functions", "AWS", "Azure", "GCP", "Maps"]
 description: Serverless cold starts illustrated with animated GIFs.
-ghissueid: x
+ghissueid: 6
 ---
 
 I [wrote a lot](/serverless/coldstarts/) about cold starts of serverless functions. The articles are full of charts and numbers which are hopefully useful but might be hard to internalize. I decided to come up with a way to represent colds starts visually.

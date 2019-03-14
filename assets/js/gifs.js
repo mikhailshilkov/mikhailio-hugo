@@ -2,7 +2,9 @@ var getGif = function() {
     var gif = [];
     $('img').each(function() {
       var data = $(this).data('alt');
-      gif.push(data);
+      if (data) {
+        gif.push(data);
+      }
     });
     return gif;
   }
@@ -17,9 +19,7 @@ $('figure').on('click', function() {
  
   var $this   = $(this),
           $img    = $this.children('img'),
-          $imgSrc = $img.attr('src'),
-          $imgAlt = $img.attr('data-alt'),
-          $imgExt = $imgAlt.split('.');
+          $imgAlt = $img.attr('data-alt');
            
-    $img.attr('src', $imgAlt).attr('data-alt', $imgAlt.data('alt'));
+    $img.attr('src', $imgAlt);
 });
