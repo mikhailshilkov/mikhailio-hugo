@@ -10,6 +10,8 @@
                     {{ $page := $.GetPage "/serverless/coldstarts" }}
                     {{- partial "list-partials/featured.html" $page -}}
                 </div>
+                {{ $page := $.GetPage "/2019/03/visualizing-cold-starts" }}
+                {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2019/02/evergreen-serverless-performance-reviews" }}
                 {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2019/02/from-yaml-to-typescript-developers-view-on-cloud-automation" }}
@@ -29,6 +31,10 @@
                 {{ $page := $.GetPage "/2018/07/getting-started-with-aws-lambda-in-pulumi" }}
                 {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2018/07/monads-explained-in-csharp-again" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/06/programmable-cloud-provisioning-azure-app-service-with-pulumi" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/05/azure-functions-cold-starts-beyond-first-load" }}
                 {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>

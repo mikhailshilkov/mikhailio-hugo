@@ -1,0 +1,8 @@
+{{ $file := .Get 0 }}
+{{ $splash := .Get 1 }}
+{{ $caption := .Get 2 }}
+
+<figure style="cursor: pointer">
+    <img src="{{$splash}}" alt="{{$caption}}" data-alt="{{$file}}">
+    <figcaption><h4>{{$caption}} (click to play or replay)</h4></figcaption>
+</figure>

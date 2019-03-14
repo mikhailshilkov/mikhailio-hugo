@@ -4,7 +4,7 @@ date: 2019-02-24
 thumbnail: tree_thumb.jpg
 images: [tree.jpg]
 tags: ["Cold Starts"]
-description: In the past 6 months I published several blog posts under the same theme of comparing the severless services of the top cloud providers in terms of their performance and scalability properties. I received some very positive feedback on those posts (readers are fantastic!).
+description: Automating cloud infrastructure to delivery always-up-to-date performance metrics.
 ghissueid: 5
 ---
 
