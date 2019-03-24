@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Azure Functions"
-lastmod: 2019-02-24
+lastmod: 2019-03-22
 layout: single
 thumbnail: coldazure_thumb.jpg
 images: [coldazure.jpg]
@@ -27,19 +27,6 @@ After that request is processed, the instance stays alive for about **20 minutes
 Read more: [When Does Cold Start Happen on Azure Functions?](/serverless/coldstarts/azure/intervals/)
 
 
-TODO
-----
-
-{{< chart_interval 
-    "coldstart_azure_bydeploymentcs"
-    "Typical cold start durations of C# Functions per deployment method"
-    true >}}
-
-{{< chart_interval 
-    "coldstart_azure_bydeploymentjs"
-    "Typical cold start durations of JavaScript Functions per deployment method"
-    true >}}
-
 How Slow Are Cold Starts?
 -------------------------
 
@@ -47,10 +34,9 @@ The following chart shows the typical range of cold starts in Azure Functions V2
 
 {{< chart_interval 
     "coldstart_azure_bylanguagewindows"
-    "Typical cold start durations per language"
-    true >}}
+    "Typical cold start durations per language" >}}
 
-A typical cold start latency spans from 3 to 15 seconds. It seems to be consistent between the 3 supported languages.
+A typical cold start latency spans from 2 to 15 seconds. C# functions usually complete the start within 3 seconds, while JavaScript and Java have longer tails.
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/azure/languages/).
 
@@ -63,8 +49,7 @@ Even though .NET Core is supposed to be faster and more lightweight, Functions V
 
 {{< chart_interval 
     "coldstart_azure_byversion"
-    "Comparison of cold start durations across runtime versions"
-    true >}}
+    "Comparison of cold start durations across runtime versions" >}}
 
 The difference is especially noticeable for JavaScript functions.
 
@@ -77,7 +62,6 @@ The following chart compares three JavaScript functions with the various number 
 
 {{< chart_interval 
     "coldstart_azure_bydependencies"
-    "Comparison of cold start durations per deployment size (zipped)"
-    true >}}
+    "Comparison of cold start durations per deployment size (zipped)" >}}
 
 Indeed, the functions with many dependencies can be several times slower to start.

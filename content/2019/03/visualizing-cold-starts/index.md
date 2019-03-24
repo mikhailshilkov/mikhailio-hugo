@@ -3,7 +3,7 @@ title: Visualizing Cold Starts
 date: 2019-03-14
 thumbnail: thumb.jpg
 images: [teaser.jpg]
-tags: ["Cold Starts", "AWS Lambda", "Azure Functions", "Google Cloud Functions", "AWS", "Azure", "GCP", "Maps"]
+tags: ["Cold Starts", "AWS Lambda", "Azure Functions", "Google Cloud Functions", "AWS", "Azure", "GCP", "Maps", "Dataviz"]
 description: Serverless cold starts illustrated with animated GIFs.
 ghissueid: 6
 ---

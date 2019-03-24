@@ -9,8 +9,12 @@ addChart((data, options) => {
 
   data.addColumn('string', 'x');
   data.addColumn('number', 'values');
-  {{ with $showMedian }}
+  {{ with $data.points }}
+  {{ if gt (len (index . 0)) 7 }}
   data.addColumn({type: 'string', role: 'tooltip'});
+  {{ end }}
+  {{ end }}
+  {{ with $showMedian }}
   options.series[0].tooltip = true;
   {{ end }}
   data.addColumn({id:'i0', type:'number', role:'interval'});

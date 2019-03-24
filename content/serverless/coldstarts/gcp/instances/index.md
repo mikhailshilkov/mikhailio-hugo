@@ -19,7 +19,7 @@ Here is the comparison for a "Hello-World" JavaScript function:
 Here is the same comparison for a JavaScript function with **14 MB** (zipped) of NPM packages:
 
 {{< chart_interval 
-    "coldstart_gcp_bymemor xl"
+    "coldstart_gcp_bymemoryxl"
     "Comparison of cold start durations per instance size, 14 MB (zipped) of dependencies" >}}
 
 Here is the same comparison for a JavaScript function with **35 MB** (zipped) of NPM packages:

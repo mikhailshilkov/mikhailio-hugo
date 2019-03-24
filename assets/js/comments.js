@@ -8,13 +8,14 @@ jQuery(document).ready(function($){
         headers: {Accept: "application/vnd.github.v3.html+json"},
         dataType: "json",
         success: function(comments) {
+            const orderedComments = reorderReplies(comments);
             jQuery("#gh-comments-list").html("");
-            jQuery("#gh-comments-list").show();
-            jQuery.each(comments, function(i, comment) {
+            jQuery("#gh-comments-list").show();            
+            jQuery.each(orderedComments, function(i, comment) {
 
                 var date = new Date(comment.created_at);
                 
-                var t = "<div class='speech-bubble p-4 shadow-sm " + (comment.user.login === "mikhailshilkov" ? "" : "mt-4") + "'>";
+                var t = "<div class='speech-bubble p-4 border " + (comment.isReply ? "border-top-0" : "mt-4") + "'>";
                 t += "<div class='post-top-meta'><div>";
                 t += "<img class='author-thumb' src='" + comment.user.avatar_url + "' alt='" + comment.user.login + "'>";
                 t += "</div><div>";
@@ -36,4 +37,28 @@ jQuery(document).ready(function($){
 function formatDate(date) {
   const parts = date.toDateString().split(' ').slice(1);
   return `${parts[0]} ${parts[1]}, ${parts[2]}`;
+}
+
+function reorderStep(agg, rem) {
+  if (rem.length == 0) {
+    return agg;
+  }
+
+  const comment = rem[0];
+  agg.push(comment);
+
+  let rest = rem.slice(1);
+
+  const index = rest.findIndex(c => c.body_html.indexOf('@' + comment.user.login) > 0 && c.created_at > comment.created_at);
+  if (index >= 0) {
+    rest[index].isReply = true;
+    agg.push(rest[index]);
+    rest.splice(index, 1);
+  }
+
+  return reorderStep(agg, rest);
+}
+
+function reorderReplies(comments) {
+  return reorderStep([], comments);
 }

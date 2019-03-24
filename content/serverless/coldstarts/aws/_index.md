@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in AWS Lambda"
-lastmod: 2019-02-24
+lastmod: 2019-03-22
 layout: single
 description: Selection of languages, instance sizes, dependencies, VPC, and more
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
@@ -39,7 +39,7 @@ The following chart shows the typical range of cold starts in AWS Lambda, broken
     "coldstart_aws_bylanguage"
     "Typical cold start durations per language" >}}
 
-Python seems to be the fastest with most cold starts completed within **300 ms**. JavaScript, Go, Java, and Ruby are all comparable and almost always start within **1 second**. C# is a distinct underdog with cold starts spanning between **1 and 5 seconds**. 
+JavaScript, Python, Go, Java, and Ruby are all comparable: most of the time they complete within **500 milliseconds** and almost always within **800 milliseconds**. C# is a distinct underdog with cold starts spanning between **0.8 and 5 seconds**. 
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/aws/languages/).
 
