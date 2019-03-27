@@ -1,5 +1,14 @@
 {{ $id := .Get 0 }}
-{{ $data := index .Site.Data (.Get 0) }}
+
+{{ $parts := split (.Get 0) "/" }}
+
+{{ if eq (len $parts) 1 }}
+  {{ .Scratch.Set "dataParam" (index .Site.Data $id) }}
+{{ else }}
+  {{ .Scratch.Set "dataParam" (index .Site.Data (index $parts 0) (index $parts 1)) }}
+{{ end }}
+{{ $data := .Scratch.Get "dataParam" }}
+
 {{ $caption := .Get 1 }}
 {{ $showMedian := .Get 2 }}
 
@@ -27,7 +36,8 @@ addChart((data, options) => {
   options.lineWidth = 0;
   options.intervals = { 'style':'boxes' };
   options.vAxis = {
-    title: 'seconds'
+    title: 'seconds',
+    viewWindow: { min: 0 }
   };
 
   {{ with $showMedian }}

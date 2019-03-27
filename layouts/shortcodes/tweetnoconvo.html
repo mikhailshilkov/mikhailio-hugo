@@ -1,0 +1,1 @@
+{{ (getJSON "https://api.twitter.com/1/statuses/oembed.json?hide_thread=1&id=" (index .Params 0)).html | safeHTML }}

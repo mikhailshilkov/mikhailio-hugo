@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Azure Functions"
-lastmod: 2019-03-22
+lastmod: 2019-03-27
 layout: single
 thumbnail: coldazure_thumb.jpg
 images: [coldazure.jpg]
@@ -65,3 +65,22 @@ The following chart compares three JavaScript functions with the various number 
     "Comparison of cold start durations per deployment size (zipped)" >}}
 
 Indeed, the functions with many dependencies can be several times slower to start.
+
+Does Deployment Method Matter?
+------------------------------
+
+There are multiple ways to deploy Azure Functions. The charts below compare three of them:
+
+- **No Zip**&mdash;traditional AppService-style deployment based on Kudu (`--nozip` option in `func` CLI)
+- **Local Zip**&mdash;uploading a zip package to the local file system of the Function App and setting `RUN_FROM_PACKAGE=1` in application settings
+- **External Zip**&mdash;uploading a zip package to blob storage and setting `RUN_FROM_PACKAGE=<blob sas token>` in application settings
+
+{{< chart_interval 
+    "coldstart_azure_bydeploymentcs"
+    "Cold start durations per deployment method for C# functions" >}}
+
+{{< chart_interval 
+    "coldstart_azure_bydeploymentjs"
+    "Cold start durations per deployment method for JavaScript functions" >}}
+
+It turns out that No Zip is faster than Local Zip which is faster than External Zip, the median difference being in the range of 1 second.
