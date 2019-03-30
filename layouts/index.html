@@ -10,6 +10,8 @@
                     {{ $page := $.GetPage "/serverless/coldstarts" }}
                     {{- partial "list-partials/featured.html" $page -}}
                 </div>
+                {{ $page := $.GetPage "/2019/03/concurrency-and-isolation-in-serverless-functions" }}
+                {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2019/03/reducing-azure-functions-cold-start-time" }}
                 {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2019/03/visualizing-cold-starts" }}
@@ -41,6 +43,10 @@
                 {{ $page := $.GetPage "/2018/04/fsharp-exchange-2018" }}
                 {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2018/02/load-testing-azure-sql-database-by-copying-traffic-from-production-sql-server" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2018/01/tictactoe-with-fsharp-azurefunctions-hateoas-and-property-based-testing" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2017/12/azure-functions-get-more-scalable-and-elastic" }}
                 {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>

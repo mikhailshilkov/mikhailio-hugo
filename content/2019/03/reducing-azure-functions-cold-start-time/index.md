@@ -64,3 +64,7 @@ Coincidence or not, the numbers have already significantly improved since early 
 I consider this to be a part of my mission: spotlighting the issues in public gives that nudge to prioritize performance improvements over other backlog items.
 
 Meanwhile, the data in [Cold Starts in Azure Functions](/serverless/coldstarts/azure/) and [Comparison of Cold Starts in Serverless Functions across AWS, Azure, and GCP](/serverless/coldstarts/big3/) are updated: I'm keeping them up-to-date as promised before.
+
+#### P.S.
+
+{{< tweetnoconvo 1110905674714669059 >}}

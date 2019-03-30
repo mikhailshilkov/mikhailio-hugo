@@ -1,11 +1,13 @@
 ---
 title: Concurrency and Isolation in Serverless Functions
 date: 2019-03-24
-thumbnail: todo_thumb.jpg
-images: [todo.jpg]
-tags: ["Serverless"]
-description: TODO.
-ghissueid: 7
+thumbnail: teaser_thumb.jpg
+images: [teaser.jpg]
+tags: ["Serverless", "Azure", "AWS", "Binaris", "Azure Functions", "AWS Lambda"]
+description: Exploring approaches to sharing or isolating resources between multiple executions of the same cloud function and the associated trade-offs.
+ghissueid: 8
+originalSource: Binaris Blog
+originalUrl: https://blog.binaris.com/concurrency-and-isolation-in-serverless-functions/
 ---
 
 Serverless vendors have different approaches when it comes to sharing or isolating resources between multiple executions of the same cloud function. In this article, I'll explore the execution concurrency models of three FaaS offerings and the associated trade-offs.
