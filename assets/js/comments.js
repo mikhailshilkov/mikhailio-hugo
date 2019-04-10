@@ -51,9 +51,13 @@ function reorderStep(agg, rem) {
 
   const index = rest.findIndex(c => c.body_html.indexOf('@' + comment.user.login) > 0 && c.created_at > comment.created_at);
   if (index >= 0) {
-    rest[index].isReply = true;
-    agg.push(rest[index]);
-    rest.splice(index, 1);
+    const reply = rest[index];
+    reply.isReply = true;
+    if (index > 0) {
+      // move reply to head
+      rest.splice(index, 1);
+      rest.unshift(reply);
+    }
   }
 
   return reorderStep(agg, rest);
