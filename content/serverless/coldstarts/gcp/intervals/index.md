@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on Google Cloud Functions?"
-lastmod: 2019-02-24
+lastmod: 2019-04-22
 tags: ["Cold Starts", "GCP", "Google Cloud Functions"]
 nofeed: true
 thumbnail: interval_chart_thumb.png
@@ -16,15 +16,17 @@ The following chart attempts to answer this question. It plots the response dura
     "coldstart_gcp_scatter"
     "Cold and warm latency as a function of interval between two subsequent requests" >}}
 
-This chart looks pretty random: both cold and warm starts are all over the place. An idle instance can be recycled as soon as after **6 minutes** of inactivity, or stay alive for more than **5 hours**.
+Google tends to keep an instance for long time: most instances survive 5 hours of inactivity.
 
-Most probably, Google makes the decision based on the current demand/supply ratio in the given resource pool.
+The points of cold starts look pretty random. Most probably, Google makes the decision based on the current demand/supply ratio in the given resource pool.
 
 The following chart estimates the probability of a cold start (Y-axis) by the interval between two subsequent requests (X-axis):
 
 {{< chart_line 
     "coldstart_gcp_interval" 
     "Probability of a cold start happening before minute X" >}}
+
+Based on this chart, **85% of instances survive 5 hours of inactivity**.
 
 Don't assume the probabilities on this chart to be precise, but the overall trend should be representative.
 
