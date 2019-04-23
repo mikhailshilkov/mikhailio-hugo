@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Azure Functions"
-lastmod: 2019-03-27
+lastmod: 2019-04-22
 layout: single
 thumbnail: coldazure_thumb.jpg
 images: [coldazure.jpg]
@@ -34,7 +34,8 @@ The following chart shows the typical range of cold starts in Azure Functions V2
 
 {{< chart_interval 
     "coldstart_azure_bylanguagewindows"
-    "Typical cold start durations per language" >}}
+    "Typical cold start durations per language"
+    true >}}
 
 A typical cold start latency spans from 2 to 15 seconds. C# functions usually complete the start within 3 seconds, while JavaScript and Java have longer tails.
 
@@ -49,7 +50,8 @@ Even though .NET Core is supposed to be faster and more lightweight, Functions V
 
 {{< chart_interval 
     "coldstart_azure_byversion"
-    "Comparison of cold start durations across runtime versions" >}}
+    "Comparison of cold start durations across runtime versions"
+    true >}}
 
 The difference is especially noticeable for JavaScript functions.
 
@@ -77,10 +79,12 @@ There are multiple ways to deploy Azure Functions. The charts below compare thre
 
 {{< chart_interval 
     "coldstart_azure_bydeploymentcs"
-    "Cold start durations per deployment method for C# functions" >}}
+    "Cold start durations per deployment method for C# functions"
+    true >}}
 
 {{< chart_interval 
     "coldstart_azure_bydeploymentjs"
-    "Cold start durations per deployment method for JavaScript functions" >}}
+    "Cold start durations per deployment method for JavaScript functions"
+    true >}}
 
 It turns out that No Zip is faster than Local Zip which is faster than External Zip, the median difference being in the range of 1 second.

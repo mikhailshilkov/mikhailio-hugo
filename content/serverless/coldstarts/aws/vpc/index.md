@@ -1,6 +1,6 @@
 ---
 title: "Cold Start Duration of VPC-connected AWS Lambda"
-lastmod: 2019-03-22
+lastmod: 2019-04-22
 tags: ["Cold Starts", "AWS", "JavaScript", "VPC", "AWS Lambda"]
 nofeed: true
 thumbnail: vpc_chart_thumb.png

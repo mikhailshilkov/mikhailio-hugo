@@ -1,6 +1,6 @@
 ---
 title: "Comparison of Cold Starts in Serverless Functions across AWS, Azure, and GCP"
-lastmod: 2019-03-22
+lastmod: 2019-04-22
 thumbnail: big3_thumb.jpg
 images: [big3.jpg]
 description: "AWS Lambda, Azure Functions, and Google Cloud Functions compared in terms of cold starts across all supported languages"
@@ -44,7 +44,7 @@ The following chart shows the comparison of typical cold start durations across 
 
 {{< /featured >}}    
 
-AWS clearly leads with all languages but C# being **below 1 second**. GCP start-up usually takes **between 1 and 2 seconds**, while Azure is considerably slower.
+AWS clearly leads with all languages but C# being **well below 1 second**. GCP start-up usually takes **slightly more than 1 second**, while Azure is considerably slower.
 
 Read the detailed statistics: [AWS Lambda](/serverless/coldstarts/aws/languages/), [Azure Functions](/serverless/coldstarts/azure/languages/), [Google Cloud Functions](/serverless/coldstarts/gcp/languages/).
 
