@@ -1,5 +1,13 @@
 {{ $id := .Get 0 }}
-{{ $data := index .Site.Data (.Get 0) }}
+{{ $parts := split (.Get 0) "/" }}
+
+{{ if eq (len $parts) 1 }}
+  {{ .Scratch.Set "dataParam" (index .Site.Data $id) }}
+{{ else }}
+  {{ .Scratch.Set "dataParam" (index .Site.Data (index $parts 0) (index $parts 1)) }}
+{{ end }}
+{{ $data := .Scratch.Get "dataParam" }}
+
 {{ $caption := .Get 1 }}
 
 <script type="text/javascript">

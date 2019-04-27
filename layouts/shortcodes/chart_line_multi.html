@@ -13,17 +13,35 @@
 <script type="text/javascript">
 addChart((data, options) => {
   data.addColumn('number', 'Time');
-  data.addColumn('number', 'Probability');
-  data.addRows({{ $data.points }});
+
+  const points = {{ $data.points }};
+  const seriesCount = points.length;
+  for (var j = 0; j < seriesCount; j++) {
+    data.addColumn('number', points[j].name);
+  }
+
+  const rows = [];
+  for (var i = 0; i < points[0].items.length; i++)
+  {
+    const item = [points[0].items[i][0]];
+    for (var j = 0; j < seriesCount; j++) {
+      item.push(points[j].items[i][1]);
+    }
+    rows.push(item);
+  }
+
+  data.addRows(rows);
 
   options.lineWidth = 3;
   options.hAxis = {
     title: 'Time since the previous invocation (minutes)'
   };
   options.vAxis = {
-    title: 'probability'
+    title: 'probability',
+    maxValue: 1.0
   };
-
+  options.legend = { position: 'top' };
+  options.series = {{ $data.colors }};
   return new google.visualization.AreaChart(document.getElementById('chart_div_{{ $id }}'));
 });
 </script>
