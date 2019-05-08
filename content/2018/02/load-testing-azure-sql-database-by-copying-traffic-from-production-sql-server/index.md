@@ -79,7 +79,7 @@ a short trace.
 Afterwards, it is possible to use the same SQL Server Profiler to replay the trace against
 another target database. So the process looks like this:
 
-![Replaying Traffic with SQL Server Profiler](/sql-trace-replay.png)
+![Replaying Traffic with SQL Server Profiler](sql-trace-replay.png)
 
 Unfortunately, this didn't go very well:
 
@@ -106,7 +106,7 @@ Custom Trace & Replay
 Since off-the-shelf solution didn't work for me, I decided to come up with my own
 custom tool chain. Here is the idea:
 
-![Replaying Traffic with SQL Server Profiler](/sql-trace-replay-event-hubs-functions.png)
+![Replaying Traffic with SQL Server Profiler](sql-trace-replay-event-hubs-functions.png)
 
 There are two custom steps that I implemented:
 
@@ -164,7 +164,7 @@ exactly the commands that you want to replay.
 We use stored procedures for pretty much everything, so my selection looked
 just like this:
 
-![SQL Profiler Template](/sql-profiler-template.png)
+![SQL Profiler Template](sql-profiler-template.png)
 
 For the first few runs, I advise you to restrict the trace even further. Click
 `Column Filters` button, select `TextData` there and set **Like** filter

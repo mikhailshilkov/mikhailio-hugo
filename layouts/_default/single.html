@@ -27,7 +27,7 @@
                             <span class="post-date">Last updated on {{ dateFormat "Jan 2, 2006" .Lastmod }}
                             {{else}}
                             {{ if ne .Params.originalSource nil }}
-                            <span class="post-date">Originally published at <a href='{{.Params.originalUrl}}'>{{.Params.originalSource}}</a> on {{ dateFormat "Jan 2, 2006" .PublishDate }}
+                            <span class="post-date">Originally published on the <a href='{{.Params.originalUrl}}'>{{.Params.originalSource}}</a> on {{ dateFormat "Jan 2, 2006" .PublishDate }}
                             {{else}}
                             <span class="post-date">Published on {{ dateFormat "Jan 2, 2006" .PublishDate }}
                             {{end}}

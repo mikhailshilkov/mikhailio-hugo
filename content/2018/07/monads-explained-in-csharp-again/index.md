@@ -13,7 +13,7 @@ But at the same time, I realize that learning functional programming is a challe
 process. FP comes with a baggage of unfamiliar vocabulary that can be daunting for 
 somebody coming from an object-oriented language like C#.
 
-![Functional Programming Word Cloud](/functional-programming-word-cloud.png)
+![Functional Programming Word Cloud](functional-programming-word-cloud.png)
 
 *Some of functional lingo*
 
@@ -28,7 +28,7 @@ genre of its own. And yet, times and times again, they fail to enlighten the rea
 
 The shortest explanation of monads looks like this:
 
-![A Monad is just a monoid in the category of endofunctors](/monoid-endofunctors.png)
+![A Monad is just a monoid in the category of endofunctors](monoid-endofunctors.png)
 
 It's both mathematically correct and totally useless to anybody learning functional programming. To
 understand this statement, one has to know the terms "monoid", "category" and "endofunctors" and be able
@@ -409,7 +409,7 @@ class WorkflowThatReturns<T>
 
 In case this is hard to grasp, have a look at the picture of what is going on:
 
-![Monad Bind Internals](/monad-bind.png)
+![Monad Bind Internals](monad-bind.png)
 
 1. An instance of type `T` sits in a generic container.
 
@@ -439,7 +439,7 @@ WorkflowThatReturns<City> Workflow(Speaker speaker)
 Subsequently, `AddStep` is called two times to transfer to `Conference` and then
 `City` inside the same container:
 
-![Monad Bind Chaining](/monad-two-binds.png)
+![Monad Bind Chaining](monad-two-binds.png)
 
 Finally, Monads
 ---------------
@@ -657,7 +657,7 @@ structure: the output of a previous step was always the input for the next step.
 That piece of data could be discarded after the first use because it was never needed 
 for later steps:
 
-![Linear Workflow](/linear-workflow.png)
+![Linear Workflow](linear-workflow.png)
 
 Quite often though, this might not be the case. A workflow step might need data
 from two or more previous steps combined.
@@ -665,7 +665,7 @@ from two or more previous steps combined.
 In the example above, `BookFlight` method might actually need both `Speaker` and
 `City` objects:
 
-![Non Linear Workflow](/non-linear-workflow.png)
+![Non Linear Workflow](non-linear-workflow.png)
 
 In this case, we would have to use closure to save `speaker` object until we get
 a `talk` too:

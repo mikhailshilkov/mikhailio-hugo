@@ -15,7 +15,7 @@ The problem is nicely described in
 [Understanding Serverless Cold Start](https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/),
 so I won't repeat it here. I'll just copy a picture from that article:
 
-![Cold Start](/coldstart.jpg)
+![Cold Start](coldstart.jpg)
 
 Based on the 4 actions which happen during a cold start, we may guess that the following factors
 might affect the cold start duration:
@@ -38,7 +38,7 @@ I did not rely on execution time reported by Azure. Instead, I measured end-to-e
 client perspective. All calls were made from within the same Azure region, so network latency should 
 have minimal impact:
 
-![Test Setup](/test-setup.png)
+![Test Setup](test-setup.png)
 
 When Does Cold Start Happen?
 ----------------------------
@@ -50,7 +50,7 @@ The following chart gives the answer. It shows values of normalized request dura
 different languages and runtime versions (Y axis) depending on the time since the previous
 request in minutes (X axis):
 
-![Cold Start Threshold](/coldstart-threshold.png)
+![Cold Start Threshold](coldstart-threshold.png)
 
 Clearly, an idle instance lives for 20 minutes and then gets recycled. All requests after 20 minutes
 threshold hit another cold start.
@@ -67,7 +67,7 @@ The following chart shows some intuition about the cold start duration per langu
 are ordered based on mean response time, from lowest to highest. 65% of request
 durations are inside the vertical bar (1-sigma interval) and 95% are inside the vertical line (2-sigma):
 
-![Cold Start V1 per Language](/coldstarts-v1.png)
+![Cold Start V1 per Language](coldstarts-v1.png)
 
 Somewhat surprisingly, precompiled .NET is exactly on par with Javascript. Javascript "Hello World" 
 is really lightweight, so I expected it to win, but I was wrong.
@@ -85,7 +85,7 @@ standpoint.
 
 Can we see this on the chart? We sure can:
 
-![Cold Start V1 vs V2](/coldstarts-v2.png)
+![Cold Start V1 vs V2](coldstarts-v2.png)
 
 V2 is massively slower. The fastest cold starts are around 6 seconds, but the slowest can come
 up to 40-50 seconds.
@@ -108,7 +108,7 @@ For Javascript I did the same, but referenced Bluebird, lodash and AWS SDK.
 
 Here are the results:
 
-![Cold Start Dependencies](/coldstarts-dependencies.png)
+![Cold Start Dependencies](coldstarts-dependencies.png)
 
 As expected, the dependencies slow the loading down. You should keep your Functions lean,
 otherwise you will pay in seconds for every cold start.

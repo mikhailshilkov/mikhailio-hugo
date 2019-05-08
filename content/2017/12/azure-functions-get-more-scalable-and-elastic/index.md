@@ -39,7 +39,7 @@ constant pace, evenly spread over 2 hours.
 
 Here are the **old** metrics of Queue Backlog and Instance Count over time:
 
-![Function App Scaling (Old)](/FunctionAppScaling.png)
+![Function App Scaling (Old)](FunctionAppScaling.png)
 
 *Old charts are shown in gray background*
 
@@ -49,7 +49,7 @@ got cleared.
 
 The **new** results on the same chart after the runtime update:
 
-![Function App Scaling (New)](/FunctionAppScalingNew.png)
+![Function App Scaling (New)](FunctionAppScalingNew.png)
 
 This looks much better. The maximum backlog is 7 times lower; there's almost
 no initial delay before the auto scaling kicks in; and overall instance 
@@ -61,11 +61,11 @@ One more chart is from the same experiment, but it shows slightly different
 metrics. The **old** results of Delay (Age) in seconds and Processing Rate 
 in messages per minute:
 
-![Function App Delay](/FunctionAppDelay.png)
+![Function App Delay](FunctionAppDelay.png)
 
 The **new** chart after the runtime update:
 
-![Function App Delay](/FunctionAppDelayNew.png)
+![Function App Delay](FunctionAppDelayNew.png)
 
 Again, much less delay overall, and processing rate more-or-less stabilizes 
 after the first 15 minutes.
@@ -82,7 +82,7 @@ to speed even between those bursts of messages.
 
 Here is the chart of the **old** spiky load processing:
 
-![Spicky Load Processing (Old)](/SpikyLoadProcessing.png)
+![Spicky Load Processing (Old)](SpikyLoadProcessing.png)
 
 You can see that the backlog after each spike goes down really slow. The
 blue line of processing rate doesn't match the green line almost nowhere,
@@ -91,7 +91,7 @@ which reveals the struggle to adapt.
 The **new** results of the same chart after the runtime update are quite
 different:
 
-![Spicky Load Processing (New)](/SpikyLoadProcessingNew.png)
+![Spicky Load Processing (New)](SpikyLoadProcessingNew.png)
 
 Notice how the backlog is empty and the blue processing rate matches exactly
 the incoming rate during all time except after traffic bursts. The queue goes 

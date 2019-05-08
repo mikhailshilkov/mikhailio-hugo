@@ -95,7 +95,7 @@ component talking to an SQS queue and getting the messages from it. It's then th
 Orchestrator and related infrastructure to provision the required number of instances for working 
 on concurrent executions:
 
-![Model of AWS Lambda Scale-Out](/aws-lambda-queue-scaling.png)
+![Model of AWS Lambda Scale-Out](aws-lambda-queue-scaling.png)
 
 <center class="img-caption">Model of AWS Lambda Scale-Out</center>
 
@@ -129,7 +129,7 @@ There is still a central coordinator called Scale Controller, but its role is a 
 connects to the same data source (the queue) and needs to determine how many instances to provision 
 based on the metrics from that queue:
 
-![Model of Azure Function Scale-Out](/azure-function-queue-scaling.png)
+![Model of Azure Function Scale-Out](azure-function-queue-scaling.png)
 
 <center class="img-caption">Model of Azure Function Scale-Out</center>
 
@@ -171,7 +171,7 @@ The bars show the number of concurrent executions crunching the messages at a gi
 execution logs the instance ID so that I could derive the instance count from the logs. The right 
 vertical axis shows the instance number.
 
-![AWS Lambda processing 100k SQS messages with "Pause" handler](/aws-lambda-sqs-iobound-scaling.png)
+![AWS Lambda processing 100k SQS messages with "Pause" handler](aws-lambda-sqs-iobound-scaling.png)
 
 <center class="img-caption">AWS Lambda processing 100k SQS messages with "Pause" handler</center>
 
@@ -190,7 +190,7 @@ We get a very close result! Promises kept.
 
 Same function, same chart, same instance size of 128 MB of RAM&mdash;but this time for Google Cloud Functions:
 
-![Google Cloud Function processing 100k Pub/Sub messages with "Pause" handler](/gcp-cloud-function-pubsub-iobound-scaling.png)
+![Google Cloud Function processing 100k Pub/Sub messages with "Pause" handler](gcp-cloud-function-pubsub-iobound-scaling.png)
 
 <center class="img-caption">Google Cloud Function processing 100k Pub/Sub messages with "Pause" handler</center>
 
@@ -207,7 +207,7 @@ Azure Function doesn't have a configuration for allocated memory or any other in
 The shape of the chart for Azure Functions is very similar, but the instance number growth is 
 significantly different:
 
-![Azure Function processing 100k queue messages with "Pause" handler](/azure-function-queue-iobound-scaling.png)
+![Azure Function processing 100k queue messages with "Pause" handler](azure-function-queue-iobound-scaling.png)
 
 <center class="img-caption">Azure Function processing 100k queue messages with "Pause" handler</center>
 
@@ -245,7 +245,7 @@ memory, the instance size might have a significant influence on the result.
 
 I started with the smallest memory allocation of 128 MB:
 
-![AWS Lambda (128 MB) processing 100k SQS messages with "Bcrypt" handler](/aws-lambda-sqs-cpubound-scaling.png)
+![AWS Lambda (128 MB) processing 100k SQS messages with "Bcrypt" handler](aws-lambda-sqs-cpubound-scaling.png)
 
 <center class="img-caption">AWS Lambda (128 MB) processing 100k SQS messages with "Bcrypt" handler</center>
 
@@ -262,7 +262,7 @@ experiment. So, the total processing time increased only by the factor of 2&mdas
 Let's see if larger Lambda instances would improve the outcome. Here is the chart for 512 MB of 
 allocated memory:
 
-![AWS Lambda (512 MB) processing 100k SQS messages with "Bcrypt" handler](/aws-lambda-sqs-cpubound-scaling-512.png)
+![AWS Lambda (512 MB) processing 100k SQS messages with "Bcrypt" handler](aws-lambda-sqs-cpubound-scaling-512.png)
 
 <center class="img-caption">AWS Lambda (512 MB) processing 100k SQS messages with "Bcrypt" handler</center>
 
@@ -274,7 +274,7 @@ The scaling shape still holds, so the entire batch was done in less than four mi
 I executed the same experiment on Google Cloud Functions. I started with 128 MB, and it looks 
 impressive:
 
-![Google Cloud Function (128 MB) processing 100k Pub/Sub messages with "Bcrypt" handler](/gcp-cloud-function-pubsub-cpubound-scaling.png)
+![Google Cloud Function (128 MB) processing 100k Pub/Sub messages with "Bcrypt" handler](gcp-cloud-function-pubsub-cpubound-scaling.png)
 
 <center class="img-caption">Google Cloud Function (128 MB) processing 100k Pub/Sub messages with "Bcrypt" handler</center>
 
@@ -286,7 +286,7 @@ lowest CPU profile&mdash;very close to AWS's time on a 4x more powerful CPU.
 What will GCP achieve on a faster CPU? Let's provision 512 MB. It must absolutely crush the 
 test. Umm, wait, look at that:
 
-![Google Cloud Function (512 MB) processing 100k Pub/Sub messages with "Bcrypt" handler](/gcp-cloud-function-pubsub-cpubound-scaling-512.png)
+![Google Cloud Function (512 MB) processing 100k Pub/Sub messages with "Bcrypt" handler](gcp-cloud-function-pubsub-cpubound-scaling-512.png)
 
 <center class="img-caption">Google Cloud Function (512 MB) processing 100k Pub/Sub messages with "Bcrypt" handler</center>
 
@@ -295,7 +295,7 @@ got much less aggressive too, which canceled the speedup.
 
 I confirmed it with the largest instance size of 2,048 MB:
 
-![Google Cloud Function (2 GB) processing 100k Pub/Sub messages with "Bcrypt" handler](/gcp-cloud-function-pubsub-cpubound-scaling-2048.png)
+![Google Cloud Function (2 GB) processing 100k Pub/Sub messages with "Bcrypt" handler](gcp-cloud-function-pubsub-cpubound-scaling-2048.png)
 
 <center class="img-caption">Google Cloud Function (2 GB) processing 100k Pub/Sub messages with "Bcrypt" handler</center>
 
@@ -310,7 +310,7 @@ many small instances available on the pool rather than a similar number of giant
 
 A single invocation takes about 400 ms to complete on Azure Function. Here is the burndown chart:
 
-![Azure Function processing 100k queue messages with "Bcrypt" handler](/azure-function-queue-cpubound-scaling.png)
+![Azure Function processing 100k queue messages with "Bcrypt" handler](azure-function-queue-cpubound-scaling.png)
 
 <center class="img-caption">Azure Function processing 100k queue messages with "Bcrypt" handler</center>
 

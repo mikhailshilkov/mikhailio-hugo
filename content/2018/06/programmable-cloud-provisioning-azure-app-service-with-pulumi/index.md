@@ -38,7 +38,7 @@ We all start doing this in Azure Portal. User Interface is great for
 discovering new services and features, and it's a quick way to make a single
 change.
 
-![Azure Portal](/azureportal.png)
+![Azure Portal](azureportal.png)
 
 *Creating an App Service in Azure Portal*
 
@@ -98,7 +98,7 @@ Templates can be parametrized, which enables multi-environment deployments.
 There's a problem with templates though: they are JSON files. They get
 very large very fast, they are hard to reuse, it's easy to make a typo.
 
-![ARM Template](/armtemplate.png)
+![ARM Template](armtemplate.png)
 
 *A fragment of auto-generated ARM Template for App Service, note the 
 line numbers*
@@ -116,7 +116,7 @@ Pulumi
 One potential solution has just arrived.
 A startup called Pulumi [just went out of private beta to open source](http://joeduffyblog.com/2018/06/18/hello-pulumi/).
 
-![Pulumi](/pulumi.jpg)
+![Pulumi](pulumi.jpg)
 
 Pulumi wants to be much more than a better version of ARM templates, aiming
 to become the tool to build cloud-first distributed systems. But for today I'll 

@@ -72,7 +72,7 @@ were sent within 2 hours, without spikes or drops in the pace.
 Sounds like an easy job for autoscaling facilities. But here is the actual 
 chart of data processing:
 
-![Function App Scaling](/FunctionAppScaling.png)
+![Function App Scaling](FunctionAppScaling.png)
 
 The horizontal axis is time in minutes since the first message came in.
 
@@ -121,7 +121,7 @@ goes to 0, and the amount of instances gradually drops to 0 within 10 minutes.
 The second chart from the same experiment looks very similar, but it shows
 different metrics:
 
-![Function App Delay](/FunctionAppDelay.png)
+![Function App Delay](FunctionAppDelay.png)
 
 The gray line is the delay in minutes since the currently processed message
 got enqueued (message "age", in-queue latency). The blue line is the 
@@ -140,14 +140,14 @@ run. But sometimes the producer switched to fast mode and sent a bigger bunch
 of messages in just several minutes. Here is the actual chart of incoming
 message rate:
 
-![Spiky Load](/SpikyLoad.png)
+![Spiky Load](SpikyLoad.png)
 
 It's easy to imagine some service which has a usage pattern like that, when
 spikes of the events happen from time to time, or in rush hours.
 
 This is how the Function App managed to process the messages:
 
-![Spiky Load Processing Result](/SpikyLoadProcessing.png)
+![Spiky Load Processing Result](SpikyLoadProcessing.png)
 
 The green line still shows the amount of incoming messages per minute. The 
 blue line denotes how many messages were actually processed at that minute.

@@ -49,8 +49,9 @@ function reorderStep(agg, rem) {
 
   let rest = rem.slice(1);
 
+  const nextSameUserindex = rest.findIndex(c => c.user.login == comment.user.login && c.created_at > comment.created_at);
   const index = rest.findIndex(c => c.body_html.indexOf('@' + comment.user.login) > 0 && c.created_at > comment.created_at);
-  if (index >= 0) {
+  if (index >= 0 && (index < nextSameUserindex || nextSameUserindex < 0)) {
     const reply = rest[index];
     reply.isReply = true;
     if (index > 0) {

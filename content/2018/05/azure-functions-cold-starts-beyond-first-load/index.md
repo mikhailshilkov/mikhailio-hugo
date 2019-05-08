@@ -51,7 +51,7 @@ During 2 days I was issuing infrequent requests to the same app, most of them wo
 lead to a cold start. Interestingly, even though I was regularly firing the timer, Azure 
 switched instances to serve my application 2 times during the test period:
 
-![Infrequent Requests to Azure Functions with "Keep It Warm" Timer](/cold-starts-keep-warm.png)
+![Infrequent Requests to Azure Functions with "Keep It Warm" Timer](cold-starts-keep-warm.png)
 
 I can see that most responses are fast, so timer "warmer" definitely helps.
 
@@ -90,7 +90,7 @@ It's not the easiest chart to understand in full, but note the following:
 - The bars are colored by the instance which processed that request: same instance - same
 color
 
-![Azure Functions Response Time to Batches of Simultaneous Requests](/cold-starts-during-simultaneous-requests.png)
+![Azure Functions Response Time to Batches of Simultaneous Requests](cold-starts-during-simultaneous-requests.png)
 
 Here are some observations from this experiment:
 

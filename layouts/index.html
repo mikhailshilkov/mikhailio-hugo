@@ -10,6 +10,8 @@
                     {{ $page := $.GetPage "/serverless/coldstarts" }}
                     {{- partial "list-partials/featured.html" $page -}}
                 </div>
+                {{ $page := $.GetPage "/2019/05/level-up-your-azure-platform-as-a-service-applications-with-pulumi" }}
+                {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2019/04/less-frequent-cold-starts-in-google-cloud-functions" }}
                 {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2019/04/visualizing-absence-of-cold-starts-binaris" }}
@@ -59,6 +61,10 @@
                 {{ $page := $.GetPage "/2017/09/wanted-effectively-once-processing-in-azure" }}
                 {{- partial "list-partials/postbox.html" $page -}}
                 {{ $page := $.GetPage "/2017/07/authoring-custom-binding-azure-functions" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2017/07/custom-autoscaling-with-durable-functions" }}
+                {{- partial "list-partials/postbox.html" $page -}}
+                {{ $page := $.GetPage "/2017/07/custom-auto-scaling-in-azure" }}
                 {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>

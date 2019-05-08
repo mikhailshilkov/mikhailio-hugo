@@ -24,14 +24,14 @@ Cloud providers keep a bunch of generic unspecialized workers in stock. Whenever
 application needs to scale up, be it from 0 to 1 instances, or from N to N+1 likewise, the runtime
 will pick one of the spare workers and will configure it to serve the named application:
 
-![Cold Start](/coldstart.png)
+![Cold Start](coldstart.png)
 
 This procedure takes time, so the latency of the application event handling increases. To avoid
 doing this for every event, the specialized worker will be kept intact for some period of time.
 When another event comes in, this worker will stand available to process it as soon as possible.
 This is a "warm start":
 
-![Warm Start](/warmstart.png)
+![Warm Start](warmstart.png)
 
 The problem of cold start latency was described multiple times, here are the notable links:
 - [Understanding Serverless Cold Start](https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/)
@@ -66,7 +66,7 @@ the client perspective. This means that durations of HTTP gateway (e.g. API Gate
 into the total duration. However, all calls were made from within the same region, so network latency should 
 have minimal impact:
 
-![Test Setup](/test-setup.png)
+![Test Setup](test-setup.png)
 
 Important note: I ran all my tests on GA (generally available) versions of services/languages, so e.g.
 Azure tests were done with version 1 of Functions runtime (.NET Framework), and GCP tests were only made for
@@ -89,7 +89,7 @@ Here is the chart for Azure. It shows the values of normalized request durations
 different languages and runtime versions (Y-axis) depending on the time since the previous
 request in minutes (X-axis):
 
-![Azure Cold Start Threshold](/azure-coldstart-threshold.png)
+![Azure Cold Start Threshold](azure-coldstart-threshold.png)
 
 Clearly, an idle instance lives for 20 minutes and then gets recycled. All requests after 20 minutes
 threshold hit another cold start.
@@ -99,7 +99,7 @@ threshold hit another cold start.
 AWS is more tricky. Here is the same kind of chart, relative durations vs time since the last request, 
 measured for AWS Lambda:
 
-![AWS Cold Start vs Warm Start](/aws-coldstart-threshold.png)
+![AWS Cold Start vs Warm Start](aws-coldstart-threshold.png)
 
 There's no clear threshold here... For this sample, no cold starts happened within 28 minutes after the previous 
 invocation. Afterward, the frequency of cold starts slowly rises. But even after 1 hour of inactivity, there's still a
@@ -125,7 +125,7 @@ A couple learning points here:
 Google Cloud Functions left me completely puzzled. Here is the same chart for GCP cold starts (again,
 orange dots are warm and blue ones are cold):
 
-![GCP Cold Start vs Warm Start](/gcp-coldstart-threshold.png)
+![GCP Cold Start vs Warm Start](gcp-coldstart-threshold.png)
 
 This looks totally random to me. A cold start can happen in 3 minutes after the previous request, or an instance
 can be kept alive for the whole hour. The probability of a cold start doesn't seem to depend on the interval,
@@ -150,7 +150,7 @@ by the cloud provider or by language.
 
 Each group will be represented by a "candle" on the chart. This is how you should read each candle:
 
-![How to Read Cold Start Charts](/sample-coldstart-chart.png)
+![How to Read Cold Start Charts](sample-coldstart-chart.png)
 
 
 Memory Allocation
@@ -170,16 +170,16 @@ somewhat mixed.
 AWS Lambda Javascript doesn't seem to have significant differences. This probably means that not so much CPU load
 is required to start a Node.js "Hello World" application:
                            
-![AWS Javascript Cold Start by Memory](/aws-coldstart-js-by-memory.png)
+![AWS Javascript Cold Start by Memory](aws-coldstart-js-by-memory.png)
 
 AWS Lambda .NET Core runtime does depend on memory size though. Cold start time drops dramatically with every increase
 in allocated memory and CPU:
 
-![AWS C# Cold Start by Memory](/aws-coldstart-csharp-by-memory.png)
+![AWS C# Cold Start by Memory](aws-coldstart-csharp-by-memory.png)
 
 GCP Cloud Functions expose a similar effect even for Javascript runtime:
 
-![GCP Javascript Cold Start by Memory](/gcp-coldstart-js-by-memory.png)
+![GCP Javascript Cold Start by Memory](gcp-coldstart-js-by-memory.png)
 
 In contrast to Amazon and Google, Microsoft doesn't ask to select a memory limit. Azure will charge Functions based 
 on the actual memory usage. More importantly, it will always dedicate a full vCore for a given Function execution.
@@ -201,7 +201,7 @@ dependencies, so deployment package is really small.
 
 Here are the numbers for cold starts:
 
-![Cold Start for Basic Javascript Functions](/coldstart-js-baseline.png)
+![Cold Start for Basic Javascript Functions](coldstart-js-baseline.png)
 
 AWS is clearly doing the best job here. GCP takes the second place, and Azure is the slowest. The rivals are
 sort of close though, seemingly playing in the same league so the exact disposition might change over time.
@@ -224,7 +224,7 @@ Same applies to Python on GCP.
 The following chart shows some intuition about the cold start duration per language. The languages
 are ordered based on mean response time, from lowest to highest:
 
-![Cold Start per Language per Cloud and Language](/coldstart-per-language.png)
+![Cold Start per Language per Cloud and Language](coldstart-per-language.png)
 
 AWS provides the richest selection of runtimes, and 4 out of 5 are faster than the other two cloud providers.
 C# / .NET seems to be the least optimized (Amazon, why is that?).
@@ -244,7 +244,7 @@ To simulate such scenario, I've measured cold starts for functions with extra de
 
 Here are the results:
 
-![Cold Start Dependencies](/coldstart-dependencies.png)
+![Cold Start Dependencies](coldstart-dependencies.png)
 
 As expected, the dependencies slow the loading down. You should keep your Functions lean,
 otherwise, you will pay in seconds for every cold start.

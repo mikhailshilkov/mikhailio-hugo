@@ -13,7 +13,7 @@ However, there exists a preview of [Durable Functions](https://docs.microsoft.co
 an extension that lets you write stateful functions for long-running workflows.
 Here is a picture of one possible workflow from the docs:
 
-![Fan-out Fan-in Workflow](/fan-out-fan-in.png)
+![Fan-out Fan-in Workflow](fan-out-fan-in.png)
 
 Such workflows might take arbitrary time to complete. Instead of blocking and
 waiting for all that period, Durable Functions use the combination of
