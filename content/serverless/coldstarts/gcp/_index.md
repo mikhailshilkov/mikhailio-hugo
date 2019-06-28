@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Google Cloud Functions"
-lastmod: 2019-04-22
+lastmod: 2019-06-28
 layout: single
 tags: ["Cold Starts", "GCP", "Google Cloud Functions"]
 description: Running GA and Beta languages on different instance sizes
@@ -16,14 +16,14 @@ Learn more: [Cold Starts in Serverless Functions](/serverless/coldstarts/define)
 When Does Cold Start Happen?
 ----------------------------
 
-The very first cold start happens when the first request comes in after deployment. 
+The very first cold start happens when the first request comes in after deployment.
 
 After that request is processed, the instance stays alive to be reused for subsequent requests. There is no predefined threshold for instance recycling: the empiric data show a high variance of idle-but-alive periods.
 
 The following chart estimates the probability of an instance to be recycled after the given period of inactivity:
 
-{{< chart_line 
-    "coldstart_gcp_interval" 
+{{< chart_line
+    "coldstart_gcp_interval"
     "Probability of a cold start happening before minute X" >}}
 
 Google tends to keep an instance for long time: **85% of instances survive 5 hours of inactivity**.
@@ -37,7 +37,7 @@ How Slow Are Cold Starts?
 
 The following chart shows the typical range of cold starts in Google Cloud Functions, broken down per language. The darker ranges are the most common 67% of durations, and lighter ranges include 95%.
 
-{{< chart_interval 
+{{< chart_interval
     "coldstart_gcp_bylanguage"
     "Typical cold start durations per language" >}}
 
@@ -52,7 +52,7 @@ The above charts show the statistics for tiny "Hello World"-style functions. Add
 
 The following chart compares three JavaScript functions with the various number of referenced NPM packages:
 
-{{< chart_interval 
+{{< chart_interval
     "coldstart_gcp_bydependencies"
     "Comparison of cold start durations per deployment size (zipped)" >}}
 
@@ -63,7 +63,7 @@ Does Instance Size Matter?
 
 Google Cloud Functions have a setting to define the memory size that gets allocated to a single instance of a function. Are larger instances faster to load?
 
-{{< chart_interval 
+{{< chart_interval
     "coldstart_gcp_bymemory"
     "Comparison of cold start durations per instance size" >}}
 

@@ -1,6 +1,6 @@
 ---
 title: "Comparison of Cold Starts in Serverless Functions across AWS, Azure, and GCP"
-lastmod: 2019-04-22
+lastmod: 2019-06-28
 thumbnail: big3_thumb.jpg
 images: [big3.jpg]
 description: "AWS Lambda, Azure Functions, and Google Cloud Functions compared in terms of cold starts across all supported languages"
@@ -15,9 +15,9 @@ Read more: [Cold Starts in Serverless Functions](/serverless/coldstarts/define/)
 When Does Cold Start Happen?
 ----------------------------
 
-The very first cold start happens when the first request comes in after deployment. 
+The very first cold start happens when the first request comes in after deployment.
 
-After that request is processed, the instance stays alive to be reused for subsequent requests. 
+After that request is processed, the instance stays alive to be reused for subsequent requests.
 
 The strategy for reuse differs very between the cloud vendors:
 
@@ -38,11 +38,11 @@ The following chart shows the comparison of typical cold start durations across 
 
 {{< featured >}}
 
-{{< chart_interval 
+{{< chart_interval
     "coldstart_all_bylanguage"
     "Typical cold start durations per language" >}}
 
-{{< /featured >}}    
+{{< /featured >}}
 
 AWS clearly leads with all languages but C# being **well below 1 second**. GCP start-up usually takes **slightly more than 1 second**, while Azure is considerably slower.
 
@@ -57,11 +57,11 @@ The following chart compares three JavaScript functions with the various number 
 
 {{< featured >}}
 
-{{< chart_interval 
+{{< chart_interval
     "coldstart_all_bydependencies"
     "Comparison of cold start durations per deployment size (zipped)" >}}
 
-{{< /featured >}}    
+{{< /featured >}}
 
 The trend is quite consistent: larger packages cause a significant slowdown of the cold start. Once again, AWS outperforms its competitors.
 

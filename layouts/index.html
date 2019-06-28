@@ -1,82 +1,88 @@
 {{ define "header"}}
-    {{- partial "_shared/navbar.html" . -}}
+{{- partial "_shared/navbar.html" . -}}
 {{ end }}
 
 {{ define "main" }}
-    <div class="main-content">
-        <section class="recent-posts">            
-            <div class="row listrecent">
-                <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                    {{ $page := $.GetPage "/serverless/coldstarts" }}
-                    {{- partial "list-partials/featured.html" $page -}}
-                </div>
-                {{ $page := $.GetPage "/2019/05/serverless-as-simple-callbacks-with-pulumi-and-azure-functions" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/05/level-up-your-azure-platform-as-a-service-applications-with-pulumi" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/04/less-frequent-cold-starts-in-google-cloud-functions" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/04/visualizing-absence-of-cold-starts-binaris" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/03/concurrency-and-isolation-in-serverless-functions" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/03/reducing-azure-functions-cold-start-time" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/03/visualizing-cold-starts" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/02/evergreen-serverless-performance-reviews" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/02/from-yaml-to-typescript-developers-view-on-cloud-automation" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2019/serverless-at-scale-serving-stackoverflow-like-traffic" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/12/fairy-tale-of-fsharp-and-durable-functions" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/12/making-sense-of-azure-durable-functions" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/11/from-0-to-1000-instances-how-serverless-providers-scale-queue-processing" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/10/azure-functions-v2-released-how-performant-is-it" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/08/aws-lambda-warmer-as-pulumi-component" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/07/getting-started-with-aws-lambda-in-pulumi" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/07/monads-explained-in-csharp-again" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/06/programmable-cloud-provisioning-azure-app-service-with-pulumi" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/05/azure-functions-cold-starts-beyond-first-load" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/04/fsharp-exchange-2018" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/02/load-testing-azure-sql-database-by-copying-traffic-from-production-sql-server" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2018/01/tictactoe-with-fsharp-azurefunctions-hateoas-and-property-based-testing" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/12/azure-functions-get-more-scalable-and-elastic" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/12/precompiled-azure-functions-in-fsharp" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/10/azure-function-triggered-by-azure-event-grid" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/09/wanted-effectively-once-processing-in-azure" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/07/authoring-custom-binding-azure-functions" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/07/custom-autoscaling-with-durable-functions" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/07/custom-auto-scaling-in-azure" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/07/sending-large-batches-to-azure-service-bus" }}
-                {{- partial "list-partials/postbox.html" $page -}}
-                {{ $page := $.GetPage "/2017/06/finding-lost-events-in-azure-application-insights" }}
-                {{- partial "list-partials/postbox.html" $page -}}
+<div class="main-content">
+    <section class="recent-posts">
+        <div class="row listrecent">
+            <div class="col-lg-8 col-sm-12 mb-30px card-group">
+                {{ $page := $.GetPage "/serverless/coldstarts" }}
+                {{- partial "list-partials/featured.html" $page -}}
+            </div>
+            {{ $page := $.GetPage "/2019/06/hosting-a-static-website-on-azure-with-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/05/serverless-as-simple-callbacks-with-pulumi-and-azure-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/05/level-up-your-azure-platform-as-a-service-applications-with-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/04/less-frequent-cold-starts-in-google-cloud-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/04/visualizing-absence-of-cold-starts-binaris" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/03/concurrency-and-isolation-in-serverless-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/03/reducing-azure-functions-cold-start-time" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/03/visualizing-cold-starts" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/02/evergreen-serverless-performance-reviews" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/02/from-yaml-to-typescript-developers-view-on-cloud-automation" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/serverless-at-scale-serving-stackoverflow-like-traffic" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/12/fairy-tale-of-fsharp-and-durable-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/12/making-sense-of-azure-durable-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/11/from-0-to-1000-instances-how-serverless-providers-scale-queue-processing" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/10/azure-functions-v2-released-how-performant-is-it" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/08/aws-lambda-warmer-as-pulumi-component" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/07/getting-started-with-aws-lambda-in-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/07/monads-explained-in-csharp-again" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/06/programmable-cloud-provisioning-azure-app-service-with-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/05/azure-functions-cold-starts-beyond-first-load" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/04/fsharp-exchange-2018" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/02/load-testing-azure-sql-database-by-copying-traffic-from-production-sql-server" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2018/01/tictactoe-with-fsharp-azurefunctions-hateoas-and-property-based-testing" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/12/azure-functions-get-more-scalable-and-elastic" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/12/precompiled-azure-functions-in-fsharp" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/10/azure-function-triggered-by-azure-event-grid" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/09/wanted-effectively-once-processing-in-azure" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/07/authoring-custom-binding-azure-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/07/custom-autoscaling-with-durable-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/07/custom-auto-scaling-in-azure" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/07/sending-large-batches-to-azure-service-bus" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/06/finding-lost-events-in-azure-application-insights" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/06/mikhail-io-upgraded-to-https-and-http2" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/05/reliable-consumer-of-azure-event-hubs" }}
+            {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>
-    </div>
+</div>
 {{ end }}
 
 {{ define "footer" }}
-    {{- partial "_shared/footer.html" . -}}
+{{- partial "_shared/footer.html" . -}}
 {{end}}
