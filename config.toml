@@ -39,6 +39,7 @@ googleAnalytics = "UA-59218480-1"
   github = "MikhailShilkov"
   twitter = "MikhailShilkov"
   medium = "MikhailShilkov"
+  devto = "mikhailshilkov"
 
 ## Main Menu
 [[menu.main]]
