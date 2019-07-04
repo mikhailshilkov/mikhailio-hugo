@@ -10,6 +10,8 @@
                 {{ $page := $.GetPage "/serverless/coldstarts" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2019/07/how-azure-cli-manages-access-tokens" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/07/globally-distributed-serverless-application-in-100-lines-of-code" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/06/hosting-a-static-website-on-azure-with-pulumi" }}
@@ -83,6 +85,10 @@
             {{ $page := $.GetPage "/2017/03/visualizing-dependency-tree-from-di-container" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/03/azure-functions-as-facade-for-azure-monitoring" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/03/azure-service-bus-entity-metrics-dotnet-apis" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/02/coding-puzzle-in-fsharp-find-the-number-of-islands" }}
             {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>
