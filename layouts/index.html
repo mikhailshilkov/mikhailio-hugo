@@ -10,6 +10,8 @@
                 {{ $page := $.GetPage "/serverless/coldstarts" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2019/07/load-testing-azure-functions-with-loaderio" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/07/how-azure-cli-manages-access-tokens" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/07/globally-distributed-serverless-application-in-100-lines-of-code" }}
@@ -89,6 +91,10 @@
             {{ $page := $.GetPage "/2017/03/azure-service-bus-entity-metrics-dotnet-apis" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/02/coding-puzzle-in-fsharp-find-the-number-of-islands" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/01/event-sourcing-optimizing-neventstore-sql-read-performance" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2017/01/my-praise-of-advent-of-code-2016" }}
             {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>
