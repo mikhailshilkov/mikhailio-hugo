@@ -28,7 +28,7 @@ some distinct modules or components, and a single team would typically own each 
 
 ![Monolith](monolith.png)
 
-<center class="img-caption">Multiple components of a monolithic application</center>
+<figcaption><h4>Multiple components of a monolithic application</h4></figcaption>
 
 Usually, the modules would be packaged together at build time and then deployed as a single
 unit, so a lot of communication between modules would stay inside the OS process.
@@ -41,12 +41,12 @@ start getting in each other's way as the application grows since synchronization
 takes more and more effort.
 
 As a complex but viable alternative, the industry came up with a revised service-oriented
-approach commonly called **Microservices**. The teams split the big application into "vertical slices" 
+approach commonly called **Microservices**. The teams split the big application into "vertical slices"
 structured around the distinct business capabilities:
 
 ![Microservices](microservices.png)
 
-<center class="img-caption">Multiple components of a microservice-based application</center>
+<figcaption><h4>Multiple components of a microservice-based application</h4></figcaption>
 
 Each team then owns a whole vertical&mdash;from public communication contracts, or even UIs, down
 to the data storage. Explicitly shared databases are strongly discouraged. Services talk to each
@@ -61,9 +61,9 @@ deployed to separate servers connected via a network:
 
 ![Distributed Systems](distributed-system.png)
 
-<center class="img-caption">Challenges of communication between distributed components</center>
+<figcaption><h4>Challenges of communication between distributed components</h4></figcaption>
 
-Networks are fundamentally unreliable: they work just fine most of the time, but when they 
+Networks are fundamentally unreliable: they work just fine most of the time, but when they
 fail, they fail in all kinds of unpredictable and least desirable manners. There are books
 written on the topic of distributed systems architecture. TL;DR: it's hard.
 
@@ -71,7 +71,7 @@ A lot of the new adopters of microservices tend to ignore such complications. RE
 dominant style of connecting microservices. Like any other synchronous communication
 protocol, it makes the system brittle.
 
-Consider what happens when one service becomes temporary unhealthy: maybe its database goes offline, or it's struggling to 
+Consider what happens when one service becomes temporary unhealthy: maybe its database goes offline, or it's struggling to
 keep up with the request load, or a new version of the service is being deployed. All the requests to the problematic service start
 failing&mdash;or worse&mdash;become very slow. The dependent service waits for the response, and
 thus blocks all incoming requests of its own. The error propagates upstream very quickly causing cascading
@@ -79,7 +79,7 @@ failures all over the place:
 
 ![Cascading Failures](cascading-failures.png)
 
-<center class="img-caption">Error in one component causes cascading failures</center>
+<figcaption><h4>Error in one component causes cascading failures</h4></figcaption>
 
 The application is down. Everybody screams and starts the blame war.
 
@@ -91,13 +91,13 @@ and graceful degradation, a better solution is to switch to the asynchronous sty
 as the default. Some kind of persistent queueing service is used as an intermediary.
 
 The style of application architecture which is based on sending events between services
-is known as **Event-Driven**. When a service does something useful, it publishes an event&mdash;a record 
-about the fact which happened to its business domain. Another service listens to the published events and 
+is known as **Event-Driven**. When a service does something useful, it publishes an event&mdash;a record
+about the fact which happened to its business domain. Another service listens to the published events and
 executes its own duty in response to those facts:
 
 ![Event-Driven Application](event-driven.png)
 
-<center class="img-caption">Communication in event-driven applications</center>
+<figcaption><h4>Communication in event-driven applications</h4></figcaption>
 
 The service that produces events might not know about the consumers. New event subscribers can
 be introduced over time. This works better in theory than in practice, but the services tend to
@@ -112,12 +112,12 @@ However, another potential issue comes hand-in-hand with loose coupling: low coh
 As Martin Fowler notices in his essay
 [What do you mean by "Event-Driven"](https://martinfowler.com/articles/201701-event-driven.html):
 
-> It's very easy to make nicely decoupled systems with event notification, without realizing 
+> It's very easy to make nicely decoupled systems with event notification, without realizing
 > that you're losing sight of the larger-scale flow.
 
 Given many components that publish and subscribe to a large number of event types, it's easy to stop
-seeing the forest for the trees. Combinations of events usually constitute gradual workflows executed 
-in time. A workflow is more than the sum of its parts, and understanding of the high-level flow is 
+seeing the forest for the trees. Combinations of events usually constitute gradual workflows executed
+in time. A workflow is more than the sum of its parts, and understanding of the high-level flow is
 paramount to controlling the system behavior.
 
 Hold this thought for a minute; we'll get back to it later. Now it's time to talk *cloud*.
@@ -133,19 +133,19 @@ It made other things more complicated. Here is the picture of the global Azure n
 
 ![Azure Network](azure-network.png)
 
-<center class="img-caption">Azure locations with network connections</center>
+<figcaption><h4>Azure locations with network connections</h4></figcaption>
 
 There are good reasons to deploy applications to more than one geographical location:
-among others, to reduce network latency by staying close to the customer, and to achieve resilience through 
+among others, to reduce network latency by staying close to the customer, and to achieve resilience through
 geographical redundancy. Public Cloud is the ultimate distributed system. As you remember,
 distributed systems are hard.
 
 There's more to that. Each cloud provider has dozens and dozens of managed services, which is
-the curse and the blessing. Specialized services are great to provide off-the-shelf solutions 
-to common complex problems. On the flip side, each service has distinct properties regarding 
+the curse and the blessing. Specialized services are great to provide off-the-shelf solutions
+to common complex problems. On the flip side, each service has distinct properties regarding
 consistency, resiliency and fault tolerance.
 
-In my opinion, at this point developers have to embrace the public cloud and apply the distributed 
+In my opinion, at this point developers have to embrace the public cloud and apply the distributed
 system design on top of it. If you agree, there is an excellent way to approach it.
 
 Serverless
@@ -171,16 +171,16 @@ If we talk more specifically about Function-as-a-Service offerings like Azure Fu
 provide a standard model to run small pieces of code in the cloud.
 You zip up the code or binaries and send it to Azure; Microsoft takes care of all the
 hardware and software required to run it. The infrastructure automatically scales up or down based
-on demand, and you pay per request, CPU time and memory that the application consumed. 
+on demand, and you pay per request, CPU time and memory that the application consumed.
 No usage&mdash;no bill.
 
 However, there's always a "but". FaaS services come with an opinionated development model that
 applications have to follow:
 
-- **Event-Driven**: for each serverless function you have to define a specific trigger&mdash;the 
+- **Event-Driven**: for each serverless function you have to define a specific trigger&mdash;the
 event type which causes it to run, be it an HTTP endpoint or a queue message;
 
-- **Short-Lived**: functions can only run up to several minutes, and preferably for a few seconds 
+- **Short-Lived**: functions can only run up to several minutes, and preferably for a few seconds
 or less;
 
 - **Stateless**: as you don't control where and when function instances are provisioned or
@@ -195,18 +195,18 @@ from [the Serverless360 blog](https://www.serverless360.com/blog/building-reacti
 
 ![Serviceful Serverless Application](serviceful-example.png)
 
-<center class="img-caption">Sample application utilizing "serviceful" serverless architecture</center>
+<figcaption><h4>Sample application utilizing "serviceful" serverless architecture</h4></figcaption>
 
 There are 9 managed Azure services working together in this app. Most of them have a unique purpose, but
 the services are all glued together with Azure Functions. An image is uploaded to Blob Storage, an
-Azure Function calls Vision API to recognize the license plate and send the result to Event Grid, another 
+Azure Function calls Vision API to recognize the license plate and send the result to Event Grid, another
 Azure Function puts that event to Cosmos DB, and so on.
 
 This style of cloud applications is sometimes referred to as **Serviceful** to emphasize the heavy usage
 of managed services "glued" together by serverless functions.
 
 Creating a comparable application without any managed services would be a much harder task,
-even more so, if the application has to run at scale. Moreover, there's no way to keep the pay-as-you-go 
+even more so, if the application has to run at scale. Moreover, there's no way to keep the pay-as-you-go
 pricing model in the self-service world.
 
 The application pictured above is still pretty straightforward. The processes
@@ -230,7 +230,7 @@ the next function can listen for:
 
 ![Conference Booking Application](conference-booking.png)
 
-<center class="img-caption">Conference booking application</center>
+<figcaption><h4>Conference booking application</h4></figcaption>
 
 This approach works, however, problems do exist.
 
@@ -240,8 +240,8 @@ As we need to execute the whole booking process in sequence, the Azure Functions
 one after another by configuring the output of one function to match with the event source of
 the downstream function.
 
-In the picture above, the functions' sequence is hard-defined. If we were to swap the order of booking 
-the flights and reserving the hotel, that would require a code change&mdash;at least of the 
+In the picture above, the functions' sequence is hard-defined. If we were to swap the order of booking
+the flights and reserving the hotel, that would require a code change&mdash;at least of the
 input/output wiring definitions, but probably also the functions' parameter types.
 
 In this case, are the functions *really* decoupled?
@@ -267,7 +267,7 @@ origin-destination combination), the flow could choose to book a train instead:
 
 ![Fallback On Error](fallback-on-error.png)
 
-<center class="img-caption">Fallback after 3 consecutive failures</center>
+<figcaption><h4>Fallback after 3 consecutive failures</h4></figcaption>
 
 This scenario is not trivial to implement with stateless functions. We could wait until a
 message goes to the dead-letter queue and then route it from there, but this is brittle and
@@ -287,7 +287,7 @@ final price for expense reporting purposes:
 
 ![Fan-out / Fan-in](fanout-fanin.png)
 
-<center class="img-caption">Fan-out / fan-in pattern</center>
+<figcaption><h4>Fan-out / fan-in pattern</h4></figcaption>
 
 There is no way to implement the Report Expenses block as a single Azure Function: functions
 can't be triggered by two events, let alone correlate two *related* events.
@@ -319,22 +319,22 @@ Azure Functions is the serverless compute service from Microsoft. Functions are 
 each function defines a **trigger**&mdash;the exact definition of the event source, for instance,
 the name of a storage queue.
 
-Azure Functions can be programmed in [several languages](https://docs.microsoft.com/en-us/azure/azure-functions/supported-languages). 
+Azure Functions can be programmed in [several languages](https://docs.microsoft.com/en-us/azure/azure-functions/supported-languages).
 A basic Function with a
 [Storage Queue trigger](https://docs.microsoft.com/azure/azure-functions/functions-bindings-storage-queue)
-implemented in C# would look like this: 
+implemented in C# would look like this:
 
 ``` csharp
 [FunctionName("MyFirstFunction")]
 public static void QueueTrigger(
-    [QueueTrigger("myqueue-items")] string myQueueItem, 
+    [QueueTrigger("myqueue-items")] string myQueueItem,
     ILogger log)
 {
     log.LogInformation($"C# function processed: {myQueueItem}");
 }
 ```
 
-The `FunctionName` attribute exposes the C# static method as an Azure Function named `MyFirstFunction`. 
+The `FunctionName` attribute exposes the C# static method as an Azure Function named `MyFirstFunction`.
 The `QueueTrigger` attribute defines the name of the storage queue to listen to. The function body
 logs the information about the incoming message.
 
@@ -343,14 +343,14 @@ logs the information about the incoming message.
 [Durable Functions](https://docs.microsoft.com/azure/azure-functions/durable/durable-functions-overview)
 is a library that brings workflow orchestration abstractions to
 Azure Functions. It introduces a number of idioms and tools to define stateful,
-potentially long-running operations, and manages a lot of mechanics of reliable communication 
+potentially long-running operations, and manages a lot of mechanics of reliable communication
 and state management behind the scenes.
 
-The library records the history of all actions in Azure Storage services, enabling durability 
+The library records the history of all actions in Azure Storage services, enabling durability
 and resilience to failures.
 
-Durable Functions is 
-[open source](https://github.com/Azure/azure-functions-durable-extension), 
+Durable Functions is
+[open source](https://github.com/Azure/azure-functions-durable-extension),
 Microsoft accepts external contributions, and the community is quite active.
 
 Currently, you can write Durable Functions in 3 programming languages: C#, F#, and
@@ -358,8 +358,8 @@ Javascript (Node.js). All my examples are going to be in C#. For Javascript,
 check [this quickstart](https://docs.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode)
 and [these samples](https://github.com/Azure/azure-functions-durable-extension/tree/master/samples/javascript).
 For F# see [the samples](https://github.com/Azure/azure-functions-durable-extension/tree/master/samples/fsharp),
-[the F#-specific library](https://github.com/mikhailshilkov/DurableFunctions.FSharp) and my article 
-[A Fairy Tale of F# and Durable Functions](https://mikhail.io/2018/12/fairy-tale-of-fsharp-and-durable-functions/). 
+[the F#-specific library](https://github.com/mikhailshilkov/DurableFunctions.FSharp) and my article
+[A Fairy Tale of F# and Durable Functions](https://mikhail.io/2018/12/fairy-tale-of-fsharp-and-durable-functions/).
 
 Workflow building functionality is achieved by the introduction of two additional types
 of triggers: Activity Functions and Orchestrator Functions.
@@ -367,7 +367,7 @@ of triggers: Activity Functions and Orchestrator Functions.
 ### Activity Functions
 
 Activity Functions are simple stateless single-purpose building blocks
-that do just one task and have no awareness of the bigger workflow. 
+that do just one task and have no awareness of the bigger workflow.
 A new trigger type,
 `ActivityTrigger`, was introduced to expose functions as workflow steps, as
 I explain below.
@@ -409,7 +409,7 @@ a hotel room one-by-one:
 
 ![Sequential Workflow](sequential-workflow.png)
 
-<center class="img-caption">3 steps of a workflow executed in sequence</center>
+<figcaption><h4>3 steps of a workflow executed in sequence</h4></figcaption>
 
 The implementation of this workflow is defined by another C# Azure Function, this time with
 `OrchestrationTrigger`:
@@ -440,15 +440,15 @@ Let's walk through the lifecycle of one execution of the sequential workflow abo
 
 When the orchestrator starts running, the first `CallActivityAsync` invocation is made to book the
 conference ticket. What actually happens here is that a queue message is sent from the orchestrator
-to the activity function. 
+to the activity function.
 
-The corresponding activity function gets triggered by the queue message. It does its job (books the 
-ticket) and returns the result. The activity function serializes the result and sends it as a queue 
+The corresponding activity function gets triggered by the queue message. It does its job (books the
+ticket) and returns the result. The activity function serializes the result and sends it as a queue
 message back to the orchestrator:
 
 ![Durable Functions: Message Passing](durable-messaging.png)
 
-<center class="img-caption">Messaging between the orchestrator and the activity</center>
+<figcaption><h4>Messaging between the orchestrator and the activity</h4></figcaption>
 
 When the message arrives, the orchestrator gets triggered again and can proceed to the second
 activity. The cycle repeats&mdash;a message gets sent to Book Flight activity, it gets triggered, does its
@@ -458,7 +458,7 @@ The same message flow happens for the third call.
 ### Stop-resume behavior
 
 As discussed earlier, message passing is intended to decouple the sender and receiver in time.
-For every message in the scenario above, no immediate response is expected. 
+For every message in the scenario above, no immediate response is expected.
 
 On the C# level, when the `await` operator is executed, the code doesn't block the execution of the whole
 orchestrator. Instead, it just quits: the orchestrator stops being active and its current step completes.
@@ -497,7 +497,7 @@ Here is an illustration of the notable events that get recorded during our seque
 
 ![Durable Functions: Event Sourcing](event-sourcing.png)
 
-<center class="img-caption">Log of events in the course of orchestrator progression</center>
+<figcaption><h4>Log of events in the course of orchestrator progression</h4></figcaption>
 
 ### Billing
 
@@ -512,7 +512,7 @@ However, the total bill usually ends up being much lower compared to the potenti
 synchronous calls to activities. The price of 5 executions of 100 ms each is significantly lower
 than the cost of 1 execution of 30 seconds.
 
-By the way, the first million executions per month are 
+By the way, the first million executions per month are
 [at no charge](https://azure.microsoft.com/en-us/pricing/details/functions/),
 so many scenarios incur no cost at all from Azure Functions service.
 
@@ -531,7 +531,7 @@ flight booking service might not be able to process the request:
 
 ![Error Handling](error-handling.png)
 
-<center class="img-caption">One activity is unhealthy</center>
+<figcaption><h4>One activity is unhealthy</h4></figcaption>
 
 This situation is expected by Durable Functions. Instead of silently failing, the activity function
 sends a message containing the information about the error back to the orchestrator.
@@ -568,7 +568,7 @@ after a pause. It's a such a common scenario that Durable Functions provides a d
 
 ``` csharp
 var options = new RetryOptions(
-    firstRetryInterval: TimeSpan.FromMinutes(1),                    
+    firstRetryInterval: TimeSpan.FromMinutes(1),
     maxNumberOfAttempts: 5);
 options.BackoffCoefficient = 2.0;
 
@@ -614,9 +614,9 @@ to produce an expense report for the finance department:
 
 ![Parallel Calls](parallel-calls.png)
 
-<center class="img-caption">Parallel calls followed by a final step</center>
+<figcaption><h4>Parallel calls followed by a final step</h4></figcaption>
 
-In this scenario, the `BookTrip` orchestrator accepts an input parameter with the name of the 
+In this scenario, the `BookTrip` orchestrator accepts an input parameter with the name of the
 conference and returns the expense information. `ReportExpenses` needs to receive both
 expenses combined.
 
@@ -663,8 +663,8 @@ if (results.All(r => r)) { /* ... */ }
 ```
 
 Making hundreds of roundtrips to activities and back could cause numerous replays
-of the orchestrator. As an optimization, if multiple activity functions complete around the same 
-time, the orchestrator may internally process several messages as a batch and restart 
+of the orchestrator. As an optimization, if multiple activity functions complete around the same
+time, the orchestrator may internally process several messages as a batch and restart
 the orchestrator function only once per batch.
 
 Other Concepts
@@ -678,7 +678,7 @@ method. Useful for scenarios like timeouts or competing actions.
 - Waiting for external events, e.g., bringing human interaction into the workflow.
 - Running recurring workflows, when the flow repeats until a certain condition is met.
 
-Further explanation and code samples are in 
+Further explanation and code samples are in
 [the docs](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview).
 
 Conclusion
@@ -705,5 +705,5 @@ Acknowledgments
 Many thanks to [Katy Shimizu](https://twitter.com/kashimizMSFT), [Chris Gillum](https://twitter.com/cgillum),
 [Eric Fleming](https://twitter.com/efleming18), [KJ Jones](https://twitter.com/KevinJonesD),
 [William Liebenberg](https://twitter.com/William_DotNet), [Andrea Tosato](https://twitter.com/ATosato86)
-for reviewing the draft of this article and their valuable contributions and suggestions. The community 
+for reviewing the draft of this article and their valuable contributions and suggestions. The community
 around Azure Functions and Durable Functions is superb!
