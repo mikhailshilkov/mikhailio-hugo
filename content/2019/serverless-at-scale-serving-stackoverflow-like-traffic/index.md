@@ -49,7 +49,7 @@ With this in mind, I came up with the following experiment design:
 
 ![Serving StackOverflow Traffic from a Serverless Function](stackoverflow-test-setup.png)
 
-<figcaption>Serving StackOverflow Traffic from a Serverless Function</figcaption>
+<figcaption><h4>Serving StackOverflow Traffic from a Serverless Function</h4></figcaption>
 
 The HTML template is loaded at the first request and then cached in memory. The question/answers data file is loaded from the blob storage for every request. Template population is accomplished with string concatenation.
 
@@ -72,7 +72,7 @@ Requests were sent from multiple VMs outside the target cloud provider's region 
 
 ![Measuring Response Time of a Serverless Function](measuring-response-time.png)
 
-<figcaption>Measuring Response Time of a Serverless Function</figcaption>
+<figcaption><h4>Measuring Response Time of a Serverless Function</h4></figcaption>
 
 Blob storage services of all cloud providers have enough throughput to serve one blob per HTTP request. However, the latencies differ among the clouds, so I included blob fetch duration measurements in the performance baseline.
 
@@ -91,7 +91,7 @@ At some point (around minute 0 of the charts), the load began to grow and reache
 
 ![Request Distribution during the Load Test](request-distribution.png)
 
-<figcaption>Request Distribution during the Load Test</figcaption>
+<figcaption><h4>Request Distribution during the Load Test</h4></figcaption>
 
 Even though the growth period on the left and the decline period on the right represented the same number of requests, the hypothesis was that the first half might be more challenging because of the need to provision new resources rapidly.
 
@@ -110,7 +110,7 @@ Here is the P50-P95 latency chart during the load test:
 
 ![AWS Lambda Response Time Distribution (P50-P95)](aws-lambda-p50-p95.png)
 
-<figcaption>AWS Lambda Response Time Distribution (P50-P95)</figcaption>
+<figcaption><h4>AWS Lambda Response Time Distribution (P50-P95)</h4></figcaption>
 
 The percentiles were very consistent and flat. The median response time was still around 70 ms with no variance observed. P90 and P95 were quite stable too.
 
@@ -118,7 +118,7 @@ Only the 99th percentile displayed the difference between the ramp-up period on 
 
 ![AWS Lambda Response Time Distribution (P99)](aws-lambda-p99.png)
 
-<figcaption>AWS Lambda Response Time Distribution (P99)</figcaption>
+<figcaption><h4>AWS Lambda Response Time Distribution (P99)</h4></figcaption>
 
 AWS Lambda scales by creating multiple instances of the same function that handle the requests in parallel. Each Lambda instance is handling a single request at any given time, which is why the scale is measured in "concurrent executions." When the current request is done being processed, the same instance can be reused for a subsequent request.
 
@@ -126,7 +126,7 @@ Instance identifier can be retrieved from `/proc/self/cgroup` of a lambda, so I 
 
 ![AWS Lambda Concurrent Executions](aws-lambda-concurrent-executions.png)
 
-<figcaption>AWS Lambda Concurrent Executions</figcaption
+<figcaption><h4>AWS Lambda Concurrent Executions</h4></figcaption>
 
 There were about 80 concurrent executions at peak. That's quite a few, but still, almost an order of magnitude fewer instances compared to [my queue processing experiment](https://mikhail.io/2018/11/from-0-to-1000-instances-how-serverless-providers-scale-queue-processing/#crunching-numbers). It felt that AWS was capable of scaling even further.
 
@@ -134,7 +134,7 @@ P99.9 showed slowness of the least lucky 0.1% requests. Most probably, it had lo
 
 ![AWS Lambda Response Time Distribution (P99.9)](aws-lambda-p999.png)
 
-<figcaption>AWS Lambda Response Time Distribution (P99.9)</figcaption
+<figcaption><h4>AWS Lambda Response Time Distribution (P99.9)</h4></figcaption>
 
 Still, even those requests were mostly served within 2-3 seconds.
 
@@ -149,7 +149,7 @@ That's an important observation because the Function execution times were twice 
 
 ![Google Cloud Function Response Time Distribution (P50-P95)](google-cloud-function-p50-p95.png)
 
-<figcaption>Google Cloud Function Response Time Distribution (P50-P95)</figcaption
+<figcaption><h4>Google Cloud Function Response Time Distribution (P50-P95)</h4></figcaption>
 
 The median value was stable and flat at 150-180 ms. P90 and P95 had some spikes during the first 3 minutes. Google passed the test, but the lower percentiles were not perfect.
 
@@ -157,13 +157,13 @@ The 99th percentile was relatively solid though. It was higher on the left, but 
 
 ![Google Cloud Function Response Time Distribution (P99)](google-cloud-function-p99.png)
 
-<figcaption>Google Cloud Function Response Time Distribution (P99)</figcaption
+<figcaption><h4>Google Cloud Function Response Time Distribution (P99)</h4></figcaption>
 
 The scaling model of Google Functions appeared to be very similar to the one of AWS Lambda. This means that 2x duration of the average execution required 2x more concurrent executions to run and 2x more instances to be provisioned:
 
 ![Google Cloud Function Concurrent Executions](google-cloud-function-instances.png)
 
-<figcaption>Google Cloud Function Concurrent Executions</figcaption
+<figcaption><h4>Google Cloud Function Concurrent Executions</h4></figcaption>
 
 Indeed, there were about 160 concurrent executions at peak. GCP had to work twice as hard because of the storage latency, which might explain some of the additional variations of response time.
 
@@ -173,7 +173,7 @@ For completeness, here are the P99.9 values:
 
 ![Google Cloud Function Response Time Distribution (P99.9)](google-cloud-function-p999.png)
 
-<figcaption>Google Cloud Function Response Time Distribution (P99.9)</figcaption
+<figcaption><h4>Google Cloud Function Response Time Distribution (P99.9)</h4></figcaption>
 
 They fluctuated between 1 and 5 seconds on the left and were incredibly stable on the right.
 
@@ -189,7 +189,7 @@ However, it turns out that the scaling model of Azure Functions doesn't work wel
 
 ![Azure Function (Node.js) Response Time Distribution (P50-P95)](azure-function-js-p50-p95.png)
 
-<figcaption>Azure Function (Node.js) Response Time Distribution (P50-P95)</figcaption
+<figcaption><h4>Azure Function (Node.js) Response Time Distribution (P50-P95)</h4></figcaption>
 
 The concurrency model of Azure Functions is different from the counterparts of AWS/GCP. Function App instance is closer to a VM than a single-task container. It runs multiple concurrent executions in parallel. A central coordinator called Scale Controller monitors the metrics from existing instances and determines how many instances to provision on top. Instance identifier can be retrieved from environment variables of a function, so I recorded this value for each execution.
 
@@ -197,7 +197,7 @@ The multiple-requests-at-one-instance model didn't help in terms of the total in
 
 ![Azure Function (Node.js) Instances](azure-function-js-instances.png)
 
-<figcaption>Azure Function (Node.js) Instances</figcaption
+<figcaption><h4>Azure Function (Node.js) Instances</h4></figcaption>
 
 At peak, 90 instances were required, which is almost the same as the number of current executions of AWS Lambda. Given the I/O bound nature of my function, this was surprising to me.
 
@@ -205,7 +205,7 @@ Puzzled by the moderate results, I decided to run the same application as a .NET
 
 ![Azure Function (.NET) Response Time Distribution (P50-P95)](azure-function-dotnet-p50-p95.png)
 
-<figcaption>Azure Function (.NET) Response Time Distribution (P50-P95)</figcaption
+<figcaption><h4>Azure Function (.NET) Response Time Distribution (P50-P95)</h4></figcaption>
 
 P50 was extremely good: It stayed below 50 ms (leveraging the blazingly fast Blob Storage) for the whole period except for one point when it was 140 ms. P90 and P95 were stable except for three data points.
 
@@ -213,7 +213,7 @@ The chart of instance growth was very different from the JavaScript one too:
 
 ![Azure Function (.NET) Instances](azure-function-dotnet-instances.png)
 
-<figcaption>Azure Function (.NET) Instances</figcaption
+<figcaption><h4>Azure Function (.NET) Instances</h4></figcaption>
 
 Basically, it spiked to 20 instances at the third minute, and that was enough for the rest of the test. I concluded that the .NET worker was more efficient compared to Node.js worker, at least for my scenario.
 

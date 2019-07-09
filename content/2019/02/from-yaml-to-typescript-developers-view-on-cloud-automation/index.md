@@ -17,7 +17,7 @@ It's easier to make a case given a specific example. For this essay, I define a 
 
 ![URL Shortener sample app](url-shortener.png)
 
-<figcaption>URL Shortener sample app</figcaption>
+<figcaption><h4><h4>URL Shortener sample app</h4></figcaption>
 
 Now, whenever a visitor goes to the base URL of the application + an existing alias, they get redirected to the full URL.
 
@@ -34,7 +34,7 @@ So, the gist is to store URLs with short names as key-value pairs in Amazon Dyna
 
 ![URL Shortener with AWS Lambda and DynamoDB](lambda-dynamodb.png)
 
-<figcaption>URL Shortener with AWS Lambda and DynamoDB</figcaption>
+<figcaption><h4>URL Shortener with AWS Lambda and DynamoDB</h4></h4></figcaption>
 
 The Lambda at the top receives an event when somebody decides to add a new URL. It extracts the name and the URL from the request and saves them as an item in the DynamoDB table.
 
@@ -48,12 +48,12 @@ const table = new aws.DynamoDB.DocumentClient();
 
 exports.handler = async (event) => {
   const name = event.path.substring(1);
-  
+
   const params = { TableName: "urls", Key: { "name": name } };
   const value = await table.get(params).promise();
-  
+
   const url = value && value.Item && value.Item.url;
-  return url 
+  return url
     ? { statusCode: 301, body: "", headers: { "Location": url } }
     : { statusCode: 404, body: name + " not found" };
 };
@@ -72,7 +72,7 @@ Here is the updated diagram:
 
 ![API Gateway, Lambda, DynamoDB, and S3](apigateway-lambda-dynamodb-s3.png)
 
-<figcaption>API Gateway, Lambda, DynamoDB, and S3</figcaption>
+<figcaption><h4>API Gateway, Lambda, DynamoDB, and S3</h4></figcaption>
 
 This is a viable design, but the details are even more complicated:
 
@@ -84,7 +84,7 @@ So, the actual setup involves a couple of dozen objects to be configured in AWS:
 
 ![All cloud resources to be provisioned](apigateway-lambda-dynamodb-s3-details.png)
 
-<figcaption>All cloud resources to be provisioned</figcaption>
+<figcaption><h4>All cloud resources to be provisioned</h4></figcaption>
 
 How do we approach this task?
 
@@ -100,7 +100,7 @@ AWS, like any other cloud, has a [web user interface](https://console.aws.amazon
 
 ![AWS Web Console](aws-web-console.png)
 
-<figcaption>AWS Web Console</figcaption>
+<figcaption><h4>AWS Web Console</h4></figcaption>
 
 That's a decent place to start&mdash;good for experimenting, figuring out the available options, following the tutorials, i.e., for exploration.
 
@@ -303,7 +303,7 @@ This code might look like an imperative command to create a DynamoDB table, but 
 Previewing update (urlshortener):
 
      Type                   Name             Plan
-     pulumi:pulumi:Stack    urlshortener        
+     pulumi:pulumi:Stack    urlshortener
  ~   aws:dynamodb:Table     urls             update  [diff: ~readCapacity]
 
 Resources:
@@ -315,7 +315,7 @@ It detects the exact change that I made and suggests an update. The following pi
 
 ![How Pulumi works](how-pulumi-works.png)
 
-<figcaption>How Pulumi works</figcaption>
+<figcaption><h4>How Pulumi works</h4></figcaption>
 
 `index.ts` in the red square is my program. Pulumi's language host understands TypeScript and translates the code to commands to the internal engine. As a result, the engine builds a tree of resources-to-be-provisioned, the desired state of the infrastructure.
 
@@ -346,7 +346,7 @@ let lambda = new aws.lambda.Function("lambda-get", {
     timeout: 300,
     handler: "read.handler",
     role: role.arn,
-    environment: { 
+    environment: {
         variables: {
             "COUNTER_TABLE": counterTable.name
         }
@@ -375,7 +375,7 @@ import { Lambda } from "./lambda";
 const func = new Lambda("lambda-get", {
     path: "./app",
     file: "read",
-    environment: { 
+    environment: {
        "COUNTER_TABLE": counterTable.name
     },
 });
@@ -389,10 +389,10 @@ I defined a **custom component** called `Lambda`:
 export interface LambdaOptions {
     readonly path: string;
     readonly file: string;
-    
+
     readonly environment?:  pulumi.Input<{
         [key: string]: pulumi.Input<string>;
-    }>;    
+    }>;
 }
 
 export class Lambda extends pulumi.ComponentResource {
@@ -401,12 +401,12 @@ export class Lambda extends pulumi.ComponentResource {
     constructor(name: string,
         options: LambdaOptions,
         opts?: pulumi.ResourceOptions) {
-        
+
         super("my:Lambda", name, opts);
 
         const role = //... Role as defined in the last snippet
         const fullAccess = //... RolePolicyAttachment as defined in the last snippet
-        
+
         this.lambda = new aws.lambda.Function(`${name}-func`, {
             runtime: aws.lambda.NodeJS8d10Runtime,
             code: new pulumi.asset.AssetArchive({
@@ -423,7 +423,7 @@ export class Lambda extends pulumi.ComponentResource {
 }
 ```
 
-The interface `LambdaOptions` defines options that are important for my abstraction. The class `Lambda` derives from `pulumi.ComponentResource` and creates all the child resources in its constructor. 
+The interface `LambdaOptions` defines options that are important for my abstraction. The class `Lambda` derives from `pulumi.ComponentResource` and creates all the child resources in its constructor.
 
 A nice effect is that one can see the structure in `pulumi` preview:
 
@@ -505,7 +505,7 @@ It's worth noting that at the moment such high-level components only exist in Ty
 Avoiding Vendor Lock-in?
 ------------------------
 
-If you look closely at the previous code block, you notice that only one line is AWS-specific: the `import` statement. The rest is just naming. 
+If you look closely at the previous code block, you notice that only one line is AWS-specific: the `import` statement. The rest is just naming.
 
 We can get rid of that one too: just change the import to `import * as cloud from "@pulumi/cloud";` and replace `aws.` with `cloud.` everywhere. Now, we'd have to go to the stack configuration file and specify the cloud provider there:
 
@@ -522,7 +522,7 @@ The following picture illustrates the choice of the level of abstraction that Pu
 
 ![Pulumi abstraction layers](pulumi-layers.png)
 
-<figcaption>Pulumi abstraction layers</figcaption>
+<figcaption><h4>Pulumi abstraction layers</h4></figcaption>
 
 Working on top of the cloud provider's API and internal resource provider, you can choose to work with raw components with maximum flexibility, or opt-in for higher-level abstractions. Mix-and-match in the same program is possible too.
 

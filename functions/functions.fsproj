@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Heart.fs" />
+    <Compile Include="Warmer.fs" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

@@ -15,7 +15,7 @@ function heart() {
     contentType: "application/json",
     data: JSON.stringify({ path, session }),
     success: response => {
-      if (response && response.count) {
+      if (response && response.count && response.count > value) {
         countSpan.innerHTML = response.count;
       }
     },
@@ -26,19 +26,23 @@ function heart() {
 }
 
 jQuery(document).ready(function ($) {
-  const url = `${base}/api/GetHeartCount`;
-  jQuery.ajax(url, {
-    type: "POST",
-    headers: { Accept: "application/json" },
-    dataType: "json",
-    contentType: "application/json",
-    data: JSON.stringify({ path, session }),
-    success: response => {
-      const countSpan = document.getElementById("heartcount");
-      countSpan.innerHTML = response.count;
-    },
-    error: e => {
-      console.error(e);
-    }
-  });
+  const countSpan = document.getElementById("heartcount");
+  if (countSpan) {
+    const url = `${base}/api/GetHeartCount`;
+    jQuery.ajax(url, {
+      type: "POST",
+      headers: { Accept: "application/json" },
+      dataType: "json",
+      contentType: "application/json",
+      data: JSON.stringify({ path, session }),
+      success: response => {
+        if (response && response.count) {
+          countSpan.innerHTML = response.count;
+        }
+      },
+      error: e => {
+        console.error(e);
+      }
+    });
+  }
 });
