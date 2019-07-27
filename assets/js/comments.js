@@ -1,36 +1,36 @@
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
 
-    const issueID = jQuery("#gh-comments-list").text();
-    if (issueID) {
-      const api_url = `https://api.github.com/repos/mikhailshilkov/mikhailio-hugo/issues/${issueID}/comments`;
-      jQuery.ajax(api_url, {
-        headers: {Accept: "application/vnd.github.v3.html+json"},
-        dataType: "json",
-        success: function(comments) {
-            const orderedComments = reorderReplies(comments);
-            jQuery("#gh-comments-list").html("");
-            jQuery("#gh-comments-list").show();            
-            jQuery.each(orderedComments, function(i, comment) {
+  const issueID = jQuery("#gh-comments-list").text();
+  if (issueID) {
+    const api_url = `https://api.github.com/repos/mikhailshilkov/mikhailio-hugo/issues/${issueID}/comments`;
+    jQuery.ajax(api_url, {
+      headers: { Accept: "application/vnd.github.v3.html+json" },
+      dataType: "json",
+      success: function (comments) {
+        const orderedComments = reorderReplies(comments);
+        jQuery("#gh-comments-list").html("");
+        jQuery("#gh-comments-list").show();
+        jQuery.each(orderedComments, function (i, comment) {
 
-                var date = new Date(comment.created_at);
-                
-                var t = "<div class='speech-bubble p-4 border " + (comment.isReply ? "border-top-0" : "mt-4") + "'>";
-                t += "<div class='post-top-meta'><div>";
-                t += "<img class='author-thumb' src='" + comment.user.avatar_url + "' alt='" + comment.user.login + "'>";
-                t += "</div><div>";
-                t += "<a href='" + comment.user.html_url + "' target='_blank'>" + comment.user.login + "</a>";
-                t += "<div class='author-description'>" + formatDate(date) + "</div></div></div>";
-                t += "<div>" + comment.body_html + "</div></div>";
+          var date = new Date(comment.created_at);
 
-                jQuery("#gh-comments-list").append(t);
-            });
-        },
-        error: function() {
-            jQuery("#gh-comments-list").append("Comments are not open for this page yet.");
-        }
-      });    
-    }
+          var t = "<div class='speech-bubble p-4 border " + (comment.isReply ? "border-top-0" : "mt-4") + "'>";
+          t += "<div class='post-top-meta'><div>";
+          t += "<img class='author-thumb' src='" + comment.user.avatar_url + "' alt='" + comment.user.login + "'>";
+          t += "</div><div>";
+          t += "<a href='" + comment.user.html_url + "' target='_blank'>" + comment.user.login + "</a>";
+          t += "<div class='author-description'>" + formatDate(date) + "</div></div></div>";
+          t += "<div>" + comment.body_html + "</div></div>";
+
+          jQuery("#gh-comments-list").append(t);
+        });
+      },
+      error: function () {
+        jQuery("#gh-comments-list").append("Comments are not open for this page yet.");
+      }
+    });
+  }
 
 });
 
@@ -47,17 +47,31 @@ function reorderStep(agg, rem) {
   const comment = rem[0];
   agg.push(comment);
 
+  const author = "mikhailshilkov";
+  if (comment.user.login === author) {
+    comment.isReply = true;
+  }
+
   let rest = rem.slice(1);
 
-  const nextSameUserindex = rest.findIndex(c => c.user.login == comment.user.login && c.created_at > comment.created_at);
+  const nextSameUserIndex = rest.findIndex(c => c.user.login == comment.user.login && c.created_at > comment.created_at);
   const index = rest.findIndex(c => c.body_html.indexOf('@' + comment.user.login) > 0 && c.created_at > comment.created_at);
-  if (index >= 0 && (index < nextSameUserindex || nextSameUserindex < 0)) {
+  if (index >= 0 && (index < nextSameUserIndex || nextSameUserIndex < 0)) {
     const reply = rest[index];
     reply.isReply = true;
     if (index > 0) {
       // move reply to head
       rest.splice(index, 1);
       rest.unshift(reply);
+    }
+  }
+
+  if (nextSameUserIndex > 0) {
+    const nextAuthorIndex = rest.findIndex(c => c.user.login === author && c.created_at > comment.created_at);
+    console.log(nextAuthorIndex);
+    if (nextAuthorIndex == nextSameUserIndex - 1) {
+      const reply = rest[nextSameUserIndex];
+      reply.isReply = true;
     }
   }
 
