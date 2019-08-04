@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in AWS Lambda"
-lastmod: 2019-06-28
+lastmod: 2019-08-04
 layout: single
 description: Selection of languages, instance sizes, dependencies, VPC, and more
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
@@ -26,7 +26,9 @@ The following chart estimates the probability of an instance to be recycled afte
     "coldstart_aws_interval"
     "Probability of a cold start happening before minute X" >}}
 
-An idle instance almost always stays alive for at least **25 minutes**. Then, the probability of it being disposed slowly starts to grow and reaches 100% somewhere after **1 hour** since the last request.
+Sometimes, cold starts happen as soon as **5 minutes** after the previous request. The probability of an idle instance being disposed slowly starts to grow and reaches 100% around **17 minutes** since the last request.
+
+These numbers are significantly lower than in some of the reports from the previous months.
 
 Read more: [When Does Cold Start Happen on AWS Lambda?](/serverless/coldstarts/aws/intervals/)
 
@@ -78,6 +80,6 @@ AWS Lambda might need to access resources inside Amazon Virtual Private Cloud (A
     "coldstart_aws_byvpc"
     "Comparison of cold start durations of the same Lambda with and without VPC access" >}}
 
-Some VPC-enabled cold starts are still fast, but very often they are much slower and can get up to **17 seconds**.
+Some VPC-enabled cold starts are still fast, but very often they are much slower and can get up to **14 seconds**.
 
 View detailed distributions: [Cold Start Duration of VPC-connected Lambda](/serverless/coldstarts/aws/vpc/).

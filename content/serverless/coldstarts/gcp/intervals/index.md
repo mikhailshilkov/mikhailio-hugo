@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on Google Cloud Functions?"
-lastmod: 2019-06-28
+lastmod: 2019-08-04
 tags: ["Cold Starts", "GCP", "Google Cloud Functions"]
 nofeed: true
 thumbnail: interval_chart_thumb.png
@@ -26,7 +26,7 @@ The following chart estimates the probability of a cold start (Y-axis) by the in
     "coldstart_gcp_interval"
     "Probability of a cold start happening before minute X" >}}
 
-Based on this chart, **85% of instances survive 5 hours of inactivity**.
+Based on this chart, **80% of instances survive 5 hours of inactivity**.
 
 Don't assume the probabilities on this chart to be precise, but the overall trend should be representative.
 

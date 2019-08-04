@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Azure Functions"
-lastmod: 2019-06-28
+lastmod: 2019-08-04
 layout: single
 thumbnail: coldazure_thumb.jpg
 images: [coldazure.jpg]
@@ -24,6 +24,8 @@ After that request is processed, the instance stays alive for about **20 minutes
     "coldstart_azure_interval"
     "Probability of a cold start happening before minute X" >}}
 
+As you can see, some cold starts happen earlier than 20 minutes, so this behavior seems less deterministic than it used to be in the past.
+
 Read more: [When Does Cold Start Happen on Azure Functions?](/serverless/coldstarts/azure/intervals/)
 
 
@@ -37,7 +39,7 @@ The following chart shows the typical range of cold starts in Azure Functions V2
     "Typical cold start durations per language"
     true >}}
 
-A typical cold start latency spans from 2 to 15 seconds. C# functions usually complete the start within 3 seconds, while JavaScript and Java have longer tails.
+A typical cold start latency spans from 1 to 12 seconds. C# functions usually complete the start within 2 seconds, while JavaScript and Java are somewhat slower and have longer tails.
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/azure/languages/).
 
@@ -87,4 +89,4 @@ There are multiple ways to deploy Azure Functions. The charts below compare thre
     "Cold start durations per deployment method for JavaScript functions"
     true >}}
 
-It turns out that No Zip is faster than Local Zip which is faster than External Zip, the median difference being in the range of 1 second.
+It turns out that No Zip is faster than Local Zip which is faster than External Zip, the median difference being in the range of 20%.
