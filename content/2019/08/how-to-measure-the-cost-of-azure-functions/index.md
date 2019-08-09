@@ -1,10 +1,12 @@
 ---
-title: Measuring the Cost of Azure Functions
-date: 2019-07-05
+title: How to Measure the Cost of Azure Functions
+date: 2019-08-07
 thumbnail: teaser.jpg
 tags: ["Azure", "Azure Functions", "Cost"]
-description:
-ghissueid: 15
+description: Azure pricing can be complicated—to get the most value out of your cloud platform, you need to know how to track spend and measure the costs incurred by Azure Functions.
+ghissueid: 17
+originalSource: Nigel Frank Blog
+originalUrl: https://www.nigelfrank.com/blog/ask-the-expert-measuring-the-cost-of-azure-functions/
 ---
 
 Azure Functions can be hosted in multiple ways: there's an App Service plan with a fixed cost per hour, a new Premium plan with both fixed and variable price components, not to mention self-managed options based on container technologies. Instead of any of those three, this article focuses on Consumption plan&mdash;the classic serverless offering billed purely based on the actual usage.
@@ -19,7 +21,7 @@ Serverless Functions have three important properties, each of them having a sign
 
 - **Elastically scalable**: when a Function is idle, Azure scales the infrastructure down to zero with no associated cost. Whenever the workload grows, Azure brings enough capacity to serve all the demand.
 
-Why does this matter?
+#### Why does this matter?
 
 In the past, the cost of infrastructure running an application and the value that the application provides were separated. A company would run multiple applications, each having numerous components and services, on a shared infrastructure of dedicated hardware, a pool of VMs, or IaaS services in the cloud. It's quite complicated to tear the expenses apart and determine the exact cost of each application, let alone a particular component. Moreover, the investments are planned and executed in advance, so the infrastructure can't follow the elasticity of workload and ends up overprovisioned and underutilized.
 
@@ -51,6 +53,8 @@ The prominent place to see the cost of operating Azure Functions is the monthly 
 
 ![Consumed Function Units on an Azure invoice](invoiced-units.png)
 
+<figcaption><h4>Consumed Function Units on an Azure invoice</h4></figcaption>
+
 You should be able to see the incurred change for the two metrics we discussed above: *Total Executions* and *Execution Time* (the metric in GB-seconds).
 
 With *Cost Analysis* tool, you can see the billing data at per day granularity. Depending on your analysis goal, you might need more details than that. For instance, you may wonder how the cost is spread over periods within a day or be able to predict the future cost based on short trials before the application (or its newer version) goes into production.
@@ -69,11 +73,15 @@ Select *Function Execution Count* in the Metrics dropdown, *Sum* as the aggregat
 
 ![Function Execution Count in Azure Monitor](monitor-execution-count.png)
 
+<figcaption><h4>Function Execution Count in Azure Monitor</h4></figcaption>
+
 In this particular case, there were about 4,940 executions in the last 30 minutes. You can view the stats per minute; in this example, all the executions come from a single spike&mdash;something that I might want to investigate.
 
 Now, switch the metric to *Function Execution Units*. Alternatively, you can add it to the same chart, but the scale of the two metrics is so different that you won't be able to see both lines at the same time:
 
 ![Function Execution Units in Azure Monitor](monitor-execution-units.png)
+
+<figcaption><h4>Function Execution Units in Azure Monitor</h4></figcaption>
 
 The value conversion gets a bit tricky here. The chart shows a total of 634.13 million *Function Execution Units* consumed in the last hour. These are not the GB-seconds mentioned above, though: the metric is nominated in MB-milliseconds. To convert this to GB-seconds, divide it by 1,024,000. So, in this case, my Function App consumed 634,130,000 / 1,024,000 = 619 GB-seconds in the last half-an-hour.
 
@@ -102,6 +110,8 @@ If you only need to look at the data once, the *Metrics* screen above should be 
 For continuous monitoring of the metrics, you can put the same charts onto your Azure Dashboard. On the same screen, Click *Pin to dashboard* button and then navigate to the *Dashboard* menu item of the portal. You should see your chart added:
 
 ![Monitoring Dashboard](monitoring-dashboard.png)
+
+<figcaption><h4>Monitoring Dashboard</h4></figcaption>
 
 You might have several Function Apps to monitor at this point. You can either add a separate chart for each one of them, or add several lines to the same chart, or a combination of both. To customize the name of the dashboard item, click on the chart, edit the name, and click *Update Dashboard* button.
 
@@ -172,6 +182,8 @@ The query retrieves a hundred sample metric values with the *name* column reflec
 
 ![Duration in Application Insights Logs](duration-logs.png)
 
+<figcaption><h4>Duration in Application Insights Logs</h4></figcaption>
+
 The same metric can be used to plot the duration distribution in time; here is a sample query:
 
 ```
@@ -182,6 +194,8 @@ customMetrics
 ```
 
 ![Duration over Time in Application Insights Logs](duration-chart.png)
+
+<figcaption><h4>Duration over Time in Application Insights Logs</h4></figcaption>
 
 You can see that the Function plotted in blue has spent much more execution time than the green one.
 
