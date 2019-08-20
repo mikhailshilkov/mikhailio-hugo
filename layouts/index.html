@@ -10,6 +10,8 @@
                 {{ $page := $.GetPage "/serverless/coldstarts" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2019/08/aws-lambda-cold-starts-after-10-minutes" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/08/how-to-measure-the-cost-of-azure-functions" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/07/7-ways-to-deal-with-application-secrets-in-azure" }}
@@ -107,6 +109,10 @@
             {{ $page := $.GetPage "/2016/10/leaflet-plugin-to-render-geographic-corridors" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/10/azure-sql-databases-backups-disaster-recovery-import-export" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/08/getting-started-with-azure-application-insights-in-aurelia" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/08/comparing-scala-to-fsharp" }}
             {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>

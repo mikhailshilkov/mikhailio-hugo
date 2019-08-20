@@ -9,10 +9,12 @@
 {{ $data := .Scratch.Get "dataParam" }}
 
 {{ $caption := .Get 1 }}
+{{ $xTitle := .Get 2 | default "Time since the previous invocation (minutes)" }}
+{{ $yTitle := .Get 3 | default "probability" }}
 
 <script type="text/javascript">
 addChart((data, options) => {
-  data.addColumn('number', 'Time');
+  data.addColumn('string', 'Time');
 
   const points = {{ $data.points }};
   const seriesCount = points.length;
@@ -31,13 +33,13 @@ addChart((data, options) => {
   }
 
   data.addRows(rows);
-
+  console.debug(rows);
   options.lineWidth = 3;
   options.hAxis = {
-    title: 'Time since the previous invocation (minutes)'
+    title: '{{ $xTitle }}'
   };
   options.vAxis = {
-    title: 'probability',
+    title: '{{ $yTitle }}',
     maxValue: 1.0
   };
   options.legend = { position: 'top' };

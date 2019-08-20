@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on AWS Lambda?"
-lastmod: 2019-08-04
+lastmod: 2019-08-20
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
 nofeed: true
 thumbnail: intervals_chart_thumb.png
@@ -16,14 +16,18 @@ The following chart attempts to answer this question. It plots the response dura
     "coldstart_aws_scatter"
     "Cold and warm latency as a function of interval between two subsequent requests" >}}
 
-The lifetime of an instance doesn't seem deterministic, but we can estimate it to be **between 10 and 17 minutes**. Sometimes, cold starts happen as soon as **5 minutes** after the previous request. The probability of an idle instance being disposed slowly starts to grow and reaches 100% around **17 minutes** since the last request.
+The lifetime of an idle instance is **10 minutes**. 
 
-The following chart estimates the probability of a cold start (Y-axis) by the interval between two subsequent requests (X-axis):
+This is confirmed by the following chart, which estimates the probability of a cold start (Y-axis) by the interval between two subsequent requests (X-axis):
 
 {{< chart_line
     "coldstart_aws_interval"
     "Probability of a cold start happening before minute X" >}}
 
-Don't assume the probabilities on this chart to be precise, but the overall trend should be representative.
+This behavior is [different from the past](/2019/08/aws-lambda-cold-starts-after-10-minutes/), here is a month-over-month view:
+
+{{< chart_line_multi
+    "coldstart_aws_interval_history"
+    "The typical lifetime of an idle AWS Lambda" "2019 by month" "minutes" >}}
 
 Go back to [Cold Starts in AWS Lambda](/serverless/coldstarts/aws/).

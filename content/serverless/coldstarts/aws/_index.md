@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in AWS Lambda"
-lastmod: 2019-08-04
+lastmod: 2019-08-20
 layout: single
 description: Selection of languages, instance sizes, dependencies, VPC, and more
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
@@ -26,9 +26,7 @@ The following chart estimates the probability of an instance to be recycled afte
     "coldstart_aws_interval"
     "Probability of a cold start happening before minute X" >}}
 
-Sometimes, cold starts happen as soon as **5 minutes** after the previous request. The probability of an idle instance being disposed slowly starts to grow and reaches 100% around **17 minutes** since the last request.
-
-These numbers are significantly lower than in some of the reports from the previous months.
+Cold starts happen **10 minutes** after the previous request. This behavior is [different from the past](/2019/08/aws-lambda-cold-starts-after-10-minutes/).
 
 Read more: [When Does Cold Start Happen on AWS Lambda?](/serverless/coldstarts/aws/intervals/)
 
