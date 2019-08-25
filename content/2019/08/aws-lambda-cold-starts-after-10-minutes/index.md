@@ -4,7 +4,7 @@ date: 2019-08-20
 thumbnail: teaser.png
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
 description: How AWS Lambda changed the policy of recycling idle instances
-ghissueid: 
+ghissueid: 18
 ---
 
 I've just released an update to the [Serverless Cold Starts](/serverless/coldstarts/) section of my website. The most significant change to the previous dataset seems to be in how AWS treats idle instances of AWS Lambda.
