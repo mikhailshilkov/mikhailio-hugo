@@ -1,104 +1,145 @@
 {{ define "header"}}
-    {{- partial "_shared/navbar.html" . -}}
+{{- partial "_shared/navbar.html" . -}}
 {{ end }}
 
 {{ define "main" }}
 <script>
-function reveal() {
-	let fvalue = 'haib@emfigkhhiajikll.minoo';
-	let value = [];
-	for (var i = 0; i < fvalue.length; i++) {
-    	if(i % 2 === 0) {
-        	value += fvalue[i];
-    	}
+	function reveal() {
+		let fvalue = 'haib@emfigkhhiajikll.minoo';
+		let value = [];
+		for (var i = 0; i < fvalue.length; i++) {
+			if (i % 2 === 0) {
+				value += fvalue[i];
+			}
+		}
+		document.getElementById('email').innerHTML = `<b>${value}</b>`;
+		navigator.clipboard.writeText(value);
 	}
-	document.getElementById('email').innerHTML = `<b>${value}</b>`;
-	navigator.clipboard.writeText(value);
-}
 </script>
 <div class="main-content">
-<div class="container">
-	<div class="row">
-		<div class="contact-intro col-lg-4 order-lg-2 mx-lg-auto mb-5 text-center">
-			<img class="profile-small d-inline-block mx-auto rounded-circle mb-3" height="200px" src="/images/author.jpg" alt="">
-		</div>
-		<div class="contact-intro col-lg-8 order-lg-1 mx-lg-auto mb-5 text-center">
-						
-			<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
-				<p class="text-left mb-3 lead">I'm currently taking on freelance work. I can add some traction to your most important development project, do code and architecture reviews, help to bootstrap a proof-of-concept, or share my expertise otherwise.</p>
-				<h6 class="font-weight-bold text-center mb-3 mt-5">You can find me on the following channels</h6>
-				
-				<ul class="social-list-color list-inline mb-0">
-					<li class="list-inline-item mb-3" id="email" title="Show e-mail &amp; copy to clipboard">
-						<a class="nav-link" href="#" onclick="reveal()"><i class="fa fa-envelope social-icon" aria-hidden="true"></i></a>
-					</li>
-					{{ with .Site.Params.social.linkedin }}
-					<li class="list-inline-item mb-3">
-						<a class="nav-link" href="https://www.linkedin.com/in/{{.}}"><i class="fab fa-linkedin social-icon" aria-hidden="true"></i></a>
-					</li>
-					{{end}}						
-					{{ with .Site.Params.social.twitter }}
-					<li class="list-inline-item mb-3">
-						<a class="nav-link" href="https://www.twitter.com/{{.}}"><i class="fab fa-twitter social-icon" aria-hidden="true"></i></a>
-					</li>
-					{{ end }}
-					{{ with .Site.Params.social.medium }}
-					<li class="list-inline-item mb-3">
-						<a class="nav-link" href="https://medium.com/@{{.}}"><i class="fab fa-medium social-icon" aria-hidden="true"></i></a>
-					</li>
-					{{ end }}
-					{{ with .Site.Params.social.github }}
-					<li class="list-inline-item mb-3">
-						<a class="nav-link" href="https://github.com/{{.}}"><i class="fab fa-github social-icon" aria-hidden="true"></i></a>
-					</li>
-					{{ end }}
-				</ul>
+	<div class="container">
+		<div class="row">
+			<div class="contact-intro col-lg-4 order-lg-2 mx-lg-auto mb-5 text-center">
+				<img class="profile-small d-inline-block mx-auto rounded-circle mb-3" height="200px"
+					src="/images/author.jpg" alt="">
 			</div>
-			
+			<div class="contact-intro col-lg-8 order-lg-1 mx-lg-auto mb-5 text-center">
+
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<p class="text-left mb-3 lead">I'm currently taking on freelance work. I can add some traction to
+						your most important development project, do code and architecture reviews, help to bootstrap a
+						proof-of-concept, or share my expertise otherwise.</p>
+					<h6 class="font-weight-bold text-center mb-3 mt-5">You can find me on the following channels</h6>
+
+					<ul class="social-list-color list-inline mb-0">
+						<li class="list-inline-item mb-3" id="email" title="Show e-mail &amp; copy to clipboard">
+							<a class="nav-link" href="#" onclick="reveal()"><i class="fa fa-envelope social-icon"
+									aria-hidden="true"></i></a>
+						</li>
+						{{ with .Site.Params.social.linkedin }}
+						<li class="list-inline-item mb-3">
+							<a class="nav-link" href="https://www.linkedin.com/in/{{.}}"><i
+									class="fab fa-linkedin social-icon" aria-hidden="true"></i></a>
+						</li>
+						{{end}}
+						{{ with .Site.Params.social.twitter }}
+						<li class="list-inline-item mb-3">
+							<a class="nav-link" href="https://www.twitter.com/{{.}}"><i
+									class="fab fa-twitter social-icon" aria-hidden="true"></i></a>
+						</li>
+						{{ end }}
+						{{ with .Site.Params.social.medium }}
+						<li class="list-inline-item mb-3">
+							<a class="nav-link" href="https://medium.com/@{{.}}"><i class="fab fa-medium social-icon"
+									aria-hidden="true"></i></a>
+						</li>
+						{{ end }}
+						{{ with .Site.Params.social.github }}
+						<li class="list-inline-item mb-3">
+							<a class="nav-link" href="https://github.com/{{.}}"><i class="fab fa-github social-icon"
+									aria-hidden="true"></i></a>
+						</li>
+						{{ end }}
+					</ul>
+				</div>
+
+			</div>
 		</div>
+		<div class="row">
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Serverless</h5>
+					<p class="text-left mb-3">I'm a serverless fanboy. I worked with <b>Azure Functions</b>, <b>AWS
+							Lambda</b>, <b>Google Cloud Functions</b>, and more. The majority of my blogs and talks are
+						about serverless. I help organize ServerlessDays Amsterdam event. The future is serverless.</p>
+				</div>
+			</div>
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Microsoft Azure</h5>
+					<p class="text-left mb-3">I'm a <b>Microsoft Azure MVP</b> (Most Valuable Professional). This means
+						I know some Azure and I actively share that knowledge with the community. I focus on Functions,
+						App Service, Messaging, Cosmos DB, SQL Database, Storage, and more.</p>
+				</div>
+			</div>
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Infrastructure as Code</h5>
+					<p class="text-left mb-3">Cloud platforms offer amazing capabilities for application
+						developers. Managing infrastructure as code is a vital skill in today's cloud-first
+						world. <b>Pulumi</b>, <b>Terraform</b>, <b>ARM templates</b>, <b>Azure Pipelines</b>&mdash;I
+						love all of
+						these and will help
+						you get started too.</p>
+				</div>
+			</div>
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Functional Programming</h5>
+					<p class="text-left mb-3">I believe <b>Functional Programming</b> is a very efficient and pragmatic
+						way to create software. <b>F#</b> is my language of choice. If you happen to use functional
+						languages, let's talk! Otherwise, still be prepared that I'll sneak some FP into your mind at
+						some point.</p>
+				</div>
+			</div>
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Other Buzz Words</h5>
+					<p class="text-left mb-3">
+						<div>C#, F#, JavaScript, TypeScript, SQL Server, Oracle, .NET Core, .NET
+							Framework, Go. TDD, DDD, BDD, SOLID, CQRS, Event Sourcing, Reactive, Ports & Adapters.</div>
+						<div>Been there, done that.</div>
+					</p>
+				</div>
+			</div>
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Netherlands or remote</h5>
+					<p class="text-left mb-3">My origin is St.Petersburg, Russia, but I live in <b>Eindhoven</b> area in
+						the south <b>Netherlands</b>. You can hire me onsite if you are somewhat nearby. Otherwise,
+						<b>remote</b> is a great option and I have enough experience to make it productive.</p>
+				</div>
+			</div>
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Guest posting</h5>
+					<p class="text-left mb-3">Enjoying my blog? Want to <b>promote your own site</b> by posting quality
+						content? We can probably <b>team up</b>! Let's talk to align our goals.</p>
+				</div>
+			</div>
+			<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
+				<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
+					<h5 class="font-weight-bold mb-3">Sponsorship</h5>
+					<p class="text-left mb-3">Like this site? Want to <b>spread the word</b> about your service or
+						product? <b>Become a sponsor!</b> Your product must be relevant to my target audience.</p>
+				</div>
+			</div>
+		</div>
+		<!--//row-->
 	</div>
-	<div class="row">
-		<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
-			<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
-				<h5 class="font-weight-bold mb-3">Serverless</h5>
-				<p class="text-left mb-3">I'm a serverless fanboy. I worked with <b>Azure Functions</b>, <b>AWS Lambda</b>, <b>Google Cloud Functions</b>, and more. The majority of my conference talks are about serverless. I help organize ServerlessDays Amsterdam event. The future is serverless.</p>
-			</div>
-		</div>
-		<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
-			<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
-				<h5 class="font-weight-bold mb-3">Microsoft Azure</h5>
-				<p class="text-left mb-3">I'm a <b>Microsoft Azure MVP</b> (Most Valuable Professional). This means I know some Azure and I actively share that knowledge with the community. I focus on Functions, App Service, Messaging, Cosmos DB, SQL Database, Storage, and so on.</p>
-			</div>
-		</div>
-		<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
-			<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
-				<h5 class="font-weight-bold mb-3">Functional Programming</h5>
-				<p class="text-left mb-3">I believe <b>Functional Programming</b> is a very efficient and pragmatic way to create software. <b>F#</b> is my language of choice. If you happen to use functional languages, let's talk! Otherwise, still be prepared that I'll sneak some FP into your mind at some point.</p>
-			</div>
-		</div>
-		<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
-			<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
-				<h5 class="font-weight-bold mb-3">Netherlands or remote</h5>
-				<p class="text-left mb-3">My origin is St.Petersburg, Russia, but I live in <b>Eindhoven</b> area in the south <b>Netherlands</b>. You can hire me onsite if you are somewhat nearby. Otherwise, <b>remote</b> is a great option and I have enough experience to make it productive. Not a big fan of Slack though.</p>
-			</div>
-		</div>
-		<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
-			<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
-				<h5 class="font-weight-bold mb-3">Guest posting</h5>
-				<p class="text-left mb-3">Enjoying my blog? Want to <b>promote your own site</b> by posting quality content? We can probably <b>team up</b>! Let's talk to align our goals.</p>
-			</div>
-		</div>
-		<div class="contact-intro col-lg-6 mx-lg-auto mb-5">
-			<div class="speech-bubble bg-light p-4 p-lg-5 shadow-sm">
-				<h5 class="font-weight-bold mb-3">Sponsorship</h5>
-				<p class="text-left mb-3">Like this site? Want to <b>spread the word</b> about your service or product? <b>Become a sponsor!</b> Your product must be relevant to my target audience.</p>
-			</div>
-		</div>
-	</div><!--//row-->
-</div>
 </div>
 {{end}}
 
 {{ define "footer"}}
-    {{- partial "_shared/footer.html" . -}}
+{{- partial "_shared/footer.html" . -}}
 {{ end }}

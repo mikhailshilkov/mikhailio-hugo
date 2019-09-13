@@ -12,6 +12,10 @@ The following chart shows the typical range of cold starts in Azure Functions V2
     "coldstart_azure_bylanguagewindows"
     "Typical cold start durations per language" >}}
 
+{{< chart_interval
+    "coldstart_azure_bylanguagelinux"
+    "Typical cold start durations per language" >}}
+
 The charts below give the distribution of cold start durations per runtime version and supported programming language. All charts have the same horizontal scale (0-12 sec) to make them easily comparable.
 
 ## Azure Functions V2

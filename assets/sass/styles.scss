@@ -564,3 +564,11 @@ p code {
 pre {
     background-color: #f0f0f0 !important;
 }
+
+.sidebar {
+    padding: 1rem 0rem;
+}
+
+.sidebar .current {
+    font-weight: 600;
+}
