@@ -1,0 +1,60 @@
+{{ define "header"}}
+{{- partial "_shared/enablecharts.html" . -}}
+{{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+
+<div class="main-content">
+    <!-- Begin Article
+        ================================================== -->
+    <div class="container">
+        <div class="row">
+            <!-- Post Share -->
+            <div class="col-lg-2 pl-0">
+            </div>
+            <!-- Post -->
+            <div class="col-lg-10 flex-first flex-lg-unordered">
+
+                <div class="mainheading">
+                    <!-- Post Title -->
+                    <h1 class="posttitle">{{ .Title }}</h1>
+                    <!-- Author Box -->
+                    <div class="post-top-meta">
+                        <div>
+                            <span class="post-date"> {{ .Params.subtitle }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post Content -->
+                <div class="article-post">
+                    {{ .Content}}
+
+                    <a href="{{(.Page.GetPage "1-prerequisites").Permalink}}">
+                        <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+                    </a>
+
+                    <!-- <p>
+                        <h3>Table of Contents:</h3>
+                        {{ range .Page.Pages }}
+                        <div>{{.Weight}}. {{.Title}}</div>
+                        {{ end }}
+                    </p>
+
+                    <a href="{{(.Page.GetPage "1-prerequisites").Permalink}}">
+                        <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+                    </a> -->
+                </div>
+            </div>
+            <!-- End Post -->
+        </div>
+    </div>
+    <!-- End Article
+        ================================================== -->
+</div>
+{{ end }}
+
+{{ define "footer"}}
+{{- partial "_shared/footer.html" . -}}
+{{ end }}

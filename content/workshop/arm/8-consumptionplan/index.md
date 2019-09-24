@@ -1,11 +1,12 @@
 ---
 title: Consumption Plan
+subtitle: 5 minutes to complete
 weight: 8
 ---
 
-There are several modes to deploy Azure Functions. The serverless pay-per-execition hosting option is called Consumption Plan.
+There are several options to deploy Azure Functions. The serverless pay-per-execition hosting plan is called *Consumption Plan*.
 
-There's no resource named Consumption Plan. The resource name is inherited from the old days when App Service used to only serve web sites, so the type is `Microsoft.Web/serverfarms`. It's the SKU property of the resource that defines the type of the hosting plan.
+There's no resource named Consumption Plan, though. The resource name is inherited from the old days when Azure App Service used to only serve web sites, so the type is called `Microsoft.Web/serverfarms`. It's the SKU property of the resource that defines the type of the hosting plan.
 
 Copy the following block into `resources` collection of your ARM template:
 
@@ -22,14 +23,17 @@ Copy the following block into `resources` collection of your ARM template:
 }
 ```
 
-Note the specific way that the `sku` property is configured. If you ever want to deploy to another type of the service plan, you would change this property.
+Note the specific way that the `sku` property is configured. If you ever want to deploy to another type of the service plan, you would need to change the values accordingly.
 
-The `name` property refers to a not-yet-existing variable `planName`. Go ahead and define this variable with the value `[concat(parameters('appName'), '-asp')]`. The function `concat` concatenates all the arguments that it receives. In this case, we append an `-asp` suffix to the application name.
+The `name` property value refers to a not-yet-existing variable `planName`. Go ahead and define this variable with the expression `[concat(parameters('appName'), '-asp')]`.
 
+The function `concat` concatenates all the received arguments. In this case, we append an `-asp` suffix to the application name.
 
-## Good to go if...
+Run another template deployment and makse sure it succeeds.
 
-Re-run the command to list all resources in the resource group:
+## Checkpoint
+
+Re-run the command to list all resources in the Resource Group:
 
 ```
 $ az resource list -g arm-workshop -o table
@@ -40,6 +44,6 @@ Name             ResourceGroup Location    Type
 myuniquename-asp arm-workshop  westeurope  Microsoft.Web/serverFarms
 ```
 
-You should see both a Storage Account and an App Service Plan.
+You should see both the Storage Account and the Consumption Plan.
 
-Next: [Function App]({{< ref "/workshop/arm/9-functionapp" >}})
+Next: [Create a Function App]({{< ref "/workshop/arm/9-functionapp" >}})

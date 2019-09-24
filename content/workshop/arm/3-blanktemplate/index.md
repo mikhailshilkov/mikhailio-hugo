@@ -10,7 +10,7 @@ I recommend using Visual Studio Code with the Azure Resource Manager Tools exten
 
 ## Create a Template
 
-Pick or make a folder on your local disk and create a new file calles `azureDeploy.json`. Copy-and-paste the following lines in it:
+Pick or make a folder on your local disk and create a new file called `azureDeploy.json`. Copy-and-paste the following lines in it:
 
 ``` json
 {
