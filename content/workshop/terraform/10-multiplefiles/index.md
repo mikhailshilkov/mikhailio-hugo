@@ -1,6 +1,7 @@
 ---
 title: Multiple Files
 subtitle: 4 minutes to complete
+nofeed: true
 weight: 10
 ---
 

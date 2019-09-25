@@ -1,6 +1,7 @@
 ---
 title: Terraform State
 subtitle: 2 minutes read
+nofeed: true
 weight: 6
 ---
 

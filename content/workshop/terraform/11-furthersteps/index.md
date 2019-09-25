@@ -1,6 +1,7 @@
 ---
 title: Further Steps
 subtitle: Ideas to implement on your own
+nofeed: true
 weight: 11
 ---
 

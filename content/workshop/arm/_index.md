@@ -2,6 +2,7 @@
 title: Learn ARM Templates
 subtitle: Hands-on lab
 layout: welcome
+nofeed: true
 thumbnail: logo.png
 description: Learn the basics of Azure Resource Manager Templates while creating serverless infrastructure.
 weight: 1

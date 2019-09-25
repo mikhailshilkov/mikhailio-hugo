@@ -1,6 +1,7 @@
 ---
 title: Function App
 subtitle: 10 minutes to complete
+nofeed: true
 weight: 9
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Clean Up
 subtitle: Delete the unused resources
+nofeed: true
 weight: 12
 ---
 

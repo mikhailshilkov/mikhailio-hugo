@@ -1,6 +1,7 @@
 ---
 title: Consumption Plan
 subtitle: 3 minutes to complete
+nofeed: true
 weight: 7
 ---
 

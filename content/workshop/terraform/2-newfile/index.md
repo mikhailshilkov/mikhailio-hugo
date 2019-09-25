@@ -1,6 +1,7 @@
 ---
 title: New Terraform File
 subtitle: 3 minutes to complete
+nofeed: true
 weight: 2
 ---
 

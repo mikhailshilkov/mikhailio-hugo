@@ -1,6 +1,7 @@
 ---
 title: Prerequisites
 subtitle: Getting your environment ready
+nofeed: true
 weight: 1
 ---
 

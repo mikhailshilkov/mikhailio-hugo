@@ -10,6 +10,10 @@
                 {{ $page := $.GetPage "/serverless/coldstarts" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2019/09/how-to-build-globally-distributed-applications-with-azure-cosmos-db-and-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/08/how-to-avoid-cost-pitfalls-by-monitoring-apis-in-aws-lambda" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/08/ten-pearls-with-azure-functions-in-pulumi" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/08/aws-lambda-cold-starts-after-10-minutes" }}
@@ -119,6 +123,8 @@
             {{ $page := $.GetPage "/2016/07/mocking-api-calls-in-aurelia" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/07/building-a-poker-bot-functional-fold-as-decision-tree-pattern" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/05/dependency-inversion-implies-interfaces-are-owned-by-high-level-modules" }}
             {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>

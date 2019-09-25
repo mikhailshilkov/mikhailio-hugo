@@ -1,6 +1,7 @@
 ---
 title: Inputs and Outputs
 subtitle: 6 minutes to complete
+nofeed: true
 weight: 9
 ---
 

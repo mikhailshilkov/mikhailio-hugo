@@ -18,7 +18,7 @@
     {{- end }}
     <id>{{ .Permalink }}</id>
     {{ $feed_sections := $.Site.Params.feedSections | default site.Params.mainSections }}
-    {{- range .Pages }}
+    {{- range .Site.Pages }}
         {{ $page := . }}
         {{- with .Params.nofeed }}
         {{ else }}

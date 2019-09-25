@@ -2,6 +2,7 @@
 title: Learn Pulumi
 subtitle: Hands-on lab
 layout: welcome
+nofeed: true
 thumbnail: logo.png
 description: Your first TypeScript program to define Azure Functions and other Azure resources with Pulumi.
 weight: 3

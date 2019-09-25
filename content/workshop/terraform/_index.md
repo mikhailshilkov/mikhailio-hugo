@@ -2,6 +2,7 @@
 title: Learn Terraform
 subtitle: Hands-on lab
 layout: welcome
+nofeed: true
 thumbnail: logo.png
 description: Get started with Terraform and its Azure provider to deploy serverless functions and more.
 weight: 2

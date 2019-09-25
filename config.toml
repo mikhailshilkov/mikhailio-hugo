@@ -21,16 +21,17 @@ googleAnalytics = "UA-59218480-1"
 
 [outputFormats.XML]
   mediatype = "application/xml"
-  baseName = "feed"  
+  baseName = "feed"
 
 [params]
   favicon = "/favicon.ico"
   description ="Serverless, Cloud, Azure, AWS, F#, Functional Programming, and more"
+  feedSections="2019"
 
 [params.author]
   name = "Mikhail Shilkov"
   thumbnail = "/images/author.jpg"
-  
+
 [params.index]
   title = "Mikhail Shilkov"
 

@@ -1,6 +1,7 @@
 ---
 title: Storage Account
 subtitle: 6 minutes to complete
+nofeed: true
 weight: 4
 ---
 

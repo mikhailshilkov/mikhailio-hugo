@@ -1,6 +1,7 @@
 ---
 title: Resource Group
 subtitle: 4 minutes to complete
+nofeed: true
 weight: 3
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Expressions
 subtitle: 6 minutes to complete
+nofeed: true
 weight: 5
 ---
 

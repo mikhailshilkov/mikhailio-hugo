@@ -1,6 +1,7 @@
 ---
 title: Template Functions
 subtitle: 6 minutes to complete
+nofeed: true
 weight: 5
 ---
 

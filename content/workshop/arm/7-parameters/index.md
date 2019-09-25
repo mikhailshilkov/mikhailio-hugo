@@ -1,6 +1,7 @@
 ---
 title: Variables, Parameters, and Outputs
 subtitle: 7 minutes to complete
+nofeed: true
 weight: 7
 ---
 
