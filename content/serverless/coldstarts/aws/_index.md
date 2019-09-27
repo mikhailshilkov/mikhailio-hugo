@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in AWS Lambda"
-lastmod: 2019-08-20
+lastmod: 2019-09-26
 layout: single
 description: Selection of languages, instance sizes, dependencies, VPC, and more
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
@@ -39,9 +39,30 @@ The following chart shows the typical range of cold starts in AWS Lambda, broken
     "coldstart_aws_bylanguage"
     "Typical cold start durations per language" >}}
 
-JavaScript, Python, Go, Java, and Ruby are all comparable: most of the time they complete within **500 milliseconds** and almost always within **800 milliseconds**. C# is a distinct underdog with cold starts spanning between **0.8 and 5 seconds**.
+JavaScript, Python, Go, and Ruby are all comparable: most of the time they complete within **400 milliseconds** and almost always within **700 milliseconds**. Java is just a tiny bit slower.
+
+C# is a distinct underdog. The chart shows statistics for instances with 2 GB of allocated RAM, which are the fastest (see below). Cold starts of this instance size span between **0.5 and 1.1 seconds**.
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/aws/languages/).
+
+Does Instance Size Matter?
+--------------------------
+
+AWS Lambda has a setting to define the memory size that gets allocated to a single instance of a function. Are larger instances faster to load?
+
+Most language runtimes have no visible difference in cold start duration of different instance sizes. Here is the chart for JavaScript:
+
+{{< chart_interval
+    "coldstart_aws_bymemory"
+    "Cold start durations per instance size, JavaScript functions" >}}
+
+However, .NET (C#/F#) functions are the exception. The bigger the instance, the faster startup time it has:
+
+{{< chart_interval
+    "coldstart_aws_bymemorycs"
+    "Cold start durations per instance size, C# functions" >}}
+
+Same comparison for larger functions: [Cold Start Duration per Instance Size](/serverless/coldstarts/aws/instances/).
 
 Does Package Size Matter?
 -------------------------
@@ -52,32 +73,17 @@ The following chart compares three JavaScript functions with the various number 
 
 {{< chart_interval
     "coldstart_aws_bydependencies"
-    "Comparison of cold start durations per deployment size (zipped)" >}}
+    "Cold start durations per deployment size (zipped)" >}}
 
 Indeed, the functions with many dependencies can be 5-10 times slower to start.
-
-Does Instance Size Matter?
---------------------------
-
-AWS Lambda has a setting to define the memory size that gets allocated to a single instance of a function. Are larger instances faster to load?
-
-{{< chart_interval
-    "coldstart_aws_bymemory"
-    "Comparison of cold start durations per instance size" >}}
-
-There is no visible difference in cold start duration of different instance sizes.
-
-Same comparison for larger functions: [Cold Start Duration per Instance Size](/serverless/coldstarts/aws/instances/).
 
 What Is The Effect Of VPC Access?
 ---------------------------------
 
-AWS Lambda might need to access resources inside Amazon Virtual Private Cloud (Amazon VPC). Configuring VPC access slows down the cold starts significantly:
+AWS Lambda might need to access resources inside Amazon Virtual Private Cloud (Amazon VPC). In the past, configuring VPC access slowed down the cold starts significantly.
+
+This is not true anymore, as the effect of VPC is minimal:
 
 {{< chart_interval
     "coldstart_aws_byvpc"
-    "Comparison of cold start durations of the same Lambda with and without VPC access" >}}
-
-Some VPC-enabled cold starts are still fast, but very often they are much slower and can get up to **14 seconds**.
-
-View detailed distributions: [Cold Start Duration of VPC-connected Lambda](/serverless/coldstarts/aws/vpc/).
+    "Cold start durations of the same Lambda with and without VPC access" >}}

@@ -1,6 +1,6 @@
 ---
 title: "Google Cloud Functions: Cold Start Duration per Language"
-lastmod: 2019-08-04
+lastmod: 2019-09-26
 tags: ["Cold Starts", "GCP", "JavaScript", "Python", "Go", "Google Cloud Functions"]
 nofeed: true
 thumbnail: languages_chart_thumb.png

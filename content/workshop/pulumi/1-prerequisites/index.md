@@ -5,7 +5,7 @@ nofeed: true
 weight: 1
 ---
 
-By following this hands-on lab, you will learn the basics of Terraform and its AzureRM provider by deploying real cloud resources. Therefore, several tools are required to go forward.
+By following this hands-on lab, you will learn the basics of Pulumi and its Azure provider by deploying real cloud resources. Therefore, several tools are required to go forward.
 
 #### Azure Subscription
 
@@ -53,30 +53,38 @@ $ az account show
 
 If you have multiple subscriptions and the wrong one is shown, [change the active subscription](https://docs.microsoft.com/en-us/cli/azure/manage-azure-subscriptions-azure-cli?view=azure-cli-latest#change-the-active-subscription).
 
-#### Terraform CLI
+#### Pulumi CLI
 
-Terraform is a CLI tool which drives cloud deployments from the machine where it runs. It is cross-platform and requires no installation, just a copy of the executable file accessible on the system's `PATH`.
+Pulumi provides a CLI tool which drives cloud deployments from the machine where it runs. It is a cross-platform executable that has to be accessible on the system's `PATH`.
 
-Download the executable file from [Download Page](https://www.terraform.io/downloads.html) and either put it in one of the system's `PATH` folders, or in the current directory where your workshop files are going to reside.
+Follow [this guide](https://www.pulumi.com/docs/get-started/install/) to install the Pulumi CLI.
 
-Alternatively, you can [install Terraform with Chocolatey](https://chocolatey.org/packages/terraform): `choco install terraform`.
+Alternatively, you can [install Pulumi with Chocolatey](https://chocolatey.org/packages/pulumi/): `choco install pulumi`.
 
-Run `terraform version` and you should get a response back:
+Run `pulumi version` and you should get a response back:
 
 ```
-$ terraform version
-Terraform v0.12.8
+$ pulumi version
+v1.1.1
 ```
+
+#### Node.js and TypeScript compiler
+
+We will write Pulumi programs in TypeScript. They will be executed by Node.js behind the scenes.
+
+It's quite likely you already have node installed. If not, navigate to [Download Page](https://nodejs.org/en/download/) and install Node.js with npm.
+
+ If you have npm installed, you can install TypeScript globally on your computer with `npm install -g typescript`.
 
 #### Text editor
 
-Any text editor will do, but I recommend Visual Studio Code. You may want to install [Terraform extension](https://marketplace.visualstudio.com/items?itemName=mauve.terraform) to get syntax highlighting, code completion, and validation while editing Terraform files. If so, run the command `Terraform: Enable/Disable Language Server` to enable experimental support for Terraform `0.12.x`.
+Any text editor will do, but I recommend one with TypeScript syntax highlighting. The most common choice is Visual Studio Code.
 
 #### Note: Azure Cloud Shell
 
 If you don't want to install any software on your workstation, you can complete the entire lab in [Azure Cloud Shell](https://azure.microsoft.com/en-us/features/cloud-shell/). It's a command-line tool available within your Azure portal, right in the browser.
 
-Azure CLI, Terraform CLI, and Visual Studio Code are pre-installed in Cloud Shell. Just type `az`, `terraform`, or `code .` to run them.
+Azure CLI and Visual Studio Code are pre-installed in Cloud Shell, Just type `az` or `code .` to run them. The Pulumi CLI can be installed as described above.
 
 Traditional out-of-browser tools are still likely to provide better development experience.
 
@@ -85,6 +93,6 @@ Traditional out-of-browser tools are still likely to provide better development 
 You are good to go if
 
 - you can type `az account show` and see the details of your target subscription.
-- you can type `terraform version` and see a version number `0.12.x` or above
+- you can type `pulumi version` and see a version number `1.x` or above.
 
-Next: [Create a Terraform File]({{< ref "/workshop/terraform/2-newfile" >}})
+Next: [Create a Pulumi Program]({{< ref "/workshop/pulumi/2-newstack" >}})

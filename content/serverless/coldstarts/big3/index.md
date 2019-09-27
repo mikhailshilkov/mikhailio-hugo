@@ -1,6 +1,6 @@
 ---
 title: "Comparison of Cold Starts in Serverless Functions across AWS, Azure, and GCP"
-lastmod: 2019-08-04
+lastmod: 2019-09-26
 thumbnail: big3_thumb.jpg
 images: [big3.jpg]
 description: "AWS Lambda, Azure Functions, and Google Cloud Functions compared in terms of cold starts across all supported languages"
@@ -23,11 +23,11 @@ The strategy for reuse differs very between the cloud vendors:
 
 | Service                   | Idle instance lifetime                   |
 |---------------------------|------------------------------------------|
-| AWS Lambda                | Between 5 and 17 minutes                 |
+| AWS Lambda                | 10 minutes                               |
 | Azure Functions           | Mostly 20 minutes                        |
 | Google Cloud Functions    | Anywhere between 3 minutes and 5+ hours  |
 
-Only Azure has the policy to recycle an idle instance after a fixed period. AWS, and especially GCP, employ some other strategies to determine the threshold, potentially based on the current demand-supply balance of their resource pools. Overall, GCP keeps instances alive for much longer than the competitors.
+AWS and Azure have the policies to recycle an idle instance after a fixed period, 10 and 20 minutes respectively. GCP employ some other strategies to determine the threshold, potentially based on the current demand-supply balance of their resource pools. Overall, GCP keeps instances alive for much longer than the competitors.
 
 Learn more about lifetime: [AWS Lambda](/serverless/coldstarts/aws/intervals/), [Azure Functions](/serverless/coldstarts/azure/intervals/), [Google Cloud Functions](/serverless/coldstarts/gcp/intervals/).
 
@@ -44,7 +44,7 @@ The following chart shows the comparison of typical cold start durations across 
 
 {{< /featured >}}
 
-AWS clearly leads with all languages but C# being **well below 1 second**. GCP start-up usually takes **between 1.5 and 3 second**. Azure's .NET runtime is usually fast but has longer tail, while JavaScript is considerably slower.
+AWS clearly leads with all languages but C# being **well below 1 second**. GCP start-up usually takes **between 1 and 3 seconds**. Azure's .NET runtime is usually fast but has longer tail, while JavaScript is considerably slower.
 
 Read the detailed statistics: [AWS Lambda](/serverless/coldstarts/aws/languages/), [Azure Functions](/serverless/coldstarts/azure/languages/), [Google Cloud Functions](/serverless/coldstarts/gcp/languages/).
 

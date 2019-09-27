@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Google Cloud Functions"
-lastmod: 2019-08-04
+lastmod: 2019-09-26
 layout: single
 tags: ["Cold Starts", "GCP", "Google Cloud Functions"]
 description: Running GA and Beta languages on different instance sizes
@@ -41,7 +41,7 @@ The following chart shows the typical range of cold starts in Google Cloud Funct
     "coldstart_gcp_bylanguage"
     "Typical cold start durations per language" >}}
 
-Go functions are currently the fastest to start: usually, they take less than 2.5 seconds. JavaScript functions are almost as fast. Python functions are currently slower, but they might improve towards the GA release date.
+Go functions are currently the fastest to start: usually, they take less than 2 seconds. JavaScript functions are almost as fast. Python functions are currently slower, but they might improve towards the GA release date.
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/gcp/languages).
 
