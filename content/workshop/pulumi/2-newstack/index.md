@@ -23,7 +23,7 @@ pulumi login --local
 
 Then, set `PULUMI_CONFIG_PASSPHRASE` environment variable to any value. Pulumi needs it to encrypt the secret values, but we won't be using secrets in this lab.
 
-Windows cmd: `set PULUMI_CONFIG_PASSPHRASE="bla"` <br>PowerShell: `$env:PULUMI_CONFIG_PASSPHRASE="bla"` <br>Bash: `export PULUMI_CONFIG_PASSPHRASE=bla`
+Windows cmd: `set PULUMI_CONFIG_PASSPHRASE=bla` <br>PowerShell: `$env:PULUMI_CONFIG_PASSPHRASE="bla"` <br>Bash: `export PULUMI_CONFIG_PASSPHRASE=bla`
 
 ## Initialize the project
 
@@ -95,4 +95,4 @@ Choose `yes`.
 
 `pulumi up` succeeded and printed `Resources: + 1 created`.
 
-Next: [Deploy a Resource Group]({{< ref "/workshop/terraform/3-resourcegroup" >}})
+Next: [Deploy a Resource Group]({{< ref "/workshop/pulumi/3-resourcegroup" >}})
