@@ -74,7 +74,7 @@ We will write Pulumi programs in TypeScript. They will be executed by Node.js be
 
 It's quite likely you already have node installed. If not, navigate to [Download Page](https://nodejs.org/en/download/) and install Node.js with npm.
 
- If you have npm installed, you can install TypeScript globally on your computer with `npm install -g typescript`.
+If you have npm installed, you can install TypeScript globally on your computer with `npm install -g typescript`.
 
 #### Text editor
 
