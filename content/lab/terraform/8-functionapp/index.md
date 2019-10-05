@@ -1,6 +1,8 @@
 ---
 title: Function App
 subtitle: 5 minutes to complete
+navtitle: Create a Function App
+nextstep: 9-inouts
 nofeed: true
 weight: 8
 ---
@@ -22,7 +24,7 @@ Fill in the TODO blocks as the hint suggests. Once done, try deploying the defin
 
 ## Application settings
 
-The deployment may succeed, but the application isn't ready yet. It's missing a number of application settings. Add a block `app_settings` inside the Function App resource:
+The deployment may succeed, but the application isn't ready yet. It's missing several application settings. Add a block `app_settings` inside the Function App resource:
 
 ``` hcl
 resource "azurerm_function_app" "app" {
@@ -39,11 +41,11 @@ The top two settings configure the app to run on Node.js v10 runtime.
 
 The bottom one deploys the code to the Function App. This setting tells the app to load the specified zip file, extract the code from it, discover the functions, and run them. I've prepared this zip file for you to get started faster, you can find its code [here](TODO). The code contains a single HTTP-triggered Azure Function.
 
-You don't need to explicitly configure application settings related to Azure Storage connections: this is taken care by the `storage_connection_string` property.
+You don't need to configure application settings related to Azure Storage connections explicitly: the `storage_connection_string` property takes care of this.
 
 ## Checkpoint
 
-Make the URL of the following shape: `https://<your function app name>.azurewebsites.net/api/hello`. Send an HTTP request to the endpoint either via a browser, or with a `curl` command:
+Make the URL of the following shape: `https://<your function app name>.azurewebsites.net/api/hello`. Send an HTTP request to the endpoint either via a browser or with a `curl` command:
 
 ```
 $ curl https://myuniquename.azurewebsites.net/api/hello
@@ -51,5 +53,3 @@ You've successfully deployed a Function App!
 ```
 
 Congratulations! You have deployed the complete infrastructure to run a Function App.
-
-Next: [Set Inputs and get Outputs]({{< ref "/lab/terraform/9-inouts" >}})

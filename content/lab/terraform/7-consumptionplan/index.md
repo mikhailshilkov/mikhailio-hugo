@@ -1,13 +1,15 @@
 ---
 title: Consumption Plan
 subtitle: 3 minutes to complete
+navtitle: Create a Consumption Plan
+nextstep: 8-functionapp
 nofeed: true
 weight: 7
 ---
 
-There are several options to deploy Azure Functions. The serverless pay-per-execition hosting plan is called *Consumption Plan*.
+There are several options to deploy Azure Functions. The serverless pay-per-execution hosting plan is called *Consumption Plan*.
 
-There's no resource named Consumption Plan, though. The resource name is inherited from Azure App Service: Consumption is one kind of an App Service Plan. It's the SKU property of the resource that defines the type of the hosting plan.
+There's no resource named Consumption Plan, however. The resource name is inherited from Azure App Service: Consumption is one kind of an App Service Plan. It's the SKU property of the resource that defines the type of hosting plan.
 
 Copy the following block to your `main.tf` file:
 
@@ -25,9 +27,9 @@ resource "azurerm_app_service_plan" "asp" {
 }
 ```
 
-Note the specific way that the properties `sku` and `kind` are configured. If you ever want to deploy to another type of the service plan, you would need to change these values accordingly.
+Note the specific way that the properties `sku` and `kind` are configured. If you ever want to deploy to another type of service plan, you would need to change these values accordingly.
 
-Run another `apply` and makse sure it succeeds.
+Run another `apply` and make sure it succeeds.
 
 ## Checkpoint
 
@@ -43,5 +45,3 @@ asp           terraform-workshop  westus      Microsoft.Web/serverFarms
 ```
 
 You should see both the Storage Account and the Consumption Plan (its type is known as `Microsoft.Web/serverFarms` in Azure Resource Manager).
-
-Next: [Create a Function App]({{< ref "/lab/terraform/8-functionapp" >}})

@@ -1,21 +1,23 @@
 ---
 title: Expressions
 subtitle: 6 minutes to complete
+navtitle: Use Expressions
+nextstep: 6-state
 nofeed: true
 weight: 5
 ---
 
 We've deployed two Terraforms resource---a Resource Group and a Storage Account---but their definitions have some drawbacks:
 
-- The `location` fields are hard-coded and are actually set to two different regions
-- The Storage Account `name` is hard-coded too, and you had to manually find a globally unique name
+- The `location` fields are hard-coded and are set to two different regions
+- The Storage Account `name` is hard-coded too, and you had to to find a globally unique name manually
 - The Storage Account references the Resource Group by its hard-coded name, which means duplication and lack of safety
 
 Let's solve these problems.
 
 ## Values as expressions
 
-Values for resource arguments may be defined in terms of string literals, as we did before. They are contains in double-quotes, e.g. `"westus"`.
+Values for resource arguments may be defined in terms of string literals, as we did before. They are contained in double-quotes, e.g., `"westus"`.
 
 The value can also be an *expression*. An expression has no double-quotes around it and can point to other resources. Here is an example:
 
@@ -27,7 +29,7 @@ This line specifies that the value for the argument `resource_group_name` should
 
 Note that the reference uses the Terraform resource name `rg`, not the Resource Group name `terraform-workshop`.
 
-Terraform checks expressions before applying the definitions and it's able to catch errors like broken references.
+Terraform checks expressions before applying the definitions, and it's able to catch errors like broken references.
 
 ## Reference Name and Location of the Resource Group
 
@@ -58,7 +60,7 @@ It's not possible to change the location of a Storage Account in-place. Because 
 
 Always look for replacement notes in Terraform preview: sometimes they may come as a surprise and then you would want to investigate before re-creating a resource which may contain valuable data.
 
-But this time it's okay, so confirm the actions and wait for completions.
+However, this time, it's okay, so confirm the actions and wait for completions.
 
 ## Generating a unique name
 
@@ -112,5 +114,3 @@ saxpm31vuc7r  terraform-workshop  westus    Microsoft.Storage/storageAccounts
 ```
 
 You should see a single Storage Account with a random name.
-
-Next: [Terraform State File]({{< ref "/lab/terraform/6-state" >}})

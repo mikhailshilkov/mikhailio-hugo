@@ -1,6 +1,7 @@
 ---
 title: Inputs and Outputs
 subtitle: 6 minutes to complete
+navtitle: Set Inputs and Get Outputs
 nofeed: true
 weight: 9
 ---

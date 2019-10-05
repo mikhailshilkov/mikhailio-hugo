@@ -1,11 +1,13 @@
 ---
 title: New Terraform File
 subtitle: 3 minutes to complete
+navtitle: Create a Terraform File
+nextstep: 3-resourcegroup
 nofeed: true
 weight: 2
 ---
 
-A Terraform file is a text file which describes the resources that you want to create as part of a single deployment. The file is written in a specialized language called Hashicorp Configuration Language, or HCL.
+A Terraform configuration file is a text file that describes the resources that you want to create as part of a single deployment. The file is written in a specialized language called Hashicorp Configuration Language, or HCL.
 
 ## Create a file
 
@@ -32,7 +34,7 @@ Initializing provider plugins...
 Terraform has been successfully initialized!
 ```
 
-The output has been condenced for brevity: you should see more informational text. Terraform installs the requested provider into `.terraform` subfolder of the current directory.
+The output has been condensed for brevity: you should see more informational text. Terraform installs the requested provider into the `.terraform` subfolder of the current directory.
 
 ## Deploy
 
@@ -46,5 +48,3 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
 ## Checkpoint
 
 `terraform init` and `terraform apply` commands have succeeded.
-
-Next: [Deploy a Resource Group]({{< ref "/lab/terraform/3-resourcegroup" >}})
