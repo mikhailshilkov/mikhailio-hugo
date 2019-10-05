@@ -2,17 +2,18 @@
 title: Inputs and Outputs
 subtitle: 6 minutes to complete
 navtitle: Set Inputs and Get Outputs
+nextstep: 10-multiplefiles
 nofeed: true
 weight: 9
 ---
 
-We created a working Terraform module but it has a number of important properties hard-coded in the text. This fact limits its reusability: for example, you wouldn't be able to use the same module to deploy to multiple environments like production and staging. Environments would clash on the name of the Function App. Also, if you choose to deploy to another Azure region, you have to change the code.
+We created a working Terraform module, but it has several essential properties hard-coded in the text. This fact limits its reusability: for example, you wouldn't be able to use the same module to deploy to multiple environments like production and staging. Environments would clash on the name of the Function App. Also, if you choose to deploy to another Azure region, you have to change the code.
 
 Let's learn how to parameterize your Terraform modules.
 
 ## Input variables
 
-Input variables serve as parameters for a Terraform module, allowing aspects of the module to be customized without altering the module's own source code.
+Input variables serve as parameters for a Terraform module, allowing aspects of the module to be customized without altering the module's source code.
 
 Each input variable accepted by a module must be declared using a `variable` block. Extend your module with a definition of the `region` variable:
 
@@ -40,9 +41,9 @@ terraform apply -var="region=westeurope"
 
 The `-var` option can be used any number of times in a single command.
 
-Go ahead and define variables `rg_name` for the Resource Group name and `app_name` for the Function App name. Use those variables in resource definitions. Construct the name of App Service Plan to be `${var.app_name}-asp`.
+Go ahead and define variables `rg_name` for the Resource Group name and `app_name` for the Function App name. Use those variables in resource definitions. Construct the name of the App Service Plan to be `${var.app_name}-asp`.
 
-Apply the changes, some resources will likely need to be replaced.
+Apply the changes: some resources will likely need to be replaced.
 
 ## Output values
 
@@ -67,5 +68,3 @@ endpoint = https://myuniquename.azurewebsites.net/api/hello
 ## Checkpoint
 
 Send an HTTP request to the endpoint above via a browser, or with a `curl` command, and make sure it still returns a greeting.
-
-Next: [Structure a Module as Multiple Files]({{< ref "/lab/terraform/10-multiplefiles" >}})

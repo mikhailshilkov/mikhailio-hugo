@@ -1,13 +1,15 @@
 ---
 title: Resource Group
 subtitle: 4 minutes to complete
+navtitle: Deploy a Resource Group
+nextstep: 4-storageaccount
 nofeed: true
 weight: 3
 ---
 
 *Azure Resource Group* is a container for resources that are deployed together. Every Azure resource must be assigned to a resource group.
 
-In contrast to Azure ARM Templates, Pulumi handles Resource Groups is a normal resource. Therefore, a Resource Group is the first resource that we need to declare.
+In contrast to Azure ARM Templates, Pulumi handles Resource Groups is a regular resource. Therefore, a Resource Group is the first resource that we need to declare.
 
 ## Create a Resource Group
 
@@ -24,9 +26,9 @@ const resourceGroup = new azure.core.ResourceGroup("pulumi-workshop", {
 
 Declaring a resource is just calling a constructor of the corresponding type. We assigned the new resource to the variable `rg` to be able to use it for other resources.
 
-Note that each resource has two names: a logical one (first constructor argument) and a physical one (`name` property in the second argument). The logical name is visible in Pulumi console, while the physical name is the actual resource name in Azure. You could omit the `name` property: than a physical name would be automatically constructed as `Logical Name + random suffix`.
+Note that each resource has two names: a logical one (first constructor argument) and a physical one (`name` property in the second argument). The logical name is visible in Pulumi console, while the physical name is the actual resource name in Azure. You could omit the `name` property: then a physical name would be automatically constructed as `Logical Name + random suffix`.
 
-We used a predefined constant `azure.Locations.WestUS` to assign the Azure region to deploy to. This is preferred to passing an abritrary string---no chance to make a typo.
+We used a predefined constant `azure.Locations.WestUS` to assign the Azure region to deploy to. This way is preferred to passing an arbitrary string---no chance to make a typo.
 
 ## Apply changes
 
@@ -70,5 +72,3 @@ Make sure that your Resource Group was created successfully:
 $ az group exists -g pulumi-workshop
 true
 ```
-
-Next: [Create a Storage Account]({{< ref "/lab/pulumi/4-storageaccount" >}})

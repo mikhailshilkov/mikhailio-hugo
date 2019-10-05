@@ -1,17 +1,18 @@
 ---
 title: Further Steps
 subtitle: Ideas to implement on your own
+nextstep: 12-cleanup
 nofeed: true
 weight: 11
 ---
 
 Congratulations! You've reached the end of the guided lab. You've learned the basics of developing and deploying Terraform modules.
 
-Of course, we've only scretched the surface of Terraform capabilities. If you still have time and passion, the following tasks should give you enough material to continue learning own your own.
+Of course, we've only scratched the surface of Terraform capabilities. If you still have time and passion, the following tasks should give you enough material to continue learning on your own.
 
 ### Deploy a resource on your own
 
-Think of any resource type that you tend to use in your severless applications and try adding it to your template. Try adding Azure Application Insights, Azure Service Bus, Azure Cosmos DB, or any other resource to your liking.
+Think of any resource type that you tend to use in your serverless applications and try adding it to your template. Try adding Azure Application Insights, Azure Service Bus, Azure Cosmos DB, or any other resource to your liking.
 
 Hint: [Azure Provider Docs](https://www.terraform.io/docs/providers/azurerm/index.html) is a great place to find sample code snippets.
 
@@ -33,4 +34,4 @@ Hint: Refer to [Terraform tips & tricks: loops, if-statements, and gotchas](http
 
 ## Clean Up
 
-Once you are done experimenting, don't forget to [Clean Up]({{< ref "/lab/terraform/12-cleanup" >}}) to avoid additional charges.
+Once you are done experimenting, don't forget to clean up to avoid additional charges.

@@ -1,6 +1,7 @@
 ---
 title: Prerequisites
 subtitle: Getting your environment ready
+nextstep: 2-newstack
 nofeed: true
 weight: 1
 ---
@@ -15,7 +16,7 @@ Be sure to clean up the resources after you complete the workshop, as described 
 
 #### Azure CLI
 
-We will use the command-line interface (CLI) tool to login to an Azure subscription and run some queries. You can install the CLI tool as [described here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
+We will use the command-line interface (CLI) tool to log in to an Azure subscription and run some queries. You can install the CLI tool, as [described here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).
 
 The tool is cross-platform: it should work on Windows, macOS, or Linux (including WSL).
 
@@ -55,13 +56,13 @@ If you have multiple subscriptions and the wrong one is shown, [change the activ
 
 #### Pulumi CLI
 
-Pulumi provides a CLI tool which drives cloud deployments from the machine where it runs. It is a cross-platform executable that has to be accessible on the system's `PATH`.
+Pulumi provides a CLI tool that drives cloud deployments from the machine where it runs. It is a cross-platform executable that has to be accessible on the system's `PATH`.
 
 Follow [this guide](https://www.pulumi.com/docs/get-started/install/) to install the Pulumi CLI.
 
 Alternatively, you can [install Pulumi with Chocolatey](https://chocolatey.org/packages/pulumi/): `choco install pulumi`.
 
-Run `pulumi version` and you should get a response back:
+Run `pulumi version`, and you should get a response back:
 
 ```
 $ pulumi version
@@ -84,15 +85,13 @@ Any text editor will do, but I recommend one with TypeScript syntax highlighting
 
 If you don't want to install any software on your workstation, you can complete the entire lab in [Azure Cloud Shell](https://azure.microsoft.com/en-us/features/cloud-shell/). It's a command-line tool available within your Azure portal, right in the browser.
 
-Azure CLI and Visual Studio Code are pre-installed in Cloud Shell, Just type `az` or `code .` to run them. The Pulumi CLI can be installed as described above.
+Azure CLI and Visual Studio Code are pre-installed in Cloud Shell, just type `az` or `code .` to run them. The Pulumi CLI can be installed as described above.
 
-Traditional out-of-browser tools are still likely to provide better development experience.
+Traditional out-of-browser tools are still likely to provide a better development experience.
 
 ## Checkpoint
 
 You are good to go if
 
-- you can type `az account show` and see the details of your target subscription.
-- you can type `pulumi version` and see a version number `1.x` or above.
-
-Next: [Create a Pulumi Program]({{< ref "/lab/pulumi/2-newstack" >}})
+- You can type `az account show` and see the details of your target subscription.
+- You can type `pulumi version` and see version number `1.x` or above.

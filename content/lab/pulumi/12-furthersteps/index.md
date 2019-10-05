@@ -1,17 +1,18 @@
 ---
 title: Further Steps
 subtitle: Ideas to implement on your own
+nextstep: 13-cleanup
 nofeed: true
 weight: 12
 ---
 
 Congratulations! You've reached the end of the guided lab. You've learned the basics of developing and deploying Pulumi programs.
 
-Of course, we've only scretched the surface of Pulumi capabilities. If you still have time and passion, the following tasks should give you enough material to continue learning own your own.
+Of course, we've only scratched the surface of Pulumi capabilities. If you still have time and passion, the following tasks should give you enough material to continue learning on your own.
 
 ### Deploy a resource on your own
 
-Think of any resource type that you tend to use in your severless applications and try adding it to your template. Try adding Azure Application Insights, Azure Service Bus, Azure Cosmos DB, or any other resource to your liking.
+Think of any resource type that you tend to use in your serverless applications and try adding it to your template. Try adding Azure Application Insights, Azure Service Bus, Azure Cosmos DB, or any other resource to your liking.
 
 Hint: [Examples Repository](https://github.com/pulumi/examples/) is a great place to find sample code snippets.
 
@@ -29,8 +30,8 @@ Add an extra configuration to your stack called `newPlan`. If the value of this 
 
 Create a configuration to represent how many Function Apps you need to make. Use a `for` loop or `Array.map` function to define as many apps as requested.
 
-A general-purpose programming language makes this very simple, really.
+A general-purpose programming language makes this very simple.
 
 ## Clean Up
 
-Once you are done experimenting, don't forget to [Clean Up]({{< ref "/lab/pulumi/13-cleanup" >}}) to avoid additional charges.
+Once you are done experimenting, don't forget to clean up to avoid additional charges.

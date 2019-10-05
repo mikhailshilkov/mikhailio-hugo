@@ -1,6 +1,8 @@
 ---
 title: New Pulumi Program
 subtitle: 5 minutes to complete
+navtitle: Create a Pulumi Program
+nextstep: 3-resourcegroup
 nofeed: true
 weight: 2
 ---
@@ -9,7 +11,7 @@ Pulumi supports several programming languages. The first step is to ask the CLI 
 
 ## Create a folder
 
-Make a new folder called `pulumi-workshop` anywhere on your local disk. By default, this folder will give name to your Pulumi project.
+Make a new folder called `pulumi-workshop` anywhere on your local disk. By default, this folder gives a name to your Pulumi project.
 
 ## Configure Pulumi CLI
 
@@ -21,7 +23,7 @@ Run the following command to switch to the local backend:
 pulumi login --local
 ```
 
-Then, set `PULUMI_CONFIG_PASSPHRASE` environment variable to any value. Pulumi needs it to encrypt the secret values, but we won't be using secrets in this lab.
+Then, set the `PULUMI_CONFIG_PASSPHRASE` environment variable to any value. Pulumi needs it to encrypt the secret values, but we won't be using secrets in this lab.
 
 Windows cmd: `set PULUMI_CONFIG_PASSPHRASE=bla` <br>PowerShell: `$env:PULUMI_CONFIG_PASSPHRASE="bla"` <br>Bash: `export PULUMI_CONFIG_PASSPHRASE=bla`
 
@@ -41,7 +43,7 @@ Finished installing dependencies
 Your new project is ready to go!
 ```
 
-The output has been condenced for brevity: you should see more informational text.
+The output has been condensed for brevity: you should see more informational text.
 
 ## Inspect the program
 
@@ -68,7 +70,7 @@ Run the following command to install the Azure plugin for Pulumi:
 npm install @pulumi/azure
 ```
 
-The package is now added to `node_modules`, `package.json` and `package-lock.json`.
+The package is now added to `node_modules`, `package.json`, and `package-lock.json`.
 
 ## Deploy
 
@@ -87,12 +89,10 @@ Resources:
 Do you want to perform this update?
 ```
 
-Stack is a virtual container for all the resources of a program. You may have multiple stack to deploy resources to multiple environments.
+A stack is a virtual container for all the resources of a program. You may have multiple stacks to deploy resources to multiple environments.
 
 Choose `yes`.
 
 ## Checkpoint
 
 `pulumi up` succeeded and printed `Resources: + 1 created`.
-
-Next: [Deploy a Resource Group]({{< ref "/lab/pulumi/3-resourcegroup" >}})

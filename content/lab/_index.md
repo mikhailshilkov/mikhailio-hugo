@@ -1,5 +1,5 @@
 ---
-title: Workshops
+title: Hands-on Labs
 layout: compare
 nofeed: true
 thumbnail: icebreaker.jpg

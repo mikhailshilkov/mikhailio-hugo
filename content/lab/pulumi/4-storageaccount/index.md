@@ -1,6 +1,8 @@
 ---
 title: Storage Account
 subtitle: 5 minutes to complete
+navtitle: Create a Storage Account
+nextstep: 5-consumptionplan
 nofeed: true
 weight: 4
 ---
@@ -19,7 +21,7 @@ const storageAccount = new azure.storage.Account("storage", {
 });
 ```
 
-It defines a locally-redundand standard Storage Account and it is a part of the Resource Group that we defined before.
+It defines a locally-redundant standard Storage Account, and it is a part of the Resource Group that we defined before.
 
 This time, we haven't defined an explicit physical name for the resource. That's because the name of a Storage Account has to be globally unique. Instead of inventing such a name, we can trust Pulumi to generate one.
 
@@ -40,5 +42,3 @@ storage93f87a31  pulumi-workshop  westus      Microsoft.Storage/storageAccounts
 ```
 
 Observe the randomized name of your newly created Storage Account.
-
-Next: [Define a Consumption Plan]({{< ref "/lab/pulumi/5-consumptionplan" >}})

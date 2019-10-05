@@ -1,17 +1,19 @@
 ---
 title: Archive App
 subtitle: 6 minutes to complete
+navtitle: Use a High-level Component
+nextstep: 10-customcode
 nofeed: true
 weight: 9
 ---
 
-The Function App is ready, we also created a Storage Account and a Plan to support it. It wasn't that hard, but there are ways to make the code even more straightforward.
+The Function App is ready, and we also created a Storage Account and a Plan to support it. It wasn't that hard, but there are ways to make the code even more straightforward.
 
 ## Components
 
-Pulumi programs can enjoy all the benefits of a general-purpose programming language, TypeScript in our case. One of such benefits is the ability to create reusable components.
+Pulumi programs can enjoy all the benefits of a general-purpose programming language, TypeScript, in our case. One such benefit is the ability to create reusable components.
 
-Anybody can define a custom `ComponentResource` which is a class creating child resources in some coherent way. Pulumi's `pulumi-azure` library comes with several pre-built component resources to simplify the deployment of Function Apps.
+Anybody can define a custom `ComponentResource`, which is a class creating child resources in some coherent way. Pulumi's `pulumi-azure` library comes with several pre-built component resources to simplify the deployment of Function Apps.
 
 Extend your program with the following lines:
 
@@ -24,7 +26,7 @@ const archiveApp = new azure.appservice.ArchiveFunctionApp("archive-app", {
 export const archiveEndpoint = pulumi.interpolate`${archiveApp.endpoint}hello`;
 ```
 
-These lines is all that is required to create another fully-functional Function App. Run `pulumi up` again. It adds the following resources to your stack:
+These lines are everything required to create another fully-functional Function App. Run `pulumi up` again. It adds the following resources to your stack:
 
 ```
 $ pulumi up --yes
@@ -51,5 +53,3 @@ Now you have two identical applications. Let's see how you can change one of the
 ## Checkpoint
 
 Send an HTTP request to the new `archiveEndpoint` and make sure it returns the same greeting.
-
-Next: [Deploy Custom Code]({{< ref "/lab/pulumi/10-customcode" >}})

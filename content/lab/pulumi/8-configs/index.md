@@ -1,19 +1,21 @@
 ---
 title: Configuration
 subtitle: 6 minutes to complete
+navtitle: Configure the program
+nextstep: 9-archiveapp
 nofeed: true
 weight: 8
 ---
 
 We created a working Pulumi program that generates a random name for the Function App. This might not be desirable: maybe, we want to control the name. Hard-coding the name in the program may limit its reusability: for example, you wouldn't be able to use the same program to deploy to multiple environments like production and staging.
 
-Same applies to the name and location of the Resource Group. Environments would clash on the name. If you choose to deploy to another Azure region, you have to change the code.
+The same applies to the name and location of the Resource Group. Environments would clash on the name. If you choose to deploy to another Azure region, you have to change the code.
 
 Let's learn how to parameterize your Pulumi program.
 
 ## Config command
 
-The `pulum config` CLI command can save some values as configuration parameters. Run the following commands to set the names for the Resource Group and the Function App:
+The `pulumi config` CLI command can save some values as configuration parameters. Run the following commands to set the names for the Resource Group and the Function App:
 
 ```
 $ pulumi config set rgName pulumi-workshop
@@ -79,5 +81,3 @@ If you preview matches these expectations, go ahead and run `pulumi up`. In gene
 ## Checkpoint
 
 Send an HTTP request to the new application endpoint and make sure it still returns a greeting.
-
-Next: [Use a High-level Component]({{< ref "/lab/pulumi/9-archiveapp" >}})

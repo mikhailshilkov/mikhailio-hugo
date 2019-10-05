@@ -95,7 +95,7 @@ The final application setting will deploy the code to the Function App:
 }
 ```
 
-This setting tells the app to load the specified zip file, extract the code from it, discover the functions, and run them. I've prepared this zip file for you to get started faster, you can find its code [here](TODO).
+This setting tells the app to load the specified zip file, extract the code from it, discover the functions, and run them. I've prepared this zip file for you to get started faster, you can find its code [here](https://github.com/mikhailshilkov/mikhailio-hugo/tree/master/content/lab/arm/materials/app).
 
 The code contains a single HTTP-triggered Azure Function.
 

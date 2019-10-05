@@ -1,6 +1,8 @@
 ---
 title: Custom Code
 subtitle: 5 minutes to complete
+navtitle: Deploy Custom Code
+nextstep: 11-callbackapp
 nofeed: true
 weight: 10
 ---
@@ -52,5 +54,3 @@ Redeploy the program with `pulumi up` and check the endpoint of the `archiveApp`
 ## Checkpoint
 
 Send an HTTP request to the `archiveEndpoint` and make sure it returns the new greeting.
-
-Next: [Azure Functions as Callbacks]({{< ref "/lab/pulumi/11-callbackapp" >}})
