@@ -3,6 +3,7 @@ title: Archive App
 subtitle: 6 minutes to complete
 navtitle: Use a High-level Component
 nextstep: 10-customcode
+material: index.ts
 nofeed: true
 weight: 9
 ---

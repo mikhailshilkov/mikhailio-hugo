@@ -3,6 +3,7 @@ title: Custom Code
 subtitle: 5 minutes to complete
 navtitle: Deploy Custom Code
 nextstep: 11-callbackapp
+material: index.ts
 nofeed: true
 weight: 10
 ---
@@ -45,6 +46,8 @@ const archiveApp = new azure.appservice.ArchiveFunctionApp("archive-app", {
     resourceGroup,
     archive: new pulumi.asset.FileArchive("./app"),
 });
+
+export const archiveEndpoint = pulumi.interpolate`${archiveApp.endpoint}hello`;
 ```
 
 `ArchiveFunctionApp` would zip the folder at deployment time, upload it to Blob Storage, and point the Function App to this archive.

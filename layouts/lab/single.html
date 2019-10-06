@@ -52,6 +52,12 @@
                 <!-- Post Content -->
                 <div class="article-post">
                     {{ .Content}}
+
+                    {{ with .Params.material }}
+                    <p>If you have any difficulties, compare your code with <a href="{{.}}" target="blank">this
+                            sample</a>.</p>
+                    {{ end }}
+
                     {{ if .Params.nextstep }}
                     {{ with .Page.GetPage .Params.nextstep }}
                     <h2>Next Step</h2>

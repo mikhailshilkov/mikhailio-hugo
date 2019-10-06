@@ -3,6 +3,7 @@ title: Configuration
 subtitle: 6 minutes to complete
 navtitle: Configure the program
 nextstep: 9-archiveapp
+material: index.ts
 nofeed: true
 weight: 8
 ---

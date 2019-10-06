@@ -2,6 +2,8 @@
 title: "Azure Infrastructure as Code Workshop: Getting your environment ready"
 date: 2019-10-02
 nofeed: true
+aliases:
+    - /biacp/
 ---
 
 Thank you for registering for my workshop "Azure Infrastructure as Code" at Serverless Architecture Conference Berlin 2019!

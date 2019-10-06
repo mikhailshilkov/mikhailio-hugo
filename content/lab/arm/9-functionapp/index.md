@@ -3,6 +3,7 @@ title: Function App
 subtitle: 10 minutes to complete
 navtitle: Create a Function App
 nextstep: 10-dependencies
+material: azuredeploy.json
 nofeed: true
 weight: 9
 ---
@@ -95,7 +96,7 @@ The final application setting will deploy the code to the Function App:
 }
 ```
 
-This setting tells the app to load the specified zip file, extract the code from it, discover the functions, and run them. I've prepared this zip file for you to get started faster, you can find its code [here](https://github.com/mikhailshilkov/mikhailio-hugo/tree/master/content/lab/arm/materials/app).
+This setting tells the app to load the specified zip file, extract the code from it, discover the functions, and run them. I've prepared this zip file for you to get started faster, you can find its code [here](https://github.com/mikhailshilkov/mikhailio-hugo/tree/master/content/lab/materials/app).
 
 The code contains a single HTTP-triggered Azure Function.
 

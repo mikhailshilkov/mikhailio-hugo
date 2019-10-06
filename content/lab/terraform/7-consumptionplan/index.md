@@ -3,6 +3,7 @@ title: Consumption Plan
 subtitle: 3 minutes to complete
 navtitle: Create a Consumption Plan
 nextstep: 8-functionapp
+material: main.tf
 nofeed: true
 weight: 7
 ---

@@ -3,6 +3,7 @@ title: Outputs
 subtitle: 4 minutes to complete
 navtitle: Get the Function App endpoint with Outputs
 nextstep: 8-configs
+material: index.ts
 nofeed: true
 weight: 7
 ---

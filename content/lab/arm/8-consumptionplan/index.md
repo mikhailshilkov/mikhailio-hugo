@@ -3,6 +3,7 @@ title: Consumption Plan
 subtitle: 5 minutes to complete
 navtitle: Define a Consumption Plan
 nextstep: 9-functionapp
+material: azuredeploy.json
 nofeed: true
 weight: 8
 ---

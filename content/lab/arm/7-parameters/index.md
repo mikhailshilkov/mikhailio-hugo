@@ -2,6 +2,7 @@
 title: Variables, Parameters, and Outputs
 subtitle: 7 minutes to complete
 nextstep: 8-consumptionplan
+material: azuredeploy.json
 nofeed: true
 weight: 7
 ---

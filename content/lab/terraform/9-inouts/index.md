@@ -3,6 +3,7 @@ title: Inputs and Outputs
 subtitle: 6 minutes to complete
 navtitle: Set Inputs and Get Outputs
 nextstep: 10-multiplefiles
+material: main.tf
 nofeed: true
 weight: 9
 ---

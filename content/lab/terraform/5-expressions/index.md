@@ -3,6 +3,7 @@ title: Expressions
 subtitle: 6 minutes to complete
 navtitle: Use Expressions
 nextstep: 6-state
+material: main.tf
 nofeed: true
 weight: 5
 ---

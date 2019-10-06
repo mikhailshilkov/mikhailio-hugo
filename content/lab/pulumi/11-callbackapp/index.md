@@ -3,6 +3,7 @@ title: Callback App
 subtitle: 6 minutes to complete
 navtitle: Azure Functions as Callbacks
 nextstep: 12-furthersteps
+material: index.ts
 nofeed: true
 weight: 11
 ---

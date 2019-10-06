@@ -3,6 +3,7 @@ title: Dependencies
 subtitle: 4 minutes to complete
 navtitle: Set the deployment order with dependencies
 nextstep: 11-furthersteps
+material: azuredeploy.json
 nofeed: true
 weight: 10
 ---

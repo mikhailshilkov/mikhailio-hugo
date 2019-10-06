@@ -3,6 +3,7 @@ title: Storage Account
 subtitle: 6 minutes to complete
 navtitle: Deploy a Storage Account
 nextstep: 5-functions
+material: azuredeploy.json
 nofeed: true
 weight: 4
 ---

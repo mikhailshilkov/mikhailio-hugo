@@ -3,6 +3,7 @@ title: Template Functions
 subtitle: 6 minutes to complete
 navtitle: Use Functions Inside the Template
 nextstep: 6-deploymentmode
+material: azuredeploy.json
 nofeed: true
 weight: 5
 ---
@@ -94,5 +95,3 @@ mysauniquename  arm-workshop  westus       Microsoft.Storage/storageAccounts
 ```
 
 You should see both a new account in the Resource Group's region, as well as the old one in West US. We'll remove the old account at the next step.
-
-Next: [Deployment Modes]({{< ref "/lab/arm/6-deploymentmode" >}})

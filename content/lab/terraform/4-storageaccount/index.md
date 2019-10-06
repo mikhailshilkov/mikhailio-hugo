@@ -3,6 +3,7 @@ title: Storage Account
 subtitle: 5 minutes to complete
 navtitle: Create a Storage Account
 nextstep: 5-expressions
+material: main.tf
 nofeed: true
 weight: 4
 ---
