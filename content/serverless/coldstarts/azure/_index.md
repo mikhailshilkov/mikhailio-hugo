@@ -43,6 +43,15 @@ A typical cold start latency spans from 1 to 3 seconds. However, less lucky exec
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/azure/languages/).
 
+Windows vs. Linux
+-----------------
+
+{{< chart_interval
+    "coldstart_azure_bylanguageos"
+    "Comparison of cold start durations between two operating systems"
+    true >}}
+
+
 Is V2 Faster Than V1?
 ---------------------
 

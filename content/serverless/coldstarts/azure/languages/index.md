@@ -12,9 +12,9 @@ The following chart shows the typical range of cold starts in Azure Functions V2
     "coldstart_azure_bylanguage"
     "Typical cold start durations per language" >}}
 
-The charts below give the distribution of cold start durations per runtime version and supported programming language. All charts (except PowerShell preview) have the same horizontal scale (0-12 sec) to make them easily comparable.
+The charts below give the distribution of cold start durations per runtime version and supported programming language. They all apply to V2 and Windows, unless stated otherwise.
 
-## Azure Functions V2
+All charts (except PowerShell preview) have the same horizontal scale (0-12 sec) to make them easily comparable.
 
 **C#**:
 
@@ -50,21 +50,5 @@ The charts below give the distribution of cold start durations per runtime versi
      "coldstart_azure_powershell"
      "Cold start durations of Azure Functions in PowerShell"
      26 >}}
-
-## Azure Functions V1
-
-**C#**:
-
-{{< chart_hist
-     "coldstart_azure_v1csharp"
-     "Cold start durations of Azure Functions V1 in C#"
-     12 >}}
-
-**JavaScript**:
-
-{{< chart_hist
-     "coldstart_azure_v1js"
-     "Cold start durations of Azure Functions V1 in JavaScript"
-     12 >}}
 
 Go back to [Cold Starts in Azure Functions](/serverless/coldstarts/azure/).
