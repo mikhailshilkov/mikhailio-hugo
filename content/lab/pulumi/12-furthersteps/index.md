@@ -16,7 +16,7 @@ Think of any resource type that you tend to use in your serverless applications 
 
 Hint: [Examples Repository](https://github.com/pulumi/examples/) is a great place to find sample code snippets.
 
-### Code reuse
+### Create a reusable component
 
 Once your `index.ts` file becomes too large, you can start splitting it into multiple files. It works exactly the same as for any other TypeScript program!
 
@@ -31,6 +31,18 @@ Add an extra configuration to your stack called `newPlan`. If the value of this 
 Create a configuration to represent how many Function Apps you need to make. Use a `for` loop or `Array.map` function to define as many apps as requested.
 
 A general-purpose programming language makes this very simple.
+
+### Try advanced features of callback functions
+
+Callback-based functions work not only for HTTP request. They support the majority of Azure Functions scenarios, including multiple trigger types, input and output bindings.
+
+Browse through examples in [Ten Pearls With Azure Functions in Pulumi](https://www.pulumi.com/blog/ten-pearls-with-azure-functions-in-pulumi/) and implement a function or two on your own.
+
+### Deploy functions in other languages
+
+`ArchiveFunctionApp` also supports deploying Azure Functions written in C#, F#, Python, Java, or PowerShell.
+
+Check [Azure Functions in All Supported Languages](https://github.com/pulumi/examples/tree/master/azure-ts-functions-raw) for an end-to-end example.
 
 ## Clean Up
 

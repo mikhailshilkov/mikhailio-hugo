@@ -13,8 +13,6 @@ In a [previous blog post]({{< relref "/2019/07/globally-distributed-serverless-a
 
 Today, I want to show how the same approach can be generalized for any cloud compute service, including containers, virtual machines, and serverless functions.
 
-<!--more-->
-
 ## E-commerce Example
 
 Let’s consider an example of an e-commerce website which targets a worldwide audience. The architecture of such a website should address several challenges.

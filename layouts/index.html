@@ -10,6 +10,8 @@
                 {{ $page := $.GetPage "/serverless/coldstarts" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2019/10/how-to-deploy-a-function-app-with-keda" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/09/how-to-build-globally-distributed-applications-with-azure-cosmos-db-and-pulumi" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/08/how-to-avoid-cost-pitfalls-by-monitoring-apis-in-aws-lambda" }}
@@ -125,6 +127,10 @@
             {{ $page := $.GetPage "/2016/07/building-a-poker-bot-functional-fold-as-decision-tree-pattern" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/05/dependency-inversion-implies-interfaces-are-owned-by-high-level-modules" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/05/tweaking-immutable-objects-with-csharp-and-fody" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/04/t-sql-merge-statement-is-underrated" }}
             {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>

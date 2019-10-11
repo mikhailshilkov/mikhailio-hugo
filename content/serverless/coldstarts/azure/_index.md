@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Azure Functions"
-lastmod: 2019-09-26
+lastmod: 2019-10-07
 layout: single
 thumbnail: coldazure_thumb.jpg
 images: [coldazure.jpg]
@@ -46,10 +46,16 @@ View detailed distributions: [Cold Start Duration per Language](/serverless/cold
 Windows vs. Linux
 -----------------
 
+Azure Functions can be deployed either on Windows or Linux environments, depending on the plan settings. Which operating system provides faster cold starts?
+
 {{< chart_interval
     "coldstart_azure_bylanguageos"
     "Comparison of cold start durations between two operating systems"
     true >}}
+
+Interestingly, there's no clear winner. The median response time is lower on Windows, but Linux has tighter distribution.
+
+Node is consistently slower than .NET or Python.
 
 
 Is V2 Faster Than V1?

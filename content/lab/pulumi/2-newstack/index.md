@@ -15,17 +15,11 @@ Make a new folder called `pulumi-workshop` anywhere on your local disk. By defau
 
 ## Configure Pulumi CLI
 
-Pulumi supports several "backends": ways to keep the state. For now, you can go for a local one: the state file will be stored on your disk.
+Pulumi supports several "backends": storage types to keep the state. By default, you will use the Pulumi service as backend. It's free for individual use and provides several features like secret management and history browser.
 
-Run the following command to switch to the local backend:
+Type `pulumi login` in your command line, hit ENTER at the prompt, and complete the sign up flow.
 
-```
-pulumi login --local
-```
-
-Then, set the `PULUMI_CONFIG_PASSPHRASE` environment variable to any value. Pulumi needs it to encrypt the secret values, but we won't be using secrets in this lab.
-
-Windows cmd: `set PULUMI_CONFIG_PASSPHRASE=bla` <br>PowerShell: `$env:PULUMI_CONFIG_PASSPHRASE="bla"` <br>Bash: `export PULUMI_CONFIG_PASSPHRASE=bla`
+Other backend options are discussed [here](https://www.pulumi.com/docs/intro/concepts/state/#backends).
 
 ## Initialize the project
 

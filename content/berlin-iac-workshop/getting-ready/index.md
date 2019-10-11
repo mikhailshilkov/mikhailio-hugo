@@ -22,7 +22,7 @@ To join:
 
 3. Complete the registration at Serverless Forum Slack space.
 
-4. DM me on Serverless Forum slack @MikhailShilkov.
+4. DM me on Serverless Forum slack, I'm "Mikhail Shilkov" there.
 
 5. I invite you to the private channel and give further instructions.
 
