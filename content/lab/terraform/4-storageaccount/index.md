@@ -28,7 +28,9 @@ It defines a locally-redundant standard Storage Account, and it is a part of the
 
 Run `terraform apply` to apply the changes. You will get quite a lengthy preview of the changes, which means that a Storage Account has many properties. Some of them are optional inputs that we omitted, and some are outputs that are known after the resource is created.
 
-Confirm the command and wait for its completion. Most likely, the command will fail with the message `The storage account named tfsa is already taken.`. This error happens because the name of a Storage Account must be globally unique.
+Confirm the command and wait for its completion. Most likely, the command will fail with the message `The storage account named tfsa is already taken.`.
+
+This error happens because each Storage Account gets a subdomain of `blob.core.windows.net`, therefore the name has to be globally unique across all Azure subscriptions worldwide.
 
 Notice how preview hasn't warned you about this problem. A successful preview doesn't guarantee the success of the operation.
 

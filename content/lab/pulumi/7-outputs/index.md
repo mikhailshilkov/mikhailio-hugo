@@ -12,21 +12,19 @@ It's also possible to return output values from a Pulumi program.
 
 ## Exporting outputs
 
-At the previous step, we had to look up the Function App name via an `az` command. Let's *export* the name and the hostname of the App instead. Add the following lines at the end of your `index.ts`:
+At the previous step, we had to look up the Function App name and URL via an `az` command. Let's *export* the hostname of the App instead. Add the following line at the end of your `index.ts`:
 
 ``` ts
-export const appName = app.name;
 export const hostname = app.defaultHostname;
 ```
 
-`pulumi up` command automatically prints the output values at the end:
+`pulumi up` command automatically prints the output value at the end:
 
 ```
 Updating (dev):
 ...
 
 Outputs:
-  + appName: "facc74d2f2"
   + hostname: "facc74d2f2.azurewebsites.net"
 ```
 

@@ -40,7 +40,7 @@ Our `region` variable has a default value. If you want to override this value, y
 terraform apply -var="region=westeurope"
 ```
 
-The `-var` option can be used any number of times in a single command.
+The `-var` option can be used any number of times in a single command, e.g. `terraform apply -var="a=b" -var="c=d"`.
 
 Go ahead and define variables `rg_name` for the Resource Group name and `app_name` for the Function App name. Use those variables in resource definitions. Construct the name of the App Service Plan to be `${var.app_name}-asp`.
 

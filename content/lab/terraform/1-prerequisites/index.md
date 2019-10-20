@@ -71,7 +71,11 @@ Terraform v0.12.8
 
 #### Text editor
 
-Any text editor will do, but I recommend Visual Studio Code. You may want to install [Terraform extension](https://marketplace.visualstudio.com/items?itemName=mauve.terraform) to get syntax highlighting, code completion, and validation while editing Terraform files. If so, run the command `Terraform: Enable/Disable Language Server` to enable experimental support for Terraform `0.12.x`.
+Any text editor will do, but I recommend Visual Studio Code.
+
+You may want to install [Terraform extension](https://marketplace.visualstudio.com/items?itemName=mauve.terraform) to get syntax highlighting, code completion, and validation while editing Terraform files.
+
+The lab uses HCL 2.0 language features introduced in Terraform 0.12. To enable these features, run the command `Terraform: Enable/Disable Language Server`. Note that the features are experimental and several people reported them not working properly yet. Regardless, feel free to proceed with the lab and be prepared to some red squiggles.
 
 #### Note: Azure Cloud Shell
 

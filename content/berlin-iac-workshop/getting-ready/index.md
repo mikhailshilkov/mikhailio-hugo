@@ -10,24 +10,6 @@ Thank you for registering for my workshop "Azure Infrastructure as Code" at Serv
 
 To make the workshop as productive as possible, I want to ask you to complete several preparation steps in advance. The steps are outlined below.
 
-## Join the Slack Channel
-
-If you haven't yet, I suggest joining a private Slack channel where we can discuss any issues or questions. We will also use this Slack channel during the workshop.
-
-To join:
-
-1. If you are already a member of Serverless Forum Slack space, go to step 4.
-
-2. Otherwise, go to [this page](https://wt-serverless-seattle.run.webtask.io/serverless-forum-signup?webtask_no_cache=1) and submit your email to get an invitation.
-
-3. Complete the registration at Serverless Forum Slack space.
-
-4. DM me on Serverless Forum slack, I'm "Mikhail Shilkov" there.
-
-5. I invite you to the private channel and give further instructions.
-
-If you have any issues, find my other contacts at the [About Me](http://localhost:1313/about/) page.
-
 ## Laptop
 
 Bring your own laptop! Any relatively modern laptop should be fine: we won't use anything beyond CLI commands, an editor, and basic HTTP requests via curl or browser.
@@ -135,4 +117,20 @@ You are good to go if
 
 If any issues, please contact me ASAP.
 
-See you in Berlin!
+## Join the Slack Channel
+
+If you haven't yet, I suggest joining a private Slack channel where we can discuss any issues or questions. We may also use this Slack channel during the workshop.
+
+To join:
+
+1. If you are already a member of Serverless Forum Slack space, go to step 4.
+
+2. Otherwise, go to [this page](https://join.slack.com/t/serverless-forum/shared_invite/enQtMzc5NjI5MDY5NzE5LWFjNDBkZGM4N2Y1NTk5YWIwNDQ3YWZlMjAzZjkxNzZjY2ZlMmM0NThlZmIxNTZlZjRhY2I2YTY2NjE1NzBiMWM) and submit your email to get an invitation.
+
+3. Complete the registration at Serverless Forum Slack space.
+
+4. DM me on Serverless Forum slack, I'm "Mikhail Shilkov" there.
+
+5. I invite you to the private channel and give further instructions.
+
+If you have any issues, find my other contacts at the [About Me](https://mikhail.io/about/) page.

@@ -37,6 +37,8 @@ Terraform has been successfully initialized!
 
 The output has been condensed for brevity: you should see more informational text. Terraform installs the requested provider into the `.terraform` subfolder of the current directory.
 
+You have run `terraform init` every time you add another provider or change its version.
+
 ## Deploy
 
 Run the `terraform apply` command to "deploy" your empty definition file. Although nothing gets deployed, you should see a confirmation:

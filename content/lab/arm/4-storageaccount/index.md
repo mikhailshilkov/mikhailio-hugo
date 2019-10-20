@@ -29,6 +29,10 @@ Copy-and-paste the following snippet into the `resources` array of your `azureDe
 }
 ```
 
+> Note: Here and at the later steps, we build the file incrementally. You should add the snippets inside your existing `azuredeploy.json` file instead of replacing the previous lines.
+
+> Pro-tip: In VS Code, use `Shift + Alt + F` or `Shift + Option + F` to auto-format your code after copy-pasting.
+
 Each resource, including our Storage Account, has the following properties:
 
 - **`type`** defines the namespace and the type of resource
@@ -56,6 +60,8 @@ Deployment failed. Correlation ID: d8383713-1f3d-4b89-b882-cbcb9942cfda. {
   }
 }
 ```
+
+This error happens because each Storage Account gets a subdomain of `blob.core.windows.net`, therefore the name has to be globally unique across all Azure subscriptions worldwide.
 
 Change the name of the Storage Account to something unique, e.g., add some random characters, and try deploying again. Eventually, you should see the success message.
 

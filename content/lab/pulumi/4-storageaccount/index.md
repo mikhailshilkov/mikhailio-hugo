@@ -24,7 +24,7 @@ const storageAccount = new azure.storage.Account("storage", {
 
 It defines a locally-redundant standard Storage Account, and it is a part of the Resource Group that we defined before.
 
-This time, we haven't defined an explicit physical name for the resource. That's because the name of a Storage Account has to be globally unique. Instead of inventing such a name, we can trust Pulumi to generate one.
+This time, we haven't defined an explicit physical name for the resource. That's because each Storage Account gets a subdomain of `blob.core.windows.net`, therefore the name has to be globally unique across all Azure subscriptions worldwide. Instead of inventing such a name, we can trust Pulumi to generate one.
 
 Also, we haven't defined an explicit location for the Storage Account. By default, Pulumi inherits the location from the Resource Group. You can always override it with `location` property if needed.
 

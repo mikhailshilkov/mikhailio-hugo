@@ -25,6 +25,8 @@ const resourceGroup = new azure.core.ResourceGroup("pulumi-workshop", {
 });
 ```
 
+> Note: Here and at the later steps, we build the file incrementally. You should add the snippets to your existing `index.ts` file instead of replacing the previous code.
+
 Declaring a resource is just calling a constructor of the corresponding type. We assigned the new resource to the variable `rg` to be able to use it for other resources.
 
 Note that each resource has two names: a logical one (first constructor argument) and a physical one (`name` property in the second argument). The logical name is visible in Pulumi console, while the physical name is the actual resource name in Azure. You could omit the `name` property: then a physical name would be automatically constructed as `Logical Name + random suffix`.

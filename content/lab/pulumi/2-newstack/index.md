@@ -26,7 +26,7 @@ Other backend options are discussed [here](https://www.pulumi.com/docs/intro/con
 Run the following command from your empty folder to bootstrap a new project:
 
 ```
-$ pulumi new azure-typescript -y
+$ pulumi new typescript -y
 
 Created project 'pulumi-workshop'
 Created stack 'dev'
