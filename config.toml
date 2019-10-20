@@ -54,12 +54,17 @@ googleAnalytics = "UA-59218480-1"
     identifier = "archives"
     url = "/archives/"
 [[menu.main]]
-    name = "TALKS"
+    name = "LABS"
     weight = 300
+    identifier = "labs"
+    url = "/lab/"
+[[menu.main]]
+    name = "TALKS"
+    weight = 400
     identifier = "talks"
     url = "/talks/"
 [[menu.main]]
     name = "ABOUT"
-    weight = 400
+    weight = 500
     identifier = "about"
     url = "/about/"

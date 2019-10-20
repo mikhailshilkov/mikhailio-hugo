@@ -7,9 +7,11 @@
     <section class="recent-posts">
         <div class="row listrecent">
             <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                {{ $page := $.GetPage "/serverless/coldstarts" }}
+                {{ $page := $.GetPage "/lab" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/serverless/coldstarts" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/10/how-to-deploy-a-function-app-with-keda" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/09/how-to-build-globally-distributed-applications-with-azure-cosmos-db-and-pulumi" }}
@@ -131,6 +133,10 @@
             {{ $page := $.GetPage "/2016/05/tweaking-immutable-objects-with-csharp-and-fody" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/04/t-sql-merge-statement-is-underrated" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/04/building-a-poker-bot-with-akka-net-actors" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/03/functional-actor-patterns-with-akkadotnet-and-fsharp" }}
             {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>

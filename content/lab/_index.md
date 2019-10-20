@@ -1,8 +1,7 @@
 ---
-title: Hands-on Labs
+title: Azure Infrastructure as Code Labs
 layout: compare
 nofeed: true
-thumbnail: icebreaker.jpg
-images: [big3/big3.jpg]
-description: Bla
+thumbnail: teaser.jpg
+description: Learn ARM Templates, Terraform, and Pulumi in step-by-step hands-on labs
 ---
