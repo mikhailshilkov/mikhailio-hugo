@@ -1,9 +1,9 @@
 provider "azurerm" {
-  version="~> 1.34"
+  version = "~> 1.34"
 }
 
 provider "random" {
-  version="~> 2.2"
+  version = "~> 2.2"
 }
 
 variable "region" {

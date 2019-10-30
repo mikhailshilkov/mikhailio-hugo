@@ -12,6 +12,9 @@
             </div>
             {{ $page := $.GetPage "/serverless/coldstarts" }}
             {{- partial "list-partials/postbox.html" $page -}}
+
+            {{ $page := $.GetPage "/2019/10/aws-lambda-vs-azure-functions-ten-major-differences" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/10/how-to-deploy-a-function-app-with-keda" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/09/how-to-build-globally-distributed-applications-with-azure-cosmos-db-and-pulumi" }}
@@ -137,6 +140,10 @@
             {{ $page := $.GetPage "/2016/04/building-a-poker-bot-with-akka-net-actors" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/03/functional-actor-patterns-with-akkadotnet-and-fsharp" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/03/aurelia-map-component-with-leaflet" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2016/03/building-a-poker-bot-mouse-movements" }}
             {{- partial "list-partials/postbox.html" $page -}}
         </div>
     </section>
