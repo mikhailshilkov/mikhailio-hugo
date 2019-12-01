@@ -74,7 +74,7 @@ provider "random" {
 }
 ```
 
-And then define a `random_string` resource:
+Run `terraform init` to install the binaries of the newly added provider. Then, define a `random_string` resource:
 
 ``` hcl
 resource "random_string" "sa_name" {

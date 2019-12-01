@@ -14,7 +14,7 @@ In contrast to Azure ARM Templates, Terraform handles Resource Groups is a regul
 
 ## Create a Resource Group
 
-Add the following lines to your `main.tf` file:
+Add the following lines to the bottom of your `main.tf` file:
 
 ```hcl
 resource "azurerm_resource_group" "rg" {
@@ -23,7 +23,7 @@ resource "azurerm_resource_group" "rg" {
 }
 ```
 
-> Note: Here and at the later steps, we build the file incrementally. You should add the snippets to your existing `main.tf` file instead of replacing the previous lines.
+> Note: Here and at the later steps, we build the file incrementally. You should append the snippets to your existing `main.tf` file instead of replacing the previous lines.
 
 The newly declared resource has the type `azurerm_resource_group` and the name `rg`. Note that `rg` is just a logical resource name in the configuration file, not the actual name of the resource group. The name is defined by `name` property, and `location` defines the Azure region to deploy to.
 

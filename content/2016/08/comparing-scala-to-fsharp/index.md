@@ -3,18 +3,19 @@ title: Comparing Scala to F#
 date: 2016-08-05
 tags: ["F#", "Scala", "Functional Programming", "Coursera"]
 thumbnail: teaser.png
+comments: true
 ---
 
 F# and Scala are quite similar languages from 10.000 feet view. Both are
 functional-first languages developed for the virtual machines where imperative
-languages dominate. C# for .NET and Java for JVM are still *lingua franca*, 
+languages dominate. C# for .NET and Java for JVM are still *lingua franca*,
 but alternatives are getting stronger.
 <!--more-->
 
 My background is in .NET ecosystem, so F# was the first of the two that I started
 learning. At the same time, Scala seems to have more traction, largely due to
 successful products and frameworks like Spark, Akka and Play. That's why I decided
-to broaden my skill set and pick up some Scala knowledge. I've started with 
+to broaden my skill set and pick up some Scala knowledge. I've started with
 [Functional Programming in Scala Specialization](https://www.coursera.org/specializations/scala) at Coursera.
 While following the coursera, I'm doing some notes about which language features
 in Scala I find interesting, or vice versa - missing compared to F#.
@@ -81,10 +82,10 @@ Tail-Recursion Mark
 
 Any recursive function in Scala can be marked with `@tailrec` annotation,
 which would result in compilation error if the function is not tail-recursive.
-This guarantees that you won't get a nasty stack overflow exception. 
+This guarantees that you won't get a nasty stack overflow exception.
 
 ``` scala
-@tailrec 
+@tailrec
 def boom(x: Int): Int = {
   if (x == 0) 0
   else boom(x-1) + 1
@@ -94,7 +95,7 @@ def boom(x: Int): Int = {
 The code above won't compile, as the recursion can't be optimized by the
 compiler.
 
-The feature sounds very reasonable, although I must admit that I have 
+The feature sounds very reasonable, although I must admit that I have
 never needed it in *my* F# code yet.
 
 Call By Name
@@ -122,7 +123,7 @@ val a:Option[Int] = Some(1)
 val b = a getOrElse (2/0)
 ```
 
-will set `b` to `1`, and no error will be thrown, even though we are dividing by zero 
+will set `b` to `1`, and no error will be thrown, even though we are dividing by zero
 in function parameter. This is because the parameter of `getOrElse` is passed
 by name.
 
@@ -137,13 +138,13 @@ let b = defaultArg b (2/0) // boom
 You can get deferred evaluation by passing a function:
 
 ``` fsharp
-let defaultArgFunc o (f: unit -> 'a) = 
+let defaultArgFunc o (f: unit -> 'a) =
   match o with | Some v -> v | None -> f()
 
 let b2 = defaultArgFunc a (fun () -> 2 / 0)
 ```
 
-That's essentially what happens in Scala too, but the Scala syntax is 
+That's essentially what happens in Scala too, but the Scala syntax is
 arguably cleaner.
 
 Lack of Type Inference
@@ -159,7 +160,7 @@ def max (a: Int, b:Int) = if (a > b) a else b
 ```
 
 You have to specify the types of all input parameters, and that's quite a bummer
-for people who are used to short type-less code of F# (or Haskell, OCaml and others, 
+for people who are used to short type-less code of F# (or Haskell, OCaml and others,
 for that matter).
 
 Type inference in F# plays another significant role: automatic type generalization.
@@ -178,15 +179,15 @@ Functional vs Object-Oriented Style
 Both F# and Scala are running on top of managed object-oriented virtual machines,
 and at the same time both languages enable developers to write functional code.
 Functional programming means operating immutable data structures in pure, free of
-side effects operations. Without questioning all this, I find pure functional 
+side effects operations. Without questioning all this, I find pure functional
 Scala code to be written in much more object-oriented *style* compared to F#.
 
-Classes and objects are ubiquitous in Scala: they are in each example given 
+Classes and objects are ubiquitous in Scala: they are in each example given
 in Martin Odersky's courses. Most F# examples refrain from classes unless needed.
 F# official guidance is to never expose non-abstract classes from F# API!
 
 Scala is really heavy about inheritance. They even introduced quasi-multiple inheritance:
-traits. `Stream` inherits from `List`, and `Nothing` is a subtype of every other type, 
+traits. `Stream` inherits from `List`, and `Nothing` is a subtype of every other type,
 to be used for some covariance tricks.
 
 Operations are usually defined as class methods instead of separate functions. For
@@ -196,7 +197,7 @@ example the following Scala code
 word filter (c => c.isLetter)
 ```
 
-would filter a string to letters only. Why is `isLetter` defined as a method of 
+would filter a string to letters only. Why is `isLetter` defined as a method of
 `Char`? I don't think it's essential for the type itself...
 
 Usage of Operators
@@ -226,7 +227,7 @@ in ~> f1 ~> bcast ~> f2 ~> merge ~> f3 ~> out
 
 This can go to quite an extreme, similar to what `scalaz` library does.
 
-My default would be not to use operators unless you are sure that every 
+My default would be not to use operators unless you are sure that every
 reader is able to instantly understand what it means.
 
 Partial Application
@@ -241,7 +242,7 @@ let add3 = add 3
 let sum = add3 5 // 8
 ```
 
-Scala function 
+Scala function
 
 ``` scala
 def add (a: Int, b: Int) = a + b
@@ -263,19 +264,19 @@ put `_` at any position, which gives you some flexibility.
 Single-Direction Dependency
 ---------------------------
 
-F# compiler doesn't allow circular dependencies. You can't use a function 
+F# compiler doesn't allow circular dependencies. You can't use a function
 before you've defined it. Here is what Expert F# book has to say about
 that:
 
-> Managing dependencies and circularity is one of the most difficult 
-> and fundamental problems in good software design. The files in 
-> an F# project are presented to the F# compiler in a compilation 
-> order: constructs in the earlier files can't refer to declarations 
-> in the later files. This is a mechanism to enforce layered design, 
-> where software is carefully organized into layers, and where one 
-> layer doesn't refer to other layers in a cyclic way (...) to help you 
-> write code that is reusable and organized 
-> into components that are, where possible, independent and not 
+> Managing dependencies and circularity is one of the most difficult
+> and fundamental problems in good software design. The files in
+> an F# project are presented to the F# compiler in a compilation
+> order: constructs in the earlier files can't refer to declarations
+> in the later files. This is a mechanism to enforce layered design,
+> where software is carefully organized into layers, and where one
+> layer doesn't refer to other layers in a cyclic way (...) to help you
+> write code that is reusable and organized
+> into components that are, where possible, independent and not
 > combined into a "tangle" of "spaghetti code".
 
 I think this is huge. F# forces you to structure your code in a way that
@@ -288,8 +289,8 @@ There's nothing like that in Scala. You are on your own.
 Conclusion
 ----------
 
-Of course I did not cover all the distinctions, for instance active patterns, 
-type providers, computation expressions in F# and type classes, higher 
+Of course I did not cover all the distinctions, for instance active patterns,
+type providers, computation expressions in F# and type classes, higher
 kinded types, macros in Scala.
 
 Obviously, both Scala and F# are very capable languages, and I am still
@@ -298,7 +299,7 @@ several different choices along the language design trade-offs.
 
 P.S. Overheard on Twitter:
 
-> F# isn't a bad language, it's just attached to a bad platform... 
+> F# isn't a bad language, it's just attached to a bad platform...
 > The opposite of Scala actually.
 
 UPDATE: Thanks everyone for the great comments; please check out

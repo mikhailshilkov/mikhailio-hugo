@@ -1,12 +1,20 @@
 <div class="container">
     <div id="comments" class="row justify-content-center mb-5">
         <div class="col-md-8">
+            {{ if .Params.ghissueid }}
             <div class="mb-5">
                 <h6 class="float-left">Responses</h6>
-                <div class="float-right"><a href='https://github.com/mikhailshilkov/mikhailio-hugo/issues/{{.Params.ghissueid}}'>Write a response</a></div>
+                <div class="float-right"><a
+                        href='https://github.com/mikhailshilkov/mikhailio-hugo/issues/{{.Params.ghissueid}}'>Write a
+                        response</a></div>
             </div>
             <div id="gh-comments-list" style="display: none">{{ .Params.ghissueid }}</div>
-            <div class="mt-4">Visit the <b><a href='https://github.com/mikhailshilkov/mikhailio-hugo/issues/{{.Params.ghissueid}}'>Github Issue</a></b> to comment on this page</div>
+            <div class="mt-4">Visit the <b><a
+                        href='https://github.com/mikhailshilkov/mikhailio-hugo/issues/{{.Params.ghissueid}}'>Github
+                        Issue</a></b> to comment on this page</div>
+            {{ else }}
+            {{ template "_internal/disqus.html" . }}
+            {{ end }}
         </div>
     </div>
 </div>

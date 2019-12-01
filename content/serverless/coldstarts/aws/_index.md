@@ -86,4 +86,4 @@ This is not true anymore, as the effect of VPC is minimal:
 
 {{< chart_interval
     "coldstart_aws_byvpc"
-    "Cold start durations of the same Lambda with and without VPC access" >}}
+    "Cold start durations of the same Node.js Lambda with and without VPC access" >}}

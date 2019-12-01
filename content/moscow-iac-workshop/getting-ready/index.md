@@ -3,12 +3,18 @@ title: "Azure Infrastructure as Code Workshop: Getting your environment ready"
 date: 2019-10-02
 nofeed: true
 aliases:
-    - /biacp/
+    - /miacp/
 ---
 
-Thank you for registering for my workshop "Azure Infrastructure as Code" at Serverless Architecture Conference Berlin 2019!
+Всем привет, спасибо что зарегистрировались на мастер-класс "Инфраструктура как код"!
 
-To make the workshop as productive as possible, I want to ask you to complete several preparation steps in advance. The steps are outlined below.
+Чтобы день мастер-класса прошёл наиболее продуктивно, я прошу заранее выполнить несколько подготовительных шагов. Список действий описан ниже. Обычно, для выполнения потребуется от 5 до 20 минут. В случае каких-либо проблем, пожалуйста, свяжитесь со мной по емейлу conf@mikhail.io.
+
+Говорить на вокршопе мы будем по-русски, однако все материалы и интрукции выполнены на английском.
+
+До встречи!
+
+---------------
 
 ## Laptop
 
@@ -28,7 +34,7 @@ We will write some programs in TypeScript. They will be executed by Node.js behi
 
 It's quite likely you already have node installed. If not, navigate to [Download Page](https://nodejs.org/en/download/) and install Node.js with npm.
 
-If you have npm installed, you can install TypeScript globally on your computer with `npm install -g typescript`.
+When you have npm installed, you can install TypeScript globally on your computer with `npm install -g typescript`.
 
 ## Azure CLI
 
@@ -97,7 +103,7 @@ Run `pulumi version`, and you should get a response back:
 
 ```
 $ pulumi version
-v1.2.0
+v1.5.0
 ```
 
 ## Text editor
@@ -115,22 +121,4 @@ You are good to go if
 - you can type `terraform version` and see a version number `0.12.x`
 - you can type `pulumi version` and see a version number `1.x`
 
-If any issues, please contact me ASAP.
-
-## Join the Slack Channel
-
-If you haven't yet, I suggest joining a private Slack channel where we can discuss any issues or questions. We may also use this Slack channel during the workshop.
-
-To join:
-
-1. If you are already a member of Serverless Forum Slack space, go to step 4.
-
-2. Otherwise, go to [this page](https://join.slack.com/t/serverless-forum/shared_invite/enQtMzc5NjI5MDY5NzE5LWFjNDBkZGM4N2Y1NTk5YWIwNDQ3YWZlMjAzZjkxNzZjY2ZlMmM0NThlZmIxNTZlZjRhY2I2YTY2NjE1NzBiMWM) and submit your email to get an invitation.
-
-3. Complete the registration at Serverless Forum Slack space.
-
-4. DM me on Serverless Forum slack, I'm "Mikhail Shilkov" there.
-
-5. I invite you to the private channel and give further instructions.
-
-If you have any issues, find my other contacts at the [About Me](https://mikhail.io/about/) page.
+If any issues, please contact me ASAP at conf@mikhail.io.
