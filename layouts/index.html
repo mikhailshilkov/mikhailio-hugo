@@ -13,6 +13,10 @@
             {{ $page := $.GetPage "/serverless/coldstarts" }}
             {{- partial "list-partials/postbox.html" $page -}}
 
+            {{ $page := $.GetPage "/2019/12/santa-brings-cloud-to-every-developer" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2019/11/choosing-the-best-deployment-tool-for-serverless-applications" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/10/aws-lambda-vs-azure-functions-ten-major-differences" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/10/how-to-deploy-a-function-app-with-keda" }}
