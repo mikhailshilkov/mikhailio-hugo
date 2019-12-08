@@ -1,7 +1,7 @@
 ---
 title: Comparing Scala to F#
 date: 2016-08-05
-tags: ["F#", "Scala", "Functional Programming", "Coursera"]
+tags: ["FSharp", "Scala", "Functional Programming", "Coursera"]
 thumbnail: teaser.png
 comments: true
 ---

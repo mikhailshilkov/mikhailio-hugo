@@ -1,7 +1,7 @@
 ---
 title: Books that I’ve recently read, part 2
 date: 2012-05-16
-tags: ["Books","Business books"]
+tags: ["Books"]
 description: Reviews of "Rework" by Jason Fried and David Heinemeier Hansson, "Don't Make Me Think" by Steve Krug, "The Non-Designer's Design Book" by Robin Williams and "The Toilet Paper Entrepreneur" by Mike Michaliwicz.
 ---
 

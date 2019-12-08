@@ -1,7 +1,7 @@
 ---
 title: "Santa Brings Cloud to Every Developer"
 date: 2019-12-01
-tags: ["F#", "AWS", "Azure", "GCP"]
+tags: ["Pulumi", "FSharp", "AWS", "Azure", "GCP"]
 description: "How Santa Cloud uses F# and Pulumi to bring cloud resources to the homes of software engineers."
 thumbnail: teaser.jpg
 ghissueid: 25

@@ -1,7 +1,7 @@
 ---
 title: Model Thinking class at Coursera
 date: 2012-06-21
-tags: ["Coursera","Model Thinking","Online Classes","Online Learning","Statement of Accomplishment"]
+tags: ["Coursera","Learning"]
 description: I've recently received a statement of accomplishment document for Coursera's online Model Thinking Class that I took in April-May this year.
 ---
 

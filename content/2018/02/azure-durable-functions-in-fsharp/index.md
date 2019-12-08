@@ -1,7 +1,7 @@
 ---
 title: Azure Durable Functions in F#
 date: 2018-02-19
-tags: ["Azure", "Azure Functions", "F#", "Durable Functions"]
+tags: ["Azure", "Azure Functions", "FSharp", "Durable Functions"]
 ---
 
 Azure Functions are designed for stateless, fast-to-execute,
@@ -20,7 +20,7 @@ waiting for all that period, Durable Functions use the combination of
 Storage Queues and Tables to do all the work asynchronously.
 
 The code still *feels* like one continuous thing because it's programmed
-as a single orchestrator function. So, it's easier for a human to reason 
+as a single orchestrator function. So, it's easier for a human to reason
 about the functionality without the complexities of low-level communication.
 
 I won't describe Durable Functions any further, just go read
@@ -33,8 +33,8 @@ Language Support
 As of February 2018, Durable Functions are still in preview. That also means
 that language support is limited:
 
-> Currently C# is the only supported language for Durable Functions. This 
-> includes orchestrator functions and activity functions. In the future, 
+> Currently C# is the only supported language for Durable Functions. This
+> includes orchestrator functions and activity functions. In the future,
 > we will add support for all languages that Azure Functions supports.
 
 I was a bit disappointed that F# is not an option. But actually, since
@@ -75,15 +75,15 @@ let Run([<OrchestrationTrigger>] context: DurableOrchestrationContext) = async {
   let! hello2 = context.CallActivityAsync<string>("E1_SayHello", "Seattle") |> Async.AwaitTask
   let! hello3 = context.CallActivityAsync<string>("E1_SayHello", "London")  |> Async.AwaitTask
   return [hello1; hello2; hello3]
-} |> Async.StartAsTask   
+} |> Async.StartAsTask
 ```
 
 That would work for a normal HTTP trigger, but it blows up for the Orchestrator
 trigger because multi-threading operations are not allowed:
 
-> Orchestrator code must never initiate any async operation except by 
-> using the DurableOrchestrationContext API. The Durable Task Framework 
-> executes orchestrator code on a single thread and cannot interact with 
+> Orchestrator code must never initiate any async operation except by
+> using the DurableOrchestrationContext API. The Durable Task Framework
+> executes orchestrator code on a single thread and cannot interact with
 > any other threads that could be scheduled by other async APIs.
 
 To solve this issue, we need to keep working with `Task` directly. This is
@@ -98,7 +98,7 @@ let Run([<OrchestrationTrigger>] context: DurableOrchestrationContext) = task {
   let! hello2 = context.CallActivityAsync<string>("E1_SayHello", "Seattle")
   let! hello3 = context.CallActivityAsync<string>("E1_SayHello", "London")
   return [hello1; hello2; hello3]
-}       
+}
 ```
 
 And the best part is that it works just fine.
@@ -115,7 +115,7 @@ let SayHello([<ActivityTrigger>] name) =
 More Examples
 -------------
 
-Durable Functions repository comes with 
+Durable Functions repository comes with
 [a set of 4 samples](https://github.com/Azure/azure-functions-durable-extension/tree/master/samples/precompiled)
 implemented in C#. I took all of those samples and ported them over to F#.
 
@@ -152,5 +152,5 @@ recursive sub-function to loop through several attempts and context-based
 timers for reliable timeout implementation.
 
 So, if you happen to be an F# fan, you can still give Durable Functions a try.
-Be sure to leave your feedback, so that the library could get even better 
+Be sure to leave your feedback, so that the library could get even better
 before going GA.

@@ -1,7 +1,7 @@
 ---
 title: Cold Starts Beyond First Request in Azure Functions
 date: 2018-05-18
-tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Start"]
+tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Starts"]
 thumbnail: teaser.jpg
 description: Can we avoid cold starts by keeping Functions warm, and will cold starts occur on scale out? Let's try!
 ---
@@ -13,7 +13,7 @@ cold start delays per language and runtime version.
 I received some follow-up questions that I'd like to explore in today's post:
 
 - Can we avoid cold starts except the very first one by keeping the instance warm?
-- Given one warm instance, if two requests come at the same time, will one request hit 
+- Given one warm instance, if two requests come at the same time, will one request hit
 a cold start because existing instance is busy with the other?
 - In general, does a cold start happen at scale-out when a new extra instance is provisioned?
 
@@ -48,7 +48,7 @@ I've tested a Function App which consists of two Functions:
 I then measured the cold start statistics similar to all the tests from my previous article.
 
 During 2 days I was issuing infrequent requests to the same app, most of them would normally
-lead to a cold start. Interestingly, even though I was regularly firing the timer, Azure 
+lead to a cold start. Interestingly, even though I was regularly firing the timer, Azure
 switched instances to serve my application 2 times during the test period:
 
 ![Infrequent Requests to Azure Functions with "Keep It Warm" Timer](cold-starts-keep-warm.png)
@@ -129,7 +129,7 @@ entirely clear.
 
 Same instance is capable of processing multiple requests in parallel, so there are
 possibilities for optimization in terms of routing to warm instances during the
-provisioning of cold ones. 
+provisioning of cold ones.
 
 If such optimizations happen, I'll be glad to re-run my tests and report any noticeable
 improvements.

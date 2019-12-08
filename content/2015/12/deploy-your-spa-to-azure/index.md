@@ -1,7 +1,7 @@
 ---
 title: Deploy your SPA to Azure
 date: 2015-12-14
-tags: ["Azure", "ASP.NET Web API", "SPA", "Continuous Deployment", "Git"]
+tags: ["Azure", "SPA", "Continuous Deployment", "Git"]
 description: In this post I want to share a simple tutorial on how to deploy your single page application into the Azure cloud. I have a Single Page Application (SPA) done with HTML/JavaScript in a separate local Git repository. I alsp have a ASP.NET 4.6 Web API service which serves the data for SPA in another local Git repository. Now I want to deploy both to the Azure cloud, and make it easy to deploy changes in the future.
 ---
 In this post I want to share a simple tutorial on how to deploy your single page application into the Azure cloud.

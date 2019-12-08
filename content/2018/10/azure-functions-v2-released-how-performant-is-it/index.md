@@ -1,7 +1,7 @@
 ---
 title: Azure Functions V2 Is Released, How Performant Is It?
 date: 2018-10-10
-tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Start"]
+tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Starts"]
 thumbnail: teaser.png
 description: Comparison of performance benchmarks for Azure Functions V1 and V2
 ---
@@ -13,7 +13,7 @@ In theory, .NET Core runtime is more lean and performant.
 But last time [I checked back in April](https://mikhail.io/2018/04/azure-functions-cold-starts-in-numbers/),
 the preview version of Azure Functions V2 had some serious issues with cold start durations.
 
-I decided to give the new and shiny version another try and ran several benchmarks. All tests were conducted on 
+I decided to give the new and shiny version another try and ran several benchmarks. All tests were conducted on
 Consumption plan.
 
 **TL;DR**: it's not perfect just yet.
@@ -34,7 +34,7 @@ are possible but less frequent:
 
 ![Cold Starts V1 vs V2: .NET and Javascript](cold-starts-dotnet-js.png)
 
-Apparently, V2 is slower to start for both runtimes. V2 on .NET is slower by 10% on average and seems 
+Apparently, V2 is slower to start for both runtimes. V2 on .NET is slower by 10% on average and seems
 to have higher variation. V2 on Javascript is massively slower: 2 times on average, and the slowest startup
 time goes above 10 seconds.
 
@@ -56,14 +56,14 @@ All the functions were deployed with the Run-from-Package method which promises 
 
 ### Java
 
-Functions V2 come with a preview of a new runtime: Java / JVM. It utilizes the same extensibility model 
+Functions V2 come with a preview of a new runtime: Java / JVM. It utilizes the same extensibility model
 as Javascript, and thus it seems to be a first-class citizen now.
 
-Cold starts are not first-class though: 
+Cold starts are not first-class though:
 
 ![Cold Starts Java](cold-starts-java.png)
 
-If you are a Java developer, be prepared for 20-25 seconds of initial startup time. That will probably 
+If you are a Java developer, be prepared for 20-25 seconds of initial startup time. That will probably
 be resolved when the Java runtime becomes generally available:
 
 <blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><p lang="en" dir="ltr">That matches some of our internal data. We are looking into it.</p>&mdash; Paul Batum (@paulbatum) <a href="https://twitter.com/paulbatum/status/1048391445386735616?ref_src=twsrc%5Etfw">October 6, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -83,7 +83,7 @@ Today I ran two simple tests to compare the scalability of V1 vs. V2 runtimes.
 ### Pause-and-Go
 
 In my first tests, a lightweight Javascript Function processed messages from an Azure Storage Queue. For
-each message, it just pauses for 500 msec and then completes. This is supposed to simulate I/O-bound 
+each message, it just pauses for 500 msec and then completes. This is supposed to simulate I/O-bound
 Functions.
 
 I've sent 100,000 messages to the queue and measured how fast they went away. Batch size (degree of parallelism
@@ -100,17 +100,17 @@ The difference is not big though and might be statistically insignificant.
 ### CPU at Work
 
 Functions in my second experiment are CPU-bound. Each message invokes calculation of a 10-stage Bcrypt
-hash. On a very quiet moment, 1 such function call takes about 300-400 ms to complete, consuming 100% CPU 
+hash. On a very quiet moment, 1 such function call takes about 300-400 ms to complete, consuming 100% CPU
 load on a single core.
 
 Both Functions are precompiled .NET and both are using [Bcrypt.NET](https://github.com/BcryptNet/bcrypt.net).
 
-Batch size (degree of parallelism on each instance) was set to 2 to avoid too much fighting for the same CPU. Yet, 
+Batch size (degree of parallelism on each instance) was set to 2 to avoid too much fighting for the same CPU. Yet,
 the average call duration is about 1.5 seconds (3x slower than possible).
 
 ![Processing Queue Messages with CPU-bound Workload](queue-scaling-cpu-bound.png)
 
-The first thing to notice: it's the same number of messages with comparable "sequential" execution time, but 
+The first thing to notice: it's the same number of messages with comparable "sequential" execution time, but
 the total time to complete the job increased 3-fold. That's because the workload is much more demanding to
 the resources of application instances, and they struggle to parallelize work more aggressively.
 
@@ -137,7 +137,7 @@ messages.
 Apart from the initial spike at minutes 2 and 3, both versions performed pretty close to each other.
 
 50th percentile is flat close to the theoretic minimum of 100 ms, while the 95th percentile fluctuates a bit, but still
-mostly stays quite low. 
+mostly stays quite low.
 
 Note that the response time is measured from the client perspective, not by looking at the statistics provided by Azure.
 

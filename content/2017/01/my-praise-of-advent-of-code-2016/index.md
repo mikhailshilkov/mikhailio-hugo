@@ -2,7 +2,7 @@
 title: My Praise of Advent of Code 2016
 date: 2017-01-26
 thumbnail: teaser.png
-tags: ["F#", "Programming Puzzles", "Advent of Code", "Programming Puzzles"]
+tags: ["FSharp", "Programming Puzzles", "Advent of Code", "Programming Puzzles"]
 ---
 
 During the last days of December I was pleasing my internal need for solving

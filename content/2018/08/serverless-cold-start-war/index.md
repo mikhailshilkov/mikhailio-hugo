@@ -1,7 +1,7 @@
 ---
 title: "Serverless: Cold Start War"
 date: 2018-08-30
-tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Start", "AWS", "AWS Lambda", "GCP", "Google Cloud Functions"]
+tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Starts", "AWS", "AWS Lambda", "GCP", "Google Cloud Functions"]
 thumbnail: teaser.jpg
 images: [teaser.jpg]
 description: Comparison of cold start statistics for FaaS across AWS, Azure and GCP
@@ -50,20 +50,20 @@ The goal of my article today is to explore how cold starts compare:
 Let's see how I did that and what the outcome was.
 
 *DISCLAIMER. Performance testing is hard. I might be missing some important factors and parameters that
-influence the outcome. My interpretation might be wrong. The results might change over time. If you happen 
+influence the outcome. My interpretation might be wrong. The results might change over time. If you happen
 to know a way to improve my tests, please let me know and I will re-run them and re-publish the results.*
 
 Methodology
 -----------
 
-All tests were run against HTTP Functions because that's where cold start matters the most. 
+All tests were run against HTTP Functions because that's where cold start matters the most.
 
 All the functions were returning a simple JSON reporting their current instance ID, language etc.
 Some functions were also loading extra dependencies, see below.
 
 I did not rely on execution time reported by a cloud provider. Instead, I measured end-to-end duration from
 the client perspective. This means that durations of HTTP gateway (e.g. API Gateway in case of AWS) are included
-into the total duration. However, all calls were made from within the same region, so network latency should 
+into the total duration. However, all calls were made from within the same region, so network latency should
 have minimal impact:
 
 ![Test Setup](test-setup.png)
@@ -96,12 +96,12 @@ threshold hit another cold start.
 
 ### AWS
 
-AWS is more tricky. Here is the same kind of chart, relative durations vs time since the last request, 
+AWS is more tricky. Here is the same kind of chart, relative durations vs time since the last request,
 measured for AWS Lambda:
 
 ![AWS Cold Start vs Warm Start](aws-coldstart-threshold.png)
 
-There's no clear threshold here... For this sample, no cold starts happened within 28 minutes after the previous 
+There's no clear threshold here... For this sample, no cold starts happened within 28 minutes after the previous
 invocation. Afterward, the frequency of cold starts slowly rises. But even after 1 hour of inactivity, there's still a
 good chance that your instance is alive and ready to take requests.
 
@@ -109,8 +109,8 @@ This doesn't match the official information that AWS Lambdas stay alive for just
 invocation. I reached out to Chris Munns, and he confirmed:
 
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">
-So what you are seeing is very much possible as the team plays with certain knobs/levers for execution environment lifecycle. 
-let me know if you have concerns about it, but it should be just fine</p>&mdash; chrismunns (@chrismunns) 
+So what you are seeing is very much possible as the team plays with certain knobs/levers for execution environment lifecycle.
+let me know if you have concerns about it, but it should be just fine</p>&mdash; chrismunns (@chrismunns)
 <a href="https://twitter.com/chrismunns/status/1021452964630851585?ref_src=twsrc%5Etfw">July 23, 2018</a>
 </blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -169,7 +169,7 @@ somewhat mixed.
 
 AWS Lambda Javascript doesn't seem to have significant differences. This probably means that not so much CPU load
 is required to start a Node.js "Hello World" application:
-                           
+
 ![AWS Javascript Cold Start by Memory](aws-coldstart-js-by-memory.png)
 
 AWS Lambda .NET Core runtime does depend on memory size though. Cold start time drops dramatically with every increase
@@ -181,7 +181,7 @@ GCP Cloud Functions expose a similar effect even for Javascript runtime:
 
 ![GCP Javascript Cold Start by Memory](gcp-coldstart-js-by-memory.png)
 
-In contrast to Amazon and Google, Microsoft doesn't ask to select a memory limit. Azure will charge Functions based 
+In contrast to Amazon and Google, Microsoft doesn't ask to select a memory limit. Azure will charge Functions based
 on the actual memory usage. More importantly, it will always dedicate a full vCore for a given Function execution.
 
 It's not exactly apples-to-apples, but I chose to fix the memory allocations of AWS Lambda and GCF to 1024 MB.
@@ -196,7 +196,7 @@ Node.js is the only runtime supported in production by Google Cloud Functions ri
 probably by far the most popular language for serverless applications across the board.
 
 Thus, it makes sense to compare the 3 cloud providers on how they perform in Javascript. The
-base test measures the cold starts of "Hello World" type of functions. Functions have no 
+base test measures the cold starts of "Hello World" type of functions. Functions have no
 dependencies, so deployment package is really small.
 
 Here are the numbers for cold starts:
@@ -209,14 +209,14 @@ sort of close though, seemingly playing in the same league so the exact disposit
 How Do Languages Compare?
 -------------------------
 
-I've written Hello World HTTP function in all supported languages of the cloud platforms: 
+I've written Hello World HTTP function in all supported languages of the cloud platforms:
 
 - AWS: Javascript, Python, Java, Go and C# (.NET Core)
 - Azure: Javascript and C# (precompiled .NET assembly)
 - GCP: Javascript
 
 Azure kind of supports much more languages, including Python and Java, but they are still considered
-experimental / preview, so the cold starts are not fully optimized. See 
+experimental / preview, so the cold starts are not fully optimized. See
 [my previous article](https://mikhail.io/2018/04/azure-functions-cold-starts-in-numbers/) for exact numbers.
 
 Same applies to Python on GCP.
@@ -254,7 +254,7 @@ However, the increase in cold start seems quite low, especially for precompiled 
 A very cool feature of GCP Cloud Functions is that you don't have to include NPM packages into
 the deployment archive. You just add `package.json` file and the runtime will restore them for you.
 This makes the deployment artifact ridiculously small, but doesn't seem to slow down the cold
-starts either. Obviously, Google pre-restores the packages in advance, before the actual request 
+starts either. Obviously, Google pre-restores the packages in advance, before the actual request
 comes in.
 
 Avoiding Cold Starts
@@ -273,7 +273,7 @@ above.
 For applications with higher load profile, you might want to fire several parallel "warming"
 requests in order to make sure that enough instances are kept in warm stock.
 
-For further reading, have a look at my 
+For further reading, have a look at my
 [Cold Starts Beyond First Request in Azure Functions](https://mikhail.io/2018/05/azure-functions-cold-starts-beyond-first-load/)
 and [AWS Lambda Warmer as Pulumi Component](https://mikhail.io/2018/08/aws-lambda-warmer-as-pulumi-component/).
 
@@ -291,7 +291,7 @@ Here are some lessons learned from all the experiments above:
 vast majority of applications
 
 Do you see anything weird or unexpected in my results? Do you need me to dig deeper into other aspects?
-Please leave a comment below or ping me on [twitter](https://twitter.com/MikhailShilkov), and let's 
+Please leave a comment below or ping me on [twitter](https://twitter.com/MikhailShilkov), and let's
 sort it all out.
 
 Stay tuned for more serverless perf goodness!

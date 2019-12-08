@@ -1,7 +1,7 @@
 ---
 title: Functional Actor Patterns with Akka.NET and F#
 date: 2016-03-21
-tags: ["F#", "Akka.NET", "Actor Model", "Functional Programming", "Patterns"]
+tags: ["FSharp", "Akka.NET", "Actor Model", "Functional Programming", "Patterns"]
 descritpion: "My exploration of Actor model started with Akka.NET framework - a .NET port of JVM-based Akka. Actor programming model made a lot of sense to me, but once I started playing with it, some questions arose. Most of those questions were related to the following definition: An actor is a container for `State`, `Behavior`, a `Mailbox`, `Children` and a `Supervisor Strategy`."
 thumbnail: teaser.png
 ---

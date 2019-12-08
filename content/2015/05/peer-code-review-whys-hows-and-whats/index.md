@@ -2,7 +2,7 @@
 title: Peer code review Why's, How's and What's
 date: 2015-05-27
 tags: ["Code Review", "Best Practices"]
-description: This post is a short summary on why do code reviews, what the steps are and what should actually be reviewed. The text was created to set some common ground for my team, which was just starting to conduct code reviews in a consistent way. By any means, this text is not a complete guide but rather a checklist and a starting point for discussion. Get familiar with my 5 WHY's, 8 HOW's and 18 WHAT's of code review.
+description: This post is a short summary on why do code reviews, what the steps are and what should actually be reviewed. The text was created to set some common ground for my team, which was just starting to conduct code reviews in a consistent way.
 ---
 This post is a short summary on why do code reviews, what the steps are and what should actually be reviewed. The text was created to set some common ground for my team, which was just starting to conduct code reviews in a consistent way. By any means, this text is not a complete guide but rather a checklist and a starting point for discussion.
 

@@ -1,27 +1,27 @@
 ---
 title: Tic-Tac-Toe with F#, Azure Functions, HATEOAS and Property-Based Testing
 date: 2018-01-23
-tags: ["F#", "Azure Functions", "HATEOAS", "Property-Based Testing"]
+tags: ["FSharp", "Azure Functions", "HATEOAS", "Property-Based Testing"]
 thumbnail: thumb.jpg
 description: "A toy application built with F# and Azure Functions: a simple end-to-end implementation from domain design to property-based tests."
 ---
 
 This post describes a toy application that I've built with F# and Azure Functions
-in about 1 day of work. It shows a simple end-to-end implementation with some 
+in about 1 day of work. It shows a simple end-to-end implementation with some
 useful techniques applied, and can be used as a reference point for anyone interested in
 one of the topics mentioned in the title.
 
 The requirements for my application are quite simple:
 - Implement the game of Tic-Tac-Toe for a human player to play against the computer
 - The field is 3x3, the player to have three-in-a-row wins
-- After the game, the score is calculated based on the number of moves combined 
+- After the game, the score is calculated based on the number of moves combined
 with the duration of the game
 - The history of players' scores is persisted and presented as the leaderboard
 
 Below I go through the code step by step. Feel free to jump to the part which interests
-you the most: 
-[Domain Modelling](#DomainModelling), 
-[Azure Functions](#AzureFunctions), 
+you the most:
+[Domain Modelling](#DomainModelling),
+[Azure Functions](#AzureFunctions),
 [HATEOAS](#HATEOAS),
 [Property-Based Testing](#PropertyBasedTesting).
 
@@ -52,7 +52,7 @@ module Player =
 
 The domain code is the most important part of the application, so I want it to be covered
 by unit tests. Of course, the above function doesn't really warrant testing, but it's a nice
-and simple way to try out [Property-Based Testing](https://fsharpforfunandprofit.com/posts/property-based-testing/). 
+and simple way to try out [Property-Based Testing](https://fsharpforfunandprofit.com/posts/property-based-testing/).
 That is, instead of defining specific tests, we define properties which hold for any valid input.
 
 For `other` function, I came up with two properties:
@@ -101,9 +101,9 @@ type RunningGame = {
 }
 ```
 
-This type models any state of the game which is not finished yet. 
+This type models any state of the game which is not finished yet.
 
-`MovesDone` represents the ordered log of all moves, so we have the complete history 
+`MovesDone` represents the ordered log of all moves, so we have the complete history
 of actions at any time. Event Sourcing in small.
 
 Equally importantly, there is a list of all possible moves at this point of the game.
@@ -139,7 +139,7 @@ was a tie.
 Each state of a game can be described by the union of the previous two states:
 
 ``` fsharp
-type GameState = 
+type GameState =
   | Finished of FinishedGame
   | InProgress of RunningGame
 ```
@@ -155,9 +155,9 @@ is the value which represents this initial state:
 
 ``` fsharp
 module Game =
-  let initialState = 
+  let initialState =
     let positions = [One; Two; Three]
-    let cells = seq { 
+    let cells = seq {
       for x in positions do
          for y in positions do
             yield { X = x; Y = y; By = X }
@@ -173,10 +173,10 @@ let private evaluate (history: Move list): GameOutcome option = ...
 ```
 
 I don't show the full body here, since it's quite boring in evaluating rows, columns
-and diagonals for three-in-a-row. See the [full code](https://github.com/mikhailshilkov/tictactoe/blob/master/TicTacToe/Game.fs#L42-L56) 
+and diagonals for three-in-a-row. See the [full code](https://github.com/mikhailshilkov/tictactoe/blob/master/TicTacToe/Game.fs#L42-L56)
 if you want to.
 
-The following function is even more important: that's the main domain function called 
+The following function is even more important: that's the main domain function called
 `makeMove`. Its type is `RunningGame -> Move -> GameState` which perfectly communicates
 its intent: given a running game and a move, it returns the game state after the move.
 Note that
@@ -193,7 +193,7 @@ let makeMove (game: RunningGame) (move: Move): GameState =
   match evaluate movesDone with
   | Some result -> Finished { MovesDone = movesDone; Outcome = result }
   | None ->
-    let possibleMoves = 
+    let possibleMoves =
       List.except [move] game.PossibleMoves
       |> List.map (fun m -> { m with By = Player.other m.By })
     InProgress { MovesDone = movesDone; PossibleMoves = possibleMoves }
@@ -216,7 +216,7 @@ let makeRound player1 player2 gameState =
   let newGameState = player1 gameState |> makeMove gameState
   match newGameState with
   | Finished _ -> newGameState
-  | InProgress p -> player2 p |> makeMove p  
+  | InProgress p -> player2 p |> makeMove p
 ```
 
 Looks almost like monadic `bind` operation...
@@ -264,7 +264,7 @@ Here is how one such test is implemented.
 A helper function plays a sequence of indexes as moves:
 
 ``` fsharp
-let playSequence moves = 
+let playSequence moves =
   let playOne s i =
     match s with
     | InProgress p -> Game.makeMove p (p.PossibleMoves.[i % p.PossibleMoves.Length])
@@ -281,10 +281,10 @@ testProp "The game is always finished after 9 moves" <| fun (Gen.ListOf9 xs) ->
 ```
 
 Note the restriction `Gen.ListOf9 xs` that we put on the input sequence. It's a
-generator that I [defined](https://github.com/mikhailshilkov/tictactoe/blob/master/TicTacToe.Tests/Gen.fs#L31-L32), 
+generator that I [defined](https://github.com/mikhailshilkov/tictactoe/blob/master/TicTacToe.Tests/Gen.fs#L31-L32),
 so that the list always contains exactly 9 elements.
 
-Other property tests follow a similar pattern, you can see them 
+Other property tests follow a similar pattern, you can see them
 [here](https://github.com/mikhailshilkov/tictactoe/blob/master/TicTacToe.Tests/GameTests.fs).
 
 <a name="HATEOAS"></a>
@@ -437,26 +437,26 @@ The outline of this function:
 - It generates a new game ID
 - It creates initial game state of empty field
 - It serializes the state and saves it to Table Storage with `store` output binding
-- It returns HTTP body with 
+- It returns HTTP body with
 [serialized](https://github.com/mikhailshilkov/tictactoe/blob/master/TicTacToe.Functions/Api.fs#L30-L51) game response of type `GameDTO`
 
 The second Function `Play` handles the moves:
 
 ``` fsharp
 [<FunctionName("Play")>]
-let play([<HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = "game/{gameid}/move/{index}")>] 
+let play([<HttpTrigger(AuthorizationLevel.Anonymous, "POST", Route = "game/{gameid}/move/{index}")>]
          req: HttpRequest, gameid: string, index: int,
          [<Table("TicTacToe", "default", "{gameid}")>] entity: GameEntity) =
   let state = JsonConvert.DeserializeObject<GameState> entity.State
   match state with
   | Finished _ -> BadRequestResult() :> IActionResult
   | InProgress p when index < 0 || index >= p.PossibleMoves.Length -> BadRequestResult() :> IActionResult
-  | InProgress p -> 
+  | InProgress p ->
     let result = Game.makeRound (fun _ -> p.PossibleMoves.[index]) Bot.pickMove p
     entity.State <- JsonConvert.SerializeObject result
     entity.Score <- Scoring.calculateScore (DateTime.UtcNow - entity.StartedAt).TotalMilliseconds result
     ObjectResult(Api.serialize gameid result entity.Score) :> IActionResult
-```               
+```
 
 The outline is very similar:
 
@@ -490,7 +490,7 @@ testProp "Bot is able to play O at any possible position" <| fun (Gen.ListOfNonN
     match s with
     | InProgress p -> Game.makeRound (human i p) Bot.pickMove p
     | _ -> s
-  List.fold round (InProgress Game.initialState) xs |> ignore     
+  List.fold round (InProgress Game.initialState) xs |> ignore
 ```
 
 It makes sure that for any possible sequence of human moves, bot is actually able to make
@@ -505,12 +505,12 @@ So, my current bot implementation has 3 rules:
 - If possible, don't pick a move which leads to immediate loss after the next human move
 - Otherwise, pick a random move
 
-I implemented the bot using the approach described in my 
+I implemented the bot using the approach described in my
 [Functional Fold as Decision Tree Pattern](https://mikhail.io/2016/07/building-a-poker-bot-functional-fold-as-decision-tree-pattern/)
 post:
 
 ``` fsharp
-let pickMove (game: RunningGame) = 
+let pickMove (game: RunningGame) =
   [winNow O; notLoseNow; pickRandom]
   |> Seq.ofList
   |> Seq.choose (fun x -> x game)
@@ -529,7 +529,7 @@ let winNow player (game: RunningGame) =
   |> List.tryFind (fun move -> Game.makeMove game move |> isWin)
 
 let notLoseNow (game: RunningGame) =
-  let canLose = function 
+  let canLose = function
     | InProgress p -> match winNow X p with | Some _ -> true | None -> false
     | _ -> false
   let notLosingMoves =
@@ -538,7 +538,7 @@ let notLoseNow (game: RunningGame) =
   if List.isEmpty notLosingMoves && notLosingMoves.Length < game.PossibleMoves.Length then None
   else Some (notLosingMoves.[random.Next notLosingMoves.Length])
 
-let pickRandom (game: RunningGame) = 
+let pickRandom (game: RunningGame) =
   Some (game.PossibleMoves.[random.Next game.PossibleMoves.Length])
 ```
 
@@ -557,14 +557,14 @@ you play, the higher the score is. Move count is more important than timing.
 These principles are nicely expressed as property tests:
 
 ``` fsharp
-testProp "The score of faster game is not lower than slower game" 
+testProp "The score of faster game is not lower than slower game"
   <| fun (Gen.Positive duration1) (Gen.Positive duration2) game ->
   let (slower, faster) = maxmin id duration1 duration2
   let scoreFaster = Scoring.calculateScore faster game
   let scoreSlower = Scoring.calculateScore slower game
   Expect.isGreaterThanOrEqual scoreFaster scoreSlower "Bigger duration has lower score (or same)"
 
-testProp "The score of won game in less moves is greater than game with more moves" 
+testProp "The score of won game in less moves is greater than game with more moves"
   <| fun (Gen.Positive duration1) (Gen.Positive duration2) game1 game2 ->
   let (slower, faster) = maxmin id duration1 duration2
   let (moreMoves, lessMoves) = maxmin List.length game1 game2
@@ -590,7 +590,7 @@ let calculateScore duration (state: GameState) =
   | _ -> 0
 ```
 
-Now, the leaderboard piece. You've already seen the bits of this functionality in Azure Functions: 
+Now, the leaderboard piece. You've already seen the bits of this functionality in Azure Functions:
 they store the game state into Azure Table Storage.
 
 There is another Azure Function which handles `GET` requests to `/leaderboard` resource. It

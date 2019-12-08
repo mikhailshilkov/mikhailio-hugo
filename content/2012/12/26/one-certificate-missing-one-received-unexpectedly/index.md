@@ -1,7 +1,7 @@
 ---
 title: One certificate missing, one received unexpectedly
 date: 2012-12-26
-tags: ["Coursera","Online Classes","Online Learning","Statement of Accomplishment"]
+tags: ["Coursera","Learning"]
 description:  Today I want to give a note about two more online courses that I completed. The last one (10 weeks in September-November) was called Introduction to Computational Finance and Financial Econometrics and was lead by Eric Zivot from University of Washington. First of all, it was the most intense course out of all that I took to date.
 ---
 

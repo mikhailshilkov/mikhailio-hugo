@@ -1,8 +1,8 @@
 ---
 title: Sgen to precompile classes for XmlSerializer
 date: 2014-05-21
-tags: [".NET","ASP.NET","C#","Debugging","MSBuild","Performance","Sgen","XmlSerializer"]
-description: During my investigation of our ASP.NET application performance issue, I've found out that XmlSerializer may require a long warm-up. The first time, when it's used for a specific class (de-)serialization, can take up to 500 ms om my machine! We use XmlSerializer to encode/decode user preferences. Having 40 different classes being deserialized at user login lead to a massive delay of 14 seconds.
+tags: ["ASP.NET","CSharp","Debugging","Performance"]
+description: During my investigation of our ASP.NET application performance issue, I've found out that XmlSerializer may require a long warm-up. The first time, when it's used for a specific class (de-)serialization, can take up to 500 ms om my machine!
 ---
 
 During my investigation of our ASP.NET application performance issue, I've found out that XmlSerializer may require a long warm-up. The first time, when it's used for a specific class (de-)serialization, can take up to 500 ms om my machine! We use XmlSerializer to encode/decode user preferences. Having 40 different classes being deserialized at user login lead to a massive delay of 14 seconds. This is only for the first user login after the application start-up, but you do quite a lot of 'first times' every day while developing the application.

@@ -1,7 +1,7 @@
 ---
 title: "Azure Functions: Cold Start Duration per Language"
 lastmod: 2019-09-26
-tags: ["Cold Starts", "Azure", "C#", "JavaScript", "Python", "Java", "Azure Functions"]
+tags: ["Cold Starts", "Azure", "CSharp", "JavaScript", "Python", "Java", "Azure Functions"]
 nofeed: true
 thumbnail: languages_chart_thumb.png
 ---

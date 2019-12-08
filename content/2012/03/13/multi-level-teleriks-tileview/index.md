@@ -1,7 +1,7 @@
 ---
 title: Multi-level telerik's TileView
 date: 2012-03-13
-tags: ["C#","Silverlight","Telerik","TileView","User Control"]
+tags: ["CSharp","Silverlight","Telerik"]
 description: We were investigating the options for visual representation of hierarchical dashboard in our Silverlight application. This means, we want to display the number of gauges with tree-like structure. Here is a sample...
 ---
 

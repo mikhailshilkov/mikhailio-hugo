@@ -1,8 +1,8 @@
 ---
 title: How I fixed a bug in SQL Server
 date: 2015-02-17
-tags: ["SQL Server","Execution Plan","Query Plan","Database","Repro","Erland Sommarskog"]
-description: Our production databases were migrated from SQL Server 2012 to SQL Server 2014. Among other improvements in the latter, the new cardinality estimator was introduced. In two words, cardinality estimator is a piece of SQL functionality which estimates how many rows the engine might get for a specific query or a query part. The new estimator is supposed to be smarter than the old one, of course. It takes more factors into account, and thus should give better results with some query plans. But "new" also means "less tested"...
+tags: ["SQL Server","Databases"]
+description: Our production databases were migrated from SQL Server 2012 to SQL Server 2014. Among other improvements in the latter, the new cardinality estimator was introduced. The new estimator is supposed to be smarter than the old one, of course. It takes more factors into account, and thus should give better results with some query plans. But "new" also means "less tested"...
 ---
 Well, not really... I just reported it to Microsoft and then it got fixed. Anyway, here is the story.
 

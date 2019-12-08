@@ -2,7 +2,7 @@
 layout: post
 title: The Green Hackfest - my first hackathon
 date: 2015-03-15
-tags: ["Hackathon","Hackfest","Challenge","Green Hackfest","Green Technologies"]
+tags: ["Hackathon"]
 description: In this post I'd like to share my experience about the first hackathon that I took part in. It was called The Green Hackfest and took place in Utrecht, the Netherlands on 10-12 October 2014. My team won a price of 1000 EURO, so read on to know what hackathon is, why you should go there, and how to score the price. And of course, pictures, pictures, pictures.
 ---
 In this post I'd like to share my experience about the first hackathon that I took part in. It was called [The Green Hackfest](http://the-hackfest.com/past-hacks/green-hackfest-utrecht-2014.html) and took place in Utrecht, the Netherlands on 10-12 October 2014.

@@ -1,7 +1,7 @@
 ---
 title: Gauge control with two values (Silverlight)
 date: 2012-02-28
-tags: ["gauge control","Silverlight","User Control"]
+tags: ["Silverlight"]
 description: While developing the dashboard to display several performance indexes, I bumped into the task of visualizing the pair of numbers on a single gauge. One number would show a person's performance metric, while the other one would display the person group's performance indicator to compare with. I couldn't find a ready control to use, so I decided to design my own.
 ---
 

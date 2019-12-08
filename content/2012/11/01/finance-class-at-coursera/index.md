@@ -1,7 +1,7 @@
 ---
 title: Introduction to Finance class at Coursera
 date: 2012-11-01
-tags: ["Coursera","finance","Online Classes","Online Learning","Statement of Accomplishment"]
+tags: ["Coursera","Learning"]
 description: I've recently received a statement of accomplishment document for Coursera's online Introduction to Finance class that I took in July-September this year.
 ---
 

@@ -1,16 +1,16 @@
 ---
 title: Precompiled Azure Functions in F#
 date: 2017-12-03
-tags: ["Azure Functions", "F#", "F# Advent Calendar", "Azure"]
+tags: ["Azure Functions", "FSharp", "Advent Calendar", "Azure"]
 thumbnail: teaser.png
 ---
 
-*This post is giving a start to 
-[F# Advent Calendar in English 2017](https://sergeytihon.com/2017/10/22/f-advent-calendar-in-english-2017/). 
+*This post is giving a start to
+[F# Advent Calendar in English 2017](https://sergeytihon.com/2017/10/22/f-advent-calendar-in-english-2017/).
 Please follow the calendar for all the great posts to come.*
 
 Azure Functions is a "serverless" cloud offering from Microsoft. It
-allows you to run your custom code as response to events in the cloud. 
+allows you to run your custom code as response to events in the cloud.
 Functions are very easy to
 start with; and you only pay per execution - with free allowance sufficient
 for any proof-of-concept, hobby project or even low-usage production loads.
@@ -38,7 +38,7 @@ you have `.NET Core 2` and `Node.js 8.x` with `npm` installed. My editor of
 choice is Visual Studio Code with Ionide plugin.
 
 I'll show you how to create a new F# Function App from scratch. If you want to
-jump to runnable project, you can get it from 
+jump to runnable project, you can get it from
 [my github](https://github.com/mikhailshilkov/azure-functions-fsharp-examples/tree/master/6-precompiled-timer).
 
 We start with creating a new F# library project for .NET Standard 2. Run
@@ -86,7 +86,7 @@ based on time intervals. Every time the function is called, we log how many
 days we still need to wait before Christmas 2017.
 
 To convert this simple F# function to an Azure Function, create a folder called
-`Hello` (or choose any other name) next to the project file and add 
+`Hello` (or choose any other name) next to the project file and add
 `function.json` file in there:
 
 ``` json
@@ -122,9 +122,9 @@ file will do for now:
 ```
 
 Most triggers need to connect to a Storage Account. For examples, timer
-trigger uses it to hold leases to define which running instance will 
-actually execute the action every minute. Copy a connection string to your 
-Storage Account (local Storage emulator is fine too) and put it into 
+trigger uses it to hold leases to define which running instance will
+actually execute the action every minute. Copy a connection string to your
+Storage Account (local Storage emulator is fine too) and put it into
 `local.settings.json` file:
 
 ``` json
@@ -153,7 +153,7 @@ files into `bin` folder. Add the following section in there:
   <Content Include="local.settings.json">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
-</ItemGroup> 
+</ItemGroup>
 ```
 
 Run App Locally
@@ -171,7 +171,7 @@ The first line produces the dll file and the second line copies it
 and all of its dependencies to `publish` folder.
 
 The nice thing about Azure Functions is that you can easily run them
-locally on a development machine. Execute the following command to 
+locally on a development machine. Execute the following command to
 install the runtime and all the required libraries:
 
 ``` sh
@@ -181,7 +181,7 @@ npm install -g azure-functions-core-tools@core
 This will add a `func` CLI to your system which is the tool to
 use for all Function related operations.
 
-Navigate to `bin\Debug\netstandard2.0\publish` folder and run `func start` 
+Navigate to `bin\Debug\netstandard2.0\publish` folder and run `func start`
 from there. You should see that your app is now running, and your timer
 function is scheduled for execution:
 
@@ -192,7 +192,7 @@ messages in the log:
 
 ![Timer Trigger Working](./funcran.png)
 
-Integrate into VS Code 
+Integrate into VS Code
 ----------------------
 
 You are free to use full Visual Studio or any editor to develop Function
@@ -212,7 +212,7 @@ Also, check out [Azure Functions Extension](https://marketplace.visualstudio.com
 Deploy to Azure
 ---------------
 
-You can deploy the exact same application binaries to Azure. Start by 
+You can deploy the exact same application binaries to Azure. Start by
 creating an empty Function App in the portal, or via Azure CLI (`func` CLI
 does not support that).
 
@@ -242,7 +242,7 @@ Several other event types can trigger Azure Functions, and for all of them
 you can create precompiled functions and run them locally.
 
 The most ubiquotous trigger for any serverless app is probably HTTP. So,
-for the rest of the article I will focus on several approaches to 
+for the rest of the article I will focus on several approaches to
 implement HTTP functions. Nonetheless, the same techique can be applied to
 other triggers too.
 
@@ -262,7 +262,7 @@ module PrecompiledHttp =
     ContentResult(Content = "HO HO HO Merry Christmas", ContentType = "text/html")
 ```
 
-You can find a full example of HTTP Function App 
+You can find a full example of HTTP Function App
 [here](https://github.com/mikhailshilkov/azure-functions-fsharp-examples/tree/master/5-precompiled).
 
 This code is using ASP.NET Core classes for request and response. It's still
@@ -299,10 +299,10 @@ Let's see at some examples of how to use it.
 Suave Function
 --------------
 
-What can we do to enhance developer experience? We can use our 
+What can we do to enhance developer experience? We can use our
 favourite F# libraries.
 
-[Suave](http://suave.io/) is one of the most popular libraries to 
+[Suave](http://suave.io/) is one of the most popular libraries to
 implement Web API's with. And we can use it in Azure Functions too!
 
 Let's first make a small twist to HTTP trigger definition in `function.json`:
@@ -319,7 +319,7 @@ Let's first make a small twist to HTTP trigger definition in `function.json`:
 ],
 ```
 
-Binding now defines a wildcard route to redirect all requests 
+Binding now defines a wildcard route to redirect all requests
 to this function. That's because we want Suave to take care of routing
 for us.
 
@@ -332,7 +332,7 @@ module App =
   open Suave.Operators
   open Suave.Filters
 
-  let app = 
+  let app =
     GET >=> choose
       [ path "/api/what" >=> OK "Every time we love, every time we give, it's Christmas."
         path "/api/when" >=> OK "Christmas isn't a season. It's a feeling."
@@ -353,7 +353,7 @@ The heavy lifting is done by `runWebPart` function, which is a utility
 function defined in the same application. You can see the full code
 of this wiring in [my repo](https://github.com/mikhailshilkov/azure-functions-fsharp-examples/tree/master/7-suave).
 
-Run the application and request the URL `http://localhost:7071/api/what` 
+Run the application and request the URL `http://localhost:7071/api/what`
 to see the function in action.
 
 This example is very simple, but you can do lots of powerful stuff with Suave!
@@ -382,18 +382,18 @@ nuget Microsoft.NET.Sdk.Functions
 nuget Microsoft.AspNetCore.Mvc.Core
 ```
 
-that I used in [example](https://github.com/mikhailshilkov/azure-functions-fsharp-examples/tree/master/8-paket) 
+that I used in [example](https://github.com/mikhailshilkov/azure-functions-fsharp-examples/tree/master/8-paket)
 which demonstrates Paket + Functions combination.
 
 Attribute-Based Functions
 -------------------------
 
-Up until now, we were writing `function.json` files manually for each 
-function. This is not very tedious, but it is error prone. Microsoft offers an alternative 
+Up until now, we were writing `function.json` files manually for each
+function. This is not very tedious, but it is error prone. Microsoft offers an alternative
 programming model where these files are auto-generated by Functions SDK.
 
-This programming model is based on attributes, which are similar to WebJobs 
-SDK attributes. With this approach, there's no `function.json` file in 
+This programming model is based on attributes, which are similar to WebJobs
+SDK attributes. With this approach, there's no `function.json` file in
 the project. Instead, the function declaration is decorated with attributes:
 
 ``` fsharp
@@ -401,11 +401,11 @@ the project. Instead, the function declaration is decorated with attributes:
 let run([<HttpTrigger>] req: HttpRequest, log: TraceWriter)
 ```
 
-The same development flow still works. Once you run `dotnet build`, a new 
-`function.json` file will be generated and placed into `bin` folder. Functions 
+The same development flow still works. Once you run `dotnet build`, a new
+`function.json` file will be generated and placed into `bin` folder. Functions
 runtime will be able to use it to run the function as usual.
 
-Note that the generated file looks a bit different from the manual 
+Note that the generated file looks a bit different from the manual
 equivalent:
 
 1. It manifests itself with
@@ -419,13 +419,13 @@ equivalent:
 in the generated file. Only trigger will be visible in `json`. Don't worry,
 input and output bindings will still work.
 
-You can find an example of HTTP function with attributes 
+You can find an example of HTTP function with attributes
 [here](https://github.com/mikhailshilkov/azure-functions-fsharp-examples/tree/master/9-attributes).
 
 There are pro's and con's in this model. Obviously, not having to write
 JSON files manually is beneficial. Some people find the binding attributes
-really ugly though, especially when you have 3 or 4 bindings and each has 
-multiple parameters. 
+really ugly though, especially when you have 3 or 4 bindings and each has
+multiple parameters.
 
 My preference is to use attributes, but don't mix attribute decoration
 with real code. I.e. keep the Function's body to a simple 1-liner, and

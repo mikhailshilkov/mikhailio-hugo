@@ -1,0 +1,45 @@
+{{ define "header"}}
+{{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+<div class="main-content">
+
+    <section class="recent-posts">
+        <div class="section-title">
+            <h2><span>Topics</span></h2>
+        </div>
+        <div class="row listrecent">
+            {{ if not (eq (len $.Site.Taxonomies.tags) 0) }}
+            {{ $fontUnit := "rem" }}
+            {{ $largestFontSize := 4 }}
+            {{ $smallestFontSize := 1.0 }}
+            {{ $fontSpread := sub $largestFontSize $smallestFontSize }}
+            {{ $max := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
+            {{ $min := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+            {{ $spread := sub $max $min }}
+            {{ $fontStep := div $fontSpread $spread }}
+            {{ $colors := slice "#999999" "#333333" "green" "orange" }}
+
+            {{$index := 0}}
+            <div id="tag-cloud" style="padding: 5px 15px">
+                {{ range $name, $taxonomy := $.Site.Taxonomies.tags }}
+                {{ $currentTagCount := len $taxonomy.Pages }}
+                {{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep) ) }}
+                {{ $count := len $taxonomy.Pages }}
+                {{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
+                {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth) ) }}
+                {{ $color := index $colors (int (sub $currentFontSize 0.5)) }}
+                <!--Current font size: {{$currentFontSize}}-->
+                <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}"
+                    style="white-space: nowrap; color: {{$color}}; font-size:{{$currentFontSize}}{{$fontUnit}}">{{.Page.Title}}&nbsp;</a>
+                {{ end }}
+            </div>
+            {{ end }}
+    </section>
+</div>
+{{ end }}
+
+{{ define "footer" }}
+{{- partial "_shared/footer.html" . -}}
+{{end}}

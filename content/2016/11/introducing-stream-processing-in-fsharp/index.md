@@ -1,17 +1,17 @@
 ---
 title: "Introducing Stream Processing in F#"
 date: 2016-11-29
-tags: ["Stream Processing", "F#", "F# Advent Calendar", "Data Processing"]
+tags: ["Stream Processing", "FSharp", "Advent Calendar", "Data Processing"]
 thumbnail: teaser.png
 ---
 
-*The post was published for 
+*The post was published for
 [F# Advent Calendar 2016](https://sergeytihon.wordpress.com/2016/10/23/f-advent-calendar-in-english-2016/),
 thus the examples are themed around the Christmas gifts.*
 
 This article is my naive introduction to the data processing discipline called **Stream Processing**.
 
-I describe stream processing from the developer perspective, using the 
+I describe stream processing from the developer perspective, using the
 following (rather unusual) angle:
 - F# as the primary language
 - Concepts and principles are more important than frameworks and tools
@@ -26,10 +26,10 @@ What's and Why's
 There are several techniques to process data that are flowing into your
 applications, and stream processing is one of them.
 
-Stream processing is focused on the real-time processing of data 
-continuously, concurrently, and in a record-by-record fashion. Stream 
-processing is designed to analyze and act on live data flow, using 
-"continuous queries" expressed in user code. Data is structured 
+Stream processing is focused on the real-time processing of data
+continuously, concurrently, and in a record-by-record fashion. Stream
+processing is designed to analyze and act on live data flow, using
+"continuous queries" expressed in user code. Data is structured
 as a continuous stream of events over time:
 
 ![Flow of events](eventflow.png)
@@ -38,32 +38,32 @@ In contrast to some other approaches to reason about application
 structure, stream processing concepts are drawn around the data structures,
 flows and transformations rather than services or remote calls.
 
-Although the approach is nothing new, it gained much more traction 
-during the last years, especially in big data community. Products 
-like *Storm*, *Kafka*, *Flink*, *Samza* (all under *Apache Foundation*), 
-*Google Cloud Dataflow*, *Akka Streams* are popularizing the programming 
+Although the approach is nothing new, it gained much more traction
+during the last years, especially in big data community. Products
+like *Storm*, *Kafka*, *Flink*, *Samza* (all under *Apache Foundation*),
+*Google Cloud Dataflow*, *Akka Streams* are popularizing the programming
 model and bringing the tools to make it reliable and scalable.
 
-These products are born from the need to run data processing in 
+These products are born from the need to run data processing in
 massively distributed environments. They are all about scaling out
 and solving or mitigating the issues of distributed systems which
 are inherintly not reliable.
 
-While this is a noble and mission-critical goal for internet-scale companies, most 
+While this is a noble and mission-critical goal for internet-scale companies, most
 applications do not require such massive performances and scale.
 
 There is something to be said for the domain-driven approach, when
 an application is built around the main asset and burden of enterprise
 systems: the core business logic. It may happen that you don't need
 a general purpose framework with the lowest processing latency. Instead
-your choice of tools might lean towards the cleanest code possible, tailored 
+your choice of tools might lean towards the cleanest code possible, tailored
 for your own needs, and maintainable over time.
 
 Knowing the landscape can help you do the right trade-off.
 
-The recent Stream Processing boom comes from *Apache* / *JVM* world. 
-Unfortunately, stream processing frameworks and underlying concepts 
-are mostly unfamiliar to *.NET* developers. 
+The recent Stream Processing boom comes from *Apache* / *JVM* world.
+Unfortunately, stream processing frameworks and underlying concepts
+are mostly unfamiliar to *.NET* developers.
 
 While *Azure Cloud* provides a managed service called *Azure Stream Analytics*,
 the product is built around SQL-like language and is rather limited in
@@ -73,17 +73,17 @@ We will have a look at other options in .NET space in the further posts
 of the series.
 
 
-For now, I want to start filling the gap and introduce the basic concepts 
-with F#. As a bonus, we are not limited by particular tools and 
+For now, I want to start filling the gap and introduce the basic concepts
+with F#. As a bonus, we are not limited by particular tools and
 implementations, but can start from the ground up.
 
 Elements of a Stream
 --------------------
 
-As I already mentioned above, people are doing stream processing for long 
-time. In fact, if you receive events and then apply the transformation 
-logic structured around a single event at a time - you are already 
-doing stream processing. 
+As I already mentioned above, people are doing stream processing for long
+time. In fact, if you receive events and then apply the transformation
+logic structured around a single event at a time - you are already
+doing stream processing.
 
 Here is a simple picture which illustrates the elements of processing:
 
@@ -94,7 +94,7 @@ into the pipeline. They are the input intergration points, typically they can
 be persistent message queues, logs or subscription feeds.
 
 A sequence of events in the same Source is called **Stream** (thus Stream Processing).
-Streams have **unbounded** nature, which means that the amount 
+Streams have **unbounded** nature, which means that the amount
 of data points is not limited in size or time. There is no "end" of data: events
 will potentially keep coming as long as the processing application is alive.
 
@@ -110,8 +110,8 @@ as a means to
 - Correlate events from several streams
 - Enrich event data with external lookup data
 
-Data **Sink** represents the output of the pipeline, the place where the transformed, 
-aggregated and enriched events end up at. 
+Data **Sink** represents the output of the pipeline, the place where the transformed,
+aggregated and enriched events end up at.
 
 A Sink can be a database of any kind, which stores the processed data, ready
 to be consumed by user queries and reports.
@@ -132,17 +132,17 @@ Gift Count Pipeline
 -------------------
 
 Word Count is the Hello World and TODO app of the data
-processing world. Here are the reference implementations for 
+processing world. Here are the reference implementations for
 [Dataflow](https://cloud.google.com/dataflow/examples/wordcount-example),
 [Flink](https://github.com/apache/flink/blob/master/flink-examples/flink-examples-batch/src/main/java/org/apache/flink/examples/java/wordcount/WordCount.java) and
 [Storm](https://github.com/nathanmarz/storm-starter/blob/master/src/jvm/storm/starter/WordCountTopology.java).
 
-To make it a bit more fun, we'll make a Gift Count pipeline out of it. 
+To make it a bit more fun, we'll make a Gift Count pipeline out of it.
 The following image summarizes our Gift Count topology:
 
 ![Gift Count Pipeline](giftcount.png)
 
-The pipeline consists of one source, one sink and two transformations. 
+The pipeline consists of one source, one sink and two transformations.
 The input of the pipeline is the source of gift lists (each list is a comma
 separated line of text).
 
@@ -151,7 +151,7 @@ and then count the occurances of each gift in the stream. The output
 is written into a database sink, e.g. a key value store with gifts as keys and
 amounts as values.
 
-Note that while Split stage is stateless, the Count stage needs to keep some 
+Note that while Split stage is stateless, the Count stage needs to keep some
 internal state to be able to aggregate data over multiple entries.
 
 Let's start thinking about the implementation. How do we model transformations
@@ -161,7 +161,7 @@ Transformations
 ---------------
 
 Here's how a transformation is typically represented in *Apache Storm*, the grand
-daddy of Big Data Stream Processing systems (transformations are called 
+daddy of Big Data Stream Processing systems (transformations are called
 *Bolts* in Storm, and code is Java):
 
 ``` java
@@ -193,7 +193,7 @@ is what we can do:
 - Use domain-specific types with F# records and ADTs
 
 Our domain is very simple in Gift Count example. Still, we could describe `Gift`
-type to restrict it to be lowercase, not empty etc. But for the sake of simplisity 
+type to restrict it to be lowercase, not empty etc. But for the sake of simplisity
 I'll limit it to one liner:
 
 ``` fsharp
@@ -201,7 +201,7 @@ type Gift = string
 ```
 
 Now, the type of the first transformation should be `string -> Gift list`. So,
-our transformation is based on a function 
+our transformation is based on a function
 
 ``` fsharp
 let tokenize (wishlist: string) =
@@ -212,7 +212,7 @@ let tokenize (wishlist: string) =
 ```
 
 The counting transformation is modeled in a similar way. The base function
-is of type `Gift list -> (Gift * int) list` and is actually implemented as 
+is of type `Gift list -> (Gift * int) list` and is actually implemented as
 
 ``` fsharp
 let count xs = List.countBy id xs
@@ -253,7 +253,7 @@ Pipeline
     .apply(TextIO.Read.from("..."))
     .apply(ParDo.named("ExtractGifts").of(new DoFn<String, String>() {
          public void processElement(ProcessContext c) { /* Implements tokenizer */ }
-    }))    
+    }))
     .apply(Count.<String>perElement())
     .apply(MapElements.via(new SimpleFunction<KV<String, Long>, String>() {
          public String apply(KV<String, Long> element) { /* Formats results */ }
@@ -295,9 +295,9 @@ Source and Sink
 ---------------
 
 We declared the source of a stream to be unbounded, not limited in time
-or event count. 
+or event count.
 
-However, the modern stream processing systems like *Flink* and *Dataflow* 
+However, the modern stream processing systems like *Flink* and *Dataflow*
 (both with ideas from *Apache Beam*) are trying to sit on two chairs at the same time by declaring
 that bounded data sources are just sub-case of unbounded streams. If your
 goal is to process a fixed batch of data, you could represent it as
@@ -314,7 +314,7 @@ To follow this modern path, we will declare our `Source` as following:
 type BoundedSource<'T> = unit -> 'T seq
 type UnboundedSource<'T> = ('T -> unit) -> unit
 
-type Source<'T> = 
+type Source<'T> =
   | Bounded of BoundedSource<'T>
   | Unbounded of UnboundedSource<'T>
 ```
@@ -324,7 +324,7 @@ a side effect-ful function, which returns a sequence of elements when called.
 The argument of `unit` is there to delay the processing: we need to declare
 sources long before they start to emit values.
 
-The `Unbounded` case is a bit harder to understand. It accepts an action to be 
+The `Unbounded` case is a bit harder to understand. It accepts an action to be
 executed as the argument and returns nothing meaningful (`unit` again). You will
 see a usage example later.
 
@@ -335,7 +335,7 @@ a discriminated union too, but with just one case:
 type Sink<'T> = | Action of ('T -> unit)
 ```
 
-Now, we should be able to simulate an empty processing pipeline: directly connect 
+Now, we should be able to simulate an empty processing pipeline: directly connect
 a source to a sink. Let's start with bounded data:
 
 ``` fsharp
@@ -356,7 +356,7 @@ This code will print out all the gift names from the sequence. Now, let's extend
 stream unbounded data. Before we can do that, let's introduce a helper class:
 
 ``` fsharp
-type Triggered<'T>() = 
+type Triggered<'T>() =
   let subscribers = new List<'T -> unit>()
   member this.DoNext x =
     subscribers.ForEach(fun s -> s x)
@@ -384,7 +384,7 @@ Seq.initInfinite (fun _ -> Console.ReadLine())
 |> Seq.iter consoleSource.DoNext
 ```
 
-This little program will echo whatever you enter into the console until you type 
+This little program will echo whatever you enter into the console until you type
 `q` to quit. That is an example of unbounded data: you can type as long as
 you want, there is no hard limit.
 
@@ -428,12 +428,12 @@ module Flow =
 ```
 
 Then, we just need an implementation of `IFlow` and a factory method to create
-an initial instance of flow given a data source. 
+an initial instance of flow given a data source.
 
-Now I'd like to emphasize that there are multiple possible implementations 
+Now I'd like to emphasize that there are multiple possible implementations
 of `IFlow` depending on the required properties for the pipeline. They might make
 use of different libraries or frameworks, or be a naive simple implementation like
-the one below, suitable for modeling and testing. 
+the one below, suitable for modeling and testing.
 
 In fact, one of my implementations doesn't run the pipeline, but instead uses reflection
 to build a visual graph of processing stages, to be used for documentation and discussion
@@ -458,7 +458,7 @@ module Runner =
 
   let private countByTransform<'a, 'b when 'b: equality> (getKey: 'a -> 'b) source =
     let state = new Dictionary<'b, int>()
-    let addItem i = 
+    let addItem i =
       let key = getKey i
       let value = if state.ContainsKey key then state.[key] else 0
       let newValue = value + 1
@@ -482,7 +482,7 @@ module Runner =
 
       member this.Collect<'b> map = this.Apply<'b> (collectTransform map)
 
-      member this.CountBy<'b when 'b: equality>(getKey) = 
+      member this.CountBy<'b when 'b: equality>(getKey) =
         this.Apply<'b * int> (countByTransform<'a, 'b> getKey)
 
       member this.To(sink) = connect(sink)
@@ -504,20 +504,20 @@ unboundedSource                // e.g. same console source as before
 |> Flow.run                    // start listening for events
 ```
 
-Here you can find 
+Here you can find
 [the full code of the Gift Count example](https://github.com/mikhailshilkov/mikhailio-samples/blob/master/streamprocessing/GiftCount.fs).
 
 Conclusion
 ----------
 
-In this article, we started reasoning about low-latency processing 
+In this article, we started reasoning about low-latency processing
 pipelines from the domain logic point of view. We
 tried to reuse well known F# idioms like ADTs and HOFs
 to show how stream processing is not much different from other types
 of applications.
 
 Although this post is quite long by now, we just scratched the surface
-of the stream processing. Here are some focus areas for the 
+of the stream processing. Here are some focus areas for the
 follow-ups:
 
 - More complex pipeline topologies

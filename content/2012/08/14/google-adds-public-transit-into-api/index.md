@@ -1,7 +1,7 @@
 ---
 title: Google adds Public Transit into API
 date: 2012-08-14
-tags: ["Google Maps","Google Transit"]
+tags: ["Google Maps"]
 description: Now, both Google Directions Web Services and Google Maps JavaScript API include building the routes with Public Transit.
 ---
 

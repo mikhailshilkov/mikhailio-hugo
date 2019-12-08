@@ -1,7 +1,7 @@
 ---
 title: "AWS Lambda: Cold Start Duration per Language"
 lastmod: 2019-09-26
-tags: ["Cold Starts", "AWS", "JavaScript", "Python", "Go", "C#", "Ruby", "Java", "AWS Lambda"]
+tags: ["Cold Starts", "AWS", "JavaScript", "Python", "Go", "CSharp", "Ruby", "Java", "AWS Lambda"]
 nofeed: true
 thumbnail: languages_chart_thumb.png
 ---

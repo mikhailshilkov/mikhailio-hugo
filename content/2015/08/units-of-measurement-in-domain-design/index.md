@@ -2,7 +2,7 @@
 title: Units of measurement in domain design
 date: 2015-08-11
 tags: ["Units of Measurement", "Domain Design", "DDD", "Clean Code"]
-description: "If you have business application of any decent size, your most important code probably resides in domain logic. When working with 3rd party code, you can always find an answer on stack overflow or official documentation, but your domain is all yours. Try to make it as simple and readable as possible, and it will always pay you back. Today I want to discuss one aspect of writing clean domain code: units of measurement. It is important for any domain (or sub-domain) where you operate some physical measurements."
+description: "If you have business application of any decent size, your most important code probably resides in domain logic. Try to make it as simple and readable as possible, and it will always pay you back. Today I want to discuss one aspect of writing clean domain code: units of measurement."
 ---
 If you have business application of any decent size, your most important code probably resides in domain logic.
 When working with 3rd party code, you can always find an answer on stack overflow or official documentation, but your domain is all yours. Try to make it as simple and readable as possible, and it will always pay you back.

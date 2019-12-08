@@ -1,12 +1,12 @@
 ---
 title: "Building a Poker Bot: Functional Fold as Decision Tree Pattern"
 date: 2016-07-22
-tags: ["F#", "Poker Bot", "Functional Programming"]
+tags: ["FSharp", "Poker Bot", "Functional Programming"]
 thumbnail: teaser.png
 ---
 
-*This is the fifth part of **Building a Poker Bot** series where I describe my experience developing bot software 
-to play in online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively 
+*This is the fifth part of **Building a Poker Bot** series where I describe my experience developing bot software
+to play in online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively
 easy and very enjoyable. Here are the previous parts:*
 
 - [*Building a Poker Bot: Card Recognition*](https://mikhail.io/2016/02/building-a-poker-bot-card-recognition/)
@@ -32,7 +32,7 @@ do that is to translate each condition to an `if` statement. This way, the neste
 conditions will guide the application through the branches right to the point where
 an appropriate decision can be returned.
 
-This approach works for small cases, but in reality it does not scale particularly 
+This approach works for small cases, but in reality it does not scale particularly
 well in terms of the tree size. Namely, the two problems are:
 
 **Tree depth**. In many cases, you might need to pass ten or more conditions before
@@ -63,7 +63,7 @@ Solution
 
 **Break the decision graph down** vertically into smaller chunks. Each chunk should
 represent multiple layers of conditions and lead to eventual decisions. All
-conditions in sub-graph should be related to each other (high cohesion) and as 
+conditions in sub-graph should be related to each other (high cohesion) and as
 isolated from other sub-graphs as possible (low coupling).
 
 Here are two examples of such sub-graphs:
@@ -76,9 +76,9 @@ will be handled by other sub-graphs.
 
 **Represent each sub-graph as a function** with arbitrary signature which accepts
 all the parameters that are required for this sub-graph. Do not accept any parameters
-which are not related. 
+which are not related.
 
-The last parameter of each function should be a 
+The last parameter of each function should be a
 [Maybe](https://mikhail.io/2016/01/monads-explained-in-csharp/#maybe) of Decision,
 so should be the function's return type.
 
@@ -92,7 +92,7 @@ as the decision produced from the graph.
 Code sample
 -----------
 
-We define a number of functions, each one of which represents one piece of decision 
+We define a number of functions, each one of which represents one piece of decision
 logic. Then we put them all into the list:
 
 ``` fsharp
@@ -110,7 +110,7 @@ The type of this list is `(Decision option -> Decision option) list`.
 
 Note how each individual function accepts different set of parameters. Current hand's
 `snapshot` is used by all of them, while calculated hand `value` and previous
-action `history` are used only by some of the functions. 
+action `history` are used only by some of the functions.
 
 Now, here is the definition of the facade decision making function:
 

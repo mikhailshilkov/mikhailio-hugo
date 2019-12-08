@@ -1,7 +1,7 @@
 ---
 title: "Building a Poker Bot: Card Recognition"
 date: 2016-02-01
-tags: ["Poker Bot", "F#", "Image Recognition"]
+tags: ["Poker Bot", "FSharp", "Image Recognition"]
 description: This is the first part of Building a Poker Bot series where I describe my experience developing bot software for online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively easy and very enjoyable.
 ---
 

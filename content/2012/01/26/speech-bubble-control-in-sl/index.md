@@ -1,7 +1,7 @@
 ---
 title: Speech bubble custom border control in Silverlight
 date: 2012-01-26
-tags: ["C#","Silverlight","Speech Bubble","User Control","WPF"]
+tags: ["CSharp","Silverlight","WPF"]
 description: Recently, I was trying to find a Silverlight control, which works like a standard Border, but looks like a Speech Bubble instead. This means the border would have a "leader" triangle, which could point to a related visual element.
 ---
 

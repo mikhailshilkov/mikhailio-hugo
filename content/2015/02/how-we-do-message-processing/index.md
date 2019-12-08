@@ -1,7 +1,7 @@
 ---
 title: How we do message processing
 date: 2015-02-05
-tags: ["Architecture", "Design", "Messages", "Message Processing"]
+tags: ["Architecture", "Messaging"]
 description: Our team develops a back-end system that processes messages from mobile devices. The devices collect information from complex machines and send messages to our data center. In this article I want to share our approaches to building such processing software. The ideas are quite general and can be applied to any system of the following architecture...
 ---
 

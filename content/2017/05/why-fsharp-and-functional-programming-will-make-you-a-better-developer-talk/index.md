@@ -2,7 +2,7 @@
 layout: post
 title: Why F# and Functional Programming Talk at .NET Development Nederland Meetup
 date: 2017-05-08
-tags: ["Talk", "Meetup", "Functional Programming", "F#", "Slides"]
+tags: ["Talk", "Meetup", "Functional Programming", "FSharp", "Slides"]
 ---
 
 On May 8th 2017 I gave a talk at the
@@ -15,14 +15,14 @@ the covered topics.
 Why Learn F# and Functional Programming
 ---------------------------------------
 
-Link to full-screen HTML slides: 
+Link to full-screen HTML slides:
 [Why Learn F# and Functional Programming](https://mikhail.io/talks/why-fsharp/)
 
 Slides on SlideShare:
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/iG9omDKb42ogTk" 
-width="595" height="485" 
-frameborder="0" marginwidth="0" marginheight="0" scrolling="no" 
-style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> 
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/iG9omDKb42ogTk"
+width="595" height="485"
+frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen>
 </iframe>
 
 Useful links:

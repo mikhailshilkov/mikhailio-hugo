@@ -1,7 +1,7 @@
 ---
 title: Monads explained in C# (again)
 date: 2018-07-05
-tags: ["Functional Programming", "Monads", "Maybe", "LINQ", "C#", "F#"]
+tags: ["Functional Programming", "Monads", "LINQ", "CSharp", "FSharp"]
 thumbnail: teaser.png
 images: [teaser.png]
 description: Yet another Monad tutorial, this time for C# OOP developers
@@ -9,16 +9,16 @@ description: Yet another Monad tutorial, this time for C# OOP developers
 
 I love functional programming for the simplicity that it brings.
 
-But at the same time, I realize that learning functional programming is a challenging 
-process. FP comes with a baggage of unfamiliar vocabulary that can be daunting for 
+But at the same time, I realize that learning functional programming is a challenging
+process. FP comes with a baggage of unfamiliar vocabulary that can be daunting for
 somebody coming from an object-oriented language like C#.
 
 ![Functional Programming Word Cloud](functional-programming-word-cloud.png)
 
 *Some of functional lingo*
 
-"Monad" is probably the most infamous term from the list above. Monads have reputation of being 
-something very abstract and very confusing. 
+"Monad" is probably the most infamous term from the list above. Monads have reputation of being
+something very abstract and very confusing.
 
 The Fallacy of Monad Tutorials
 ------------------------------
@@ -51,7 +51,7 @@ until the last final step made the puzzle complete.
 But they don't remember the whole path anymore. They go online and blog about that very last step as
 the key to understanding, joining the club of flawed explanations.
 
-There is an actual [academic paper from Tomas Petricek](http://tomasp.net/academic/papers/monads/monads-programming.pdf) 
+There is an actual [academic paper from Tomas Petricek](http://tomasp.net/academic/papers/monads/monads-programming.pdf)
 that studies monad tutorials.
 
 I've read that paper and a dozen of monad tutorials online. And of course, now I came up with my own.
@@ -64,15 +64,15 @@ I based my explanation on examples from C# - the object-oriented language famili
 Story of Composition
 --------------------
 
-The base element of each functional program is Function. In typed languages each function 
+The base element of each functional program is Function. In typed languages each function
 is just a mapping between the type of its input parameter and output parameter.
 Such type can be annotated as `func: TypeA -> TypeB`.
 
-C# is object-oriented language, so we use methods to declare functions. There are two ways 
+C# is object-oriented language, so we use methods to declare functions. There are two ways
 to define a method comparable to `func` function above. I can use static method:
 
 ``` csharp
-static class Mapper 
+static class Mapper
 {
     static ClassB func(ClassA a) { ... }
 }
@@ -81,7 +81,7 @@ static class Mapper
 ... or instance method:
 
 ``` csharp
-class ClassA 
+class ClassA
 {
     // Instance method
     ClassB func() { ... }
@@ -96,22 +96,22 @@ How do we compose more complex workflows, programs and applications out of such 
 building blocks? A lot of patterns both in OOP and FP worlds revolve around this question.
 And monads are one of the answers.
 
-My sample code is going to be about conferences and speakers. The method implementations 
-aren't really important, just watch the types carefully. There are 4 classes (types) and 
+My sample code is going to be about conferences and speakers. The method implementations
+aren't really important, just watch the types carefully. There are 4 classes (types) and
 3 methods (functions):
 
 ``` csharp
-class Speaker 
+class Speaker
 {
     Talk NextTalk() { ... }
 }
 
-class Talk 
+class Talk
 {
     Conference GetConference() { ... }
 }
 
-class Conference 
+class Conference
 {
     City GetCity() { ... }
 }
@@ -122,7 +122,7 @@ class City { ... }
 These methods are currently very easy to compose into a workflow:
 
 ``` csharp
-static City NextTalkCity(Speaker speaker) 
+static City NextTalkCity(Speaker speaker)
 {
     Talk talk = speaker.NextTalk();
     Conference conf = talk.GetConference();
@@ -135,9 +135,9 @@ Because the return type of the previous step always matches the input type of th
 write it even shorter:
 
 ``` csharp
-static City NextTalkCity(Speaker speaker) 
+static City NextTalkCity(Speaker speaker)
 {
-    return 
+    return
         speaker
         .NextTalk()
         .GetConference()
@@ -145,7 +145,7 @@ static City NextTalkCity(Speaker speaker)
 }
 ```
 
-This code looks quite readable. It's concise and it flows from top to bottom, from left to right, 
+This code looks quite readable. It's concise and it flows from top to bottom, from left to right,
 similar to how we are used to read any text. There is not much noise too.
 
 That's not what real codebases look like though, because there are multiple complications
@@ -161,17 +161,17 @@ Typed functional programming always tries to be explicit about types, so I'll re
 of my methods to annotate the return types as nullables:
 
 ``` csharp
-class Speaker 
+class Speaker
 {
     Nullable<Talk> NextTalk() { ... }
 }
 
-class Talk 
+class Talk
 {
     Nullable<Conference> GetConference() { ... }
 }
 
-class Conference 
+class Conference
 {
     Nullable<City> GetCity() { ... }
 }
@@ -186,7 +186,7 @@ though, so bear with me.
 Now, when composing our workflow, we need to take care of `null` results:
 
 ``` csharp
-static Nullable<City> NextTalkCity(Speaker speaker) 
+static Nullable<City> NextTalkCity(Speaker speaker)
 {
     Nullable<Talk> talk = speaker.NextTalk();
     if (talk == null) return null;
@@ -205,9 +205,9 @@ and one-liners, it still got harder to read.
 To fight that problem, smart language designers came up with the Null Propagation Operator:
 
 ``` csharp
-static Nullable<City> NextTalkCity(Speaker speaker) 
+static Nullable<City> NextTalkCity(Speaker speaker)
 {
-    return 
+    return
         speaker
         ?.NextTalk()
         ?.GetConference()
@@ -230,17 +230,17 @@ while with a collection we can get `0` to any `n` results.
 Our sample API could look like this:
 
 ``` csharp
-class Speaker 
+class Speaker
 {
     List<Talk> GetTalks() { ... }
 }
 
-class Talk 
+class Talk
 {
     List<Conference> GetConferences() { ... }
 }
 
-class Conference 
+class Conference
 {
     List<City> GetCities() { ... }
 }
@@ -252,7 +252,7 @@ How would we combine the methods into one workflow? Traditional version would lo
 
 
 ``` csharp
-static List<City> AllCitiesToVisit(Speaker speaker) 
+static List<City> AllCitiesToVisit(Speaker speaker)
 {
     var result = new List<City>();
 
@@ -260,20 +260,20 @@ static List<City> AllCitiesToVisit(Speaker speaker)
         foreach (Conference conf in talk.GetConferences())
             foreach (City city in conf.GetCities())
                 result.Add(city);
-        
+
     return result;
 }
 ```
 
-It reads ok-ish still. But the combination of nested loops and mutation with some conditionals sprinkled 
+It reads ok-ish still. But the combination of nested loops and mutation with some conditionals sprinkled
 on them can get unreadable pretty soon. The exact workflow might be lost in the mechanics.
 
 As an alternative, C# language designers invented LINQ extension methods. We can write code like this:
 
 ``` csharp
-static List<City> AllCitiesToVisit(Speaker speaker) 
+static List<City> AllCitiesToVisit(Speaker speaker)
 {
-    return 
+    return
         speaker
         .GetTalks()
         .SelectMany(talk => talk.GetConferences())
@@ -285,9 +285,9 @@ static List<City> AllCitiesToVisit(Speaker speaker)
 Let me do one further trick and format the same code in an unusual way:
 
 ``` csharp
-static List<City> AllCitiesToVisit(Speaker speaker) 
+static List<City> AllCitiesToVisit(Speaker speaker)
 {
-    return 
+    return
         speaker
         .GetTalks()           .SelectMany(x => x
         .GetConferences()    ).SelectMany(x => x
@@ -307,17 +307,17 @@ What if our methods need to access some remote database or service to produce th
 should be shown in type signature, and C# has `Task<T>` for that:
 
 ``` csharp
-class Speaker 
+class Speaker
 {
     Task<Talk> NextTalk() { ... }
 }
 
-class Talk 
+class Talk
 {
     Task<Conference> GetConference() { ... }
 }
 
-class Conference 
+class Conference
 {
     Task<City> GetCity() { ... }
 }
@@ -329,9 +329,9 @@ We'll get back to async-await later, but the original way to combine `Task`-base
 methods was to use `ContinueWith` and `Unwrap` API:
 
 ``` csharp
-static Task<City> NextTalkCity(Speaker speaker) 
+static Task<City> NextTalkCity(Speaker speaker)
 {
-    return 
+    return
         speaker
         .NextTalk()
         .ContinueWith(talk => talk.Result.GetConference())
@@ -344,9 +344,9 @@ static Task<City> NextTalkCity(Speaker speaker)
 Hard to read, but let me apply my formatting trick again:
 
 ``` csharp
-static Task<City> NextTalkCity(Speaker speaker) 
+static Task<City> NextTalkCity(Speaker speaker)
 {
-    return 
+    return
         speaker
         .NextTalk()         .ContinueWith(x => x.Result
         .GetConference()   ).Unwrap().ContinueWith(x => x.Result
@@ -365,27 +365,27 @@ Can you see a pattern yet?
 I'll repeat the `Nullable`-, `List`- and `Task`-based workflows again:
 
 ``` csharp
-static Nullable<City> NextTalkCity(Speaker speaker) 
+static Nullable<City> NextTalkCity(Speaker speaker)
 {
-    return 
+    return
         speaker               ?
         .NextTalk()           ?
         .GetConference()      ?
         .GetCity();
 }
 
-static List<City> AllCitiesToVisit(Speaker speaker) 
+static List<City> AllCitiesToVisit(Speaker speaker)
 {
-    return 
+    return
         speaker
         .GetTalks()            .SelectMany(x => x
         .GetConferences()     ).SelectMany(x => x
         .GetCities()          ).ToList();
 }
 
-static Task<City> NextTalkCity(Speaker speaker) 
+static Task<City> NextTalkCity(Speaker speaker)
 {
-    return 
+    return
         speaker
         .NextTalk()            .ContinueWith(x => x.Result
         .GetConference()      ).Unwrap().ContinueWith(x => x.Result
@@ -396,12 +396,12 @@ static Task<City> NextTalkCity(Speaker speaker)
 In all 3 cases there was a complication which prevented us from sequencing method
 calls fluently. In all 3 cases we found the gluing code to get back to fluent composition.
 
-Let's try to generalize this approach. Given some generic container type 
+Let's try to generalize this approach. Given some generic container type
 `WorkflowThatReturns<T>`, we have a method to combine an instance of such workflow with
 a function which accepts the result of that workflow and returns another workflow back:
 
 ``` csharp
-class WorkflowThatReturns<T> 
+class WorkflowThatReturns<T>
 {
     WorkflowThatReturns<U> AddStep(Func<T, WorkflowThatReturns<U>> step);
 }
@@ -414,7 +414,7 @@ In case this is hard to grasp, have a look at the picture of what is going on:
 1. An instance of type `T` sits in a generic container.
 
 2. We call `AddStep` with a function, which maps `T` to `U` sitting inside yet another
-container. 
+container.
 
 3. We get an instance of `U` but inside two containers.
 
@@ -426,13 +426,13 @@ original shape.
 In the following code, `NextTalk` returns the first instance inside the container:
 
 ``` csharp
-WorkflowThatReturns<City> Workflow(Speaker speaker) 
+WorkflowThatReturns<City> Workflow(Speaker speaker)
 {
-    return 
+    return
         speaker
-        .NextTalk()         
+        .NextTalk()
         .AddStep(x => x.GetConference())
-        .AddStep(x => x.GetCity()); 
+        .AddStep(x => x.GetCity());
 }
 ```
 
@@ -482,12 +482,12 @@ My first motivational example was with `Nullable<T>` and `?.`. The full pattern
 containing either 0 or 1 instance of some type is called `Maybe` (it maybe has a value,
 or maybe not).
 
-`Maybe` is another approach to dealing with 'no value' value, alternative to the 
-concept of `null`. 
+`Maybe` is another approach to dealing with 'no value' value, alternative to the
+concept of `null`.
 
-Functional-first language F# typically doesn't allow `null` for its types. Instead, F# has 
-a maybe implementation built into the language: 
-it's called `option` type. 
+Functional-first language F# typically doesn't allow `null` for its types. Instead, F# has
+a maybe implementation built into the language:
+it's called `option` type.
 
 Here is a sample implementation in C#:
 
@@ -518,7 +518,7 @@ public class Maybe<T> where T : class
 
 When `null` is not allowed, any API contract gets more explicit: either you
 return type `T` and it's always going to be filled, or you return `Maybe<T>`.
-The client will see that `Maybe` type is used, so it will be forced to handle 
+The client will see that `Maybe` type is used, so it will be forced to handle
 the case of absent value.
 
 Given an imaginary repository contract (which does something with customers and
@@ -533,7 +533,7 @@ public interface IMaybeAwareRepository
 }
 ```
 
-The client can be written with `Bind` method composition, without branching, 
+The client can be written with `Bind` method composition, without branching,
 in fluent style:
 
 ``` csharp
@@ -546,36 +546,36 @@ Maybe<Shipper> shipperOfLastOrderOnCurrentAddress =
         .Bind(o => o.Shipper);
 ```
 
-As we saw above, this syntax looks very much like a LINQ query with a bunch 
-of `SelectMany` statements. One of the common 
+As we saw above, this syntax looks very much like a LINQ query with a bunch
+of `SelectMany` statements. One of the common
 implementations of `Maybe` implements `IEnumerable` interface to enable
 a more C#-idiomatic binding composition. Actually:
 
-Enumerable + SelectMany is a Monad 
+Enumerable + SelectMany is a Monad
 ----------------------------------
 
 `IEnumerable` is an interface for enumerable containers.
 
 Enumerable containers can be created - thus the constructor monadic operation.
 
-The `Bind` operation is defined by the standard LINQ extension method, here 
+The `Bind` operation is defined by the standard LINQ extension method, here
 is its signature:
 
 ``` csharp
 public static IEnumerable<U> SelectMany<T, U>(
-    this IEnumerable<T> first, 
+    this IEnumerable<T> first,
     Func<T, IEnumerable<U>> selector)
 ```
 
 Direct implementation is quite straightforward:
 
 ``` csharp
-static class Enumerable 
+static class Enumerable
 {
     public static IEnumerable<U> SelectMany(
-        this IEnumerable<T> values, 
-        Func<T, IEnumerable<U>> func) 
-    { 
+        this IEnumerable<T> values,
+        Func<T, IEnumerable<U>> func)
+    {
         foreach (var item in values)
             foreach (var subItem in func(item))
                 yield return subItem;
@@ -654,7 +654,7 @@ Non-Sequential Workflows
 
 Up until now, all the composed workflows had very liniar, sequential
 structure: the output of a previous step was always the input for the next step.
-That piece of data could be discarded after the first use because it was never needed 
+That piece of data could be discarded after the first use because it was never needed
 for later steps:
 
 ![Linear Workflow](linear-workflow.png)
@@ -751,14 +751,14 @@ builder:
 ``` fsharp
 type MaybeBuilder() =
 
-    member this.Bind(x, f) = 
+    member this.Bind(x, f) =
         match x with
         | None -> None
         | Some a -> f a
 
-    member this.Return(x) = 
+    member this.Return(x) =
         Some x
-   
+
 let maybe = new MaybeBuilder()
 ```
 
@@ -798,7 +798,7 @@ T value;
 Func<T, Monad<U>> f;
 
 // Then (== means both parts are equivalent)
-new Monad<T>(value).Bind(f) == f(value) 
+new Monad<T>(value).Bind(f) == f(value)
 ```
 
 **Right Identity law** says that given a monadic value, wrapping its contained data
@@ -825,18 +825,18 @@ Func<U, Monad<V>> g;
 m.Bind(f).Bind(g) == m.Bind(a => f(a).Bind(g))
 ```
 
-The laws may look complicated, but in fact they are very natural 
+The laws may look complicated, but in fact they are very natural
 expectations that any developer has when working with monads, so don't
 spend too much mental effort on memorizing them.
 
 Conclusion
 ----------
 
-You should not be afraid of the "M-word" just because you are a C# programmer. 
+You should not be afraid of the "M-word" just because you are a C# programmer.
 
-C# does not have a notion of monads as predefined language constructs, but 
-that doesn't mean we can't borrow some ideas from the functional world. Having 
-said that, it's also true that C# is lacking some powerful ways to combine 
+C# does not have a notion of monads as predefined language constructs, but
+that doesn't mean we can't borrow some ideas from the functional world. Having
+said that, it's also true that C# is lacking some powerful ways to combine
 and generalize monads that are available in functional programming
 languages.
 

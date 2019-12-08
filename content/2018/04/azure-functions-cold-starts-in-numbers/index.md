@@ -1,7 +1,7 @@
 ---
 title: "Azure Functions: Cold Starts in Numbers"
 date: 2018-04-24
-tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Start"]
+tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Starts"]
 ---
 
 Auto-provisioning and auto-scalability are the killer features of Function-as-a-Service
@@ -11,7 +11,7 @@ One drawback of such dynamic provisioning is a phenomenon called "Cold Start". B
 applications that haven't been used for a while take longer to startup and to handle the
 first request.
 
-The problem is nicely described in 
+The problem is nicely described in
 [Understanding Serverless Cold Start](https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/),
 so I won't repeat it here. I'll just copy a picture from that article:
 
@@ -35,7 +35,7 @@ All the functions were just returning "Hello, World" taking the "World" value fr
 Some functions were also loading extra dependencies, see below.
 
 I did not rely on execution time reported by Azure. Instead, I measured end-to-end duration from
-client perspective. All calls were made from within the same Azure region, so network latency should 
+client perspective. All calls were made from within the same Azure region, so network latency should
 have minimal impact:
 
 ![Test Setup](test-setup.png)
@@ -69,7 +69,7 @@ durations are inside the vertical bar (1-sigma interval) and 95% are inside the 
 
 ![Cold Start V1 per Language](coldstarts-v1.png)
 
-Somewhat surprisingly, precompiled .NET is exactly on par with Javascript. Javascript "Hello World" 
+Somewhat surprisingly, precompiled .NET is exactly on par with Javascript. Javascript "Hello World"
 is really lightweight, so I expected it to win, but I was wrong.
 
 C# Script is slower but somewhat comparable. F# Script presented a really negative surprise though: it's much
@@ -90,7 +90,7 @@ Can we see this on the chart? We sure can:
 V2 is massively slower. The fastest cold starts are around 6 seconds, but the slowest can come
 up to 40-50 seconds.
 
-Javascript is again on-par with precompiled .NET. 
+Javascript is again on-par with precompiled .NET.
 
 Java is noticeably slower, even though the
 deployment package is just 33kB, so I assume I didn't overblow it.
@@ -101,7 +101,7 @@ Does Size Matter?
 OK, enough of Hello World. A real-life function might be more heavy, mainly because it would
 depend on other third-party libraries.
 
-To simulate such scenario, I've measured cold starts for a .NET function with references to 
+To simulate such scenario, I've measured cold starts for a .NET function with references to
 Entity Framework, Automapper, Polly and Serilog.
 
 For Javascript I did the same, but referenced Bluebird, lodash and AWS SDK.
@@ -131,5 +131,5 @@ Here are some lessons learned from all the experiments above:
 Do you see anything weird or unexpected in my results? Do you need me to dig deeper on other aspects?
 Please leave a comment below or ping me on twitter, and let's sort it all out.
 
-There is a follow-up post available: 
+There is a follow-up post available:
 [Cold Starts Beyond First Request in Azure Functions](https://mikhail.io/2018/05/azure-functions-cold-starts-beyond-first-load/)

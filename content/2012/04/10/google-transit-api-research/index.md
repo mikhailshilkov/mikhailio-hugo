@@ -1,7 +1,7 @@
 ---
 title: Google Transit API research
 date: 2012-04-10
-tags: ["API","Google Maps","Google Transit"]
+tags: ["API","Google Maps"]
 description: "Recently, Google has launch a Transit service for the biggest cities of Russia: a service to caculate routes with public transport options. As a part of RnD for upcoming project, I need to understand whether there's any feasible way to calculate public transport route programmatically. I.e. I need Google Transit API."
 ---
 

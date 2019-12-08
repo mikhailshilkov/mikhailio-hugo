@@ -2,7 +2,7 @@
 title: Review of the course "Modern, Modular JavaScript with SystemJS and jspm"
 date: 2015-11-24
 tags: ["Pluralsight", "Course", "Learning", "Javascript", "JSPM", "SystemJS"]
-description: "Recently I was playing with [Aurelia](http://aurelia.io) SPA framework, which makes heavy use of jspm and SystemJS for modules/packaging. This package manager is new to me, and it looked a bit like magic sometimes. So when I saw a jspm course on Pluralsight, I decided to give it a try. And I did not regret: the course is great. It's so good, that I decided to write a brief review for it, even though I have never done that before."
+description: "Recently I was playing with Aurelia SPA framework, which makes heavy use of jspm and SystemJS for modules/packaging. This package manager is new to me, and it looked a bit like magic sometimes. So when I saw a jspm course on Pluralsight, I decided to give it a try. And I did not regret: the course is great."
 ---
 Recently I was playing with [Aurelia](http://aurelia.io) SPA framework, which makes heavy use of jspm and SystemJS for modules/packaging. This package manager is new to me, and it looked a bit like magic sometimes. So when I saw a jspm course on Pluralsight, I decided to give it a try. And I did not regret: the course is great. It's so good, that I decided to write a review for it, even though I have never done that before.
 

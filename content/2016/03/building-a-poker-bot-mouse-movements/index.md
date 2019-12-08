@@ -1,7 +1,7 @@
 ---
 title: "Building a Poker Bot: Mouse Movements"
 date: 2016-03-01
-tags: ["Poker Bot", "F#", "Human-like Behavior"]
+tags: ["Poker Bot", "FSharp"]
 thumbnail: teaser.png
 description: "The last step of the poker bot flow: clicking the buttons. The screen is already recognized, the hand is understood, the decisions are made and now the bot needs to execute the actions. This means clicking the right button at the poker table. "
 ---
