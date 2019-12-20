@@ -10,12 +10,12 @@ In my [previous post](https://mikhail.io/2017/07/custom-autoscaling-with-durable
 I described how I used Durable Functions extensions
 in Azure Function App. Durable Functions are using several binding types
 that are not part of the standard suite: `OrchestrationClient`,
-`OrchestrationTrigger`, `ActivityTrigger`. These custom bindings 
+`OrchestrationTrigger`, `ActivityTrigger`. These custom bindings
 [are installed](https://azure.github.io/azure-functions-durable-extension/articles/installation.html)
 by copying the corresponding assemblies to a special Extensions folder.
 
 Although Bring-Your-Own-Binding (BYOB) feature hasn't been released yet, I
-decided to follow the path of Durable Functions and create my own 
+decided to follow the path of Durable Functions and create my own
 custom binding.
 
 Configuration Binding
@@ -36,7 +36,7 @@ string setting = ConfigurationManager.AppSettings["MySetting"];
 
 Alternatively, `Environment.GetEnvironmentVariable()` method can be used.
 
-When I [needed to collect](https://mikhail.io/2017/07/custom-auto-scaling-in-azure/) 
+When I [needed to collect](https://mikhail.io/2017/07/custom-auto-scaling-in-azure/)
 service bus subscription metrics, I wrote this kind of bulky code:
 
 ``` csharp
@@ -57,8 +57,8 @@ public static void MyFunction(
     [Configuration] ServiceBusSubscriptionConfig config)
 ```
 
-Note two usages of `Configuration` attribute. The first one defines the 
-specific configuration key, and binds its value to a string parameter. The 
+Note two usages of `Configuration` attribute. The first one defines the
+specific configuration key, and binds its value to a string parameter. The
 other one binds *multiple* configuration values to a POCO parameter. I defined
 the config class as
 
@@ -102,7 +102,7 @@ instead of fine-tuning the configuration files inside test projects, or
 hiding `ConfigurationManager` usage behind a mockable facade.
 
 Such approach does seem to be the strength of Azure Functions code in
-general. It's often possible to reduce imperative IO-related code to 
+general. It's often possible to reduce imperative IO-related code to
 attribute-decorated function parameters.
 
 Implementing a Custom Binding
@@ -227,7 +227,7 @@ to that folder's path. For local development add a line to `local.settings.json`
     "AzureWebJobs_ExtensionsPath": "D:\\BindingExtensions",
     ```
 
-3. Create a subfolder for your extension, e.g. 
+3. Create a subfolder for your extension, e.g.
 `D:\BindingExtensions\ConfigurationExtension`.
 
 4. Copy the contents of `bin\Debug\` of your extension's class library
@@ -241,7 +241,7 @@ Run the function app locally to try it out. In the console output you should
 be able to see something like
 
 ```
-Loaded custom extension: ConfigurationExtensionConfigProvider from 
+Loaded custom extension: ConfigurationExtensionConfigProvider from
 'D:\BindingExtensions\ConfigurationExtension\MyExtensions.dll'
 ```
 

@@ -7,12 +7,15 @@ description: The short story about how to crash your complete system by missing 
 
 Are you getting enormous amount of
 
-    The activated proc '...' running on queue '...' output the following:
-    'The service queue "..." is currently disabled.
+```
+The activated proc '...' running on queue '...' output the following:
+'The service queue "..." is currently disabled.
+```
 
 errors from SQL Server? Keep on reading!
 
 Yesterday, when I came back from my lunch, I got a heads-up from Windows:
+
 ![Low disk space](low-disk-space.gif)
 
 And it was literally out of space: 0 (zero) bytes available on C: drive. Wow...
@@ -41,71 +44,79 @@ So, it looks like there is a problem with SQL Server Service Broker, which is co
 
 First, let check if the queue is actually disabled
 
-    SELECT Name, is_receive_enabled, is_enqueue_enabled
-      FROM sys.service_queues
-     WHERE Name = 'XQueue'
+``` sql
+SELECT Name, is_receive_enabled, is_enqueue_enabled
+  FROM sys.service_queues
+ WHERE Name = 'XQueue'
+```
 
 Yep, it's disabled:
 ![XQueue disabled](qdisabled.png)
 
 Do we have anything queued?
 
-    SELECT TOP 1000 *
-      FROM [XQueue] WITH(NOLOCK)
+``` sql
+SELECT TOP 1000 *
+  FROM [XQueue] WITH(NOLOCK)
+```
 
 I got 9 rows back. This means we got some messages en-queued, and one of them failed to process, the message was considered as poison and the queue was disabled (which is good), but the processor still seems to be running in eternal loop.
 
 So, let's have a look at the processor. We had something like that:
 
-    CREATE PROCEDURE [dbo].[XQueueProcessor]
-    AS
+``` sql
+CREATE PROCEDURE [dbo].[XQueueProcessor]
+AS
+BEGIN
+    DECLARE
+        @queuing_order BIGINT
+       ,@conversation_handle UNIQUEIDENTIFIER
+       ,@message_enqueue_time DATETIME
+       ,@message_type_name VARCHAR(156)
+       ,@message_body VARBINARY(MAX);
+
+    WHILE(1=1) -- MAIN WHILE LOOP RECEIVING THE MESSAGE BATCHES
     BEGIN
-        DECLARE
-            @queuing_order BIGINT
-            ,@conversation_handle UNIQUEIDENTIFIER
-            ,@message_enqueue_time DATETIME
-            ,@message_type_name VARCHAR(156)
-            ,@message_body VARBINARY(MAX);
+        BEGIN TRANSACTION
+        BEGIN TRY
+            WAITFOR(RECEIVE TOP(1)
+                        @queuing_order = [queuing_order],
+                        @conversation_handle = [conversation_handle],
+                        @message_enqueue_time = message_enqueue_time,
+                        @message_type_name = message_type_name,
+                        @message_body = message_body
+                    FROM [dbo].[XQueue]), TIMEOUT 10
 
-        WHILE(1=1) -- MAIN WHILE LOOP RECEIVING THE MESSAGE BATCHES
-        BEGIN
-            BEGIN TRANSACTION
-            BEGIN TRY
-                WAITFOR(RECEIVE TOP(1)
-                            @queuing_order = [queuing_order],
-                            @conversation_handle = [conversation_handle],
-                            @message_enqueue_time = message_enqueue_time,
-                            @message_type_name = message_type_name,
-                            @message_body = message_body
-                        FROM [dbo].[XQueue]), TIMEOUT 10
-
-                IF (@@ROWCOUNT = 0)
-                BEGIN
-                    ROLLBACK TRANSACTION
-                    BREAK
-                END
-
-                -- SOME CRUD OPERATIONS HAPPEN HERE
-
-                COMMIT TRANSACTION
-            END TRY
-            BEGIN CATCH
-                DECLARE @Error varchar(4000) = ERROR_MESSAGE()
-                PRINT @Error
+            IF (@@ROWCOUNT = 0)
+            BEGIN
                 ROLLBACK TRANSACTION
-            END CATCH
-        END
+                BREAK
+            END
+
+            -- SOME CRUD OPERATIONS HAPPEN HERE
+
+            COMMIT TRANSACTION
+        END TRY
+        BEGIN CATCH
+            DECLARE @Error varchar(4000) = ERROR_MESSAGE()
+            PRINT @Error
+            ROLLBACK TRANSACTION
+        END CATCH
     END
+END
+```
 
 A-ha! So, what happens when an error occurs during the message processing? Control goes to CATCH block, error message is printed out (when we are in Service Broker, print goes directly to ERRORLOG file which we saw already), the transaction is rolled back... But we still are inside eternal loop, no BREAK or RETURN statement there, so the processor will try again to get the same message from the queue. After 5th attempt, the message will be marked as poison, the queue will get disabled, but the loop will keep running! The exception will change to "The service queue is currently disabled" and voila, CPU is busy and error logs are floating the disk.
 
 The fix is pretty trivial, just change the CATCH block to
 
-    BEGIN CATCH
-        DECLARE @Error varchar(4000) = ERROR_MESSAGE()
-        PRINT @Error
-        ROLLBACK TRANSACTION
-        RETURN
-    END CATCH
+``` sql
+BEGIN CATCH
+    DECLARE @Error varchar(4000) = ERROR_MESSAGE()
+    PRINT @Error
+    ROLLBACK TRANSACTION
+    RETURN
+END CATCH
+```
 
 Be careful!

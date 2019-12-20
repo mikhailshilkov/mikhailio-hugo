@@ -17,7 +17,7 @@ should break into the Bunny's headquarters and save the gifts for the kids.
 Having said that, each challenge is independent from the others, so you can
 solve them in arbitrary order if you want.
 
-![Advent Of Code Levels](/levelmap.png)
+![Advent Of Code Levels](levelmap.png)
 *Advent Calendar in dark ASCII*
 
 A puzzle consists of a description and an input data set associated with it.
@@ -34,7 +34,7 @@ engaging tasks were also computationally intensive, such that a straightforward
 solution took too much time to run to completion. You need to find a
 shortcut to make it faster, which is always fun.
 
-![Problem Solved!](/solved.png)
+![Problem Solved!](solved.png)
 *You collect stars for providing the correct answers*
 
 Apart from generic joy and satisfaction that one gets from solving programming
@@ -56,7 +56,7 @@ myself to immutable data structures and pure functions. And it played out really
 I am quite happy with speed of development, readability and performance of
 the code.
 
-![Day 8 solved](/day8.png)
+![Day 8 solved](day8.png)
 *Solution to one of the puzzles*
 
 You can find my code for the first 11 puzzles in

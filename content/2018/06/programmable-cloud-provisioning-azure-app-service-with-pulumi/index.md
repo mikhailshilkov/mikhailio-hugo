@@ -38,9 +38,7 @@ We all start doing this in Azure Portal. User Interface is great for
 discovering new services and features, and it's a quick way to make a single
 change.
 
-![Azure Portal](azureportal.png)
-
-*Creating an App Service in Azure Portal*
+{{< figure src="azureportal.png" title="Creating an App Service in Azure Portal" >}}
 
 Clicking buttons manually doesn't scale though. After the initial setup is
 complete, maintaining the environment over time poses significant challenges:
@@ -74,15 +72,15 @@ var webApp = azure.WebApps.Define(appName)
 
 *Fluent C# code creating an App Service*
 
-However, those commands are usually expressed in imperative style of 
+However, those commands are usually expressed in imperative style of
 CRUD operations. You can run the commands once, but it's hard to modify
 existing resources from an arbitrary state to the desired end state.
 
 Azure Resource Manager Templates
 --------------------------------
 
-All services in Azure are managed by Azure Resource Manager (ARM). ARM 
-has a special JSON-based format for templates. 
+All services in Azure are managed by Azure Resource Manager (ARM). ARM
+has a special JSON-based format for templates.
 
 Once a template is defined,
 it's relatively straightforward to be deployed to Azure environment. So, if
@@ -98,13 +96,10 @@ Templates can be parametrized, which enables multi-environment deployments.
 There's a problem with templates though: they are JSON files. They get
 very large very fast, they are hard to reuse, it's easy to make a typo.
 
-![ARM Template](armtemplate.png)
-
-*A fragment of auto-generated ARM Template for App Service, note the 
-line numbers*
+{{< figure src="armtemplate.png" title="A fragment of auto-generated ARM Template for App Service, note the line numbers" >}}
 
 Terraform is another templating tool to provision cloud resources but it uses
-YAML instead of JSON. I don't have much experience with it, but the problems 
+YAML instead of JSON. I don't have much experience with it, but the problems
 seem to be very similar.
 
 Can we combine the power of SDKs and the power of JSON-/YAML-based desired state
@@ -119,10 +114,10 @@ A startup called Pulumi [just went out of private beta to open source](http://jo
 ![Pulumi](pulumi.jpg)
 
 Pulumi wants to be much more than a better version of ARM templates, aiming
-to become the tool to build cloud-first distributed systems. But for today I'll 
+to become the tool to build cloud-first distributed systems. But for today I'll
 focus on lower level of resource provisioning task.
 
-With Pulumi cloud infrastructure is defined in code using full-blown general 
+With Pulumi cloud infrastructure is defined in code using full-blown general
 purpose programming languages.
 
 The workflow goes like this:
@@ -140,7 +135,7 @@ Pulumi Program
 --------------
 
 I'm using TypeScript to define my Azure resources in Pulumi. So, the program
-is a normal Node.js application with `index.ts` file, package references in 
+is a normal Node.js application with `index.ts` file, package references in
 `package.json` and one extra file `Pulumi.yaml` to define the program:
 
 ``` yaml
@@ -197,11 +192,11 @@ Property `resourceGroup.name` has the type of `pulumi.Output<string>`.
 Constructor argument `resourceGroupName` of `Plan` has the type of
 `pulumi.Input<string>`.
 
-We assigned `"myrg"` value to Resource Group name, but during the actual 
+We assigned `"myrg"` value to Resource Group name, but during the actual
 deployment it will change. Pulumi will append a unique identifier to the name,
 so the actually provisioned group will be named e.g. `"myrg65fb103e"`.
 
-This value will materialize inside `Output` type only at deployment time, 
+This value will materialize inside `Output` type only at deployment time,
 and then it will get propagated to `Input` by Pulumi.
 
 There is also a nice way to return the end values of `Output`'s from Pulumi
@@ -246,8 +241,8 @@ Multiple outputs can be combined with `pulumi.all`, e.g. given SQL Server
 and Database, we could make a connection string:
 
 ``` ts
-const connectionString = 
-    pulumi.all([sqlServer, database]).apply(([server, db]) => 
+const connectionString =
+    pulumi.all([sqlServer, database]).apply(([server, db]) =>
         `Server=tcp:${server}.database.windows.net;initial catalog=${db};user ID=${username};password=${pwd};Min Pool Size=0;Max Pool Size=30;Persist Security Info=true;`)
 ```
 
@@ -384,8 +379,8 @@ Should Pulumi provide some workaround for this?
 Conclusion
 ----------
 
-My code was kindly merged to 
-[Pulumi examples](https://github.com/pulumi/examples/tree/master/azure-ts-appservice), 
+My code was kindly merged to
+[Pulumi examples](https://github.com/pulumi/examples/tree/master/azure-ts-appservice),
 go there for the complete runnable program that provisions App Service with
 Azure SQL Database and Application Insights.
 

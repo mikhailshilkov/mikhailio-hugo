@@ -27,23 +27,27 @@ implement **Tell** (or **Fire-and-Forget**) model.
 
 Actor definition starts with an interface:
 
-    public interface IHardWorkingActor : IActor
-    {
-        Task DoWork(string payload);
-    }
+``` csharp
+public interface IHardWorkingActor : IActor
+{
+    Task DoWork(string payload);
+}
+```
 
 As you can see, the method does not return any useful data, which means
 the client code isn't really interested in waiting for the operation to
 complete. Here's how we implement this interface in the Actor class:
 
-    public class HardWorkingActor : Actor, IHardWorkingActor
+``` csharp
+public class HardWorkingActor : Actor, IHardWorkingActor
+{
+    public async Task DoWork(string payload)
     {
-        public async Task DoWork(string payload)
-        {
-            ActorEventSource.Current.ActorMessage(this, "Doing Work");
-            await Task.Delay(500);
-        }
+        ActorEventSource.Current.ActorMessage(this, "Doing Work");
+        await Task.Delay(500);
     }
+}
+```
 
 This test implementation simulates the hard work by means of an artificial 500 ms delay.
 
@@ -53,44 +57,54 @@ creates an actor proxy to dispatch the payload to, then it just wants
 to continue with the next payload. Here is the "Ask" implementation based on
 the Service Fabric samples:
 
-    int i = 0;
-    var timer = new Stopwatch();
-    timer.Start();
-    while (true)
-    {
-        var proxy = ActorProxy.Create<IHardWorkingActor>(ActorId.NewId(), "fabric:/Application1");
-        await proxy.DoWork($"Work ${i++}");
-        Console.WriteLine($@"Sent work to Actor {proxy.GetActorId()},
-                             rate is {i / timer.Elapsed.TotalSeconds}/sec");
-    }
+``` csharp
+int i = 0;
+var timer = new Stopwatch();
+timer.Start();
+while (true)
+{
+    var proxy = ActorProxy.Create<IHardWorkingActor>(ActorId.NewId(), "fabric:/Application1");
+    await proxy.DoWork($"Work ${i++}");
+    Console.WriteLine($@"Sent work to Actor {proxy.GetActorId()},
+                         rate is {i / timer.Elapsed.TotalSeconds}/sec");
+}
+```
 
 Note an `await` operator related to every call. That means that the client will
 block until the actor work is complete. When we run the client, no surprise that
 we get the rate of about 2 messages per second:
 
-    Sent work to Actor 1647857287613311317, rate is 1,98643230380293/sec
+```
+Sent work to Actor 1647857287613311317, rate is 1,98643230380293/sec
+```
 
 That's not very exciting. What we want instead is to tell the actor to do the
 work and immediately proceed to the next one. Here's how the client call should
 look like:
 
-    proxy.DoWork($"Work ${i++}").FireAndForget();
+```
+proxy.DoWork($"Work ${i++}").FireAndForget();
+```
 
 Instead of `await`-ing, we make a `Task`, pass it to some (not yet existing)
 extension method and proceed immediately. It appears that the implementation
 of such extension method is trivial:
 
-    public static class TaskHelper
+``` csharp
+public static class TaskHelper
+{
+    public static void FireAndForget(this Task task)
     {
-        public static void FireAndForget(this Task task)
-        {
-            Task.Run(async() => await task).ConfigureAwait(false);
-        }
+        Task.Run(async() => await task).ConfigureAwait(false);
     }
+}
+```
 
 The result looks quite different from what we had before:
 
-    Sent work to Actor -8450334792912439527, rate is 408,484162592517/sec
+```
+Sent work to Actor -8450334792912439527, rate is 408,484162592517/sec
+```
 
 400 messages per second, which is some 200x difference...
 

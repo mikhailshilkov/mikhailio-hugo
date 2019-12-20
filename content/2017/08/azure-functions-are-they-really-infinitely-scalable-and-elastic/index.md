@@ -4,7 +4,7 @@ date: 2017-08-31
 tags: ["Azure", "Azure Functions", "Scalability"]
 ---
 
-*Updated results are available at 
+*Updated results are available at
 [Azure Functions Get More Scalable and Elastic](https://mikhail.io/2017/12/azure-functions-get-more-scalable-and-elastic/).*
 
 Automatic elastic scaling is a built-in feature of Serverless computing
@@ -14,12 +14,12 @@ actual load. That's the theory.
 
 In particular, Azure Functions can be hosted on the Consumption plan:
 
-> The Consumption plan automatically allocates compute power when your 
-> code is running, scales out as necessary to handle load, and then scales 
+> The Consumption plan automatically allocates compute power when your
+> code is running, scales out as necessary to handle load, and then scales
 > down when code is not running.
 
 In this post I will run a simple stress test to get a feel of how such
-automatic allocation works in practice and what kind of characteristics 
+automatic allocation works in practice and what kind of characteristics
 we can rely on.
 
 Setup
@@ -34,7 +34,7 @@ Here are the parameters that I chose for my test of today:
 Specifically, each queue item represents one password that I need to hash.
 Each function call performs 12-round [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt)
 hashing. Bcrypt is a slow algorithm recommended for
-password hashing, because it makes potential hash collision attacks really 
+password hashing, because it makes potential hash collision attacks really
 hard and costly.
 
 My function is based on [Bcrypt.Net](https://github.com/BcryptNet/bcrypt.net)
@@ -69,7 +69,7 @@ Experiment 1: Steady Load
 In my first run, I was sending messages at constant rate. 100,000 messages
 were sent within 2 hours, without spikes or drops in the pace.
 
-Sounds like an easy job for autoscaling facilities. But here is the actual 
+Sounds like an easy job for autoscaling facilities. But here is the actual
 chart of data processing:
 
 ![Function App Scaling](FunctionAppScaling.png)
@@ -82,7 +82,7 @@ the queue at a given moment.
 The blue area represents the amount of instances (virtual servers) allocated
 to the function by Azure runtime (see the numbers at the right side).
 
-We can divide the whole process into 3 logical segments, approximately 
+We can divide the whole process into 3 logical segments, approximately
 40 minutes each:
 
 **Laging behind**. Runtime starts with 0 instances, and immediately switches
@@ -91,11 +91,11 @@ servers for the next 20 (!) minutes. The scaling heuristic is probably based
 on the past history for this queue/function, and it wasn't busy at all during
 the hours before.
 
-After 20 minutes, the runtime starts adding more instances: it goes up to 2, 
-then jumps to 4, then reaches 5 at minute 40. The CPU is constantly at 
+After 20 minutes, the runtime starts adding more instances: it goes up to 2,
+then jumps to 4, then reaches 5 at minute 40. The CPU is constantly at
 100% and the queue backlog grows linearly.
 
-**Rapid scale up**. After minute 40, it looks like the runtime realizes 
+**Rapid scale up**. After minute 40, it looks like the runtime realizes
 that it needs more power. Much more power! The growth speeds up real quick
 and by minute 54 the backlog stops growing, even though the messages are still
 coming in. But there are now 21 instances working, which is enough to
@@ -110,12 +110,12 @@ there are no messages in the queue.
 100% for the first time, the runtime decides to scale down. It does that quickly
 and aggressively, switching from 55 to 21 instances in just 2 minutes.
 
-From there it keeps slowly reducing the number of instances until the backlog 
+From there it keeps slowly reducing the number of instances until the backlog
 starts growing again. The runtime allows the backlog to grow a bit, but
-then figures out a balanced number of servers (17) to keep the backlog flat 
-at around 2,000 messages. 
+then figures out a balanced number of servers (17) to keep the backlog flat
+at around 2,000 messages.
 
-It stays at 17 until the producer stops sending new messages. The backlog 
+It stays at 17 until the producer stops sending new messages. The backlog
 goes to 0, and the amount of instances gradually drops to 0 within 10 minutes.
 
 The second chart from the same experiment looks very similar, but it shows
@@ -124,7 +124,7 @@ different metrics:
 ![Function App Delay](FunctionAppDelay.png)
 
 The gray line is the delay in minutes since the currently processed message
-got enqueued (message "age", in-queue latency). The blue line is the 
+got enqueued (message "age", in-queue latency). The blue line is the
 total processing rate, measured in messages per minute.
 
 Due to perfect scalability and stability of my function, both charts are almost
@@ -149,7 +149,7 @@ This is how the Function App managed to process the messages:
 
 ![Spiky Load Processing Result](SpikyLoadProcessing.png)
 
-The green line still shows the amount of incoming messages per minute. The 
+The green line still shows the amount of incoming messages per minute. The
 blue line denotes how many messages were actually processed at that minute.
 And the orange bars are queue backlogs - the amount of messages pending.
 
@@ -186,7 +186,7 @@ instances).
 App runtime has quite some inertia, and the resulting processing latency can
 easily go up to tens of minutes.
 
-If you know how these results can be improved, or why they are less than 
+If you know how these results can be improved, or why they are less than
 optimal, please leave a comment or contact me directly.
 
 I look forward to conducting more tests in the future!

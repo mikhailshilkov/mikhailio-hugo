@@ -15,6 +15,7 @@ Let's say we get a request from some client code and we need to check if this
 request is actually valid. If it's not valid, we want to make a detailed description
 of the problems that we identified. If it is valid, we want to produce a response
 about the successful acceptance of the request. Let's define the classes:
+
 ``` csharp
 public class Request { ... }
 public class Response { ... }
@@ -28,6 +29,7 @@ Throw an exception
 ------------------
 
 Validation *error* sounds like it could be an exception:
+
 ``` csharp
 public Response Validate(Request r)
 {
@@ -48,6 +50,7 @@ Output parameter
 ----------------
 
 We could make an output parameter of `ValidationError` type:
+
 ``` csharp
 public Response Validate(Request r, out ValidationError error)
 {

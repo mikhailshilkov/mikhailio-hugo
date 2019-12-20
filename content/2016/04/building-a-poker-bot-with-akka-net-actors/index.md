@@ -250,3 +250,5 @@ Thanks to succinct F# language and functional actor patterns this layer is
 very thin, and thus easy to understand and maintain.
 
 The business logic is isolated and by itself has no dependency on Akka.NET.
+
+*Proceed to [Part 5 of Building a Poker Bot: Functional Fold as Decision Tree Pattern](/2016/07/building-a-poker-bot-functional-fold-as-decision-tree-pattern/).*

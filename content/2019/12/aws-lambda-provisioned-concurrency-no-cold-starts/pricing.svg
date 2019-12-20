@@ -1,0 +1,30 @@
+<svg width="1441" height="715" viewBox="0 0 1441 715" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 28px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+  </style>
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="50,502 1150,502" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="98,550 98,50" />
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="900,500 900,200" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="580,500 580,320" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="580,320 100,320" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="900,200 100,200" />
+
+  <polyline fill="none" stroke="#A73B8F" stroke-width="3" points="100,425 1100,207" />
+  <polyline fill="none" stroke="#501B73" stroke-width="3" points="100,500 1100,125" />
+
+  <text x="80" y="525" class="small" fill="#666666">0</text>
+  <text x="570" y="525" class="small" fill="#666666">60%</text>
+  <text x="885" y="525" class="small" fill="#666666">100%</text>
+  <text x="50" y="430" class="small" fill="#666666">$0.15</text>
+  <text x="50" y="325" class="small" fill="#666666">$0.36</text>
+  <text x="50" y="205" class="small" fill="#666666">$0.60</text>
+
+  <text x="450" y="570" class="medium" fill="#666666">utilization (billed duration)</text>
+  <text x="0" y="0" class="medium" fill="#666666" transform="translate(25 270) rotate(-90)">cost</text>
+  <text x="975" y="280" class="medium" fill="#A73B8F">Provisioned</text>
+  <text x="960" y="310" class="medium" fill="#A73B8F">Concurrency</text>
+  <text x="850" y="130" class="medium" fill="#501B73">On-demand</text>
+</svg>

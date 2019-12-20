@@ -6,9 +6,10 @@ thumbnail: teaser.png
 description: "The last step of the poker bot flow: clicking the buttons. The screen is already recognized, the hand is understood, the decisions are made and now the bot needs to execute the actions. This means clicking the right button at the poker table. "
 ---
 
-*This is the third part of **Building a Poker Bot** series where I describe my experience developing bot software
-to play in online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively
-easy and very enjoyable. Here are the previous parts:*
+This is the third part of **Building a Poker Bot** series where I describe my experience developing bot software
+to play in online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively easy and very enjoyable.
+
+Here are the previous parts:
 
 - [*Building a Poker Bot: Card Recognition*](https://mikhail.io/2016/02/building-a-poker-bot-card-recognition/)
 - [*Building a Poker Bot: String and Number Recognition*](https://mikhail.io/2016/02/building-a-poker-bot-string-recognition/)
@@ -144,3 +145,5 @@ Here is the demo of the mouse movements:
 
 It looks fun, doesn't it? The full code for the mouse movements can be found in
 [my github repo](https://github.com/mikhailshilkov/mikhailio-samples/blob/master/Clicker.fs).
+
+*Proceed to [Part 4 of Building a Poker Bot with Akka.NET Actor](/2016/04/building-a-poker-bot-with-akka-net-actors/).*

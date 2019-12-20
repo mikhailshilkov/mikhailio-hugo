@@ -12,45 +12,47 @@ Immediately after migration we found out that one of the stored procedures got m
 
 Here is a repro to show this issue on any test database (database must be in SQL Server 2014 compatibility mode):
 
-    CREATE TABLE [dbo].[Store](
-    	Id int IDENTITY(1,1) NOT NULL,
-    	City int NOT NULL,
-    	Size int NOT NULL,
-    	Name varchar(max) NULL,
-        CONSTRAINT [PK_Store] PRIMARY KEY CLUSTERED ([Id] ASC)
-     )
+``` sql
+CREATE TABLE [dbo].[Store](
+Id int IDENTITY(1,1) NOT NULL,
+City int NOT NULL,
+Size int NOT NULL,
+Name varchar(max) NULL,
+     CONSTRAINT [PK_Store] PRIMARY KEY CLUSTERED ([Id] ASC)
+)
 
-     GO
+GO
 
-     CREATE NONCLUSTERED INDEX [IX_Store] ON [dbo].[Store]
-    (
-    	City ASC,
-    	Size ASC
-    )
+CREATE NONCLUSTERED INDEX [IX_Store] ON [dbo].[Store]
+(
+City ASC,
+Size ASC
+)
 
-    GO
-     TRUNCATE TABLE Store
-    INSERT Store
-    SELECT i % 101, i % 11, 'Store ' + CAST(i AS VARCHAR)
-      FROM
-     (SELECT TOP 100000 ROW_NUMBER() OVER (ORDER BY s1.[object_id]) AS i
-      FROM sys.all_objects  s1, sys.all_objects  s2) numbers
-    GO
+GO
+TRUNCATE TABLE Store
+INSERT Store
+SELECT i % 101, i % 11, 'Store ' + CAST(i AS VARCHAR)
+  FROM
+  (SELECT TOP 100000 ROW_NUMBER() OVER (ORDER BY s1.[object_id]) AS i
+     FROM sys.all_objects  s1, sys.all_objects  s2) numbers
+GO
 
-    CREATE TABLE StoreRequest (City int NOT NULL, Size int NOT NULL)
+CREATE TABLE StoreRequest (City int NOT NULL, Size int NOT NULL)
 
-    GO
-    DELETE StoreRequest
-    INSERT StoreRequest values (55, 1)
-    INSERT StoreRequest values (66, 2)
+GO
+DELETE StoreRequest
+INSERT StoreRequest values (55, 1)
+INSERT StoreRequest values (66, 2)
 
-    GO
+GO
 
-     SELECT s.City
-       FROM StoreRequest AS r
-            INNER JOIN Store AS s  WITH(INDEX(IX_Store), FORCESEEK)
-                        ON s.City = r.City AND s.Size = r.Size
-      WHERE r.Size <> 1 OR s.City <> 55
+SELECT s.City
+  FROM StoreRequest AS r
+       INNER JOIN Store AS s  WITH(INDEX(IX_Store), FORCESEEK)
+               ON s.City = r.City AND s.Size = r.Size
+ WHERE r.Size <> 1 OR s.City <> 55
+```
 
 In this script I create two tables: Store with 100k rows and StoreRequest with 2 rows. And then I make a query where I join them on two columns. The WHERE clause contains two restrictions: one for each of the tables with OR clause in between. It sounds more complicated than it really is.
 
@@ -62,11 +64,13 @@ You see the significant error in Estimated Number of Rows vs Actual Number of Ro
 
 Good news: it's actually easy to fix that problem in this case. We should just change the WHERE clause to use same table for both sides of OR condition:
 
-     SELECT s.City
-       FROM StoreRequest AS r
-            INNER JOIN Store AS s  WITH(INDEX(IX_Store), FORCESEEK)
-                        ON s.City = r.City AND s.Size = r.Size
-      WHERE s.Size <> 1 OR s.City <> 55
+``` sql
+SELECT s.City
+  FROM StoreRequest AS r
+       INNER JOIN Store AS s  WITH(INDEX(IX_Store), FORCESEEK)
+               ON s.City = r.City AND s.Size = r.Size
+ WHERE s.Size <> 1 OR s.City <> 55
+```
 
 Estimator is able to handle this situation correctly:
 
@@ -76,12 +80,14 @@ Same fix worked for our production query. That query was much more complicated s
 
 To prove that this bug is fresh for the new cardinality estimator, we can switch the original query to the legacy cardinality estimator with flag 9481:
 
-     SELECT s.City
-       FROM StoreRequest AS r
-            INNER JOIN Store AS s  WITH(INDEX(IX_Store), FORCESEEK)
-                        ON s.City = r.City AND s.Size = r.Size
-      WHERE r.Size <> 1 OR s.City <> 55
-     OPTION(QUERYTRACEON 9481)
+``` sql
+ SELECT s.City
+   FROM StoreRequest AS r
+        INNER JOIN Store AS s  WITH(INDEX(IX_Store), FORCESEEK)
+                ON s.City = r.City AND s.Size = r.Size
+  WHERE r.Size <> 1 OR s.City <> 55
+ OPTION(QUERYTRACEON 9481)
+```
 
 And then we get this:
 

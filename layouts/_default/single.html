@@ -69,7 +69,8 @@
                             {{ if eq . "Cold Starts" }}
                             <a href="{{ "/serverless/coldstarts/" | relLangURL | urlize }}">{{.}}</a>
                             {{ else }}
-                            <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{.}}</a>
+                            {{ $name := replace . "Sharp" "#" }}
+                            <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{$name}}</a>
                             {{ end }}
                         </li>
                         {{ end }}

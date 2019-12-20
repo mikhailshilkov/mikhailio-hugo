@@ -5,9 +5,9 @@ tags: ["Poker Bot", "FSharp", "Image Recognition"]
 description: This is the first part of Building a Poker Bot series where I describe my experience developing bot software for online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively easy and very enjoyable.
 ---
 
-*This is the first part of **Building a Poker Bot** series where I describe my experience developing bot software
+This is the first part of **Building a Poker Bot** series where I describe my experience developing bot software
 for online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively
-easy and very enjoyable.*
+easy and very enjoyable.
 
 Screen recognition
 ------------------
@@ -198,4 +198,4 @@ much less that one could imagine for a task of image recognition. Similar code c
 fixed objects at poker table: dealer button location, action buttons, checkboxes etc. In the next part of this
 series I will show how to recognize non-fixed parts: text and numbers.
 
-*Proceed to [Part 2 of Building a Poker Bot: String and Number Recognition](https://mikhail.io/2016/02/building-a-poker-bot-string-number-recognition/).*
+*Proceed to [Part 2 of Building a Poker Bot: String and Number Recognition](/2016/02/building-a-poker-bot-string-recognition/).*

@@ -13,6 +13,8 @@
             {{ $page := $.GetPage "/serverless/coldstarts" }}
             {{- partial "list-partials/postbox.html" $page -}}
 
+            {{ $page := $.GetPage "/2019/12/aws-lambda-provisioned-concurrency-no-cold-starts" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/12/santa-brings-cloud-to-every-developer" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/11/choosing-the-best-deployment-tool-for-serverless-applications" }}
@@ -97,8 +99,6 @@
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/06/finding-lost-events-in-azure-application-insights" }}
             {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2017/06/mikhail-io-upgraded-to-https-and-http2" }}
-            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/05/reliable-consumer-of-azure-event-hubs" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/03/visualizing-dependency-tree-from-di-container" }}
@@ -130,6 +130,9 @@
             {{ $page := $.GetPage "/2016/03/functional-actor-patterns-with-akkadotnet-and-fsharp" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/03/building-a-poker-bot-mouse-movements" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2015/02/how-we-do-message-processing" }}
+            {{- partial "list-partials/postbox.html" $page -}}
         </div>
         <hr>
         <div class="row listrecent">

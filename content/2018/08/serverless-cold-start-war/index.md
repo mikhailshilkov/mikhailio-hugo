@@ -3,9 +3,10 @@ title: "Serverless: Cold Start War"
 date: 2018-08-30
 tags: ["Azure", "Azure Functions", "Serverless", "Performance", "Cold Starts", "AWS", "AWS Lambda", "GCP", "Google Cloud Functions"]
 thumbnail: teaser.jpg
-images: [teaser.jpg]
 description: Comparison of cold start statistics for FaaS across AWS, Azure and GCP
 ---
+
+*The newer and much more detailed cold start comparison is now available: [Cold Starts in Serverless Functions](/serverless/coldstarts/)*
 
 Serverless cloud services are hot. Except when they are not :)
 
@@ -34,6 +35,7 @@ This is a "warm start":
 ![Warm Start](warmstart.png)
 
 The problem of cold start latency was described multiple times, here are the notable links:
+
 - [Understanding Serverless Cold Start](https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/)
 - [Everything you need to know about cold starts in AWS Lambda](https://hackernoon.com/cold-starts-in-aws-lambda-f9e3432adbf0)
 - [Keeping Functions Warm](https://serverless.com/blog/keep-your-lambdas-warm/)

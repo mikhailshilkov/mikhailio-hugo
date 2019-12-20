@@ -2,17 +2,15 @@
 title: "Wanted: Effectively-Once Processing in Azure"
 date: 2017-09-25
 thumbnail: teaser.png
-description: Are there any known patterns / tools / frameworks to provide scalable, stateful, effectively-once, end-to-end processing of messages, to be hosted in Azure?
+description: "Are there any known patterns / tools / frameworks to provide scalable, stateful, effectively-once,
+end-to-end processing of messages, to be hosted in Azure?"
 tags: ["Azure", "Architecture", "Data Processing", "Stream Processing"]
 ---
 
-*This experimental post is a question. The question
-is too broad for StackOverflow, so I'm posting it here. Please engage in the
-comments section, or forward the link to subject experts.*
+*This experimental post is a question. The question is too broad for StackOverflow, so I'm posting it here. Please engage in the comments section, or forward the link to subject experts.*
 
-TL;DR: Are there any known patterns / tools / frameworks to provide 
-scalable, stateful, effectively-once, end-to-end processing of messages, 
-to be hosted in Azure, preferably on PaaS-level of service?
+TL;DR: Are there any known patterns / tools / frameworks to provide scalable, stateful, effectively-once, end-to-end
+processing of messages, to be hosted in Azure, preferably on PaaS-level of service?
 
 Motivational Example
 --------------------
@@ -62,17 +60,17 @@ process local, non-durable data.
 But if I need to make a reliable distributed application out of it, I need
 to take care of lots of things:
 
-1. No request should be lost. I need to persist all the requests into 
-a durable storage in case of processor crash. 
+1. No request should be lost. I need to persist all the requests into
+a durable storage in case of processor crash.
 
-2. Similarly, I need to persist TODO's too. Presumably, some downstream 
+2. Similarly, I need to persist TODO's too. Presumably, some downstream
 logic will use the persisted data later on in TODO's lifecycle.
 
 3. The state (the counter) must be durable too. In case of crash of processing
-function, I want to be able to restart processing after recovery. 
+function, I want to be able to restart processing after recovery.
 
 4. Processing of the requests should be sequential per project ID. Otherwise
-I might get a clash of ID's in case two requests belonging to the same 
+I might get a clash of ID's in case two requests belonging to the same
 project are processed concurrently.
 
 5. I still want requests to different projects to be processed in parallel,
@@ -80,7 +78,7 @@ to make sure the system scales up with the growth of project count.
 
 6. There must be no holes or duplicates in TODO numbering per project, even
 in face of system failures. In worst case, I agree to tolerate a duplicated
-entry in the output log, but it must be exactly the same entry (i.e. two 
+entry in the output log, but it must be exactly the same entry (i.e. two
 entries with same project id, id and title).
 
 7. The system should tolerate a permanent failure of any single hardware
@@ -97,11 +95,11 @@ Transactions
 Traditionally, this kind of requirements were solved by using transactions
 in something like SQL Server. If I store requests, TODO's and current ID per
 project in the same relational database, I can make each processing step a
-single atomic transaction. 
+single atomic transaction.
 
-This addresses all the concerns, as long as we can stay inside the single 
+This addresses all the concerns, as long as we can stay inside the single
 database. That's probably a viable option for the TODO app, but less of so
-if I convert my toy example to some real applications like IoT data 
+if I convert my toy example to some real applications like IoT data
 processing.
 
 Can we do the same for distributed systems at scale?
@@ -116,9 +114,9 @@ approach to make such processing consistent in the face of failures.
 When processing is done, we need to store 3 pieces: generated TODO event,
 current processing offset and current ID. Event goes to another event hub,
 processing offset is stored in Blob Storage and ID can be saved to something
-like Table Storage. 
+like Table Storage.
 
-But there's no way to store those 3 pieces atomically. Whichever order we 
+But there's no way to store those 3 pieces atomically. Whichever order we
 choose, we are bound to get anomalies in some specific failure modes.
 
 Azure Functions
@@ -128,7 +126,7 @@ Azure Functions don't solve those problems. But I want to mention this
 Function-as-a-Service offering because they provide an ideal programming
 model for my use case.
 
-I need to take just one step from my domain function to Azure Function: 
+I need to take just one step from my domain function to Azure Function:
 to define bindings for e.g. Event Hubs and Table Storage.
 
 However, reliability guarantees will stay poor. I won't get neither sequential
@@ -137,7 +135,7 @@ processing per Event Hub partition key, nor atomic state commit.
 Azure Service Fabric
 --------------------
 
-Service Fabric sounds like a good candidate service for reliable processing. 
+Service Fabric sounds like a good candidate service for reliable processing.
 Unfortunately, I don't have much experience with it to judge.
 
 Please leave a comment if you do.
@@ -154,7 +152,7 @@ topics, and state storage based on compacted topics.
 
 Apache Flink has similar guarantees for its stream processing APIs.
 
-Great, but how do I get such awesomeness in .NET code, and without installing 
+Great, but how do I get such awesomeness in .NET code, and without installing
 expensive ZooKeeper-managed clusters?
 
 Call for Feedback

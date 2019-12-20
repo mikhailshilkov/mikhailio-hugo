@@ -1,0 +1,23 @@
+<svg width="1441" height="715" viewBox="0 0 1441 715" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 35px; font-family: Burst My Bubble; }
+      .medium { font-size: 42px; font-family: Burst My Bubble; }
+  </style>
+
+  <polygon
+     fill="#EE8695"
+     stroke-width="0"
+     points="100,350 300,350 300,300 400,300 400,200 600,200 600,300 680,300 680,370 800,370 800,150 1000,150 1000,500 100,500" />
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="50,502 1050,502" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="98,550 98,50" />
+
+  <polyline fill="none" stroke="#A73B8F" stroke-width="3" points="100,350 300,350 300,300 400,300 400,200 600,200 600,300 680,300 680,370 800,370 800,150 1000,150" />
+  <path d="M 100 360 S 200 380 300 330 400 185 500 200 600 310 700 380 800 160 900 170 999 155 999 155" stroke="#501B73"
+  stroke-width="4" fill="none" />
+
+  <text x="500" y="540" class="small" fill="#666666">time</text>
+  <text x="0" y="0" class="small" fill="#666666" transform="translate(70 350) rotate(-90)">requests</text>
+  <text x="280" y="430" class="medium" fill="#A73B8F">Provisioned Concurrency</text>
+  <text x="440" y="160" class="medium" fill="#501B73">Workload</text>
+</svg>

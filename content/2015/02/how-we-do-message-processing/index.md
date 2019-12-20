@@ -1,12 +1,16 @@
 ---
 title: How we do message processing
 date: 2015-02-05
+thumbnail: teaser.jpg
 tags: ["Architecture", "Messaging"]
 description: Our team develops a back-end system that processes messages from mobile devices. The devices collect information from complex machines and send messages to our data center. In this article I want to share our approaches to building such processing software. The ideas are quite general and can be applied to any system of the following architecture...
 ---
 
 Our team develops a back-end system that processes messages from mobile devices. The devices collect information from complex machines and send messages to our data center. In this article I want to share our approaches to building such processing software. The ideas are quite general and can be applied to any system of the following architecture:
-![System architecture](architecture.jpg)
+
+{{< featured >}}
+{{< figure src="architecture.jpg" title="System architecture" >}}
+{{< /featured >}}
 
 The devices use communication channels to send messages to our gateway - the input point of our application. The application's goal is to understand what came in, do the required actions and save the information into the database for further processing. Let's consider the database to be the end point of processing. Sounds easy, right? But some difficulties appear with the growth of amount and diversity of incoming messages; so let's look at some of them.
 
@@ -17,12 +21,14 @@ Apart from the number of messages itself, there is a problem of irregularity and
 The input gateway doesn't do much of real job: it just receives a message from a client and puts it into the queue. This operation is very cheap, thus the gateway is capable of accepting a vast number of messages per second. Afterwards a separate process retrieves several messages - the amount it wants to get - from the queue and does the hard work. The processing happens asynchronously while the load on the system remains limited. Perhaps the time in the queue grows at peaks, but that's it.
 
 Normally the message processing is non-trivial and consists of several actions. Here we get to the next logical step: we break down the job into several stages, each one having a separate queue and a dedicated processor. The queues and processors are independent and may reside on separate physical servers; and we can tune and scale them independently:
-![Sequence-based architecture](sequence.jpg)
+
+{{< featured >}}
+{{< figure src="sequence.jpg" title="Sequence-based architecture" >}}
+{{< /featured >}}
 
 The first queue contains the messages from devices as-is, without decoding or transforming them. The first processor decodes them and puts them into the second queue. The second processor could, for instance, call a third-party service and enrich the message with some relevant information, and the third processor could save that information into the database.
 
 These are the basics, so what do we still need to consider?
-
 
 ### Define your values
 

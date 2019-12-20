@@ -31,9 +31,7 @@ Wish Fulfillment Service
 My assignment was to redesign the **Wish Fulfillment** service. The service receives
 wish lists from clients (they call children "clients"):
 
-![Christmas Wish List](wish-list.png)
-
-<center class="img-caption">Christmas Card with a Wish List &copy; my son Tim</center>
+{{< figure src="wish-list.png" title="Christmas Card with a Wish List (c) my son Tim" >}}
 
 Luckily, the list is already parsed by some other service, and also contains the metadata about
 the kid's background (age, gender, and so on) and preferences.
@@ -54,9 +52,7 @@ called "Santa's Archive of Products", also referred to as SAP.
 
 Here is the whole flow in one picture:
 
-![Gift Fulfillment Workflow](gift-fulfillment-service.png)
-
-<center class="img-caption">Gift Fulfillment Workflow</center>
+{{< figure src="gift-fulfillment-service.png" title="Gift Fulfillment Workflow" >}}
 
 How should we implement this service?
 
@@ -81,9 +77,7 @@ and the cost of busy applications is proportional to the actual resource utiliza
 
 Here is the diagram of the original design:
 
-![Workflow Design with Azure Functions and Storage Queues](azure-functions-diagram.png)
-
-<center class="img-caption">Workflow Design with Azure Functions and Storage Queues</center>
+{{< figure src="azure-functions-diagram.png" title="Workflow Design with Azure Functions and Storage Queues" >}}
 
 We used Azure Storage Queues to keep the whole flow asynchronous and more resilient to failures
 and load fluctuation.
@@ -324,9 +318,7 @@ let workflow wishlist = orchestrator {
 
 Notice how closely it matches the workflow definition from our domain model:
 
-![Async Function vs. Durable Orchestrator](durable-orchestrator-vs-async.png)
-
-<center class="img-caption">Async function vs. Durable Orchestrator</center>
+{{< figure src="durable-orchestrator-vs-async.png" title="Async function vs. Durable Orchestrator" >}}
 
 The only differences are:
 

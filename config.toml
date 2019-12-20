@@ -10,7 +10,7 @@ enableEmoji = true
 pygmentsCodeFences = true
 pygmentsStyle = "vs"
 googleAnalytics = "UA-59218480-1"
-disqusShortname = "mikhail_io"
+disqusShortname = "mikhailio"
 
 [outputs]
   home     = ["HTML", "XML"]

@@ -3,7 +3,6 @@ title: Monads explained in C# (again)
 date: 2018-07-05
 tags: ["Functional Programming", "Monads", "LINQ", "CSharp", "FSharp"]
 thumbnail: teaser.png
-images: [teaser.png]
 description: Yet another Monad tutorial, this time for C# OOP developers
 ---
 
@@ -13,9 +12,7 @@ But at the same time, I realize that learning functional programming is a challe
 process. FP comes with a baggage of unfamiliar vocabulary that can be daunting for
 somebody coming from an object-oriented language like C#.
 
-![Functional Programming Word Cloud](functional-programming-word-cloud.png)
-
-*Some of functional lingo*
+{{< figure src="functional-programming-word-cloud.png" title="Some of functional lingo" >}}
 
 "Monad" is probably the most infamous term from the list above. Monads have reputation of being
 something very abstract and very confusing.

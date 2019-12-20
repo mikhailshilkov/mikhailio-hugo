@@ -5,11 +5,11 @@ tags: ["Poker Bot", "FSharp", "Image Recognition", "OCR"]
 description: This is the second part of Building a Poker Bot series where I describe my experience developing bot software to play in online poker rooms. Reading cards and other fixed images was the first step. The bot should also be able to read different text-based information from the screen.
 ---
 
-*This is the second part of **Building a Poker Bot** series where I describe my experience developing bot software
-to play in online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively
-easy and very enjoyable. Here is the first part:
-[Building a Poker Bot: Card Recognition](https://mikhail.io/2016/02/building-a-poker-bot-card-recognition/)
-*
+This is the second part of **Building a Poker Bot** series where I describe my experience developing bot software
+to play in online poker rooms. I'm building the bot with .NET framework and F# language which makes the task relatively easy and very enjoyable.
+
+Here is the first part: [Building a Poker Bot: Card Recognition](https://mikhail.io/2016/02/building-a-poker-bot-card-recognition/)
+
 
 Why string recognition
 ----------------------
@@ -210,3 +210,5 @@ String recognition takes a bit more steps to execute comparing to the recognitio
 of fixed objects. Nevertheless it's pretty straightforward to implement once
 we split it into small and well-understood conversion steps. The full code
 for card recognition can be found in [my github repo](https://github.com/mikhailshilkov/mikhailio-samples/blob/master/StringRecognition.fs).
+
+*Proceed to [Part 3 of Building a Poker Bot: Mouse Movements](/2016/03/building-a-poker-bot-mouse-movements/).*
