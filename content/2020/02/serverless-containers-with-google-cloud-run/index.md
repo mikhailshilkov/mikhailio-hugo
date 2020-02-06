@@ -1,9 +1,9 @@
 ---
 title: "Serverless Containers with Google Cloud Run"
 date: 2020-02-04
-thumbnail: teaser.png
+thumbnail: teaser.jpg
 tags: ["GCP", "Serverless", "Containers", "Cloud Run"]
-description: "Running serverless containers in Google Cloud Run."
+description: "Google Cloud Run is the latest addition to the serverless compute family. While it may look similar to existing services of public cloud, the feature set makes Cloud Run unique."
 ghissueid: 28
 originalSource: Pulumi Blog
 originalUrl: https://www.pulumi.com/blog/google-cloud-run-serverless-containers/
