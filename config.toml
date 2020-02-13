@@ -69,3 +69,12 @@ disqusShortname = "mikhailio"
     weight = 500
     identifier = "about"
     url = "/about/"
+
+# talks
+[[params.talks]]
+    year = "2020"
+    date = "02-12"
+    title = "Cloud Infrastructure as C# and F# with Pulumi"
+    link = "https://meetup.com/todo"
+    event = "Bristol .NET"
+    slides = "http://speakerdeck.com/todo"

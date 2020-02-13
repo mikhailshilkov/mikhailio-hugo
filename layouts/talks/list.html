@@ -1,0 +1,38 @@
+{{ define "header"}}
+{{- partial "_shared/navbar.html" . -}}
+{{ end }}
+
+{{ define "main" }}
+<div class="main-content">
+	{{ $years := slice 2020 2019 2018 2017 2016 2015 2014 2013 2012 }}
+    {{ range $years }}
+    {{ $year := .}}
+    <section class="recent-posts">
+        <div class="section-title">
+            <h2><span>{{$year}}</span></h2>
+		</div>
+		{{ range $.Site.Params.talks }}
+		{{ if and (eq .year $year) }}
+		<div class="container">
+			<div class="abstract">
+				<div class="abstract-year"></div>
+				<div class="abstract-date">{{ .date }}</div>
+				<div class="abstract-title">{{ .title }}</div>
+				<div class="abstract-tags">
+					<a href='{{ .slides }}'
+						target="_blank">Slides</a>
+					at <a href='{{ .link }}' target="_blank">{{ .event }}</a>
+				</div>
+			</div>
+		</div>
+		{{end}}
+		{{end}}
+    </section>
+    <hr>
+    {{end}}
+</div>
+{{end}}
+
+{{ define "footer"}}
+{{- partial "_shared/footer.html" . -}}
+{{ end }}
