@@ -1,7 +1,7 @@
 ---
 title: "Hosting Azure Functions in Google Cloud Run"
-date: 2020-02-12
-thumbnail: teaser.jpg
+date: 2020-02-14
+thumbnail: teaser.png
 tags: ["GCP", "Serverless", "Containers", "Cloud Run", "Azure", "Azure Functions"]
 description: "Running Azure Functions Docker container inside Google Cloud Run managed service"
 ghissueid: 29
@@ -16,6 +16,8 @@ Not so quickly!
 ## Google Azure Functions?! Wat?
 
 You are probably already familiar with Azure Functions&mdash;the .NET-based FaaS runtime in Azure. Azure Functions has two faces: it's a managed service in the Azure cloud, and also it is a self-contained runtime that can run anywhere: on your local machine, in a VM, or in a container. As I'm going to demonstrate, it can run in Google Cloud too.
+
+![Azure Functions Google Cloud Run](teaser.png)
 
 Now, if I simply run an Azure Functions host on a VM in Google Cloud, I don't get all the serverless properties like scalability and pay-for-value. This is where Google Cloud Run comes into the mix.
 
@@ -76,7 +78,7 @@ The only statement that I have to customize for Cloud Run is `ASPNETCORE_URLS=ht
 
 Finally, I can deploy the container definition to Google Cloud Run service. I use Pulumi to deploy all the infrastructure, see [this post](https://mikhail.io/2020/02/serverless-containers-with-google-cloud-run/) for a detailed walkthrough.
 
-You can find the complete code of Azure Function deployment to Cloud Run [here](TODO). After running `pulumi up`, I get a URL back
+You can find the complete code of Azure Function deployment to Cloud Run [here](https://github.com/mikhailshilkov/mikhailio-hugo/tree/master/content/2020/02/azure-functions-in-google-cloud-run/code). After running `pulumi up`, I get a URL back
 
 ```
 endpoint: "https://cloudrun-functions-4f40772-q5zdxwsb2a-ew.a.run.app/api/HttpExample?name="

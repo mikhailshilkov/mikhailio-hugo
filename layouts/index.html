@@ -13,6 +13,8 @@
             {{ $page := $.GetPage "/serverless/coldstarts" }}
             {{- partial "list-partials/postbox.html" $page -}}
 
+            {{ $page := $.GetPage "/2020/02/azure-functions-in-google-cloud-run" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/02/serverless-containers-with-google-cloud-run" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/12/aws-lambda-provisioned-concurrency-no-cold-starts" }}
@@ -86,8 +88,6 @@
             {{ $page := $.GetPage "/2017/12/azure-functions-get-more-scalable-and-elastic" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/12/precompiled-azure-functions-in-fsharp" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2017/10/azure-function-triggered-by-azure-event-grid" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/09/wanted-effectively-once-processing-in-azure" }}
             {{- partial "list-partials/postbox.html" $page -}}
