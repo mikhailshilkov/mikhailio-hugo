@@ -4,7 +4,7 @@ date: 2020-02-14
 thumbnail: teaser.png
 tags: ["GCP", "Serverless", "Containers", "Cloud Run", "Azure", "Azure Functions"]
 description: "Running Azure Functions Docker container inside Google Cloud Run managed service"
-ghissueid: 29
+ghissueid: 33
 ---
 
 Suppose you are a .NET developer, you love the Function-as-a-Service (FaaS) model, but you want to run your serverless functions in Google Cloud. You want to keep using C# or F#, and still leverage all serverless benefits&mdash;ease of use, scalability, elasticity, pay-per-value cost model&mdash;running in GCP.
