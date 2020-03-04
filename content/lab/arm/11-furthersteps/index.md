@@ -1,7 +1,7 @@
 ---
 title: Further Steps
 subtitle: Ideas to implement on your own
-nextstep: 12-cleanup
+nextstep: /lab/arm/12-cleanup
 nofeed: true
 weight: 11
 ---

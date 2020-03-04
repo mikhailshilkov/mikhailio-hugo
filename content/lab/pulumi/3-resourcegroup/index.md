@@ -2,7 +2,7 @@
 title: Resource Group
 subtitle: 4 minutes to complete
 navtitle: Deploy a Resource Group
-nextstep: 4-storageaccount
+nextstep: /lab/pulumi/4-storageaccount
 material: index.ts
 nofeed: true
 weight: 3

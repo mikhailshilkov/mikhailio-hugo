@@ -2,7 +2,7 @@
 title: New Pulumi Program
 subtitle: 5 minutes to complete
 navtitle: Create a Pulumi Program
-nextstep: 3-resourcegroup
+nextstep: /lab/pulumi/3-resourcegroup
 nofeed: true
 weight: 2
 ---

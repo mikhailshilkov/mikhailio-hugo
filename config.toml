@@ -70,11 +70,78 @@ disqusShortname = "mikhailio"
     identifier = "about"
     url = "/about/"
 
-# talks
+## talks
 [[params.talks]]
-    year = "2020"
-    date = "02-12"
+    year = 2020
+    date = "Feb 25"
+    title = "Azure Infrastructure as C# and F#"
+    link = "https://www.microsoft.com/cs-cz/ignite-the-tour/prague"
+    event = "Microsoft Ignite The Tour | Prague"
+    slides = "https://speakerdeck.com/mikhailshilkov/azure-infrastructure-as-c-number-and-f-number"
+[[params.talks]]
+    year = 2020
+    date = "Feb 20"
     title = "Cloud Infrastructure as C# and F# with Pulumi"
-    link = "https://meetup.com/todo"
-    event = "Bristol .NET"
-    slides = "http://speakerdeck.com/todo"
+    link = "https://www.meetup.com/dutchdotnet/events/267776963"
+    event = "Dutch .Net Group"
+    slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"
+    video = "https://www.youtube.com/watch?v=zHjz-yTg0qI"
+[[params.talks]]
+    year = 2020
+    date = "Feb 19"
+    title = "Cloud Infrastructure as C# and F# with Pulumi"
+    link = "https://www.meetup.com/Skane-Azure-User-Group/events/268057791/"
+    event = "Skåne Azure User Group, Malmö, Sweden"
+    slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"
+    video = "https://www.youtube.com/watch?v=0qkkRRysqe8"
+[[params.talks]]
+    year = 2020
+    date = "Feb 18"
+    title = "Cloud Infrastructure as C# and F# with Pulumi"
+    link = "https://www.meetup.com/Copenhagen-Net-User-Group/events/268445025/"
+    event = "Copenhagen .NET user group"
+    slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"
+[[params.talks]]
+    year = 2020
+    date = "Feb 18"
+    title = "Workshop: Azure Infrastructure as Code with Pulumi and C#"
+    link = "https://www.meetup.com/Azure-Usergroup-Denmark/events/268445103/"
+    event = "Azure Usergroup Denmark"
+    slides = "https://github.com/pulumi/infrastructure-as-code-workshop/blob/master/labs/azure/csharp/Infrastructure%20as%20Code%20Workshop%20Azure.pdf"
+    labs = "https://github.com/pulumi/infrastructure-as-code-workshop/tree/master/labs/azure/csharp"
+[[params.talks]]
+    year = 2020
+    date = "Feb 17"
+    title = "Introduction to F# and Functional Programming"
+    link = "https://www.meetup.com/dotnet-amsterdam/events/267228367/"
+    event = "dotnet Amsterdam meetup"
+    slides = "https://mikhail.io/talks/why-fsharp2/"
+    video = "https://www.youtube.com/watch?v=F5bm2em5kRU"
+[[params.talks]]
+    year = 2020
+    date = "Feb 12"
+    title = "Cloud Infrastructure as C# and F# with Pulumi"
+    link = "https://www.meetup.com/dotnetsouthwest/events/268110936/"
+    event = ".NET South West meetup, Bristol, UK"
+    slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"
+[[params.talks]]
+    year = 2020
+    date = "Feb 11"
+    title = "Cloud Infrastructure as C# and F# with Pulumi"
+    link = "https://www.meetup.com/dotnetsoutheast/events/268137504/"
+    event = ".NET South East meetup, Brighton, UK"
+    slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"
+[[params.talks]]
+    year = 2020
+    date = "Jan 30"
+    title = "Cloud Infrastructure as C# and F# with Pulumi"
+    link = "https://www.meetup.com/netcorebcn/events/267108105/"
+    event = "Barcelona .NET Core meetup"
+    slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"
+[[params.talks]]
+    year = 2020
+    date = "Jan 17"
+    title = "Cloud Infrastructure as C# and F# with Pulumi"
+    link = "https://dotnetfriday.nl"
+    event = "DotNetFriday, Utrecht, NL"
+    slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"

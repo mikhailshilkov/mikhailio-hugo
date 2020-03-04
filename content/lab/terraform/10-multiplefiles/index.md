@@ -2,7 +2,7 @@
 title: Multiple Files
 subtitle: 4 minutes to complete
 navtitle: Structure a Module as Multiple Files
-nextstep: 11-furthersteps
+nextstep: /lab/terraform/11-furthersteps
 nofeed: true
 weight: 10
 ---

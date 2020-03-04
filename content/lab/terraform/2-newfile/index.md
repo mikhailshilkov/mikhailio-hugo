@@ -2,7 +2,7 @@
 title: New Terraform File
 subtitle: 3 minutes to complete
 navtitle: Create a Terraform File
-nextstep: 3-resourcegroup
+nextstep: /lab/terraform/3-resourcegroup
 material: main.tf
 nofeed: true
 weight: 2

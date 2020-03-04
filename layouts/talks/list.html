@@ -4,7 +4,7 @@
 
 {{ define "main" }}
 <div class="main-content">
-	{{ $years := slice 2020 2019 2018 2017 2016 2015 2014 2013 2012 }}
+	{{ $years := slice 2020 }}
     {{ range $years }}
     {{ $year := .}}
     <section class="recent-posts">
@@ -13,23 +13,431 @@
 		</div>
 		{{ range $.Site.Params.talks }}
 		{{ if and (eq .year $year) }}
-		<div class="container">
-			<div class="abstract">
-				<div class="abstract-year"></div>
-				<div class="abstract-date">{{ .date }}</div>
-				<div class="abstract-title">{{ .title }}</div>
-				<div class="abstract-tags">
-					<a href='{{ .slides }}'
-						target="_blank">Slides</a>
-					at <a href='{{ .link }}' target="_blank">{{ .event }}</a>
-				</div>
+		<div class="abstract">
+			<div class="abstract-date">{{ .date }}</div>
+			<div class="abstract-title">{{ .title }}</div>
+			<div class="abstract-tags">
+				<a href='{{ .slides }}'	target="_blank">Slides</a>{{ with .video }},
+				<a href='{{ . }}' target="_blank">Video</a>
+				{{ end }}{{ with .labs }},
+				<a href='{{ . }}' target="_blank">Labs</a>
+				{{ end }}
+				at <a href='{{ .link }}' target="_blank">{{ .event }}</a>
 			</div>
 		</div>
 		{{end}}
 		{{end}}
     </section>
-    <hr>
-    {{end}}
+	<br><hr><br><br>
+	{{end}}
+    <section class="recent-posts">
+        <div class="section-title">
+            <h2><span>2019</span></h2>
+		</div>
+	<div class="abstract">
+		<div class="abstract-date">Nov 20</div>
+		<div class="abstract-title">Infrastructure as TypeScript (in Russian)</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/infrastruktura-kak-typescript'
+				target="_blank">Slides</a>
+			at <a href='https://www.devopspro.ru' target="_blank">DevOps Pro Moscow</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 19</div>
+		<div class="abstract-title">Workshop: Azure Infrastructure as Code (in Russian)</div>
+		<div class="abstract-tags">
+			<a href='https://mikhail.io/lab/' target="_blank">Labs</a>
+			at <a href='https://www.devopspro.ru' target="_blank">DevOps Pro Moscow</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 13</div>
+		<div class="abstract-title">Infrastructure as TypeScript</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/infrastructure-as-typescript-a03f787a-979b-4659-86a4-0908563115c0'
+				target="_blank">Slides</a>
+			at <a href='https://cloudyna.net/' target="_blank">Cloudyna</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 8</div>
+		<div class="abstract-title">From YAML to TypeScript: Developer’s View on Cloud Automation</div>
+		<div class="abstract-tags">
+			<a href='https://vimeo.com/372105762' target="_blank">Video</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/from-yaml-to-typescript-developers-view-on-cloud-automation'
+				target="_blank">Slides</a>
+			at <a href='https://oredev.org' target="_blank">Øredev</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 6</div>
+		<div class="abstract-title">Serverless Infrastructure as Code</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/serverless-infrastructure-as-code'
+				target="_blank">Slides</a>
+			at <a href='https://serverlesscomputing.london/sessions/serverless-infrastructure-as-code/'
+				target="_blank">Serverless Computing London</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Oct 30</div>
+		<div class="abstract-title">Cloud Infrastructure as Code</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/cloud-infrastructure-as-code' target="_blank">Slides</a>
+			at Cloud Republic meetup
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Oct 30</div>
+		<div class="abstract-title">Serverless Functions Azure, AWS, GCP</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/serverless-functions-azure-aws-gcp'
+				target="_blank">Slides</a>
+			at Cloud Republic meetup
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Oct 14</div>
+		<div class="abstract-title">Workshop: Serverless Infrastructure as Code</div>
+		<div class="abstract-tags">
+			<a href='https://mikhail.io/lab/' target="_blank">Labs</a>
+			at <a href='https://serverless-architecture.io' target="_blank">Serverless Architecture</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Sep 11</div>
+		<div class="abstract-title">Planet Scale Applications with Cosmos DB and Pulumi</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/planet-scale-applications-with-cosmos-db-and-pulumi'
+				target="_blank">Slides</a>
+			at <a href='https://www.meetup.com/Pulumi-Seattle/events/263808748/' target="_blank">Pulumi - Seattle
+				Meetup</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">June 8</div>
+		<div class="abstract-title">All-In on Cloud (in Russian)</div>
+		<div class="abstract-tags">
+			<a href='https://youtu.be/fHuBSglzUow' target="_blank">Video</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/all-in-on-cloud-how-we-moved-from-million-euro-worth-of-hardware-to-azure-paas-ru'
+				target="_blank">Slides</a>
+			at <a href='https://dotnetsummit.by/#talk_MikhailShilkov' target="_blank">.NET Summit Belarus</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">May 16</div>
+		<div class="abstract-title">Serverless Under the Hood (in Russian)</div>
+		<div class="abstract-tags">
+			<a href='https://youtu.be/9Hx5n4ogZLs' target="_blank">Video</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/serverless-pod-kapotom' target="_blank">Slides</a>
+			at <a href='https://dotnext-piter.ru/2019/spb/talks/5s4wnqjepahnwfpdhb7mrf/' target="_blank">DotNext
+				Piter</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Apr 10</div>
+		<div class="abstract-title">Serverless Scalability Myth Busters</div>
+		<div class="abstract-tags">
+			<a href='https://www.youtube.com/watch?v=Bs4Pd189O0g' target="_blank">Video</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/scalability-myth-busters' target="_blank">Slides</a>
+			at <a href='https://serverless-architecture.io/' target="_blank">Serverless Architecture, The Hague</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Apr 9</div>
+		<div class="abstract-title">Serverless Workflows with Durable Functions</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/serverless-workflows-with-durable-functions-6383749f-8904-45b8-83fe-4cd9bf46c7e3'
+				target="_blank">Slides</a>
+			at <a href='https://intelligentcloud.dk/schedule/' target="_blank">Intelligent Cloud Conference</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Apr 5</div>
+		<div class="abstract-title">Azure Durable F#unctions
+		</div>
+		<div class="abstract-tags">
+			<a href='https://skillsmatter.com/skillscasts/13420-durable-f-sharpunctions' target="_blank">Video
+				(requires free signup)</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/azure-durable-f-number-unctions'
+				target="_blank">Slides</a>
+			at <a href='https://skillsmatter.com/conferences/10869-f-sharp-exchange-2019#program' target="_blank">F#
+				eXchange</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Apr 4</div>
+		<div class="abstract-title">Cloud Infrastructure as F#</div>
+		<div class="abstract-tags">
+			<a href='https://skillsmatter.com/skillscasts/13421-lightning-talk-cloud-infrastructure-as-f-sharp'
+				target="_blank">Video (requires free signup)</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/cloud-infrastructure-as-f-number'
+				target="_blank">Slides</a>
+			at <a href='https://skillsmatter.com/conferences/10869-f-sharp-exchange-2019#program' target="_blank">F#
+				eXchange</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Feb 2</div>
+		<div class="abstract-title">Infrastructure as Typescript</div>
+		<div class="abstract-tags">
+			<a href='https://video.fosdem.org/2019/K.3.201/typescript_for_infrastructure.mp4'
+				target="_blank">Video,</a>
+			<a href='https://speakerdeck.com/mikhailshilkov/infrastructure-as-typescript'
+				target="_blank">Slides</a>,
+			<a href='https://github.com/mikhailshilkov/fosdem2019/tree/master/samples' target="_blank">Code</a>
+			at <a href='https://fosdem.org/2019/schedule/event/typescript_for_infrastructure/'
+				target="_blank">FOSDEM 2019</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Jan 17</div>
+		<div class="abstract-title">Serverless Workflows with Durable Functions</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/serverless-workflows-with-azure-durable-functions'
+				target="_blank">Slides</a>
+			at <a href='https://www.microsoft.com/en-sg/ignite-the-tour/singapore' target="_blank">Microsoft Ignite
+				| The Tour Singapore</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Jan 16</div>
+		<div class="abstract-title">All-In on Cloud</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/all-in-on-cloud-how-we-moved-from-million-euro-worth-of-hardware-to-azure-paas-ddde25bc-fb2b-43aa-aa61-a3e3391c64bd'
+				target="_blank">Slides</a>
+			at <a href='https://www.microsoft.com/en-sg/ignite-the-tour/singapore' target="_blank">Microsoft Ignite
+				| The Tour Singapore</a>
+		</div>
+	</div>
+    </section>
+	<br><hr><br><br>
+    <section class="recent-posts">
+        <div class="section-title">
+            <h2><span>2018</span></h2>
+		</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 29</div>
+		<div class="abstract-title">Serverless Workflows with Durable Functions</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/serverless-workflows-with-durable-functions'
+				target="_blank">Slides</a>
+			at <a href='https://milan2018.codemotionworld.com/conference/' target="_blank">Codemotion Milan</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 16</div>
+		<div class="abstract-title">All-in on Cloud: How We Moved from Million Euro Worth of Hardware to Azure PaaS
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.youtube.com/watch?v=1PzQuVeK07Y' target="_blank">Video</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/all-in-on-cloud-how-we-moved-from-million-euro-worth-of-hardware-to-azure-paas'
+				target="_blank">Slides</a>
+			at <a href='https://www.buildstuff.lt/' target="_blank">BuildStuff</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 12</div>
+		<div class="abstract-title">Performance Tales of Serverless</div>
+		<div class="abstract-tags">
+			<a href='https://www.youtube.com/watch?v=_3y5QSTNYq4' target="_blank">Video</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/performance-tales-of-serverless-10413e55-28aa-4a3d-bb98-272a825892c0'
+				target="_blank">Slides</a>
+			at <a href='https://serverlesscomputing.london/sessions/performance-tales-serverless/'
+				target="_blank">Serverless Computing London</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 1</div>
+		<div class="abstract-title">All-in on Cloud: How We Moved from Million Euro Worth of Hardware to Azure PaaS
+		</div>
+		<div class="abstract-tags">
+			<a href='https://youtu.be/-wycjfKA8c0' target="_blank">Video</a>,
+			<a href='https://speakerdeck.com/mikhailshilkov/all-in-on-cloud-how-we-moved-from-million-euro-worth-of-hardware-to-azure-paas'
+				target="_blank">Slides</a>
+			at <a href='https://www.meetup.com/ru-RU/dotnet-amsterdam/events/255737023/' target="_blank">.NET
+				Amsterdam meetup</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Oct 13</div>
+		<div class="abstract-title">Performance Tales of Serverless</div>
+		<div class="abstract-tags">
+			<a href='https://speakerdeck.com/mikhailshilkov/performance-tales-of-serverless'
+				target="_blank">Slides</a>
+			at <a href='https://www.cloudbrew.be/' target="_blank">CloudBrew</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Sep 29</div>
+		<div class="abstract-title">Monads Explained for OOP Developers
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.slideshare.net/MikhailShilkov/monads-explained-for-oop-developers-117384840'
+				target="_blank">Slides</a>
+			at <a href='http://nextbuild.nl/sessions/monads-explained-for-oop-developers/'
+				target="_blank">NextBuild</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Sep 28</div>
+		<div class="abstract-title">Performance Tales of Serverless
+		</div>
+		<div class="abstract-tags">
+			<a href='https://skillsmatter.com/skillscasts/12094-performance-tales-of-serverless'
+				target="_blank">Video (requires free signup)</a>,
+			<a href='https://www.slideshare.net/MikhailShilkov/performance-tales-of-serverless-cloudnative-london-2018-117115358'
+				target="_blank">Slides</a>
+			at <a href='https://skillsmatter.com/conferences/10160-cloudnative-london-2018#program'
+				target="_blank">CloudNative London</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Sep 18</div>
+		<div class="abstract-title">Introduction to F# and Functional Programming
+		</div>
+		<div class="abstract-tags">
+			<a href='https://mikhail.io/talks/why-fsharp2/' target="_blank">Slides</a>
+			at <a href='https://www.meetup.com/F-P-Eindhoven/events/254014704/' target="_blank">F#P Eindhoven
+				meetup</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">May 9</div>
+		<div class="abstract-title">Performance Tales of Serverless
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.youtube.com/watch?v=eTmf8FXUMwU' target="_blank">Video</a>,
+			<a href='https://www.slideshare.net/MikhailShilkov/performance-tales-of-serverless-96499763'
+				target="_blank">Slides</a>
+			at <a href='https://amsterdam2018.codemotionworld.com/conference/09-May/' target="_blank">Codemotion
+				Amsterdam</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-date">Apr 14</div>
+		<div class="abstract-title">Monads Explained for OOP Developers
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.slideshare.net/MikhailShilkov/monads-explained-for-oop-developers'
+				target="_blank">Slides</a>
+			at <a href='https://rome2018.codemotionworld.com/conference/14-April/' target="_blank">Codemotion
+				Rome</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-date">Apr 13</div>
+		<div class="abstract-title">Performance Tales of Serverless
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.youtube.com/watch?v=5EAqupJWp90' target="_blank">Video</a>,
+			<a href='https://www.slideshare.net/MikhailShilkov/performance-tales-of-serverless'
+				target="_blank">Slides</a>
+			at <a href='https://rome2018.codemotionworld.com/conference/13-April/' target="_blank">Codemotion
+				Rome</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-date">Apr 5</div>
+		<div class="abstract-title">Azure F#unctions
+		</div>
+		<div class="abstract-tags">
+			<a href='https://skillsmatter.com/skillscasts/11347-azure-f-sharpunctions' target="_blank">Video
+				(requires free signup)</a>,
+			<a href='https://www.slideshare.net/MikhailShilkov/azure-functions-92988186' target="_blank">Slides</a>
+			at <a href='https://skillsmatter.com/conferences/9419-f-sharp-exchange-2018#program' target="_blank">F#
+				eXchange</a>
+		</div>
+	</div>
+	</section>
+	<br><hr><br><br>
+	<section class="recent-posts">
+        <div class="section-title">
+            <h2><span>2017</span></h2>
+		</div>
+	<div class="abstract">
+		<div class="abstract-year"></div>
+		<div class="abstract-date">Nov 8</div>
+		<div class="abstract-title">Azure F#unctions
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.slideshare.net/MikhailShilkov/azure-functions-81817017' target="_blank">Slides</a>
+			, <a href='https://github.com/mikhailshilkov/azure-functions-fsharp-examples' target="_blank">Code
+				samples</a>
+			at <a href="https://www.meetup.com/FSharping/events/244137693/" target="_blank">FSharping</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-date">Oct 13</div>
+		<div class="abstract-title">Event Driven Applications in F#
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.youtube.com/watch?v=iTL9QQ_VQj8' target="_blank">Video</a>,
+			<a href="https://www.slideshare.net/MikhailShilkov/event-driven-applications-in-f"
+				target="_blank">Slides</a>
+			at
+			<a href="http://techdays.nl" target="_blank">Tech Days NL</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-date">Aug 25</div>
+		<div class="abstract-title">Built with Aurelia: Trip Monitor
+		</div>
+		<div class="abstract-tags">
+			<a href='https://youtu.be/GVjTCqSjQwo' target="_blank">Video</a> at
+			<a href="https://www.meetup.com/Aurelia-Amsterdam-meetup/events/240956823/" target="_blank">Aurelia
+				Amsterdam Meetup</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-date">May 8</div>
+		<div class="abstract-title">Why Learn F# and Functional Programming</a>
+		</div>
+		<div class="abstract-tags">
+			<a href='https://www.slideshare.net/MikhailShilkov/why-learn-f-and-functional-programming'
+				target="_blank">Slides</a> at
+			<a href="https://www.meetup.com/dotNET-Development-Nederland/events/239327172/" target="_blank">.NET
+				Development Nederland</a>
+		</div>
+	</div>
+	<div class="abstract">
+		<div class="abstract-date">Jan 12</div>
+		<div class="abstract-title">Introduction of Functional Programming & Taste of F#</div>
+		<div class="abstract-tags">
+			<a href='https://www.slideshare.net/MikhailShilkov/why-learn-f-and-functional-programming'
+				target="_blank">Slides 1 (Why FP)</a>,
+			<a href='https://www.slideshare.net/MikhailShilkov/the-taste-of-f' target="_blank">Slides 2 (Taste of
+				F#)</a> at
+			<a href='https://www.meetup.com/Webscale-Architecture-NL/events/235727572/' target="_blank">Webscale
+				Architecture Meetup</a>
+		</div>
 </div>
 {{end}}
 

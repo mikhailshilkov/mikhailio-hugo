@@ -2,7 +2,7 @@
 title: Resource Group
 subtitle: 4 minutes to complete
 navtitle: Deploy a Resource Group
-nextstep: 4-storageaccount
+nextstep: /lab/terraform/4-storageaccount
 material: main.tf
 nofeed: true
 weight: 3

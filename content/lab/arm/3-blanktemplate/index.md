@@ -2,7 +2,7 @@
 title: Blank ARM Template
 subtitle: 4 minutes to complete
 navtitle: Create a Blank ARM Template
-nextstep: 4-storageaccount
+nextstep: /lab/arm/4-storageaccount
 nofeed: true
 weight: 3
 ---
