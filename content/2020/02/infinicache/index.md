@@ -1,5 +1,5 @@
 ---
-title: "Infinicache"
+title: "Paper review: InfiniCache&mdash;finding persistent state in ephemeral serverless functions"
 date: 2020-02-25
 thumbnail: teaser.png
 tags: ["Serverless"]
@@ -7,64 +7,66 @@ description: ""
 ghissueid: 34
 ---
 
-X Y Z have recently release a paper where they describe a prototype of a serverless distributed caching system sitting atop AWS Lambda. I got fascinated by several techniques that they employed while implementing it. I decided to review the paper and highlight the most intriguing parts of the paper. My review is targeted at software and IT engineers working in the industry of cloud applications. I assume the reader has basic understanding of serverless cloud functions (Function-as-a-Service) and their traditional use cases.
+"InfiniCache: Exploiting Ephemeral Serverless Functions to Build a Cost-Effective Memory Cache" by Ao Wang, et al. is a recently released paper which describe a prototype of a serverless distributed caching system sitting atop AWS Lambda.
 
-But first, let's set some context.
+While reading through the paper, I got fascinated by several techniques that they employed while implementing the system. Therefore, I decided to review the paper and highlight its most intriguing parts. My review is targeted at software and IT engineers working in the industry of cloud applications. I assume the reader has basic understanding of serverless cloud functions (Function-as-a-Service, FaaS) and their traditional use cases.
+
+Let's start with a problem that InfiniCache aims to solve.
 
 ## I. State in Stateless Functions
 
-Serverless functions are designed for stateless workloads. FaaS services use ephimeral instances to serve varying workloads.
+Serverless functions are designed for stateless workloads. FaaS services use ephemeral compute instances to grow and shrink the capacity to adjust to variable request rate. New virtual machines or containers are assigned or disposed at arbitrary moments by the cloud provider.
 
- Pay per 100 milliseconds. Keeping instances alive between requests. Beneficial for low-load usage.
+Functions are extremely compelling for low-load usage scenarios. Executions are charged per actual duration, at 100 ms granularity. If your development or test environment only needs to run several times per day, it will cost you literally zero.
 
-Function warming. Pre-loaded files are kept in memory between requests which minimizes cold start.
+Cloud providers try to reuse compute instances for multiple subsequent requests. The price of bootstrapping new instances is too high to pay for every request. A warm instance would keep pre-loaded files in memory between requests to minimize the overhead and [cold start](/serverless/coldstarts) duration.
 
-There seems to be a fundamental opportunity to exploit this further. Each function has up to several gigabytes of memory, while our executable cache might only consume several megs.
+There seems to be a fundamental opportunity to exploit the keep-warm behavior further. Each function instance has up to several gigabytes of memory, while our executable cache might only consume several megabytes. Can we use this memory to persist useful state?
 
 ### In-memory Cache
 
-The most straightforward way to use this memory is to store reusable data between requests. If we need a piece of data from external requests, and it's used again and again, it makes sense to store it after the first load in a global in-memory hashmap. The result is a read-through (?) cache of data that were queried from data stores while processing previous requests. 
+The most straightforward way to use this capacity is to store reusable data between requests. If we need a piece of data from external storage, and that same piece used again and again, we could store it after the first load in a global in-memory hashmap. Think of a simple read-through cache backed by an external persistent data store. 
 
 [Picture of an in-memory cache: cache+compute on the same box]
 
 This approach is still quite limited in several ways:
 
-- The total size of cache is up to 3GB, which might not be enough for large number of objects or large objects
-- Any parallel request can be processed by a different instance of the same lambda where no cache is present
+- The total size of cache is up to 3GB (max size of AWS Lambda), which might not be enough for large number of objects or large objects.
+- Any parallel request may be processed by a different instance of the same AWS Lambda. The second instance will have to load the data from the data store once again.
 
 [Picture of two instances: one with cache, one without, handling two requests]
 
-Each instance would have to store its own copy of cached data. Cache invalidation might get tricky in this case too, especially because each instance has its own lifetime.
+This means that each instance has to store its own copy of cached data, which reduces the overall efficiency. Also, cache invalidation might get tricky in this case, especially because each instance has its own, highly unpredictable lifetime.
 
 ### Distributed Cache
 
-The previous scenario described a local cache that is co-located with data processing logic. Can we move the cache out of the instance, distribute it among multiple instances, and have multiple lambdas to cache different portions of data set? This would help with the cache size and duplication issues.
+The previous scenario described a local cache that is co-located with data processing logic. Can we move the cache out of the currently invoked instance, distribute it among many other instances, and have multiple lambdas caching different portions of the data set? This move would help both with the cache size and duplication issues.
 
 [Picture of an app node doing the app thing talking to distributed set of caches]
 
-Distributed cache as a service: 
+The idea is to create a Distributed Cache as a Service, with design goals friendly to the serverless mindset:
 
 - Low management overhead
 - Scalability to hundreds or thousands of nodes
 - Pay per request
 
-The memory capacity used to cache an object is billed only when there is a request hitting that object. Other distributed cache products would have a fixed provisioned capacity and charge for memory capacity on an hourly basis whether the cached objects are accessed or not.
-
-For serverless cache, the memory capacity used to cache an object is billed only whenthere is a request hitting that object.  This significantly differentiates the proposed cache model against conventional cloud storage or cache services, which start charging tenants for capacity usage whenever the capacity has been committed in use.
+The biggest potential upside is related to the cost structure. The cache capacity is billed only when a request needs an object. Such a pay-per-request model significantly differentiates against conventional cloud storage or cache services, which typically charge for memory capacity on an hourly basis whether the cached objects are accessed or not.
 
 ### Challenges
 
-Serverless functions are not designed for stateful use cases. Utilizing the memory of cloud functions for object caching introduces non-trivial challenges due to the limitations and constraints of serverless computing platforms
+However, once again, serverless functions were not designed for stateful use cases. Utilizing the memory of cloud functions for object caching introduces non-trivial challenges due to the limitations and constraints of serverless computing platforms. The following list is specific to AWS Lambda, but other providers have very similar setups.
 
-- Limited resource capacity: (mostly) 1 CPU, up to several GB memory, and limited network bandwidth
-- Providers may reclaim a function and its memory at any time, creating a risk of loss of the cached data
-- Each Lambda function can run at most 900 seconds (15 minutes)
-- Strict network communication constraints: Lambda only allows outbound TCP network connections and bans inbound connections and UDP traffic, meaning a Lambda function cannot be used to implement a server
-- The lack of quality-of-service control. As a result, functions suffer from straggler issues
-- Lambda functions are hosted by EC2 Virtual Machines (VMs). A single VM can host one or more functions. AWS seems to provision Lambda functions on the smallest possible number of VMs using a greedy binpacking heuristic. This could cause severe network bandwidth contention if multiple network-intensive Lambda functions get allocated on the same host VM.
-- Billed per 100 ms, even if a request only takes 10 ms.
-- No concurrent invocation, so the same instance can't handle multiple requests at the same time.
-- Non-trivial invocation latency
+- Limited resource capacity: (mostly) 1 CPU, up to several GB of memory, and limited network bandwidth.
+- Providers may reclaim a function and its memory at any time, creating a risk of loss of the cached data.
+- Each Lambda function can run at most 900 seconds (15 minutes).
+- Strict network communication constraints: Lambda only allows outbound TCP network connections and bans inbound connections and UDP traffic, meaning a Lambda function cannot be used to implement a server.
+- The lack of quality-of-service control. As a result, functions suffer from straggler issues, when response duration distributions have long tails.
+- Lambda functions are hosted at EC2 Virtual Machines (VMs). A single VM can host one or more functions. AWS provisions functions on the smallest possible number of VMs using a greedy binpacking heuristic. This could cause severe network bandwidth contention if multiple network-intensive Lambda functions get allocated on the same host VM.
+- Executions are billed per 100 ms, even if a request only takes 5 or 10 ms.
+- No concurrent invocations are allowed, so the same instance can't handle multiple requests at the same time.
+- There is a non-trivial invocation latency on top of any response processing time.
+
+Honestly, that's a large list of pitfalls. Nonetheless, InfiniCache crafts a careful combination of choosing the best use case, working around some issues, and haching straight through the others.
 
 ### Large Object Caching
 

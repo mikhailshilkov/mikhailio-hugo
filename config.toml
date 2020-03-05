@@ -124,6 +124,7 @@ disqusShortname = "mikhailio"
     link = "https://www.meetup.com/dotnetsouthwest/events/268110936/"
     event = ".NET South West meetup, Bristol, UK"
     slides = "https://speakerdeck.com/mikhailshilkov/pulumi-cloud-infrastructure-as-c-number-and-f-number"
+    video = "https://www.youtube.com/watch?v=SsvfsAJdLFI"
 [[params.talks]]
     year = 2020
     date = "Feb 11"
