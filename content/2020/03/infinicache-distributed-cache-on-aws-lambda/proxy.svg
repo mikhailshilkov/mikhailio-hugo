@@ -1,0 +1,97 @@
+<svg width="1441" height="715" viewBox="0 0 1441 715" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+  <style>
+      .small { font-size: 25px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+      .large { font-size: 150px; font-family: Burst My Bubble; }
+      .cls-1{fill:none;stroke:#f37920;stroke-linecap:round;stroke-linejoin:round;}
+      .a{fill:url(#a);}.b{fill:url(#b);}.c{fill:url(#c);}      
+  </style>
+  <linearGradient id="a" x1="34.49" y1="26.5" x2="62.49" y2="26.5" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#f37920"/>
+  </linearGradient>
+  <linearGradient id="b" x1="12.49" y1="48.5" x2="40.49" y2="48.5" xlink:href="#a"/>
+  <linearGradient id="c" x1="21.5" y1="37.5" x2="53.5" y2="37.5" xlink:href="#a"/>
+</defs>
+
+<g transform="translate(0, 150)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <g transform="translate(120,160) scale(6 6)">
+    <path class="cls-1" d="M14.8,6.54a1.68,1.68,0,1,1-.91-2.19A1.67,1.67,0,0,1,14.8,6.54Z"/>
+    <path class="cls-1" d="M16.6,8.32l1.47.39a5.82,5.82,0,0,0,.59-1.43l-1.33-.75a3.93,3.93,0,0,0,0-1.28l1.32-.77a5.94,5.94,0,0,0-.6-1.42l-1.47.4a3.89,3.89,0,0,0-.91-.9l.39-1.48A5.81,5.81,0,0,0,14.64.5l-.76,1.32a4.22,4.22,0,0,0-1.28,0L11.83.51a6,6,0,0,0-1.42.6l.4,1.47a3.89,3.89,0,0,0-.9.91L8.43,3.1a6,6,0,0,0-.58,1.42l1.32.76a4.22,4.22,0,0,0,0,1.28l-1.32.77a5.66,5.66,0,0,0,.6,1.42l1.47-.4a3.89,3.89,0,0,0,.91.9l-.39,1.47a5.14,5.14,0,0,0,1.43.59L12.63,10a3.93,3.93,0,0,0,1.28,0l.77,1.31a5.54,5.54,0,0,0,1.42-.59l-.4-1.47A4.09,4.09,0,0,0,16.6,8.32Z"/><path class="cls-1"/>
+  </g>
+
+  <text x="170" y="340" class="medium" fill="#666666">Client</text>
+  <text x="135" y="370" class="small" fill="#666666">(compute layer)</text>
+</g>
+
+<g transform="translate(312, 350)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 100,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="86,-8 100,0 86,8" />
+</g>
+
+<g transform="translate(325, 150)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <g transform="translate(155,155) scale(1.75 1.75)">
+      <path class="a" d="M60.49,40.5h-5v-2h5v-24h-24v5h-2v-5a2,2,0,0,1,2-2h24a2,2,0,0,1,2,2v24A2,2,0,0,1,60.49,40.5Z" transform="translate(-12.49 -12.5)"/><path class="b" d="M38.49,62.5h-24a2,2,0,0,1-2-2v-24a2,2,0,0,1,2-2h5v2h-5v24h24v-5h2v5A2,2,0,0,1,38.49,62.5Z" transform="translate(-12.49 -12.5)"/><path class="c" d="M53.5,28.5v-2h-3a2.181,2.181,0,0,0-2-2v-3h-2v3h-3v-3h-2v3h-3v-3h-2v3h-3v-3h-2v3h-3v-3h-2v3a2.181,2.181,0,0,0-2,2h-3v2h3v3h-3v2h3v3h-3v2h3v3h-3v2h3v3h-3v2h3a2.181,2.181,0,0,0,2,2v3h2v-3h3v3h2v-3h3v3h2v-3h3v3h2v-3h3v3h2v-3a2.181,2.181,0,0,0,2-2h3v-2h-3v-3h3v-2h-3v-3h3v-2h-3v-3h3v-2h-3v-3Zm-5,19.82a.181.181,0,0,1-.18.18H26.68a.181.181,0,0,1-.18-.18h0V26.68a.181.181,0,0,1,.18-.18H48.32a.181.181,0,0,1,.18.18h0Z" transform="translate(-12.49 -12.5)"/>
+  </g>
+
+  <text x="170" y="340" class="medium" fill="#666666">Proxy</text>
+  <text x="165" y="370" class="small" fill="#666666">(EC2 VM)</text>
+</g>
+
+<g transform="translate(645, 400) rotate(25)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 100,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="86,-8 100,0 86,8" />
+</g>
+
+<g transform="translate(645, 300) rotate(-25)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 100,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="86,-8 100,0 86,8" />
+</g>
+
+<g transform="translate(650, 75)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#7f95d1" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#ff82a9" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#ffc0be" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<g transform="translate(650, 275)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#c2f970" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#d3fcd5" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#564d80" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<g transform="translate(850, 75)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#4a4a48" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#566246" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#a4c2a5" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<g transform="translate(850, 275)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#87f1ff" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#bd8b9c" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#582b11" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<text x="820" y="590" class="medium" fill="#666666">Distributed Cache</text>
+
+</svg>

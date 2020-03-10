@@ -24,6 +24,9 @@ disqusShortname = "mikhailio"
   mediatype = "application/xml"
   baseName = "feed"
 
+[markup.goldmark.renderer]
+  unsafe= true
+
 [params]
   favicon = "/favicon.ico"
   description ="Serverless, Cloud, Azure, AWS, F#, Functional Programming, and more"

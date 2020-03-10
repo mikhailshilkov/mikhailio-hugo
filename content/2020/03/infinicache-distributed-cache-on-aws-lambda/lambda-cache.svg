@@ -1,0 +1,75 @@
+<svg width="1441" height="715" viewBox="0 0 1441 715" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 25px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+      .large { font-size: 150px; font-family: Burst My Bubble; }
+      .cls-1{fill:none;stroke:#f37920;stroke-linecap:round;stroke-linejoin:round;}
+  </style>
+
+<g transform="translate(0, 150)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <g transform="translate(120,160) scale(6 6)">
+    <path class="cls-1" d="M14.8,6.54a1.68,1.68,0,1,1-.91-2.19A1.67,1.67,0,0,1,14.8,6.54Z"/>
+    <path class="cls-1" d="M16.6,8.32l1.47.39a5.82,5.82,0,0,0,.59-1.43l-1.33-.75a3.93,3.93,0,0,0,0-1.28l1.32-.77a5.94,5.94,0,0,0-.6-1.42l-1.47.4a3.89,3.89,0,0,0-.91-.9l.39-1.48A5.81,5.81,0,0,0,14.64.5l-.76,1.32a4.22,4.22,0,0,0-1.28,0L11.83.51a6,6,0,0,0-1.42.6l.4,1.47a3.89,3.89,0,0,0-.9.91L8.43,3.1a6,6,0,0,0-.58,1.42l1.32.76a4.22,4.22,0,0,0,0,1.28l-1.32.77a5.66,5.66,0,0,0,.6,1.42l1.47-.4a3.89,3.89,0,0,0,.91.9l-.39,1.47a5.14,5.14,0,0,0,1.43.59L12.63,10a3.93,3.93,0,0,0,1.28,0l.77,1.31a5.54,5.54,0,0,0,1.42-.59l-.4-1.47A4.09,4.09,0,0,0,16.6,8.32Z"/><path class="cls-1"/>
+  </g>
+
+  <text x="170" y="340" class="medium" fill="#666666">Client</text>
+  <text x="135" y="370" class="small" fill="#666666">(compute layer)</text>
+</g>
+
+<g transform="translate(325, 400) rotate(15)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 160,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="146,-8 160,0 146,8" />
+</g>
+
+<g transform="translate(325, 300) rotate(-15)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 160,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="146,-8 160,0 146,8" />
+</g>
+
+<g transform="translate(400, 75)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#7f95d1" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#ff82a9" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#ffc0be" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<g transform="translate(400, 275)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#c2f970" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#d3fcd5" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#564d80" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<g transform="translate(600, 75)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#4a4a48" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#566246" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#a4c2a5" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<g transform="translate(600, 275)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 250,100 250,250 100,250" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="145" y="170"/>
+
+  <polygon fill="#87f1ff" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#bd8b9c" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#582b11" points="120,120 150,120 150,140 120,140" transform="translate(90, -10)" />
+</g>
+
+<text x="570" y="590" class="medium" fill="#666666">Distributed Cache</text>
+
+<text x="390" y="380" class="large" fill="#a4303f">?</text>
+
+</svg>

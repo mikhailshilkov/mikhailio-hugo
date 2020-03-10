@@ -13,6 +13,8 @@
             {{ $page := $.GetPage "/serverless/coldstarts" }}
             {{- partial "list-partials/postbox.html" $page -}}
 
+            {{ $page := $.GetPage "/2020/03/infinicache-distributed-cache-on-aws-lambda" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/02/azure-functions-in-google-cloud-run" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/02/serverless-containers-with-google-cloud-run" }}
@@ -58,8 +60,6 @@
             {{ $page := $.GetPage "/2019/03/reducing-azure-functions-cold-start-time" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/03/visualizing-cold-starts" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2019/02/evergreen-serverless-performance-reviews" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/02/from-yaml-to-typescript-developers-view-on-cloud-automation" }}
             {{- partial "list-partials/postbox.html" $page -}}

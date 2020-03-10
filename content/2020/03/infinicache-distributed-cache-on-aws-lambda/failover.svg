@@ -1,0 +1,61 @@
+<svg width="1441" height="715" viewBox="0 0 1441 715" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+  <style>
+      .small { font-size: 25px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+      .large { font-size: 150px; font-family: Burst My Bubble; }
+      .cls-1{fill:none;stroke:#f37920;stroke-linecap:round;stroke-linejoin:round;}
+      .a{fill:url(#a);}.b{fill:url(#b);}.c{fill:url(#c);}      
+  </style>
+  <linearGradient id="a" x1="34.49" y1="26.5" x2="62.49" y2="26.5" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#f37920"/>
+  </linearGradient>
+  <linearGradient id="b" x1="12.49" y1="48.5" x2="40.49" y2="48.5" xlink:href="#a"/>
+  <linearGradient id="c" x1="21.5" y1="37.5" x2="53.5" y2="37.5" xlink:href="#a"/>
+</defs>
+
+<g transform="translate(200, 50)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <g transform="translate(155,155) scale(1.75 1.75)">
+      <path class="a" d="M60.49,40.5h-5v-2h5v-24h-24v5h-2v-5a2,2,0,0,1,2-2h24a2,2,0,0,1,2,2v24A2,2,0,0,1,60.49,40.5Z" transform="translate(-12.49 -12.5)"/><path class="b" d="M38.49,62.5h-24a2,2,0,0,1-2-2v-24a2,2,0,0,1,2-2h5v2h-5v24h24v-5h2v5A2,2,0,0,1,38.49,62.5Z" transform="translate(-12.49 -12.5)"/><path class="c" d="M53.5,28.5v-2h-3a2.181,2.181,0,0,0-2-2v-3h-2v3h-3v-3h-2v3h-3v-3h-2v3h-3v-3h-2v3h-3v-3h-2v3a2.181,2.181,0,0,0-2,2h-3v2h3v3h-3v2h3v3h-3v2h3v3h-3v2h3v3h-3v2h3a2.181,2.181,0,0,0,2,2v3h2v-3h3v3h2v-3h3v3h2v-3h3v3h2v-3h3v3h2v-3a2.181,2.181,0,0,0,2-2h3v-2h-3v-3h3v-2h-3v-3h3v-2h-3v-3h3v-2h-3v-3Zm-5,19.82a.181.181,0,0,1-.18.18H26.68a.181.181,0,0,1-.18-.18h0V26.68a.181.181,0,0,1,.18-.18H48.32a.181.181,0,0,1,.18.18h0Z" transform="translate(-12.49 -12.5)"/>
+  </g>
+
+  <text x="170" y="340" class="medium" fill="#666666">Proxy</text>
+</g>
+
+<text x="730" y="230" class="small" fill="#f37920">Serve requests</text>
+
+<g transform="translate(510, 250)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 580,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="14,-8 0,0 14,8" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="566,-8 580,0 566,8" />
+</g>
+
+<g transform="translate(600, 250)" opacity="0.3">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="70" width="70" x="165" y="180"/>
+
+  <polygon fill="#7f95d1" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#ff82a9" points="120,120 150,120 150,140 120,140" transform="translate(65, 10)" />
+  <polygon fill="#ffc0be" points="120,120 150,120 150,140 120,140" transform="translate(120, -10)" />
+
+  <text x="80" y="340" class="medium" fill="#666666">Reclaimed Instance</text>
+  <text x="123" y="365" class="small" fill="#666666">former primary</text>
+</g>
+
+<g transform="translate(1000, 50)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="70" width="70" x="165" y="180"/>
+
+  <polygon fill="#7f95d1" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#ff82a9" points="120,120 150,120 150,140 120,140" transform="translate(65, 10)" />
+  <polygon fill="#ffc0be" points="120,120 150,120 150,140 120,140" transform="translate(120, -10)" />
+
+  <text x="125" y="340" class="medium" fill="#666666">New Primary</text>
+  <text x="138" y="365" class="small" fill="#666666">former backup</text>
+</g>
+
+</svg>

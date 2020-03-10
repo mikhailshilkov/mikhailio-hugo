@@ -1,0 +1,71 @@
+<svg width="1441" height="715" viewBox="0 0 1441 715" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 25px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+  </style>
+
+<g transform="translate(200, 0)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="170" y="200"/>
+
+  <polygon fill="#7f95d1" points="120,120 150,120 150,140 120,140" />
+  <polygon fill="#ff82a9" points="120,120 150,120 150,140 120,140" transform="translate(50, 10)" />
+  <polygon fill="#ffc0be" points="120,120 150,120 150,140 120,140" transform="translate(110, -10)" />
+  <text x="130" y="340" class="medium" fill="#666666">Instance #1</text>
+  <text x="122" y="170" class="small" fill="#666666">in-memory cache</text>
+</g>
+
+<g transform="translate(200, 300)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="100,100 300,100 300,300 100,300" />
+
+  <image href="https://techie-jim.net/wp-content/uploads/2017/07/aws-lambda-logo.png" height="60" width="60" x="170" y="200"/>
+  <text x="130" y="340" class="medium" fill="#666666">Instance #2</text>
+  <text x="140" y="150" class="small" fill="#666666">no cache yet</text>
+</g>
+
+<g transform="translate(525, 200) rotate(25)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 160,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="146,-8 160,0 146,8" />
+</g>
+
+<g transform="translate(525, 500) rotate(-25)">
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="0,0 160,0" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="3" points="146,-8 160,0 146,8" />
+</g>
+
+<g transform="translate(270, 200) rotate(180)">
+  <polyline fill="none" stroke="#870058" stroke-width="3" points="0,0 160,0" />
+  <polyline fill="none" stroke="#870058" stroke-width="3" points="14,-8 0,0 14,8" />
+</g>
+<text x="130" y="180" class="medium" fill="#870058">Request #1</text>
+
+<g transform="translate(270, 500) rotate(180)">
+  <polyline fill="none" stroke="#7f95d1" stroke-width="3" points="0,0 160,0" />
+  <polyline fill="none" stroke="#7f95d1" stroke-width="3" points="14,-8 0,0 14,8" />
+</g>
+<text x="130" y="480" class="medium" fill="#7f95d1">Request #2</text>
+
+<g transform="translate(200, 150)">
+  <polygon fill="#ffeccc" stroke="#a4303f" stroke-width="2" points="500,100 700,100 700,300 500,300" />
+
+  <path d="M256,0C136.384,0,42.667,42.176,42.667,96v320c0,53.824,93.717,96,213.333,96s213.333-42.176,213.333-96V96
+			C469.333,42.176,375.616,0,256,0z M448,416c0,35.307-78.848,74.667-192,74.667S64,451.307,64,416v-64.384
+			c34.197,32.043,106.347,53.717,192,53.717s157.803-21.675,192-53.717V416z M448,309.333C448,344.64,369.152,384,256,384
+			S64,344.64,64,309.333v-64.384c34.197,32.043,106.347,53.717,192,53.717s157.803-21.675,192-53.717V309.333z M448,202.667
+			c0,35.307-78.848,74.667-192,74.667s-192-39.36-192-74.667v-64.384C98.197,170.325,170.347,192,256,192s157.803-21.675,192-53.717
+			V202.667z M256,170.667c-113.152,0-192-39.36-192-74.667c0-35.307,78.848-74.667,192-74.667S448,60.693,448,96
+			C448,131.307,369.152,170.667,256,170.667z"
+      fill="#870058" stroke="#870058" transform="translate(570, 170) scale(0.12 0.12)" />
+
+  <polygon fill="#7f95d1" points="120,120 150,120 150,140 120,140" transform="translate(500, 0)" />
+  <polygon fill="#ff82a9" points="120,120 150,120 150,140 120,140" transform="translate(450, 140)" />
+  <polygon fill="#ffc0be" points="120,120 150,120 150,140 120,140" transform="translate(400, 100)" />
+  <polygon fill="#cccccc" points="120,120 150,120 150,140 120,140" transform="translate(390, 50)" />
+  <polygon fill="#d2d2d2" points="120,120 150,120 150,140 120,140" transform="translate(415, 10)" />
+  <polygon fill="#bbbbbb" points="120,120 150,120 150,140 120,140" transform="translate(525, 120)" />
+  <polygon fill="#dddddd" points="120,120 150,120 150,140 120,140" transform="translate(535, 70)" />
+  <text x="550" y="340" class="medium" fill="#666666">Database</text>
+</g>
+
+</svg>
