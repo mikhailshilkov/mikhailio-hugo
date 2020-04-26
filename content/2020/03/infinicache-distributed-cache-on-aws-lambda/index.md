@@ -9,6 +9,8 @@ ghissueid: 34
 
 "InfiniCache: Exploiting Ephemeral Serverless Functions to Build a Cost-Effective Memory Cache" by Ao Wang, et al. ([link](https://www.usenix.org/conference/fast20/presentation/wang-ao)) is a recently published paper which describes a prototype of a serverless distributed caching system sitting atop AWS Lambda.
 
+Most distributed caching solutions run on a cluster of VMs. The cost of such a cluster is mostly fixed and depends on required memory allocation, no matter how many requests it serves. InfiniCache aims to bring a serverless pay-per-request dynamic pricing model to the world of in-memory data caching.
+
 While reading through the paper, I got fascinated by several techniques that they employed while implementing the system. Therefore, I decided to review the paper and highlight its most intriguing parts. I target my review at software and IT engineers working on cloud applications. I assume the reader has a basic understanding of serverless cloud functions (Function-as-a-Service, FaaS) and their traditional use cases.
 
 Let's start with a problem that InfiniCache aims to solve.
@@ -17,9 +19,9 @@ Let's start with a problem that InfiniCache aims to solve.
 
 Serverless functions excel at running stateless workloads. FaaS services use ephemeral compute instances to grow and shrink the capacity to adjust to a variable request rate. New virtual machines or containers are assigned and recycled by the cloud provider at arbitrary moments.
 
-Functions are incredibly compelling for low-load usage scenarios, among others. Executions are charged per actual duration, at 100 ms granularity. If your application only needs to run several times per day in a test environment, it costs you literally zero.
+Functions are incredibly compelling for low-load usage scenarios, among others. Executions are charged per actual duration, at 100 ms granularity. If your application only needs to run several times per day in a test environment, it costs you very close to zero.
 
-Cloud providers try to reuse compute instances for multiple subsequent requests. The price of bootstrapping new instances is too high to pay for every request. A warm instance would keep pre-loaded files in memory between requests to minimize the overhead and [cold start](/serverless/coldstarts) duration.
+Cloud providers try to reuse compute instances for multiple subsequent requests. The price of bootstrapping new instances is too high to pay for every request. A warm instance would keep pre-loaded files in memory between requests to minimize the overhead and [cold start](/serverless/coldstarts) duration. The exact behavior is a black box and varies between region, AZ, and in time.
 
 There seems to be a fundamental opportunity to exploit the keep-warm behavior further. Each function instance has up to several gigabytes of memory, while our executable cache might only consume several megabytes. Can we use this memory to persist useful state?
 
@@ -50,7 +52,7 @@ The idea is to create a Distributed Cache as a Service, with design goals inspir
 - Scalability to hundreds or thousands of nodes
 - Pay per request
 
-The most significant potential upside is related to the cost structure. The cache capacity is billed only when a request needs an object. Such a pay-per-request model significantly differentiates against conventional cloud storage or cache services, which typically charge for memory capacity on an hourly basis whether the cached objects are accessed or not.
+The most significant potential upside is related to the cost structure. The cache capacity is billed only when a request needs an object. Such a pay-per-request model significantly differentiates against conventional cluster-based cache services, which typically charge for memory capacity on an hourly basis whether the cached objects are accessed or not.
 
 ### Challenges
 
@@ -109,6 +111,8 @@ A proxy is a static always-up well-known component deployed on a large EC2 virtu
 It's now the responsibility of the proxy to distribute blobs between Lambdas and persist their addresses between the requests.
 
 There may be multiple proxies for large deployments. InfiniCache's client library determines the destination proxy (and therefore its backing Lambda pool) by using a consistent hashing-based load balancing approach.
+
+On the other side, for smaller deployments, the proxy could be placed directly on the client machine to save cost and an extra network hop.
 
 ### Backward Connections
 
@@ -191,6 +195,8 @@ InfiniCache is one to two orders of magnitude cheaper than ElastiCache (managed 
 However, they find that serverless computing platforms are not cost-effective for small-object caching with frequent access.
 
 > The hourly cost increases monotonically with the access rate, and eventually overshoots ElastiCache when the access rate exceeds 312 K requests per hour (86 requests per second).
+
+Another gotcha is that the cost above does not include the price of a proxy: the proxy was co-located with the single client VM. A dedicated proxy running on an EC2 instance would increase the total price considerably.
 
 ### Performance
 
