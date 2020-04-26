@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Azure Functions"
-lastmod: 2019-10-07
+lastmod: 2020-04-26
 layout: single
 thumbnail: coldazure_thumb.jpg
 images: [coldazure.jpg]
@@ -39,7 +39,7 @@ The following chart shows the typical range of cold starts in Azure Functions V2
     "Typical cold start durations per language"
     true >}}
 
-A typical cold start latency spans from 1 to 3 seconds. However, less lucky executions may take up to 10-15 seconds occasionally.
+A typical cold start latency spans from 1 to 3 seconds. However, less lucky executions may take up to 10-15 seconds occasionally. PowerShell functions are especially slow to start with values from 5 to 25 seconds.
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/azure/languages/).
 
@@ -55,22 +55,7 @@ Azure Functions can be deployed either on Windows or Linux environments, dependi
 
 Interestingly, there's no clear winner. The median response time is lower on Windows, but Linux has tighter distribution.
 
-Node is consistently slower than .NET or Python.
-
-
-Is V2 Faster Than V1?
----------------------
-
-There are currently two generally available versions of Azure Functions runtime: V1 runs on top of .NET Framework 4.x, while V2 runs on .NET Core 2.x.
-
-Even though .NET Core is supposed to be faster and more lightweight, the cold starts of Functions V2 are comparable to V1:
-
-{{< chart_interval
-    "coldstart_azure_byversion"
-    "Comparison of cold start durations across runtime versions"
-    true >}}
-
-The results are mixed: V2 .NET is faster than V1 .NET, while V2 JavaScript functions are slower than V1.
+The Node.js runtime is consistently slower than .NET Core one.
 
 Does Package Size Matter?
 -------------------------
@@ -104,4 +89,4 @@ There are multiple ways to deploy Azure Functions. The charts below compare thre
     "Cold start durations per deployment method for JavaScript functions"
     true >}}
 
-It turns out that No Zip is faster than Local Zip which is faster than External Zip, but the differences are not dramatic.
+It looks like Local Zip is currently the fastest method, but the differences are not dramatic.

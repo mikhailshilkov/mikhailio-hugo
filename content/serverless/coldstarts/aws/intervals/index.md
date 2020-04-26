@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on AWS Lambda?"
-lastmod: 2019-09-26
+lastmod: 2020-04-26
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
 nofeed: true
 thumbnail: intervals_chart_thumb.png
@@ -23,11 +23,5 @@ This is confirmed by the following chart, which estimates the probability of a c
 {{< chart_line
     "coldstart_aws_interval"
     "Probability of a cold start happening before minute X" >}}
-
-This behavior is [different from the past](/2019/08/aws-lambda-cold-starts-after-10-minutes/), here is a month-over-month view:
-
-{{< chart_line_multi
-    "coldstart_aws_interval_history"
-    "The typical lifetime of an idle AWS Lambda" "2019 by month" "minutes" >}}
 
 Go back to [Cold Starts in AWS Lambda](/serverless/coldstarts/aws/).

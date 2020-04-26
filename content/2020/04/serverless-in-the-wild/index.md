@@ -2,7 +2,7 @@
 title: "Serverless in the Wild"
 date: 2020-03-10
 thumbnail: teaser.png
-tags: ["Serverless", "Azure", "Azure Functions" "Paper review"]
+tags: ["Serverless", "Azure", "Azure Functions", "Paper review"]
 description: "My review of the paper \"TODO\""
 ghissueid: 35
 ---

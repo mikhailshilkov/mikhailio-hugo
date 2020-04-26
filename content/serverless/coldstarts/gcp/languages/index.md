@@ -1,6 +1,6 @@
 ---
 title: "Google Cloud Functions: Cold Start Duration per Language"
-lastmod: 2019-09-26
+lastmod: 2020-04-26
 tags: ["Cold Starts", "GCP", "JavaScript", "Python", "Go", "Google Cloud Functions"]
 nofeed: true
 thumbnail: languages_chart_thumb.png
@@ -15,21 +15,21 @@ The following chart shows the typical range of cold starts in Google Cloud Funct
 The charts below show the distribution of cold start durations per supported programming language.
 All charts have the same horizontal scale (0-5 sec) to make them easily comparable.
 
-**JavaScript** (currently, the only generally available runtime):
+**JavaScript**:
 
 {{< chart_hist
      "coldstart_gcp_js"
      "Cold start durations of Google Cloud Functions in JavaScript"
      5 >}}
 
-**Go** (currently in beta):
+**Go**:
 
 {{< chart_hist
      "coldstart_gcp_go"
      "Cold start durations of Google Cloud Functions in Go"
      5 >}}
 
-**Python** (currently in beta):
+**Python**:
 
 {{< chart_hist
      "coldstart_gcp_python"

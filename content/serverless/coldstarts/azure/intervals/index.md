@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on Azure Functions?"
-lastmod: 2019-09-26
+lastmod: 2020-04-26
 tags: ["Cold Starts", "Azure", "Azure Functions"]
 nofeed: true
 thumbnail: interval_chart_thumb.png

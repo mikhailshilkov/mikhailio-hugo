@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Google Cloud Functions"
-lastmod: 2019-09-26
+lastmod: 2020-04-26
 layout: single
 tags: ["Cold Starts", "GCP", "Google Cloud Functions"]
 description: Running GA and Beta languages on different instance sizes
@@ -26,7 +26,7 @@ The following chart estimates the probability of an instance to be recycled afte
     "coldstart_gcp_interval"
     "Probability of a cold start happening before minute X" >}}
 
-Google tends to keep an instance for long time: **80% of instances survive 5 hours of inactivity**.
+Google stopped keeping idle instances for many hours, as they used to do: only 40% of instances survive 20 minutes of inactivity and only 15% survive one hour.
 
 There are chances that an instance dies after several minutes or stay alive for several hours. Most probably, Google makes the decision based on the current demand/supply ratio in the given resource pool.
 
@@ -41,7 +41,7 @@ The following chart shows the typical range of cold starts in Google Cloud Funct
     "coldstart_gcp_bylanguage"
     "Typical cold start durations per language" >}}
 
-Go functions are currently the fastest to start: usually, they take less than 2 seconds. JavaScript functions are almost as fast. Python functions are currently slower, but they might improve towards the GA release date.
+Python functions look a bit slower, however, not significantly.
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/gcp/languages).
 
@@ -67,6 +67,6 @@ Google Cloud Functions have a setting to define the memory size that gets alloca
     "coldstart_gcp_bymemory"
     "Comparison of cold start durations per instance size" >}}
 
-There seems to be no significant speed-up of the cold start as the instance size grows.
+Larger instances seem to start faster, but the effect doesn't look very strong.
 
 Same comparison for larger functions: [Cold Start Duration per Instance Size](/serverless/coldstarts/gcp/instances).
