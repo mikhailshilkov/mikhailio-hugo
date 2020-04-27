@@ -1,6 +1,7 @@
 ---
 title: "Serverless in the Wild"
 date: 2020-03-10
+draft: true
 thumbnail: teaser.png
 tags: ["Serverless", "Azure", "Azure Functions", "Paper review"]
 description: "My review of the paper \"TODO\""

@@ -13,7 +13,7 @@
         </div>
         <div class="row listrecent">
             {{ range $.Site.Pages.ByDate.Reverse  }}
-            {{ if and (eq .Date.Year $year) (eq .Kind "page") (not .Params.nofeed) }}
+            {{ if and (eq .Date.Year $year) (eq .Kind "page") (not .Params.nofeed) (not .Draft) }}
             {{- partial "list-partials/postbox.html" . -}}
             {{ end }}
             {{end}}
