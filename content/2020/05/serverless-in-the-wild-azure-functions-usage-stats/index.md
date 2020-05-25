@@ -1,10 +1,10 @@
 ---
 title: "Serverless in the Wild: Azure Functions Production Usage Statistics"
 date: 2020-05-05
-thumbnail: teaser.png
+thumbnail: teaser.jpg
 tags: ["Serverless", "Azure", "Azure Functions", "Paper review"]
 description: "Insightful statistics about the actual production usage of Azure Functions, based on the data from Microsoft's paper"
-ghissueid: 35
+ghissueid: 37
 markup: "mmark"
 ---
 

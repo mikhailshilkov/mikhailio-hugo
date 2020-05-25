@@ -10,6 +10,8 @@
                 {{ $page := $.GetPage "/2020/05/serverless-in-the-wild-azure-functions-usage-stats" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2020/05/unit-testing-cloud-deployments-with-pulumi-in-csharp" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/serverless/coldstarts" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/03/infinicache-distributed-cache-on-aws-lambda" }}
@@ -34,8 +36,6 @@
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/08/ten-pearls-with-azure-functions-in-pulumi" }}
             {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2019/08/aws-lambda-cold-starts-after-10-minutes" }}
-            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/08/how-to-measure-the-cost-of-azure-functions" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/07/7-ways-to-deal-with-application-secrets-in-azure" }}
@@ -51,8 +51,6 @@
             {{ $page := $.GetPage "/2019/05/serverless-as-simple-callbacks-with-pulumi-and-azure-functions" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/05/level-up-your-azure-platform-as-a-service-applications-with-pulumi" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2019/04/less-frequent-cold-starts-in-google-cloud-functions" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/03/concurrency-and-isolation-in-serverless-functions" }}
             {{- partial "list-partials/postbox.html" $page -}}
