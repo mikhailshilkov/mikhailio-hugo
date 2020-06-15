@@ -2,7 +2,7 @@
 title: "Unit Testing Cloud Deployments with Pulumi in F#"
 date: 2020-05-21
 thumbnail: dotnet-testing.png
-tags: ["Pulumi", "Unit Testing", "TDD", "F#"]
+tags: ["Pulumi", "Unit Testing", "TDD", "FSharp"]
 description: "Developing infrastructure programs in F# with unit tests, TDD, and mocks"
 ghissueid: 39
 originalSource: Pulumi Blog

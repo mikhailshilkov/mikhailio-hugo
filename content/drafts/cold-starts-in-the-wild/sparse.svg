@@ -1,0 +1,28 @@
+<svg width="1150" height="600" viewBox="0 0 1150 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 28px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+  </style>
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="50,502 1150,502" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="98,550 98,50" />
+
+  <polygon fill="#F9CDAC" stroke-width="0" points="99,501 99,100 1070,100 1070,501 " />
+
+  <polygon fill="#A62C99" stroke="#2D0F41" stroke-width="2" points="580,500 600,500 600,490 580,490" />
+  <polygon fill="#A62C99" stroke="#2D0F41" stroke-width="2" points="620,500 640,500 640,490 620,490" />
+  <polygon fill="#A62C99" stroke="#2D0F41" stroke-width="2" points="640,500 660,500 660,490 640,490" />
+
+  <polyline fill="none" stroke="#2D0F41" stroke-width="3" stroke-dasharray="4,2" points="1070,500 1070,50" />
+
+  <text x="80" y="525" class="small" fill="#666666">0</text>
+  <text x="1055" y="525" class="small" fill="#666666">240</text>
+
+  <text x="440" y="80" class="small" fill="#2D0F41">Extended keep-alive policy</text>
+
+  <text x="1110" y="150" class="medium" fill="#2D0F41">Tail</text>
+  <text x="1090" y="180" class="medium" fill="#2D0F41">cut-off</text>
+
+  <text x="450" y="570" class="medium" fill="#666666">minutes since last request</text>
+  <text x="0" y="0" class="medium" fill="#666666" transform="translate(55 330) rotate(-90)">frequency</text>
+</svg>

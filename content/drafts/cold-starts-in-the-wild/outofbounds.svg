@@ -1,0 +1,25 @@
+<svg width="1150" height="600" viewBox="0 0 1150 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 28px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+  </style>
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="50,502 1150,502" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="98,550 98,50" />
+
+  <polygon fill="#A62C99" stroke="#2D0F41" stroke-width="2" points="680,500 700,500 700,480 680,480" />
+  <polygon fill="#A62C99" stroke="#2D0F41" stroke-width="2" points="720,500 740,500 740,470 720,470" />
+  <polygon fill="#A62C99" stroke="#2D0F41" stroke-width="2" points="900,500 920,500 920,460 900,460" />
+  <polygon fill="#A62C99" stroke="#2D0F41" stroke-width="2" points="1000,500 1020,500 1020,150 1000,150" />
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="970,500 970,50" />
+
+  <text x="80" y="525" class="small" fill="#666666">0</text>
+  <text x="955" y="525" class="small" fill="#666666">240</text>
+
+  <text x="1040" y="200" class="medium" fill="#2D0F41">Overflow</text>
+  <text x="1080" y="230" class="medium" fill="#2D0F41">bin</text>
+
+  <text x="450" y="570" class="medium" fill="#666666">minutes since last request</text>
+  <text x="0" y="0" class="medium" fill="#666666" transform="translate(55 330) rotate(-90)">frequency</text>
+</svg>

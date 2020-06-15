@@ -2,7 +2,7 @@
 title: "Unit Testing Cloud Deployments with Pulumi in C#"
 date: 2020-05-21
 thumbnail: dotnet-testing.png
-tags: ["Pulumi", "Unit Testing", "TDD", "C#"]
+tags: ["Pulumi", "Unit Testing", "TDD", "CSharp"]
 description: "Developing infrastructure programs in C# with unit tests, TDD, and mocks"
 ghissueid: 38
 originalSource: Pulumi Blog
