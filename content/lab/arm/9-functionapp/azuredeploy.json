@@ -25,10 +25,16 @@
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('storageAccountName')]",
             "apiVersion": "2018-02-01",
-            "location": "[resourceGroup().location]",
+            "location": "westus",
             "kind": "StorageV2",
             "sku": {
-                "name": "Standard_LRS"
+                "name": "Standard_GRS"
+            },
+            "properties": {
+                "isHnsEnabled": false
+            },
+            "tags": {
+                "t1": "v1"
             }
         },
         {
@@ -44,7 +50,7 @@
         {
             "type": "Microsoft.Web/sites",
             "apiVersion": "2016-08-01",
-            "name": "[parameters('appName')]",
+            "name": "[concat(parameters('appName'), '-123123a')]",
             "location": "[resourceGroup().location]",
             "kind": "functionapp",
             "properties": {
@@ -81,7 +87,20 @@
                         }
                     ]
                 }
-            }
+            },
+            "resources": [
+                {
+                  "apiVersion": "2015-08-01",
+                  "type": "config",
+                  "name": "appsettings",
+                  "dependsOn": [
+                    "[concat('Microsoft.Web/Sites/', parameters('appName'), '-123123a')]"
+                  ],
+                  "properties": {
+                    "Test": "Test2"
+                  }
+                }
+              ]
         }
     ]
 }

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    }
+  },
+  "variables": {
+    "virtualNetworkName": "virtualNetwork",
+    "subnet1Name": "subnet-1",
+    "subnet2Name": "subnet-2"
+  },
+  "resources": [    
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[variables('virtualNetworkName')]",
+      "apiVersion": "2017-06-01",
+      "location": "[parameters('location')]",
+      "tags": { "one": "two" },
+      "comments": "This will build a Virtual Network!",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/16"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('subnet1Name')]",
+            "properties": {
+              "addressPrefix": "10.0.0.0/24"
+            }
+          },
+          {
+            "name": "[variables('subnet2Name')]",
+            "properties": {
+              "addressPrefix": "10.0.1.0/24"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {}
+}

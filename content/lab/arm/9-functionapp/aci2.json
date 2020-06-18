@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+      {
+        "name": "arm-group",
+        "type": "Microsoft.ContainerInstance/containerGroups",
+        "apiVersion": "2018-10-01",
+        "location": "westus2",
+        "properties": {
+          "osType": "Linux",
+          "containers": [{
+              "name": "foo",
+              "properties": {
+                "image": "nginx",
+                "environmentVariables": [
+                    {
+                      "name": "test",
+                      "value": "test"
+                    }
+                ],
+                "resources": {
+                  "requests": {
+                    "cpu": 1,
+                    "memoryInGB": 1                      
+                  }
+                }
+              }
+            }
+          ],
+          "restartPolicy": "OnFailure"
+        },
+        "tags": {
+            "arm": "template"
+        }
+      }
+    ]
+  }
+  

@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+      {
+        "name": "createshare-containerinstance2",
+        "type": "Microsoft.ContainerInstance/containerGroups",
+        "apiVersion": "2018-10-01",
+        "location": "westus2",
+        "properties": {
+          "osType": "Linux",
+          "containers": [{
+              "name": "wordpress-share",
+              "properties": {
+                "image": "microsoft/azure-cli",
+                "environmentVariables": [
+                    {
+                      "name": "test",
+                      "value": "test"
+                    }
+                  ],
+                "resources": {
+                  "requests": {
+                    "cpu": 0.5,
+                    "memoryInGB": 0.7
+                  }
+                }
+              }
+            }
+          ],
+          "restartPolicy": "OnFailure"          
+        },
+        "tags": {
+            "hello2": "world"
+        }
+      }
+    ]
+  }
+  

@@ -1,10 +1,10 @@
 ---
-title: "Eliminating Cold Starts by Predicting Invocations of Serverless Functions"
-date: 2020-05-10
-thumbnail: teaser.jpg
+title: "Eliminate Cold Starts by Predicting Invocations of Serverless Functions"
+date: 2020-06-18
+thumbnail: teaser.png
 tags: ["Serverless", "Azure", "Azure Functions", "Paper review"]
-description: "A data-driven strategy to pre-warm serverless applications right before the next request comes in"
-ghissueid: 
+description: "Azure Functions introduce a data-driven strategy to pre-warm serverless applications right before the next request comes in"
+ghissueid: 40
 ---
 
 Developers and decision-makers often mention [cold starts](/serverless/coldstarts/) as a significant drawback of serverless functions. Cloud providers continually invest in reducing the latency of a cold start, but they haven't done much to prevent them altogether. The most common technique is to keep a worker alive for 10-20 minutes after each request, hoping that another request comes in and benefits from the warm instance.
@@ -21,15 +21,15 @@ The new policy is definitely worth studying because it will be applied to your A
 
 As the statistics show, many Azure Function Apps are called very infrequently. Let's consider a concrete example: an HTTP-triggered function that runs approximately once per hour and returns current data for a report.
 
-Currently, every invocation of such function would hit a cold start. Specifically, Azure uses a fixed “keep-alive” policy that retains the resources in memory for 20 minutes after execution. This isn't helpful in our scenario since requests come every 60 minutes.
+Currently, every invocation of such a function would hit a cold start. Specifically, Azure uses a fixed “keep-alive” policy that retains the resources in memory for 20 minutes after execution. This isn't helpful in our scenario since requests come every 60 minutes.
 
 {{< featured >}}
-{{< figure src="scenario.svg" title="Warm instances are recycled after 20 minutes, so an hourly request hits a cold start" >}}
+{{< figure src="scenario.png" title="Warm instances are recycled after 20 minutes, so an hourly request hits a cold start" >}}
 {{< /featured >}}
 
 In this specific case, the fixed policy is problematic for everyone:
 
-- Users hit a cold start every time, which significantly increased the response time.
+- Users hit a cold start every time, which significantly increases the response time.
 - Azure wastes resources on keeping a warm instance in memory for 20 minutes every hour without any benefits.
 
 Indeed, cloud providers seek to achieve high function performance at the lowest possible resource cost. They can't keep all functions in memory all the time: as the stats show, most functions run very seldom, so keeping all of them warm would be a massive waste of resources.
@@ -41,7 +41,7 @@ What if the cloud provider could observe each application and adapt the policy f
 Let's start with a hypothetical ideal solution for our specific one-call-per-hour example. Instead of keeping a warm instance for a fixed period after each invocation, an efficient policy would shut down the instance immediately after each execution. Then, it would boot a new instance right before the next invocation is about to come in.
 
 {{< featured >}}
-{{< figure src="prewarming.svg" title="A new instance is pre-warmed right before the request comes in and recycled immediately after the execution is complete" >}}
+{{< figure src="prewarming.png" title="A new instance is pre-warmed right before the request comes in and recycled immediately after the execution is complete" >}}
 {{< /featured >}}
 
 This solves both problems above. Now, all requests are served quickly because Azure creates a fresh instance *before* a request comes in. Also, Azure saves resources because it can pre-warm the instance shortly before each request and shut it down immediately after the invocation is completed.
@@ -56,14 +56,14 @@ Also, there are limits to resources that a prediction policy may consume. The po
 
 The paper suggests a practical policy that tries to predict future invocations without being too expensive.
 
-Let's start at the point when a new application has just been deployed. Azure knows nothing about its invocation patterns yet. The new policy would default to the traditional fixed "keep-alive" interval but would keep an instance running for generous 4 hours. Simultaneously, it starts learning the workload.
+Let's start at the point when a new application has just been deployed. Azure knows nothing about its invocation patterns yet. The new policy would default to the traditional fixed "keep-alive" interval but would keep an instance running for a generous 4 hours. Simultaneously, it starts learning the workload.
 
-Every time a new request comes in, the policy calculates how many minutes passed since the previous invocation and records this value in a histogram. The histogram's bins have one-minute granularity. So, in my example, if an invocation came 60 minutes after the previous one, the value for the bin `60` will increase by one.
+Every time a new request comes in, the policy calculates how many minutes passed since the end of the previous invocation and records this value in a histogram. The histogram's bins have one-minute granularity. So, in my example, if an invocation came 60 minutes after the previous one, the value for the bin `60` will increase by one.
 
 At some point, the policy would decide that it knows enough to start predicting future invocations. The histogram for my application may look like this:
 
 {{< featured >}}
-{{< figure src="histogram.svg" title="Every column shows how many requests landed on minute X after a previous execution" >}}
+{{< figure src="histogram.png" title="Every column shows how many requests landed on minute X after a previous execution" >}}
 {{< /featured >}}
 
 The new adaptive policy kicks in. Now, it shuts down the active instance after each request, because it knows that the next invocation is unlikely to come any time soon. Then, it uses two cut-off points to plan the warming strategy:
@@ -72,7 +72,7 @@ The new adaptive policy kicks in. Now, it shuts down the active instance after e
 - The **tail cut-off** point is when to kill the warm instance if no request comes in. Calculated as 95th percentile plus 10% margin. Approximately 67 minutes in my example.
 
 {{< featured >}}
-{{< figure src="cutoff.svg" title="An adaptive policy pre-warms an instance at the head cut-off and keeps it until a request comes or until the tail cut-off" >}}
+{{< figure src="cutoff.png" title="An adaptive policy pre-warms an instance at the head cut-off and keeps it until a request comes or until the tail cut-off" >}}
 {{< /featured >}}
 
 Because my specific workload is highly predictable, it would enjoy the absence of cold starts. Would the policy work for other scenarios?
@@ -86,7 +86,7 @@ The suggested policy makes sense for the example we considered so far. However, 
 Consistent intervals between invocations are the ideal match for the suggested policy. If a histogram is well-shaped and relatively narrow, both head and tail cut-offs are easy to identify. These distributions produce the ideal situation: long shutdown periods and short keep-alive windows.
 
 {{< featured >}}
-{{< figure src="regular.svg" title="Well-shaped narrow distribution produces clear cut-off points" >}}
+{{< figure src="regular.png" title="Well-shaped narrow distribution produces clear cut-off points" >}}
 {{< /featured >}}
 
 My example above falls into this category.
@@ -96,7 +96,7 @@ My example above falls into this category.
 Many applications would invoke functions frequently, so, many measured intervals would be close to zero. 
 
 {{< featured >}}
-{{< figure src="frequent.svg" title="In this case, instances are not unloaded after a request is executed and wait for another one, or the tail cut-off moment" >}}
+{{< figure src="frequent.png" title="In this case, instances are not unloaded after a request is executed and wait for another one, or the tail cut-off moment" >}}
 {{< /featured >}}
 
 In these cases, the head cut-off is rounded down to zero. The policy does not shut down the application after a function execution but keeps it alive until the next execution, or until the tail cut-off.
@@ -107,13 +107,13 @@ The policy needs a certain amount of quality data to start being useful in predi
 The application may be recently deployed and may not have enough points yet:
 
 {{< featured >}}
-{{< figure src="sparse.svg" title="Too few data to make reliable predictions: wait and learn while using the default policy" >}}
+{{< figure src="sparse.png" title="Too few data to make reliable predictions: wait and learn while using the default policy" >}}
 {{< /featured >}}
 
 Alternatively, data points might not come in a well-shaped cluster:
 
 {{< featured >}}
-{{< figure src="random.svg" title="No definite shape of the histogram: fall back to the default policy" >}}
+{{< figure src="random.png" title="No definite shape of the histogram: fall back to the default policy" >}}
 {{< /featured >}}
 
 In both of these cases, the policy reverts to a default approach: no shutdown and a long keep-alive window. This puts an extra burden on the cloud provider, but the idea is that these scenarios would be rare enough to allow the policy to stay practical.
@@ -123,7 +123,7 @@ In both of these cases, the policy reverts to a default approach: no shutdown an
 The policy defines a maximum value for histogram data to limit the storage capacity for the histogram. The paper suggests a maximum of 4 hours. All intervals beyond that threshold are recorded in a special overflow bin.
 
 {{< featured >}}
-{{< figure src="outofbounds.svg" title="Values beyond the 4-hour limit end up in a special \"everything else\" overflow bin" >}}
+{{< figure src="outofbounds.png" title="Values beyond the 4-hour limit end up in a special \"everything else\" overflow bin" >}}
 {{< /featured >}}
 
 If a lot of values start to fall into that range, the bin-based policy can't perform well anymore. For this category of applications, the paper suggests switching to time-series analysis to predict the next interval duration. They mention the [autoregressive integrated moving average](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average) model without providing many details.
@@ -166,6 +166,8 @@ Whether true in practice or not, the public opinion strongly perceives cold star
 
 The sweet spot of the suggested policy is applications with relatively regular intervals between invocations below several hours. I think the practical effect of the strategy might still be limited. Here are some concerns that I see.
 
+*The authors reviewed my questions and provided their answers, which I'm including in the text below.*
+
 #### Who benefits?
 
 Not every serverless function is sensitive to cold starts.
@@ -176,6 +178,10 @@ On the other side, human-initiated requests that care about cold starts are like
 
 The Azure Functions team is rolling the policy out for HTTP functions, so they do expect it to be useful. We will know soon!
 
+##### Response from the authors:
+
+> There is a large fraction of the applications that will likely benefit. Because for many applications the keep-alive interval can drastically reduce, the provider can afford to increase the keep-alive for other applications. About 50% of the applications have average inter-invocation times of 30 minutes of more. These incur many cold starts in the fixed policy, and will likely see a reduction in cold starts because their keep-alive intervals will be able to grow. Applications with idle times longer than 4 hours can also benefit because of the ARIMA time-series prediction.
+
 #### Is it flexible enough?
 
 The policy assumes that the interval distribution is stable over time. How will this hold in practice over more extended periods?
@@ -183,6 +189,10 @@ The policy assumes that the interval distribution is stable over time. How will 
 Imagine an application that is only used during business hours. Or, an application that is mostly idle but is sporadically applied for a specific business process. Or, a demo app that you want to show to your colleagues during a planning meeting. Likely, all of them would still hit cold starts at the beginning of a session.
 
 Maybe that's why the production implementation begins with a clean histogram every day. They will watch and learn, and may use data for the last two weeks to improve later on.
+
+##### Response from the authors:
+
+> The policy does not have to assume a stationary distribution of arrival patterns. In the traces analyzed in the paper there was not a significant enough variation in the distributions to enable a deep investigation. With the production deployment, we will investigate different policies to decay information from previous histograms.
 
 #### What about function warming?
 
@@ -192,16 +202,24 @@ I suspect that this simple trick still outperforms the suggested histogram-based
 
 Is there a way to combine two approaches and get the benefits of both?
 
+##### Response from the authors:
+
+> The results in the paper take into account user-generated warm-up functions that are present in the data. If the hybrid policy is successful in preventing cold starts, there will be no need for users to create periodic warm-up functions, which represent extra effort and higher costs.
+
 #### What about the scale-out cold start?
 
 The paper focuses on applications that are invoked rarely. However, even applications with higher utilization may still hit cold starts when scaled out on multiple instances. Every new instance would need to boot, and the requests would still be waiting.
 
 The suggested policy does not address cold starts beyond the first instance, even though they do occur and potentially have a more significant impact on latency percentiles of real-world human-facing applications.
 
+##### Response from the authors:
+
+> We didn’t address scale-out cold starts in the paper. We can pre-warm the scale-out instances by forcing the scale out to happen slightly before it normally would. For example, when the scale out is triggered by a threshold number of concurrent invocations, we can lower the threshold slightly. We will be experimenting with such techniques in our implementation in Azure Functions.
+
 ## Conclusion
 
 Despite several open questions above, I'm delighted that the paper was published. I welcome any structured effort that focuses on cold start optimization. The paper highlights usage statistics, the challenges of the cold start problem, and suggests several improvements. 
 
-It's even more awesome to see the finding being applied in Azure in production!
+It's even more exciting to see the finding being applied in Azure in production!
 
 If you want to learn more, you can read the full paper here: [Serverless in the Wild: Characterizing and Optimizing the Serverless Workload at a Large Cloud Provider](https://arxiv.org/pdf/2003.03423.pdf).
