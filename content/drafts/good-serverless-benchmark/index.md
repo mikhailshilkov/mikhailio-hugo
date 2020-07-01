@@ -8,6 +8,10 @@ description:
 ghissueid: 
 ---
 
+### Beyond Microbenchmarks: The SPEC-RG Vision forA Comprehensive Serverless Benchmark
+
+https://dl.acm.org/doi/pdf/10.1145/3375555.3384381
+
 The performance trade-offs of these systems are not well-understood. Moreover, it is exactly the highlevel of abstraction and the opaqueness of the operational-side thatmake performance evaluation studies of serverless platforms challenging.
 
 The core aim of serverless computing is to abstract away theoperational complexity of distributed systems. 
@@ -59,6 +63,10 @@ As serverless computing becomes increasingly relevantfor data-intensive workload
 
 =====================================================================
 
+### FaaSdom: A Benchmark Suitefor Serverless Computing
+
+https://arxiv.org/pdf/2006.03271.pdf
+
 Despite its increasing popularity, not much is known re-garding the actual system performance achievable on thecurrently available serverless platforms.
 
 ypical FaaS architecture. The main aspectsto benchmark are: performance of a worker (i.e., execu-tion speed of a function) and quality of the auto-scalingmechanism (e.g., allocation of new VMs, how to handleflash-crowds).
@@ -80,3 +88,6 @@ Asexpected, every doubling of the allocated memory results inhalving the executi
 6.5  Pricing
 
 Every cloud is different: compute model, supported runtime, billing, triggers.
+
+
+TODO: describe their actual findings in a separate blog post, maybe.

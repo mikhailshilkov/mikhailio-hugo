@@ -7,9 +7,11 @@
     <section class="recent-posts">
         <div class="row listrecent">
             <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                {{ $page := $.GetPage "/2020/06/eliminate-cold-starts-by-predicting-invocations-of-serverless-functions" }}
+                {{ $page := $.GetPage "/2020/07/best-interview-is-no-interview-get-jobs-without-applying" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>            
+            {{ $page := $.GetPage "/2020/06/eliminate-cold-starts-by-predicting-invocations-of-serverless-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/05/serverless-in-the-wild-azure-functions-usage-stats" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/05/unit-testing-cloud-deployments-with-pulumi-in-csharp" }}
