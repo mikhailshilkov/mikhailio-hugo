@@ -58,11 +58,6 @@ disqusShortname = "mikhailio"
     identifier = "archives"
     url = "/archives/"
 [[menu.main]]
-    name = "LABS"
-    weight = 300
-    identifier = "labs"
-    url = "/lab/"
-[[menu.main]]
     name = "TALKS"
     weight = 400
     identifier = "talks"
@@ -74,6 +69,56 @@ disqusShortname = "mikhailio"
     url = "/about/"
 
 ## talks
+[[params.talks]]
+    year = 2020
+    date = "Sep 7"
+    title = "Cloud Management Superpowers with Pulumi"
+    link = "https://www.meetup.com/dutch-cloud-meetup/events/272619261/"
+    event = "Dutch Cloud Meetup (virtual)"
+    slides = "https://speakerdeck.com/mikhailshilkov/cloud-management-superpowers-with-pulumi"
+[[params.talks]]
+    year = 2020
+    date = "Aug 27"
+    title = "Azure Management Superpowers with Pulumi"
+    link = "https://www.meetup.com/Stockholm-Azure-Meetup/events/267850663/"
+    event = "Stockholm Azure Meetup (virtual)"
+    slides = "https://speakerdeck.com/mikhailshilkov/cloud-management-superpowers-with-pulumi"
+[[params.talks]]
+    year = 2020
+    date = "Aug 26"
+    title = "Azure Management Superpowers with Pulumi"
+    link = "https://www.gaug.co.uk"
+    event = "Glasgow Azure User Group (virtual)"
+    slides = "https://speakerdeck.com/mikhailshilkov/cloud-management-superpowers-with-pulumi"
+[[params.talks]]
+    year = 2020
+    date = "Aug 17"
+    title = "Azure Serverless Infrastructure As Code (Workshop)"
+    link = "https://serverless-architecture.io/thehague/program-thehague/"
+    event = "Serverless Architecture Conference The Hague 2020"
+    labs = "https://github.com/mikhailshilkov/azure-serverless-workshop"
+    slides = "https://github.com/mikhailshilkov/azure-serverless-workshop/blob/master/ServerlessArchitecture_Workshop_2020.pdf"
+[[params.talks]]
+    year = 2020
+    date = "Jun 5"
+    title = "Cloud Superpowers with Pulumi and F#"
+    link = "http://fsharpconf.com/"
+    event = "F# Conf 2020 (virtual)"
+    slides = "https://speakerdeck.com/mikhailshilkov/cloud-superpowers-with-pulumi-and-f-number"
+[[params.talks]]
+    year = 2020
+    date = "Mar 31"
+    title = "Azure Infrastructure as C# and F#"
+    link = "https://vacd2.azureday.community/#talk-193954"
+    event = "Virtual Azure Community Day"
+    slides = "https://speakerdeck.com/mikhailshilkov/azure-infrastructure-as-c-number-and-f-number-d5753ca1-c28f-4a1e-a3fd-134f9ec270a2"
+[[params.talks]]
+    year = 2020
+    date = "Mar 25"
+    title = "Infrastructure as Software"
+    link = "https://devopspro.lt/mikhail-shilkov/"
+    event = "DevOps Pro Europe 2020 (virtual)"
+    slides = "https://speakerdeck.com/mikhailshilkov/infrastructure-as-software"
 [[params.talks]]
     year = 2020
     date = "Feb 25"

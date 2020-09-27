@@ -3,3 +3,4 @@ public/
 node_modules/
 _gen/
 .ionide/
+.DS_Store

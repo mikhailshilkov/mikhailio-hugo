@@ -1,0 +1,32 @@
+<svg width="1441" height="715" viewBox="0 0 1441 715" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 28px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+  </style>
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="150,502 1250,502" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="198,550 198,50" />
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="1200,500 1200,100" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="939,500 939,301" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="695,500 695,430" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="451,500 451,482" />
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="1200,326 200,326" />
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,2" points="1200,152 200,152" />
+
+  <polyline fill="none" stroke="#501B73" stroke-width="3" points="200,496 324,494 385,490 451,482 544,468 695,430 939,301 1200,100" />
+
+  <text x="180" y="525" class="small" fill="#666666">0</text>
+  <text x="441" y="525" class="small" fill="#666666">16k</text>
+  <text x="685" y="525" class="small" fill="#666666">32k</text>
+  <text x="930" y="525" class="small" fill="#666666">48k</text>
+  <text x="1190" y="525" class="small" fill="#666666">64k</text>
+
+  <text x="140" y="490" class="small" fill="#666666">2 sec</text>
+  <text x="140" y="329" class="small" fill="#666666">1 min</text>
+  <text x="137" y="155" class="small" fill="#666666">2 min</text>
+
+  <text x="580" y="570" class="medium" fill="#666666">number of tasks</text>
+  <text x="0" y="0" class="medium" fill="#666666" transform="translate(85 300) rotate(-90)">duration</text>
+</svg>
