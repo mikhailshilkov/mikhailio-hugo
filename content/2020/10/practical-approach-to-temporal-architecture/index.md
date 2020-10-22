@@ -77,4 +77,4 @@ The following picture puts all the pieces covered above together.
 
 As you can tell, there are quite a few components that go into making Temporal tick! Temporal is designed to handle millions of workflows reliably with high-performance guarantees while being open-source and portable across different infrastructure options. This dictates the usage of a multi-tier approach.
 
-You can deploy everything to your development machine with the [getting started guide]([https://docs.temporal.io/docs/go-run-your-first-app/](https://docs.temporal.io/docs/go-run-your-first-app/)). After that, you can start moving the components to your favorite cloud environment. Over the next weeks, I'll be working through automation scenarios and accompanying blog posts to help you manage typical deployment needs.
+You can deploy everything to your development machine with the [getting started guide](https://docs.temporal.io/docs/go-run-your-first-app/). After that, you can start moving the components to your favorite cloud environment. Over the next weeks, I'll be working through automation scenarios and accompanying blog posts to help you manage typical deployment needs.
