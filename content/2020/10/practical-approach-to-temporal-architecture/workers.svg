@@ -1,0 +1,28 @@
+<svg width="1500" height="700" viewBox="0 0 1500 700" fill="none" xmlns="http://www.w3.org/2000/svg" version="1.2">
+ <style>
+    .small { font: normal 1.6em "Burst My Bubble"; }
+    .smallb { font: bold 1.6em "Burst My Bubble"; }
+    .medium { font: normal 2.2em "Burst My Bubble"; }
+    .large { font: normal 3.5em "Burst My Bubble"; }
+  </style>
+
+  <g transform="translate(60,220)">
+    <circle cx="40" cy="90" r="90" stroke="#33AA44" stroke-width="3" fill="#B4D6B3" />
+    <circle cx="230" cy="35" r="90" stroke="#33AA44" stroke-width="3" fill="#B4D6B3" />
+    <circle cx="250" cy="230" r="90" stroke="#33AA44" stroke-width="3" fill="#B4D6B3" />
+    <circle cx="450" cy="160" r="90" stroke="#33AA44" stroke-width="3" fill="#B4D6B3" />
+  </g>
+  <text x="240" y="600" class="large" fill="#33AA44">Workers</text>
+
+  <text x="50" y="290" class="smallb" fill="#375eab">Workflows</text>
+  <text x="60" y="340" class="smallb" fill="#a54c4d">Activities</text>
+
+  <text x="240" y="235" class="smallb" fill="#375eab">Workflows</text>
+  <text x="250" y="295" class="smallb" fill="#a54c4d">Activities</text>
+
+  <text x="260" y="430" class="smallb" fill="#375eab">Workflows</text>
+  <text x="270" y="480" class="smallb" fill="#a54c4d">Activities</text>
+
+  <text x="460" y="360" class="smallb" fill="#375eab">Workflows</text>
+  <text x="470" y="410" class="smallb" fill="#a54c4d">Activities</text>
+</svg>

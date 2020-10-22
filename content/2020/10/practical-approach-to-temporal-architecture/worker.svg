@@ -1,0 +1,18 @@
+<svg width="1500" height="700" viewBox="0 0 1500 700" fill="none" xmlns="http://www.w3.org/2000/svg" version="1.2">
+ <style>
+    .small { font: normal 1.6em "Burst My Bubble"; }
+    .smallb { font: bold 1.8em "Burst My Bubble"; }
+    .medium { font: normal 2.2em "Burst My Bubble"; }
+    .large { font: normal 3.5em "Burst My Bubble"; }
+  </style>
+
+  <circle cx="220" cy="290" r="150" stroke="#33AA44" stroke-width="3" fill="#B4D6B3" />
+  <text x="140" y="490" class="large" fill="#33AA44">Worker</text>
+
+  <text x="130" y="200" class="smallb" fill="#375eab">Workflow A</text>
+  <text x="220" y="340" class="smallb" fill="#b07219">Workflow B</text>
+
+  <text x="110" y="300" class="smallb" fill="#a54c4d">Activity 1</text>
+  <text x="230" y="250" class="smallb" fill="#2b7489">Activity 2</text>
+  <text x="160" y="390" class="smallb" fill="#3572A5">Activity 3</text>
+</svg>

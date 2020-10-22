@@ -73,3 +73,21 @@ WL4   60    60+1.0∗t   120
 They measure success rate, latency, throughput, cost, and host number and distribution. They deploy to AWS Lambda, Azure Functions, Google Cloud Functions, IBM Cloud Functions.
 
 They then try to generalize the applicability of FaaS services to three real-world scenarios: web serving, exploratory data analysis, periodical batch processing.
+
+
+
+## A lightweight design for serverless Function-as-a-Service
+
+https://arxiv.org/ftp/arxiv/papers/2010/2010.07115.pdf
+
+The paper "A lightweight design for serverless Function-as-a-Service" sounded ambitious but it wasn't exactly what I expected. 1/4
+
+My summary:
+- FaaS relies on Docker-like tech for isolation
+- Let's benchmark Docker vs. WebAssembly
+- WASM looks faster than Docker => FaaS should use WASM (when it's ready) 2/4
+
+Well, maybe, except none of FaaS in AWS, Azure, GCP actually uses Docker. So, I don't quite buy the conclusion "We evaluated the use of WebAssembly runtimes in serverless FaaS". 3/4
+
+Anyway, if you are curious about WASM runtimes, have a look at the benchmark results /fin
+https://arxiv.org/ftp/arxiv/papers/2010/2010.07115.pdf

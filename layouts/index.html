@@ -7,10 +7,14 @@
     <section class="recent-posts">
         <div class="row listrecent">
             <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                {{ $page := $.GetPage "/2020/09/announcing-nextgen-azure-provider" }}
+                {{ $page := $.GetPage "/2020/10/practical-approach-to-temporal-architecture" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
             {{- partial "list-partials/ad.html" $page -}}            
+            {{ $page := $.GetPage "/2020/10/temporal-open-source-workflows-as-code" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2020/09/announcing-nextgen-azure-provider" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/09/how-to-drain-dotnet-tasks-to-completion" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/07/emerging-landscape-of-edge-computing" }}
@@ -56,10 +60,6 @@
             {{ $page := $.GetPage "/2019/07/how-azure-cli-manages-access-tokens" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/07/globally-distributed-serverless-application-in-100-lines-of-code" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2019/06/hosting-a-static-website-on-azure-with-pulumi" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2019/05/serverless-as-simple-callbacks-with-pulumi-and-azure-functions" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2019/05/level-up-your-azure-platform-as-a-service-applications-with-pulumi" }}
             {{- partial "list-partials/postbox.html" $page -}}
