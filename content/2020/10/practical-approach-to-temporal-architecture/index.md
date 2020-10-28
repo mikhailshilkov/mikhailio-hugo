@@ -7,7 +7,7 @@ thumbnail: teaser.png
 ghissueid: 46
 ---
 
-Temporal enables developers to build highly reliable applications without having to worry about all the edge cases. Now that you're excited, I'll cover how you can get up and running with Temporal.
+[Temporal](https://temporal.io) enables developers to build highly reliable applications without having to worry about all the edge cases. If you are new to Temporal, check out my article [Open Source Workflows as Code](https://mikhail.io/2020/10/temporal-open-source-workflows-as-code/). Now that you're excited, I'll cover how you can get up and running with Temporal.
 
 Temporal consists of several components. In this post, I want to outline the primary building blocks and their interactions. By the end, you'll have a broad picture of Temporal and the considerations of deploying to development, staging, and production environments.
 
