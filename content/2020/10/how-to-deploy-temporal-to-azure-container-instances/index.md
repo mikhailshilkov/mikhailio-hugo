@@ -7,8 +7,6 @@ thumbnail: teaser.png
 ghissueid: 47
 ---
 
-# How To Deploy Temporal to Azure Container Instances
-
 In [my previous article](https://mikhail.io/2020/10/practical-approach-to-temporal-architecture/), I outlined the various components of [Temporal](https://temporal.io) and how they interact. Today's blog builds on this knowledge and demonstrates an example Temporal deployment.
 
 It's a minimalistic deployment on Azure which combines a managed MySQL database with Azure Container Instances, suitable for simple experimentation and development. Here is a diagram of the cloud infrastructure:
