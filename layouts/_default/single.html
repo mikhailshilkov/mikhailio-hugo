@@ -25,16 +25,21 @@
                         <div>
                             {{if ne .Lastmod .PublishDate}}
                             <span class="post-date">Last updated on {{ dateFormat "Jan 2, 2006" .Lastmod }}
-                                {{else}}
+                            {{else}}
                                 {{ if ne .Params.originalSource nil }}
                                 <span class="post-date">Originally published on the <a
                                         href='{{.Params.originalUrl}}'>{{.Params.originalSource}}</a> on
                                     {{ dateFormat "Jan 2, 2006" .PublishDate }}
-                                    {{else}}
-                                    <span class="post-date">Published on {{ dateFormat "Jan 2, 2006" .PublishDate }}
-                                        {{end}}
-                                        {{end}}
-                                        &nbsp;&middot;&nbsp; {{ .ReadingTime }} min read</span></span>
+                                {{else}}
+                                <span class="post-date">Published on {{ dateFormat "Jan 2, 2006" .PublishDate }}
+                                {{end}}
+                            {{end}}
+                            {{ with .Params.author -}}
+                                {{- range . -}} <!-- Assuming the author front-matter to be a list -->
+                                by <a href="{{$.Page.Params.authorLink}}">{{.}}</a>
+                                {{- end -}}
+                            {{- end }}
+                        &nbsp;&middot;&nbsp; {{ .ReadingTime }} min read</span></span>
                         </div>
                     </div>
                 </div>
@@ -92,8 +97,10 @@
     </div>
     <!-- End Article
         ================================================== -->
+    {{ if eq .Params.author nil }}
     {{- partial "single-partials/sharepane.html" . -}}
     {{- partial "single-partials/comments.html" . -}}
+    {{ end }}
 </div>
 {{ end }}
 

@@ -21,8 +21,14 @@ Potentially, two review topics:
 
 2. Strangler mitigation when reading/writing to/from S3. S3 is sometimes slow, which drives up your high percentile. They have a smart detection of stranglers and they hit a second request. A nice touch: you save money by doing that because you save on AWS Lambda duration.
 
-## Lambada: Interactive Data Analyticson Cold Data using Serverless Cloud Infrastructure
+## Lambada: Interactive Data Analytics on Cold Data using Serverless Cloud Infrastructure
 
 https://arxiv.org/pdf/1912.00937.pdf
 
 Super similar to Starling and released at the same time. Serverless analytics on cold data. Shuffle in S3 with multiple layers.
+
+## Serverless Containers – rising viable approach to Scientific Workflows
+
+https://arxiv.org/pdf/2010.11320v1.pdf
+
+Running scientific workflows on top of AWS Fargate and Google Cloud Run and comparing performance results and applicability.
