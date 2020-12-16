@@ -10,9 +10,9 @@ authorLink: https://twitter.com/Nadeem_ahamed_r
 
 ## Introduction
 
-Business Activity Monitoring (BAM) plays a vital role in identifying and resolving issues in the flow of a business process. Also, the concept of [BAM](https://www.serverless360.com/business-activity-monitoring) is not very new to the world of technology because there are already a handful of organisations leveraging BAM to achieve end-to-end business tracking.
+Business Activity Monitoring (BAM) plays a vital role in identifying and resolving issues in the flow of a business process. Also, the concept of BAM is not very new to the world of technology because there are already a handful of organisations leveraging BAM to achieve end-to-end business tracking.
 
-This blog will feed you with everything that you must know about Business Activity Monitoring starting right from scratch.
+This blog will feed you with everything that you must know about [Business Activity Monitoring](https://www.serverless360.com/business-activity-monitoring) starting right from scratch.
 
 Moving forward, we will see terms like business processes, transactions, and stages very often. It would be better to figure out these terms to understand the concept of BAM.
 

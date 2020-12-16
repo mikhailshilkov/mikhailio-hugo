@@ -91,3 +91,9 @@ Well, maybe, except none of FaaS in AWS, Azure, GCP actually uses Docker. So, I 
 
 Anyway, if you are curious about WASM runtimes, have a look at the benchmark results /fin
 https://arxiv.org/ftp/arxiv/papers/2010/2010.07115.pdf
+
+## Benchmarking parallelism in FaaS platforms
+
+https://arxiv.org/pdf/2010.15032v2.pdf
+
+Great paper comparing AWS Lambda, Azure Functions, and others in terms of scalabiliy. Need to review! A good further reading: https://d1.awsstatic.com/whitepapers/Overview-AWS-Lambda-Security.pdf

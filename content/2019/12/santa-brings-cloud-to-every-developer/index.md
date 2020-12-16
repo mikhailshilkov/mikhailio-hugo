@@ -182,6 +182,6 @@ Honestly, the system is brand-new this year, so we still need to see how it play
 - **Infrastructure**: Cloud resources are defined in F# with Pulumi .NET SDK, which supports pretty much any resource in any cloud.
 - **Application**: Blended together, these components enable writing expressive, cohesive, maintainable, cloud-native applications using familiar and loved tools and practices.
 
-Learn more about [Pulumi for .NET](https://pulumi.com/dotnet) or browse [the full code](https://github.com/mikhailshilkov/fsharp-advent-pulumi) for this example.
+Learn more about [Pulumi for .NET](https://pulumi.com/dotnet) or browse [the full code](https://github.com/mikhailshilkov/fsharp-advent-pulumi/tree/master/2019) for this example.
 
 Merry Cloudsmas, ho-ho-ho!

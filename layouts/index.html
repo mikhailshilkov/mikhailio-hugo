@@ -6,11 +6,15 @@
 <div class="main-content">
     <section class="recent-posts">
         <div class="row listrecent">
-            <div class="col-lg-8 col-sm-12 mb-30px card-group">                
-                {{ $page := $.GetPage "/2020/11/how-to-monitor-your-business-with-bam-tools" }}
+            <div class="col-lg-8 col-sm-12 mb-30px card-group">
+                {{ $page := $.GetPage "/2020/12/farmer-or-pulumi-why-not-both" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
             {{- partial "list-partials/ad.html" $page -}}            
+            {{ $page := $.GetPage "/2020/12/get-up-and-running-with-azure-synapse-and-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2020/12/aws-lambda-container-support" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/11/how-to-deploy-temporal-to-azure-kubernetes-aks" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/10/how-to-deploy-temporal-to-azure-container-instances" }}
