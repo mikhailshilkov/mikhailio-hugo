@@ -1,6 +1,6 @@
 ---
 title: "Comparison of Cold Starts in Serverless Functions across AWS, Azure, and GCP"
-lastmod: 2020-04-26
+lastmod: 2021-01-05
 thumbnail: big3_thumb.jpg
 images: [big3.jpg]
 description: "AWS Lambda, Azure Functions, and Google Cloud Functions compared in terms of cold starts across all supported languages"
@@ -21,13 +21,13 @@ After that request is processed, the instance stays alive to be reused for subse
 
 The strategy for reuse differs very between the cloud vendors:
 
-| Service                   | Idle instance lifetime                   |
-|---------------------------|------------------------------------------|
-| AWS Lambda                | 10 minutes                               |
-| Azure Functions           | Mostly 20 minutes                        |
-| Google Cloud Functions    | Anywhere between 3 minutes and 3+ hours  |
+| Service                   | Idle instance lifetime           |
+|---------------------------|----------------------------------|
+| AWS Lambda                | 5-7 minutes                      |
+| Azure Functions           | Mostly between 20 and 30 minutes |
+| Google Cloud Functions    | 15 minutes                       |
 
-AWS and Azure have the policies to recycle an idle instance after a fixed period, 10 and 20 minutes respectively. GCP employ some other strategies to determine the threshold, potentially based on the current demand-supply balance of their resource pools.
+AWS and Google Cloud have the policies to recycle an idle instance after a predefined period, 5 to 7 and 15 minutes respectively. Azure employ some other strategies to determine the threshold, potentially based on the history of the past invocations.
 
 Learn more about lifetime: [AWS Lambda](/serverless/coldstarts/aws/intervals/), [Azure Functions](/serverless/coldstarts/azure/intervals/), [Google Cloud Functions](/serverless/coldstarts/gcp/intervals/).
 
@@ -44,7 +44,9 @@ The following chart shows the comparison of typical cold start durations for com
 
 {{< /featured >}}
 
-AWS clearly leads with all languages being **well below 1 second**. GCP start-up usually takes **between 1 and 4 seconds**. Azure's runtime is often as fast as GCP's, but it has considerably longer tails.
+AWS clearly leads with all languages being **well below 1 second**. GCP start-up usually takes **between 0.5 and 2 seconds**. Azure is a clear underdog with startup times often **up to 5 seconds**.
+
+All functions above run on Linux.
 
 Read the detailed statistics: [AWS Lambda](/serverless/coldstarts/aws/languages/), [Azure Functions](/serverless/coldstarts/azure/languages/), [Google Cloud Functions](/serverless/coldstarts/gcp/languages/).
 
@@ -63,6 +65,8 @@ The following chart compares three JavaScript functions with the various number 
 
 {{< /featured >}}
 
-The trend is quite consistent: larger packages cause a significant slowdown of the cold start. Once again, AWS outperforms its competitors.
+The trend is quite consistent: larger packages cause a significant slowdown of the cold start.
+
+AWS and GCP are mostly comparable. Note that this test deployed Azure Functions to Windows, which explains the difference with the per-language chart.
 
 Details per provider: [AWS Lambda](/serverless/coldstarts/aws/), [Azure Functions](/serverless/coldstarts/azure/), [Google Cloud Functions](/serverless/coldstarts/gcp/).

@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in AWS Lambda"
-lastmod: 2020-04-26
+lastmod: 2021-01-05
 layout: single
 description: Selection of languages, instance sizes, dependencies, VPC, and more
 tags: ["Cold Starts", "AWS", "AWS Lambda"]
@@ -26,7 +26,7 @@ The following chart estimates the probability of an instance to be recycled afte
     "coldstart_aws_interval"
     "Probability of a cold start happening before minute X" >}}
 
-Cold starts happen **10 minutes** after the previous request.
+Cold starts happen **5 to 7 minutes** after the previous request.
 
 Read more: [When Does Cold Start Happen on AWS Lambda?](/serverless/coldstarts/aws/intervals/)
 
@@ -39,9 +39,11 @@ The following chart shows the typical range of cold starts in AWS Lambda, broken
     "coldstart_aws_bylanguage"
     "Typical cold start durations per language" >}}
 
-JavaScript, Python, Go, Java, and Ruby are all comparable: most of the time they complete within **500 milliseconds** and almost always within **800 milliseconds**.
+JavaScript, Python, Go, Java, and Ruby are all comparable: most of the time they complete within **400 milliseconds** and almost always within **700 milliseconds**.
 
-C# is a distinct underdog. The chart shows statistics for instances with 2 GB of allocated RAM, which are the fastest (see below). Cold starts of this instance size span between **0.5 and 1.0 seconds**.
+C# is a distinct underdog. The chart shows statistics for instances with 2+ GB of allocated RAM, which are the faster than smaller ones (see below). Cold starts of this instance size span between **0.4 and 0.9 seconds**.
+
+Lambda functions packaged as Docker images are yet slower. A basic container based on the recommended Node.js base image starts up in **0.6 and 1.4 seconds**.
 
 View detailed distributions: [Cold Start Duration per Language](/serverless/coldstarts/aws/languages/).
 
@@ -76,6 +78,14 @@ The following chart compares three JavaScript functions with the various number 
     "Cold start durations per deployment size (zipped)" >}}
 
 Indeed, the functions with many dependencies can be 5-10 times slower to start.
+
+The following chart compares three functions packaged as container images of different size. Every container is based on the official Node.js image but have different additional files baked in:
+
+{{< chart_interval
+    "coldstart_aws_bydocker"
+    "Cold start durations per Docker image extra size" >}}
+
+Container image size does not seem to influence the cold start duration.
 
 What Is The Effect Of VPC Access?
 ---------------------------------

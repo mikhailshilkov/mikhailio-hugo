@@ -1,6 +1,6 @@
 ---
 title: "Cold Starts in Google Cloud Functions"
-lastmod: 2020-04-26
+lastmod: 2021-01-05
 layout: single
 tags: ["Cold Starts", "GCP", "Google Cloud Functions"]
 description: Running GA and Beta languages on different instance sizes
@@ -26,9 +26,7 @@ The following chart estimates the probability of an instance to be recycled afte
     "coldstart_gcp_interval"
     "Probability of a cold start happening before minute X" >}}
 
-Google stopped keeping idle instances for many hours, as they used to do: only 40% of instances survive 20 minutes of inactivity and only 15% survive one hour.
-
-There are chances that an instance dies after several minutes or stay alive for several hours. Most probably, Google makes the decision based on the current demand/supply ratio in the given resource pool.
+Instances are recycled after **15 minutes** of inactivity. Google stopped keeping idle instances for many hours, as they used to do.
 
 Read more: [When Does Cold Start Happen on Google Cloud Functions?](/serverless/coldstarts/gcp/intervals)
 
@@ -67,6 +65,6 @@ Google Cloud Functions have a setting to define the memory size that gets alloca
     "coldstart_gcp_bymemory"
     "Comparison of cold start durations per instance size" >}}
 
-Larger instances seem to start faster, but the effect doesn't look very strong.
+There seems to be no significant speed-up of the cold start as the instance size grows.
 
 Same comparison for larger functions: [Cold Start Duration per Instance Size](/serverless/coldstarts/gcp/instances).

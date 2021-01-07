@@ -1,6 +1,6 @@
 ---
 title: "When Does Cold Start Happen on Azure Functions?"
-lastmod: 2020-04-26
+lastmod: 2021-01-05
 tags: ["Cold Starts", "Azure", "Azure Functions"]
 nofeed: true
 thumbnail: interval_chart_thumb.png
@@ -16,7 +16,7 @@ The following chart answers this question. It plots the response duration in sec
     "coldstart_azure_scatter"
     "Cold and warm latency as a function of the interval between two subsequent requests" >}}
 
-**An idle instance lives not londer 22 minutes and then gets recycled**. Some cold starts happen earlier than 20 minutes, so this behavior seems less deterministic than it used to be in the past.
+After that request is processed, the instance stays alive mostly **from 20 to 30 minutes** to be reused for subsequent requests. Some cold starts happen earlier than 10 minutes, some instances last for more than 50 minutes, so the behavior seems less deterministic than it used to be in the past. It's likely related to the new [algorithm to predict the next invocation](https://mikhail.io/2020/06/eliminate-cold-starts-by-predicting-invocations-of-serverless-functions/).
 
 Here is a formal visualization of the same data. It plots the probability of a cold start (Y-axis) by the interval between two subsequent requests (X-axis):
 

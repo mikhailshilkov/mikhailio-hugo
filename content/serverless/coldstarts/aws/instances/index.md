@@ -1,6 +1,6 @@
 ---
 title: "AWS Lambda: Cold Start Duration per Instance Size"
-lastmod: 2020-04-26
+lastmod: 2021-01-05
 tags: ["Cold Starts", "AWS", "JavaScript", "AWS Lambda"]
 nofeed: true
 thumbnail: instances_chart_thumb.png

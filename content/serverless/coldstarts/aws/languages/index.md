@@ -1,6 +1,6 @@
 ---
 title: "AWS Lambda: Cold Start Duration per Language"
-lastmod: 2020-04-26
+lastmod: 2021-01-05
 tags: ["Cold Starts", "AWS", "JavaScript", "Python", "Go", "CSharp", "Ruby", "Java", "AWS Lambda"]
 nofeed: true
 thumbnail: languages_chart_thumb.png
@@ -12,7 +12,7 @@ The following chart shows the typical range of cold starts in AWS Lambda, broken
     "coldstart_aws_bylanguage"
     "Typical cold start durations per language" >}}
 
-The charts below give the distribution of cold start durations per supported programming language. All charts have the same horizontal scale (0.0-1.0 sec) to make them easily comparable.
+The charts below give the distribution of cold start durations per supported programming language. All charts (except the last one) have the same horizontal scale (0.0-1.0 sec) to make them easily comparable.
 
 **JavaScript**:
 
@@ -49,11 +49,18 @@ The charts below give the distribution of cold start durations per supported pro
      "Cold start durations of AWS Lambda in Ruby"
      "1.0" >}}
 
-**C#** (notice that the scale of X axis is different from the other charts):
+**C#**:
 
 {{< chart_hist
      "coldstart_aws_csharp"
      "Cold start durations of AWS Lambda in C# (2 GB RAM)"
      "1.0" >}}
+
+**Docker image** (notice that the scale of X axis is different from the other charts):
+
+{{< chart_hist
+     "coldstart_aws_docker"
+     "Cold start durations of AWS Lambda packages as a Docker image"
+     "1.8" >}}
 
 Go back to [Cold Starts in AWS Lambda](/serverless/coldstarts/aws/).

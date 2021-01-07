@@ -1,6 +1,6 @@
 ---
 title: "Google Cloud Functions: Cold Start Duration per Instance Size"
-lastmod: 2020-04-26
+lastmod: 2021-01-05
 tags: ["Cold Starts", "GCP", "JavaScript", "Google Cloud Functions"]
 nofeed: true
 thumbnail: instances_chart_thumb.png
@@ -27,7 +27,5 @@ Here is the same comparison for a JavaScript function with **35 MB** (zipped) of
 {{< chart_interval
     "coldstart_gcp_bymemoryxxxl"
     "Comparison of cold start durations per instance size, 35 MB (zipped) of dependencies" >}}
-
-All of the charts shows an advantage of larger instance sizes for cold starts, and the difference increases with the size of a deployment package.
 
 Go back to [Cold Starts in Google Cloud Functions](/serverless/coldstarts/gcp/).
