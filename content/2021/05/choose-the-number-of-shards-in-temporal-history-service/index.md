@@ -3,7 +3,7 @@ title: "Choosing the Number of Shards in Temporal History Service"
 date: 2021-05-25
 tags: ["Temporal", "Workflows", "Performance"]
 thumbnail: teaser.jpg
-description: "Tuning the sharding configuration for the optimal cluster performance."
+description: "Tuning the sharding configuration for the optimal cluster performance with the numHistoryShards config."
 ghissueid: 53
 ---
 
@@ -31,7 +31,7 @@ Temporal provides high guarantees around Workflow consistency. To achieve this g
 
 Each Workflow execution receives a unique identifier. Temporal calculates a hash for each identifier and allocates it to a specific **shard** based on the hash value. A shard is represented as a number from 1 to N. Executions with the same shard value are processed by the same host.
 
-The History service has a configuration value to define the total number of shards, set once and forever. Each instance of the History service obtains a lock on multiple shards and starts processing Workflow executions that belong to them.
+The History service has a configuration value `numHistoryShards` to define the total number of shards, set once and forever. Each instance of the History service obtains a lock on multiple shards and starts processing Workflow executions that belong to them.
 
 Shards are logically independent and isolated from each other. To achieve the consistency requirements with Cassandra, Temporal serializes all updates belonging to the same shard.
 
