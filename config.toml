@@ -17,12 +17,12 @@ disqusShortname = "mikhailio"
   section  = ["HTML"]
 
 [mediaTypes."application/xml"]
-  suffixes = [""]
-  delimiter = ""
+  suffixes = ["xml"]
 
 [outputFormats.XML]
   mediatype = "application/xml"
-  baseName = "feed"
+  baseName = "index"
+  path = "feed"
 
 [markup.goldmark.renderer]
   unsafe= true

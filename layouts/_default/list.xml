@@ -18,7 +18,8 @@
     {{- end }}
     <id>{{ .Permalink }}</id>
     {{ $feed_sections := $.Site.Params.feedSections | default site.Params.mainSections }}
-    {{- range .Site.Pages }}
+    {{ $pages := where .Site.RegularPages "Section" "in" (slice "2019" "2020" "2021" "2022" "2024" "2025") }}
+    {{- range first 60 $pages }}
         {{ $page := . }}
         {{- with .Params.nofeed }}
         {{ else }}
