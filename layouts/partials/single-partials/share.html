@@ -9,7 +9,7 @@
 
         <li class="ml-1 mr-1" title="Tweet this article">
             <a target="_blank"
-                href="https://twitter.com/intent/tweet?text={{ .Title }}%20by%20@{{.Site.Params.social.twitter}}&url={{ .URL | absLangURL }}"
+                href="https://twitter.com/intent/tweet?text={{ .Title }}%20by%20@{{.Site.Params.social.twitter}}&url={{ .RelPermalink | absLangURL }}"
                 onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
                 <i class="fab fa-twitter"></i>
             </a>
