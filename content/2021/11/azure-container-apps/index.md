@@ -2,7 +2,7 @@
 title: "Deploying new Azure Container Apps with familiar languages"
 date: 2021-11-02
 tags: ["Azure", "Containers", "Docker", "Serverless", "Pulumi"]
-thumbnail: container-apps.png
+thumbnail: teaser.jpg
 description: "Learn how to deploy Docker containers to Azure Container Apps using Pulumi. A step-by-step guide for building scalable serverless apps in any language."
 ghissueid: 54
 originalSource: Pulumi Blog
