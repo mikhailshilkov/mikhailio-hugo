@@ -7,9 +7,11 @@
     <section class="recent-posts">
         <div class="row listrecent">
             <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                {{ $page := $.GetPage "/2021/05/choose-the-number-of-shards-in-temporal-history-service" }}
+                {{ $page := $.GetPage "/2021/11/deploying-azure-container-apps" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2021/05/choose-the-number-of-shards-in-temporal-history-service" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2021/03/maru-load-testing-tool-for-temporal-workflows" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/serverless/coldstarts" }}
