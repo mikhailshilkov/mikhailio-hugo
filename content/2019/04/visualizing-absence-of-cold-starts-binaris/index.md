@@ -21,7 +21,7 @@ Is this effect unfortunately inherent to all Function-as-a-Service offerings? Or
  
 One of the clear benefits and differentiators from other providers is the absence of cold starts in Binaris functions:
 
-{{< tweet 1106616656602685440 >}}
+{{< tweet user="binaris_io" id="1106616656602685440" >}}
 
 In light of this, I decided to rerun my map visualization using Binaris functions to illustrate the difference:
 

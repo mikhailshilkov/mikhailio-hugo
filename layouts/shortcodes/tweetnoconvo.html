@@ -1,1 +1,3 @@
-{{ (getJSON "https://api.twitter.com/1/statuses/oembed.json?hide_thread=1&id=" (index .Params 0)).html | safeHTML }}
+{{ $id := index .Params 0 }}
+<blockquote class="twitter-tweet" data-conversation="none"><a href="https://twitter.com/x/status/{{ $id }}"></a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
