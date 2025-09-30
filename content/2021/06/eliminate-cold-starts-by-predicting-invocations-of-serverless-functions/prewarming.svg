@@ -1,0 +1,25 @@
+<svg width="1150" height="500" viewBox="0 0 1150 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .small { font-size: 28px; font-family: Burst My Bubble; }
+      .medium { font-size: 35px; font-family: Burst My Bubble; }
+  </style>
+
+  <polyline fill="none" stroke="#aaaaaa" stroke-width="2" stroke-dasharray="4,2" points="50,402 1100,402" />
+
+  <polygon fill="#F9CDAC" stroke="#D54D88" stroke-width="2" points="130,400 185,400 185,250 130,250" />
+  <polygon fill="#EA708E" stroke="#63218F" stroke-width="2" points="150,400 180,400 180,120 150,120" />
+  
+  <polygon fill="#F9CDAC" stroke="#D54D88" stroke-width="2" points="930,400 985,400 985,250 930,250" />
+  <polygon fill="#EA708E" stroke="#63218F" stroke-width="2" points="950,400 980,400 980,120 950,120" />
+
+  <text x="160" y="425" class="small" fill="#666666">0</text>
+  <text x="960" y="425" class="small" fill="#666666">60</text>
+
+  <text x="490" y="450" class="medium" fill="#666666">minutes</text>
+  <text x="220" y="240" class="medium" fill="#A73B8F">Shut down</text>
+  <text x="220" y="270" class="medium" fill="#A73B8F">when done</text>
+  <text x="765" y="240" class="medium" fill="#A73B8F">Boot up</text>
+  <text x="740" y="270" class="medium" fill="#A73B8F">right before</text>
+  <text x="110" y="80" class="medium" fill="#501B73">Request #1</text>
+  <text x="910" y="80" class="medium" fill="#501B73">Request #2</text>
+</svg>
