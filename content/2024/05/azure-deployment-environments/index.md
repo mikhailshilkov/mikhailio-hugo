@@ -4,7 +4,7 @@ date: 2024-05-21
 tags: ["Azure", "Pulumi"]
 thumbnail: meta.png
 description: "Author Azure Deployment Environments definitions with Pulumi using your favorite programming language."
-ghissueid: 56
+ghissueid: 57
 originalSource: Pulumi Blog
 originalUrl: https://www.pulumi.com/blog/azure-deployment-environments/
 ---

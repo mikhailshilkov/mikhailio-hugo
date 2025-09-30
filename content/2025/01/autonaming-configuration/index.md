@@ -4,7 +4,7 @@ date: 2025-01-16
 tags: ["Pulumi"]
 thumbnail: meta.png
 description: "Discover how to customize Pulumi's resource naming to align with your organization's standards and naming conventions."
-ghissueid: 57
+ghissueid: 56
 originalSource: Pulumi Blog
 originalUrl: https://www.pulumi.com/blog/autonaming-configuration/
 ---

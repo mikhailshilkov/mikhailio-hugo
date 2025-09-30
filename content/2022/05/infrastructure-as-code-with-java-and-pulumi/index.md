@@ -4,7 +4,7 @@ date: 2022-05-04
 tags: ["Java", "Pulumi", "Kubernetes"]
 thumbnail: meta.png
 description: "Learn about Pulumi's support for Java and JVM languages, which enable you to use Infrastructure As Code on any Cloud with the JVM ecosystem."
-ghissueid: 55
+ghissueid: 58
 originalSource: Pulumi Blog
 originalUrl: https://www.pulumi.com/blog/announcing-infrastructure-as-code-with-java-and-pulumi/
 ---

@@ -4,7 +4,7 @@ date: 2025-04-08
 tags: ["Pulumi", "AI", "Azure", "Kubernetes"]
 thumbnail: meta.png
 description: "Learn how AI assistants like Cursor with Pulumi's MCP server accelerate IaC workflows and improve developer experience."
-ghissueid: 58
+ghissueid: 55
 originalSource: Pulumi Blog
 originalUrl: https://www.pulumi.com/blog/mcp-server-ai-assistants/
 ---
