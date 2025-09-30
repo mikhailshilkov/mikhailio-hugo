@@ -7,9 +7,25 @@
     <section class="recent-posts">
         <div class="row listrecent">
             <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                {{ $page := $.GetPage "/2021/11/deploying-azure-container-apps" }}
+                {{ $page := $.GetPage "/2025/04/mcp-server-ai-assistants" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2025/01/autonaming-configuration" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2024/05/azure-deployment-environments" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2022/05/infrastructure-as-code-with-java-and-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2021/12/get-up-and-running-with-azure-synapse-and-pulumi" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2021/11/azure-container-apps" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2021/11/how-to-deploy-temporal-to-azure-kubernetes-aks" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2021/10/how-to-deploy-temporal-to-azure-container-instances" }}
+            {{- partial "list-partials/postbox.html" $page -}}
+            {{ $page := $.GetPage "/2021/06/eliminate-cold-starts-by-predicting-invocations-of-serverless-functions" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2021/05/choose-the-number-of-shards-in-temporal-history-service" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2021/03/maru-load-testing-tool-for-temporal-workflows" }}
