@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hugo)",
+      "Bash(npm install)",
+      "Bash(git log:*)",
+      "Read(//Users/mikhailshilkov/go/src/github.com/mikhailshilkov/mikhailshilkov.github.io/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
