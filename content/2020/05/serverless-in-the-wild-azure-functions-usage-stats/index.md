@@ -5,7 +5,6 @@ thumbnail: teaser.jpg
 tags: ["Serverless", "Azure", "Azure Functions", "Paper review"]
 description: "Insightful statistics about the actual production usage of Azure Functions, based on the data from Microsoft's paper"
 ghissueid: 37
-markup: "mmark"
 ---
 
 Microsoft Azure and Microsoft Research [released](https://arxiv.org/pdf/2003.03423.pdf) a paper called "Serverless in the Wild: Characterizing and Optimizing the Serverless Workload at a Large Cloud Provider". In part 1 of the paper, they revealed some insightful statistics about the actual production usage of Azure Functions for two weeks in summer 2019.
