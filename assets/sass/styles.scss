@@ -540,6 +540,15 @@ figure svg {
     border: 1px solid #ebebeb;
 }
 
+figure.wide {
+    margin-left: -150px;
+    margin-right: -150px;
+}
+
+figure.wide img {
+    width: 100%;
+}
+
 .article-post table {
     margin-bottom: 44px;
 }
@@ -561,8 +570,21 @@ p code {
     background-color: #f0f0f0;
     border-radius: 4px;
 }
-pre {
-    background-color: #f0f0f0 !important;
+
+/* Diff highlighting */
+.highlight pre .gd {
+    background-color: #ffdddd;
+    color: #d73a49;
+}
+
+.highlight pre .gi {
+    background-color: #ddffdd;
+    color: #28a745;
+}
+
+.highlight pre .gu {
+    color: #6f42c1;
+    font-weight: bold;
 }
 
 .sidebar {

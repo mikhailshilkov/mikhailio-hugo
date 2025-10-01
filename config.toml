@@ -7,9 +7,11 @@ assetDir = "assets"
 summaryLength = 25
 enableEmoji = true
 
-pygmentsCodeFences = true
-pygmentsStyle = "vs"
 googleAnalytics = "G-NL7F82LX48"
+
+[markup.highlight]
+  style = "github"
+  lineNos = false
 disqusShortname = "mikhailio"
 
 [outputs]
