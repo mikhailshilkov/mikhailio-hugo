@@ -7,9 +7,11 @@
     <section class="recent-posts">
         <div class="row listrecent">
             <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                {{ $page := $.GetPage "/2025/04/mcp-server-ai-assistants" }}
+                {{ $page := $.GetPage "/2025/09/sonnet-4-5-system-prompt-changes" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2025/04/mcp-server-ai-assistants" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2025/01/autonaming-configuration" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2024/05/azure-deployment-environments" }}
@@ -33,8 +35,6 @@
             {{ $page := $.GetPage "/serverless/coldstarts" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/12/farmer-or-pulumi-why-not-both" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2020/12/get-up-and-running-with-azure-synapse-and-pulumi" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2020/12/aws-lambda-container-support" }}
             {{- partial "list-partials/postbox.html" $page -}}
@@ -132,15 +132,11 @@
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/05/reliable-consumer-of-azure-event-hubs" }}
             {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2017/03/visualizing-dependency-tree-from-di-container" }}
-            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/03/azure-functions-as-facade-for-azure-monitoring" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/02/coding-puzzle-in-fsharp-find-the-number-of-islands" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2017/01/event-sourcing-optimizing-neventstore-sql-read-performance" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2017/01/my-praise-of-advent-of-code-2016" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/11/introducing-stream-processing-in-fsharp" }}
             {{- partial "list-partials/postbox.html" $page -}}
@@ -151,8 +147,6 @@
             {{ $page := $.GetPage "/2016/08/comparing-scala-to-fsharp" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/07/building-a-poker-bot-functional-fold-as-decision-tree-pattern" }}
-            {{- partial "list-partials/postbox.html" $page -}}
-            {{ $page := $.GetPage "/2016/05/dependency-inversion-implies-interfaces-are-owned-by-high-level-modules" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2016/04/building-a-poker-bot-with-akka-net-actors" }}
             {{- partial "list-partials/postbox.html" $page -}}

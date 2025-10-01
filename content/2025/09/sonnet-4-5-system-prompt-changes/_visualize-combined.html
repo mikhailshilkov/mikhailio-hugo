@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code System Prompt & Tools Diff</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+            background: #ffffff;
+            color: #24292f;
+        }
+        .main-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .column-header {
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            color: #24292f;
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .stats {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #57606a;
+        }
+        .stats .additions {
+            color: #1a7f37;
+            font-weight: bold;
+        }
+        .stats .deletions {
+            color: #cf222e;
+            font-weight: bold;
+        }
+        .diff {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .diff-line {
+            display: flex;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 3px;
+            overflow: hidden;
+        }
+        #diff-prompt .diff-line {
+            height: 2.6px;
+            line-height: 2.6px;
+        }
+        #diff-tools .diff-line {
+            height: 0.58px;
+            line-height: 0.58px;
+        }
+        .line-number {
+            padding: 0 2px;
+            text-align: right;
+            width: 10px;
+            user-select: none;
+            color: transparent;
+        }
+        .line-content {
+            flex: 1;
+            padding-right: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            color: transparent;
+        }
+        .diff-line.added {
+            background: #ccffd8;
+        }
+        .diff-line.added .line-number {
+            background: #ccffd8;
+        }
+        .diff-line.removed {
+            background: #ffd7d5;
+        }
+        .diff-line.removed .line-number {
+            background: #ffd7d5;
+        }
+        .diff-line.unchanged {
+            background: #f6f8fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="column">
+            <div class="column-header">
+                <h1>System Prompt: 1.x → 2.0</h1>
+                <div class="stats" id="stats-prompt"></div>
+            </div>
+            <div class="diff" id="diff-prompt"></div>
+        </div>
+        <div class="column">
+            <div class="column-header">
+                <h1>Tools: 1.x → 2.0</h1>
+                <div class="stats" id="stats-tools"></div>
+            </div>
+            <div class="diff" id="diff-tools"></div>
+        </div>
+    </div>
+
+    <script>
+        function renderDiff(originalText, diffText, containerId, statsId) {
+            const container = document.getElementById(containerId);
+            const originalLines = originalText.split('\n');
+            const diffLines = diffText.split('\n');
+
+            // Parse diff to understand changes
+            let changes = {}; // line number -> {type: 'removed'/'added', additions: [...]}
+            let currentLine = 0;
+
+            for (let i = 0; i < diffLines.length; i++) {
+                const line = diffLines[i];
+
+                if (line.startsWith('@@')) {
+                    const match = line.match(/@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@/);
+                    if (match) {
+                        currentLine = parseInt(match[1]) - 1;
+                    }
+                } else if (line.startsWith('-') && !line.startsWith('---')) {
+                    changes[currentLine] = changes[currentLine] || {type: 'removed', additions: []};
+                    currentLine++;
+                } else if (line.startsWith('+') && !line.startsWith('+++')) {
+                    // Find the previous line to attach addition to
+                    let prevLine = currentLine - 1;
+                    while (prevLine >= 0 && changes[prevLine] && changes[prevLine].type === 'removed') {
+                        prevLine--;
+                    }
+                    if (!changes[prevLine]) {
+                        changes[prevLine] = {type: 'unchanged', additions: []};
+                    }
+                    changes[prevLine].additions.push(line.substring(1));
+                } else if (!line.startsWith('---') && !line.startsWith('+++')) {
+                    currentLine++;
+                }
+            }
+
+            let additions = 0;
+            let deletions = 0;
+
+            // Render all lines
+            originalLines.forEach((line, idx) => {
+                const change = changes[idx];
+
+                // Render removed line
+                if (change && change.type === 'removed') {
+                    const div = document.createElement('div');
+                    div.className = 'diff-line removed';
+                    const lineNum = document.createElement('div');
+                    lineNum.className = 'line-number';
+                    lineNum.textContent = idx + 1;
+                    const content = document.createElement('div');
+                    content.className = 'line-content';
+                    content.textContent = '-' + line;
+                    div.appendChild(lineNum);
+                    div.appendChild(content);
+                    container.appendChild(div);
+                    deletions++;
+                }
+
+                // Render unchanged line
+                if (!change || change.type === 'unchanged') {
+                    const div = document.createElement('div');
+                    div.className = 'diff-line unchanged';
+                    const lineNum = document.createElement('div');
+                    lineNum.className = 'line-number';
+                    lineNum.textContent = idx + 1;
+                    const content = document.createElement('div');
+                    content.className = 'line-content';
+                    content.textContent = ' ' + line;
+                    div.appendChild(lineNum);
+                    div.appendChild(content);
+                    container.appendChild(div);
+                }
+
+                // Render added lines after this line
+                if (change && change.additions.length > 0) {
+                    change.additions.forEach(addedLine => {
+                        const div = document.createElement('div');
+                        div.className = 'diff-line added';
+                        const lineNum = document.createElement('div');
+                        lineNum.className = 'line-number';
+                        lineNum.textContent = '';
+                        const content = document.createElement('div');
+                        content.className = 'line-content';
+                        content.textContent = '+' + addedLine;
+                        div.appendChild(lineNum);
+                        div.appendChild(content);
+                        container.appendChild(div);
+                        additions++;
+                    });
+                }
+            });
+
+            return { additions, deletions, originalLines: originalLines.length };
+        }
+
+        // Load and render system prompt diff
+        Promise.all([
+            fetch('claude_1_system_prompt.txt').then(r => r.text()),
+            fetch('system_prompt.diff').then(r => r.text())
+        ]).then(([originalText, diffText]) => {
+            const stats = renderDiff(originalText, diffText, 'diff-prompt', 'stats-prompt');
+            document.getElementById('stats-prompt').innerHTML = `
+                188 → 169 lines
+                (<span class="additions">+${stats.additions}</span> /
+                <span class="deletions">-${stats.deletions}</span>)
+            `;
+        }).catch(err => {
+            document.getElementById('diff-prompt').innerHTML = '<p style="color: red;">Failed to load files</p>';
+            console.error(err);
+        });
+
+        // Load and render tools diff
+        Promise.all([
+            fetch('claude_1_tools_detailed.md').then(r => r.text()),
+            fetch('tools.diff').then(r => r.text())
+        ]).then(([originalText, diffText]) => {
+            const stats = renderDiff(originalText, diffText, 'diff-tools', 'stats-tools');
+            document.getElementById('stats-tools').innerHTML = `
+                869 → 851 lines
+                (<span class="additions">+${stats.additions}</span> /
+                <span class="deletions">-${stats.deletions}</span>)
+            `;
+        }).catch(err => {
+            document.getElementById('diff-tools').innerHTML = '<p style="color: red;">Failed to load files</p>';
+            console.error(err);
+        });
+    </script>
+</body>
+</html>
