@@ -1,0 +1,61 @@
+{
+    "role": "assistant",
+    "content": [
+    {
+        "type": "text",
+        "text": "I'll fetch the pricing information from the Pulumi pricing page for you."
+    },
+    {
+        "type": "tool_use",
+        "id": "toolu_01DT4sbmAGX1KXv1EDRpEDHw",
+        "name": "WebFetch",
+        "input": {
+        "url": "https://www.pulumi.com/pricing/",
+        "prompt": "What are the pricing tiers mentioned on this page? List each tier name and key details about what's included or the price point."
+        },
+        "cache_control": {
+        "type": "ephemeral"
+        }
+    }
+    ]
+}
+{
+    "role": "user",
+    "content": [
+    {
+        "tool_use_id": "toolu_01DT4sbmAGX1KXv1EDRpEDHw",
+        "type": "tool_result",
+        "content": "Here are the pricing tiers mentioned on the page:\n\n1. Individual\n- Price: Free\n- Key features:\n  - \"IaC state management\"\n  - Unlimited projects, stacks, environments\n  - 500 free deployment minutes\n\n2. Team\n- Price: $40/month\n- Key features:\n  - \"Up to 10 users\"\n  - Secure collaboration and CI/CD\n  - AI assistance with Pulumi Neo\n  - 500 included resources\n\n3. Enterprise\n- Price: $400/month\n- Key features:\n  - Unlimited users\n  - SAML/SSO and RBAC\n  - Internal developer platform\n  - 2,000 included resources\n  - Audit logs\n  - Drift detection\n\n4. Business Critical\n- Price: Custom\n- Key features:\n  - Self-hosting available\n  - Compliance policies\n  - Org-wide policy enforcement\n  - Volume pricing and invoicing\n  - 24x7 Enterprise Support available",
+        "cache_control": {
+        "type": "ephemeral"
+        }
+    }
+    ]
+}
+{
+    "role": "assistant",
+    "content": [
+    {
+        "type": "text",
+        "text": "I'll search for the latest information about Node.js runtime support in AWS Lambda."
+    },
+    {
+        "type": "tool_use",
+        "id": "toolu_017P2DeTB16mUFCcAXZ5wtTe",
+        "name": "WebSearch",
+        "input": {
+        "query": "AWS Lambda Node.js runtime support 2025 latest version"
+        }
+    }
+    ]
+}
+{
+    "role": "user",
+    "content": [
+    {
+        "tool_use_id": "toolu_017P2DeTB16mUFCcAXZ5wtTe",
+        "type": "tool_result",
+        "content": "Web search results for query: \"AWS Lambda Node.js runtime support 2025 latest version\"\n\nLinks: [{\"title\":\"Lambda runtimes - AWS Lambda\",\"url\":\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\"},{\"title\":\"Node.js 22 runtime now available in AWS Lambda | Amazon Web Services\",\"url\":\"https://aws.amazon.com/blogs/compute/node-js-22-runtime-now-available-in-aws-lambda/\"},{\"title\":\"Node.js 16 Runtime Deprecation Date Change | AWS re:Post\",\"url\":\"https://repost.aws/questions/QUhzoRPsKORU6cOSbvuVzTkA/node-js-16-runtime-deprecation-date-change\"},{\"title\":\"AWS Lambda | endoflife.date\",\"url\":\"https://endoflife.date/aws-lambda\"},{\"title\":\"Node.js 20.x runtime now available in AWS Lambda | Amazon Web Services\",\"url\":\"https://aws.amazon.com/blogs/compute/node-js-20-x-runtime-now-available-in-aws-lambda/\"},{\"title\":\"Announcing the end of support for Node.js 16.x in the AWS SDK for JavaScript (v3) | AWS Developer Tools Blog\",\"url\":\"https://aws.amazon.com/blogs/developer/announcing-the-end-of-support-for-node-js-16-x-in-the-aws-sdk-for-javascript-v3/\"},{\"title\":\"AWS Lambda adds support for Node.js 18 in ...\",\"url\":\"https://aws.amazon.com/about-aws/whats-new/2023/04/aws-lambda-node-js-18-govcloud-regions/\"},{\"title\":\"Updating Node.js Runtime for AWS Lambda Functions \u2013 Online Help Center\",\"url\":\"https://sendsafely.zendesk.com/hc/en-us/articles/36183467447949-Updating-Node-js-Runtime-for-AWS-Lambda-Functions\"},{\"title\":\"How does AWS Lambda support eol node.js versions - Information Security Stack Exchange\",\"url\":\"https://security.stackexchange.com/questions/279618/how-does-aws-lambda-support-eol-node-js-versions\"},{\"title\":\"Building Lambda functions with Node.js - AWS Lambda\",\"url\":\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-nodejs.html\"}]"
+    }
+    ]
+}
