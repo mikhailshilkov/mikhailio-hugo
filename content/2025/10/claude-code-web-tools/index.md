@@ -1,7 +1,8 @@
 ---
-title: "Inside Claude Code’s Web Tools: WebFetch vs WebSearch"
+title: "Inside Claude Code's Web Tools: WebFetch vs WebSearch"
 date: 2025-10-06
 thumbnail: teaser.jpg
+images: [teaser.jpg]
 tags: ["AI", "Claude"]
 description: "How Claude Code uses web tools under the hood: schemas, prompts, execution, and design trade-offs"
 ghissueid: 60
