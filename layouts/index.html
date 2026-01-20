@@ -7,9 +7,11 @@
     <section class="recent-posts">
         <div class="row listrecent">
             <div class="col-lg-8 col-sm-12 mb-30px card-group">
-                {{ $page := $.GetPage "/2025/10/claude-code-skills" }}
+                {{ $page := $.GetPage "/2026/01/leaving-pulumi" }}
                 {{- partial "list-partials/featured.html" $page -}}
             </div>
+            {{ $page := $.GetPage "/2025/10/claude-code-skills" }}
+            {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2025/10/claude-code-web-tools" }}
             {{- partial "list-partials/postbox.html" $page -}}
             {{ $page := $.GetPage "/2025/09/sonnet-4-5-system-prompt-changes" }}
